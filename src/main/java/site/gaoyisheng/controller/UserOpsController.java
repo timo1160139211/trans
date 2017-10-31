@@ -58,8 +58,37 @@ public class UserOpsController {
 		return mv;
 	}
 	
-	/******************************************STUDENT********************************************/
-	@RequestMapping("/student-list")
+	@RequestMapping("/claim-list")
+	public ModelAndView claimList(HttpSession session) {
+		
+		User11 currentUser =(User11) session.getAttribute("currentUser");
+		System.out.println("home:" + currentUser.toString());
+		
+		if(!currentUser.getIdentity().equals("teacher")) {}//如果currentUser 不是teacher
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("currentUser",currentUser)
+		  .setViewName("/" + currentUser.getIdentity() + "/home");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/claim")
+	public ModelAndView claim(HttpSession session) {
+		
+		User11 currentUser =(User11) session.getAttribute("currentUser");
+		System.out.println("home:" + currentUser.toString());
+		
+		if(!currentUser.getIdentity().equals("teacher")) {}//如果currentUser 不是teacher
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("currentUser",currentUser)
+		  .setViewName("/" + currentUser.getIdentity() + "/home");
+		
+		return mv;
+	}
+	
+/*	@RequestMapping("/student-list")
 	public ModelAndView studentList(HttpSession session,
 			                         @RequestParam(name="teamId",required=false)Integer teamId) {
 		
@@ -140,8 +169,6 @@ public class UserOpsController {
 		mv.setViewName("redirect:" + "/teacher/student-list");
 		
 		return mv;
-	}
+	}*/
 	
-	/******************************************STUDENT********************************************/
-
 }

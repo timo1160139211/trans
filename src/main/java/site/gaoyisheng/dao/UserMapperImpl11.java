@@ -274,26 +274,26 @@ public class UserMapperImpl11 implements UserMapper11 {
 		return studentList;
 	}
 
-	@Override
-	public List<UserTeamForm> selectByTeacherIdAndTeamId(Map<String, Integer> param) {
-		
-		List<UserTeamForm> studentList = null;
-		try {
-			
-			MybatisUtil mybatisUtil = new MybatisUtil();
-			
-			studentList = mybatisUtil.getSqlSession()
-					.selectList("selectByTeacherIdAndTeamId", param);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (sqlSession != null) {
-				sqlSession.close();
-			}
-		}
-
-		return studentList;
-	}
+//	@Override
+//	public List<UserTeamForm> selectByTeacherIdAndTeamId(Map<String, Integer> param) {
+//		
+//		List<UserTeamForm> studentList = null;
+//		try {
+//			
+//			MybatisUtil mybatisUtil = new MybatisUtil();
+//			
+//			studentList = mybatisUtil.getSqlSession()
+//					.selectList("selectByTeacherIdAndTeamId", param);
+//
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			if (sqlSession != null) {
+//				sqlSession.close();
+//			}
+//		}
+//
+//		return studentList;
+//	}
 }

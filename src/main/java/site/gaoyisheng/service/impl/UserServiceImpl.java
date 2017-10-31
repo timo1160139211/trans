@@ -83,11 +83,11 @@ public class UserServiceImpl implements UserService {
 		return this.userDao.updateByPrimaryKeySelective(user);
 	}
 
-	@Override
-	public List<UserTeamForm> selectByTeacherIdAndTeamId(Integer teacherId, Integer teamId) {
-		Map<String, Integer> parameterMap = new HashMap<String, Integer>();
-		parameterMap.put("teacherId", teacherId);
-		parameterMap.put("teamId", teamId);
-		return this.userDao.selectByTeacherIdAndTeamId(parameterMap);
-	}
+//	@Override
+//	public List<UserTeamForm> selectByTeacherIdAndTeamId(Integer teacherId, Integer teamId) {
+//		Map<String, Integer> parameterMap = new HashMap<String, Integer>();
+//		parameterMap.put("teacherId", teacherId);
+//		parameterMap.put("teamId", teamId);
+//		return this.userDao.selectByTeacherIdAndTeamId(parameterMap);
+//	}
 }

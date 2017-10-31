@@ -63,16 +63,6 @@ public class UserOpsTest extends BaseTest {
 //		}
 //	}
 	
-	@Test
-	public void testSelectByTeacherIdAndTeamId() {
-		
-		List<UserTeamForm> users = us.selectByTeacherIdAndTeamId(2,null);
-		if (users != null) {
-			for (UserTeamForm u : users) {
-				System.out.println(u.toString());
-			}
-		}
-	}
 //	@Test
 //	public void selectAllUserExceptIdentityTest() {
 //		List<User> users = us.selectAllUserExceptIdentity("student");

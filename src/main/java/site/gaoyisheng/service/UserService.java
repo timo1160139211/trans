@@ -27,5 +27,5 @@ public interface UserService {
 	
 	int deleteByPrimaryKey(Integer id);
 	
-	List<UserTeamForm> selectByTeacherIdAndTeamId(Integer teacherId,Integer teamId);
+//	List<UserTeamForm> selectByTeacherIdAndTeamId(Integer teacherId,Integer teamId);
 }

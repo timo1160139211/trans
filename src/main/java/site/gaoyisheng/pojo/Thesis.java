@@ -3,70 +3,169 @@ package site.gaoyisheng.pojo;
 public class Thesis {
     private Integer id;
 
+    /**
+     * 论文类型.
+     */
     private String type;
 
+    /**
+     * 论文题目.
+     */
     private String name;
-
+    
+    /**
+     * 第一作者类型.
+     */
     private String no1authertype;
 
+    /**
+     * 第一作者.
+     */
     private String no1authername;
 
+    /**
+     * 通讯作者.
+     */
     private String communicateauthername;
 
+    /**
+     * 所属单位.
+     */
     private String workunit;
 
+    /**
+     * 其他作者.
+     */
     private String otherauthername;
 
+    /**
+     * 发表/出版时间.
+     */
     private String publishdate;
 
+    /**
+     * 发表刊物/论文集.
+     */
     private String publishmagazinethesisset;
 
+    /**
+     * 刊物类型.
+     */
     private String magazinetype;
 
+    /**
+     * 学科门类.
+     */
     private String subjecttype;
 
+    /**
+     * 一级学科.
+     */
     private String stairsubject;
 
+    /**
+     * 项目来源.
+     */
     private String projectsources;
 
+    /**
+     * 发表范围.
+     */
     private String publishrange;
 
+    /**
+     * 论文集出版单位.
+     */
     private String thesissetpublisher;
 
+    /**
+     * 字数.
+     */
     private String wordsnumbers;
 
+    /**
+     * 学校署名.
+     */
     private String schoolsign;
 
+    /**
+     * 关键字.
+     */
     private String keywords;
 
+    /**
+     * 论文摘要.
+     */
     private String theabstract;
 
+    /**
+     * 备注.
+     */
     private String note;
 
+    /**
+     * 版面.
+     */
     private String appearance;
 
+    /**
+     * 知网链接地址.
+     */
     private String cnkilink;
 
+    /**
+     * ISSN号.
+     */
     private String issn;
 
+    /**
+     * CN号.
+     */
     private String cn;
 
+    /**
+     * 卷期页.
+     */
     private String volumenumberpage;
 
+    /**
+     * DOI.
+     */
     private String doi;
 
+    /**
+     * 会议名称.
+     */
     private String conferencename;
 
+    /**
+     * 会议地址.
+     */
     private String conferencesite;
 
+    /**
+     * 会议日期.
+     */
     private String conferencedate;
 
+    /**
+     * 论文收录号码.
+     */
     private String embodynumber;
 
+    /**
+     * 是否为译文.
+     */
     private String translationornot;
 
+    /**
+     * 论文他引次数.
+     */
     private String referencefrequency;
 
+    /**
+     * 依托项目.
+     */
     private String supportproject;
 
     private String no2authername;
@@ -107,10 +206,19 @@ public class Thesis {
 
     private String no1authernumber;
 
+    /**
+     * 第一作者工号.
+     */
     private Integer authernumber;
 
+    /**
+     * sdut作者数量.
+     */
     private Integer sdutauthernumber;
 
+    /**
+     * 状态(已认领，未认领).
+     */
     private String status;
 
     public Integer getId() {
