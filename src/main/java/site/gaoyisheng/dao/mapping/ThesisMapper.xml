@@ -1,0 +1,1392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.gaoyisheng.dao.ThesisMapper">
+  <resultMap id="BaseResultMap" type="site.gaoyisheng.pojo.Thesis">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="no1AutherType" jdbcType="VARCHAR" property="no1authertype" />
+    <result column="no1AutherName" jdbcType="VARCHAR" property="no1authername" />
+    <result column="communicateAutherName" jdbcType="VARCHAR" property="communicateauthername" />
+    <result column="workunit" jdbcType="VARCHAR" property="workunit" />
+    <result column="otherAutherName" jdbcType="VARCHAR" property="otherauthername" />
+    <result column="publishDate" jdbcType="VARCHAR" property="publishdate" />
+    <result column="publishMagazineThesisSet" jdbcType="VARCHAR" property="publishmagazinethesisset" />
+    <result column="magazineType" jdbcType="VARCHAR" property="magazinetype" />
+    <result column="subjectType" jdbcType="VARCHAR" property="subjecttype" />
+    <result column="stairSubject" jdbcType="VARCHAR" property="stairsubject" />
+    <result column="projectSources" jdbcType="VARCHAR" property="projectsources" />
+    <result column="publishRange" jdbcType="VARCHAR" property="publishrange" />
+    <result column="thesisSetPublisher" jdbcType="VARCHAR" property="thesissetpublisher" />
+    <result column="wordsNumbers" jdbcType="VARCHAR" property="wordsnumbers" />
+    <result column="schoolSign" jdbcType="VARCHAR" property="schoolsign" />
+    <result column="keyWords" jdbcType="VARCHAR" property="keywords" />
+    <result column="theAbstract" jdbcType="VARCHAR" property="theabstract" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="appearance" jdbcType="VARCHAR" property="appearance" />
+    <result column="CNKILink" jdbcType="VARCHAR" property="cnkilink" />
+    <result column="ISSN" jdbcType="VARCHAR" property="issn" />
+    <result column="CN" jdbcType="VARCHAR" property="cn" />
+    <result column="volumeNumberPage" jdbcType="VARCHAR" property="volumenumberpage" />
+    <result column="DOI" jdbcType="VARCHAR" property="doi" />
+    <result column="conferenceName" jdbcType="VARCHAR" property="conferencename" />
+    <result column="conferenceSite" jdbcType="VARCHAR" property="conferencesite" />
+    <result column="conferenceDate" jdbcType="VARCHAR" property="conferencedate" />
+    <result column="embodyNumber" jdbcType="VARCHAR" property="embodynumber" />
+    <result column="translationOrNot" jdbcType="VARCHAR" property="translationornot" />
+    <result column="referenceFrequency" jdbcType="VARCHAR" property="referencefrequency" />
+    <result column="supportProject" jdbcType="VARCHAR" property="supportproject" />
+    <result column="no2AutherName" jdbcType="VARCHAR" property="no2authername" />
+    <result column="no2AutherNumber" jdbcType="VARCHAR" property="no2authernumber" />
+    <result column="no3AutherName" jdbcType="VARCHAR" property="no3authername" />
+    <result column="no3AutherNumber" jdbcType="VARCHAR" property="no3authernumber" />
+    <result column="no4AutherName" jdbcType="VARCHAR" property="no4authername" />
+    <result column="no4AutherNumber" jdbcType="VARCHAR" property="no4authernumber" />
+    <result column="no5AutherName" jdbcType="VARCHAR" property="no5authername" />
+    <result column="no5AutherNumber" jdbcType="VARCHAR" property="no5authernumber" />
+    <result column="no6AutherName" jdbcType="VARCHAR" property="no6authername" />
+    <result column="no6AutherNumber" jdbcType="VARCHAR" property="no6authernumber" />
+    <result column="no7AutherName" jdbcType="VARCHAR" property="no7authername" />
+    <result column="no7AutherNumber" jdbcType="VARCHAR" property="no7authernumber" />
+    <result column="no8AutherName" jdbcType="VARCHAR" property="no8authername" />
+    <result column="no8AutherNumber" jdbcType="VARCHAR" property="no8authernumber" />
+    <result column="no9AutherName" jdbcType="VARCHAR" property="no9authername" />
+    <result column="no9AutherNumber" jdbcType="VARCHAR" property="no9authernumber" />
+    <result column="no10AutherName" jdbcType="VARCHAR" property="no10authername" />
+    <result column="no10AutherNumber" jdbcType="VARCHAR" property="no10authernumber" />
+    <result column="no1AutherNumber" jdbcType="VARCHAR" property="no1authernumber" />
+    <result column="autherNumber" jdbcType="INTEGER" property="authernumber" />
+    <result column="sdutAutherNumber" jdbcType="INTEGER" property="sdutauthernumber" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, name, no1AutherType, no1AutherName, communicateAutherName, workunit, otherAutherName, 
+    publishDate, publishMagazineThesisSet, magazineType, subjectType, stairSubject, projectSources, 
+    publishRange, thesisSetPublisher, wordsNumbers, schoolSign, keyWords, theAbstract, 
+    note, appearance, CNKILink, ISSN, CN, volumeNumberPage, DOI, conferenceName, conferenceSite, 
+    conferenceDate, embodyNumber, translationOrNot, referenceFrequency, supportProject, 
+    no2AutherName, no2AutherNumber, no3AutherName, no3AutherNumber, no4AutherName, no4AutherNumber, 
+    no5AutherName, no5AutherNumber, no6AutherName, no6AutherNumber, no7AutherName, no7AutherNumber, 
+    no8AutherName, no8AutherNumber, no9AutherName, no9AutherNumber, no10AutherName, no10AutherNumber, 
+    no1AutherNumber, autherNumber, sdutAutherNumber, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from thesis
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from thesis
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="site.gaoyisheng.pojo.Thesis">
+    insert into thesis (id, type, name, 
+      no1AutherType, no1AutherName, communicateAutherName, 
+      workunit, otherAutherName, publishDate, 
+      publishMagazineThesisSet, magazineType, 
+      subjectType, stairSubject, projectSources, 
+      publishRange, thesisSetPublisher, wordsNumbers, 
+      schoolSign, keyWords, theAbstract, 
+      note, appearance, CNKILink, 
+      ISSN, CN, volumeNumberPage, 
+      DOI, conferenceName, conferenceSite, 
+      conferenceDate, embodyNumber, translationOrNot, 
+      referenceFrequency, supportProject, no2AutherName, 
+      no2AutherNumber, no3AutherName, no3AutherNumber, 
+      no4AutherName, no4AutherNumber, no5AutherName, 
+      no5AutherNumber, no6AutherName, no6AutherNumber, 
+      no7AutherName, no7AutherNumber, no8AutherName, 
+      no8AutherNumber, no9AutherName, no9AutherNumber, 
+      no10AutherName, no10AutherNumber, no1AutherNumber, 
+      autherNumber, sdutAutherNumber, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{no1authertype,jdbcType=VARCHAR}, #{no1authername,jdbcType=VARCHAR}, #{communicateauthername,jdbcType=VARCHAR}, 
+      #{workunit,jdbcType=VARCHAR}, #{otherauthername,jdbcType=VARCHAR}, #{publishdate,jdbcType=VARCHAR}, 
+      #{publishmagazinethesisset,jdbcType=VARCHAR}, #{magazinetype,jdbcType=VARCHAR}, 
+      #{subjecttype,jdbcType=VARCHAR}, #{stairsubject,jdbcType=VARCHAR}, #{projectsources,jdbcType=VARCHAR}, 
+      #{publishrange,jdbcType=VARCHAR}, #{thesissetpublisher,jdbcType=VARCHAR}, #{wordsnumbers,jdbcType=VARCHAR}, 
+      #{schoolsign,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{theabstract,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{appearance,jdbcType=VARCHAR}, #{cnkilink,jdbcType=VARCHAR}, 
+      #{issn,jdbcType=VARCHAR}, #{cn,jdbcType=VARCHAR}, #{volumenumberpage,jdbcType=VARCHAR}, 
+      #{doi,jdbcType=VARCHAR}, #{conferencename,jdbcType=VARCHAR}, #{conferencesite,jdbcType=VARCHAR}, 
+      #{conferencedate,jdbcType=VARCHAR}, #{embodynumber,jdbcType=VARCHAR}, #{translationornot,jdbcType=VARCHAR}, 
+      #{referencefrequency,jdbcType=VARCHAR}, #{supportproject,jdbcType=VARCHAR}, #{no2authername,jdbcType=VARCHAR}, 
+      #{no2authernumber,jdbcType=VARCHAR}, #{no3authername,jdbcType=VARCHAR}, #{no3authernumber,jdbcType=VARCHAR}, 
+      #{no4authername,jdbcType=VARCHAR}, #{no4authernumber,jdbcType=VARCHAR}, #{no5authername,jdbcType=VARCHAR}, 
+      #{no5authernumber,jdbcType=VARCHAR}, #{no6authername,jdbcType=VARCHAR}, #{no6authernumber,jdbcType=VARCHAR}, 
+      #{no7authername,jdbcType=VARCHAR}, #{no7authernumber,jdbcType=VARCHAR}, #{no8authername,jdbcType=VARCHAR}, 
+      #{no8authernumber,jdbcType=VARCHAR}, #{no9authername,jdbcType=VARCHAR}, #{no9authernumber,jdbcType=VARCHAR}, 
+      #{no10authername,jdbcType=VARCHAR}, #{no10authernumber,jdbcType=VARCHAR}, #{no1authernumber,jdbcType=VARCHAR}, 
+      #{authernumber,jdbcType=INTEGER}, #{sdutauthernumber,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Thesis">
+    insert into thesis
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="no1authertype != null">
+        no1AutherType,
+      </if>
+      <if test="no1authername != null">
+        no1AutherName,
+      </if>
+      <if test="communicateauthername != null">
+        communicateAutherName,
+      </if>
+      <if test="workunit != null">
+        workunit,
+      </if>
+      <if test="otherauthername != null">
+        otherAutherName,
+      </if>
+      <if test="publishdate != null">
+        publishDate,
+      </if>
+      <if test="publishmagazinethesisset != null">
+        publishMagazineThesisSet,
+      </if>
+      <if test="magazinetype != null">
+        magazineType,
+      </if>
+      <if test="subjecttype != null">
+        subjectType,
+      </if>
+      <if test="stairsubject != null">
+        stairSubject,
+      </if>
+      <if test="projectsources != null">
+        projectSources,
+      </if>
+      <if test="publishrange != null">
+        publishRange,
+      </if>
+      <if test="thesissetpublisher != null">
+        thesisSetPublisher,
+      </if>
+      <if test="wordsnumbers != null">
+        wordsNumbers,
+      </if>
+      <if test="schoolsign != null">
+        schoolSign,
+      </if>
+      <if test="keywords != null">
+        keyWords,
+      </if>
+      <if test="theabstract != null">
+        theAbstract,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="appearance != null">
+        appearance,
+      </if>
+      <if test="cnkilink != null">
+        CNKILink,
+      </if>
+      <if test="issn != null">
+        ISSN,
+      </if>
+      <if test="cn != null">
+        CN,
+      </if>
+      <if test="volumenumberpage != null">
+        volumeNumberPage,
+      </if>
+      <if test="doi != null">
+        DOI,
+      </if>
+      <if test="conferencename != null">
+        conferenceName,
+      </if>
+      <if test="conferencesite != null">
+        conferenceSite,
+      </if>
+      <if test="conferencedate != null">
+        conferenceDate,
+      </if>
+      <if test="embodynumber != null">
+        embodyNumber,
+      </if>
+      <if test="translationornot != null">
+        translationOrNot,
+      </if>
+      <if test="referencefrequency != null">
+        referenceFrequency,
+      </if>
+      <if test="supportproject != null">
+        supportProject,
+      </if>
+      <if test="no2authername != null">
+        no2AutherName,
+      </if>
+      <if test="no2authernumber != null">
+        no2AutherNumber,
+      </if>
+      <if test="no3authername != null">
+        no3AutherName,
+      </if>
+      <if test="no3authernumber != null">
+        no3AutherNumber,
+      </if>
+      <if test="no4authername != null">
+        no4AutherName,
+      </if>
+      <if test="no4authernumber != null">
+        no4AutherNumber,
+      </if>
+      <if test="no5authername != null">
+        no5AutherName,
+      </if>
+      <if test="no5authernumber != null">
+        no5AutherNumber,
+      </if>
+      <if test="no6authername != null">
+        no6AutherName,
+      </if>
+      <if test="no6authernumber != null">
+        no6AutherNumber,
+      </if>
+      <if test="no7authername != null">
+        no7AutherName,
+      </if>
+      <if test="no7authernumber != null">
+        no7AutherNumber,
+      </if>
+      <if test="no8authername != null">
+        no8AutherName,
+      </if>
+      <if test="no8authernumber != null">
+        no8AutherNumber,
+      </if>
+      <if test="no9authername != null">
+        no9AutherName,
+      </if>
+      <if test="no9authernumber != null">
+        no9AutherNumber,
+      </if>
+      <if test="no10authername != null">
+        no10AutherName,
+      </if>
+      <if test="no10authernumber != null">
+        no10AutherNumber,
+      </if>
+      <if test="no1authernumber != null">
+        no1AutherNumber,
+      </if>
+      <if test="authernumber != null">
+        autherNumber,
+      </if>
+      <if test="sdutauthernumber != null">
+        sdutAutherNumber,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="no1authertype != null">
+        #{no1authertype,jdbcType=VARCHAR},
+      </if>
+      <if test="no1authername != null">
+        #{no1authername,jdbcType=VARCHAR},
+      </if>
+      <if test="communicateauthername != null">
+        #{communicateauthername,jdbcType=VARCHAR},
+      </if>
+      <if test="workunit != null">
+        #{workunit,jdbcType=VARCHAR},
+      </if>
+      <if test="otherauthername != null">
+        #{otherauthername,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null">
+        #{publishdate,jdbcType=VARCHAR},
+      </if>
+      <if test="publishmagazinethesisset != null">
+        #{publishmagazinethesisset,jdbcType=VARCHAR},
+      </if>
+      <if test="magazinetype != null">
+        #{magazinetype,jdbcType=VARCHAR},
+      </if>
+      <if test="subjecttype != null">
+        #{subjecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="stairsubject != null">
+        #{stairsubject,jdbcType=VARCHAR},
+      </if>
+      <if test="projectsources != null">
+        #{projectsources,jdbcType=VARCHAR},
+      </if>
+      <if test="publishrange != null">
+        #{publishrange,jdbcType=VARCHAR},
+      </if>
+      <if test="thesissetpublisher != null">
+        #{thesissetpublisher,jdbcType=VARCHAR},
+      </if>
+      <if test="wordsnumbers != null">
+        #{wordsnumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolsign != null">
+        #{schoolsign,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="theabstract != null">
+        #{theabstract,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="appearance != null">
+        #{appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="cnkilink != null">
+        #{cnkilink,jdbcType=VARCHAR},
+      </if>
+      <if test="issn != null">
+        #{issn,jdbcType=VARCHAR},
+      </if>
+      <if test="cn != null">
+        #{cn,jdbcType=VARCHAR},
+      </if>
+      <if test="volumenumberpage != null">
+        #{volumenumberpage,jdbcType=VARCHAR},
+      </if>
+      <if test="doi != null">
+        #{doi,jdbcType=VARCHAR},
+      </if>
+      <if test="conferencename != null">
+        #{conferencename,jdbcType=VARCHAR},
+      </if>
+      <if test="conferencesite != null">
+        #{conferencesite,jdbcType=VARCHAR},
+      </if>
+      <if test="conferencedate != null">
+        #{conferencedate,jdbcType=VARCHAR},
+      </if>
+      <if test="embodynumber != null">
+        #{embodynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="translationornot != null">
+        #{translationornot,jdbcType=VARCHAR},
+      </if>
+      <if test="referencefrequency != null">
+        #{referencefrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="supportproject != null">
+        #{supportproject,jdbcType=VARCHAR},
+      </if>
+      <if test="no2authername != null">
+        #{no2authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no2authernumber != null">
+        #{no2authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no3authername != null">
+        #{no3authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no3authernumber != null">
+        #{no3authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no4authername != null">
+        #{no4authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no4authernumber != null">
+        #{no4authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no5authername != null">
+        #{no5authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no5authernumber != null">
+        #{no5authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no6authername != null">
+        #{no6authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no6authernumber != null">
+        #{no6authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no7authername != null">
+        #{no7authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no7authernumber != null">
+        #{no7authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no8authername != null">
+        #{no8authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no8authernumber != null">
+        #{no8authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no9authername != null">
+        #{no9authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no9authernumber != null">
+        #{no9authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no10authername != null">
+        #{no10authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no10authernumber != null">
+        #{no10authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no1authernumber != null">
+        #{no1authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="authernumber != null">
+        #{authernumber,jdbcType=INTEGER},
+      </if>
+      <if test="sdutauthernumber != null">
+        #{sdutauthernumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.Thesis">
+    update thesis
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="no1authertype != null">
+        no1AutherType = #{no1authertype,jdbcType=VARCHAR},
+      </if>
+      <if test="no1authername != null">
+        no1AutherName = #{no1authername,jdbcType=VARCHAR},
+      </if>
+      <if test="communicateauthername != null">
+        communicateAutherName = #{communicateauthername,jdbcType=VARCHAR},
+      </if>
+      <if test="workunit != null">
+        workunit = #{workunit,jdbcType=VARCHAR},
+      </if>
+      <if test="otherauthername != null">
+        otherAutherName = #{otherauthername,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null">
+        publishDate = #{publishdate,jdbcType=VARCHAR},
+      </if>
+      <if test="publishmagazinethesisset != null">
+        publishMagazineThesisSet = #{publishmagazinethesisset,jdbcType=VARCHAR},
+      </if>
+      <if test="magazinetype != null">
+        magazineType = #{magazinetype,jdbcType=VARCHAR},
+      </if>
+      <if test="subjecttype != null">
+        subjectType = #{subjecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="stairsubject != null">
+        stairSubject = #{stairsubject,jdbcType=VARCHAR},
+      </if>
+      <if test="projectsources != null">
+        projectSources = #{projectsources,jdbcType=VARCHAR},
+      </if>
+      <if test="publishrange != null">
+        publishRange = #{publishrange,jdbcType=VARCHAR},
+      </if>
+      <if test="thesissetpublisher != null">
+        thesisSetPublisher = #{thesissetpublisher,jdbcType=VARCHAR},
+      </if>
+      <if test="wordsnumbers != null">
+        wordsNumbers = #{wordsnumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolsign != null">
+        schoolSign = #{schoolsign,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        keyWords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="theabstract != null">
+        theAbstract = #{theabstract,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="appearance != null">
+        appearance = #{appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="cnkilink != null">
+        CNKILink = #{cnkilink,jdbcType=VARCHAR},
+      </if>
+      <if test="issn != null">
+        ISSN = #{issn,jdbcType=VARCHAR},
+      </if>
+      <if test="cn != null">
+        CN = #{cn,jdbcType=VARCHAR},
+      </if>
+      <if test="volumenumberpage != null">
+        volumeNumberPage = #{volumenumberpage,jdbcType=VARCHAR},
+      </if>
+      <if test="doi != null">
+        DOI = #{doi,jdbcType=VARCHAR},
+      </if>
+      <if test="conferencename != null">
+        conferenceName = #{conferencename,jdbcType=VARCHAR},
+      </if>
+      <if test="conferencesite != null">
+        conferenceSite = #{conferencesite,jdbcType=VARCHAR},
+      </if>
+      <if test="conferencedate != null">
+        conferenceDate = #{conferencedate,jdbcType=VARCHAR},
+      </if>
+      <if test="embodynumber != null">
+        embodyNumber = #{embodynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="translationornot != null">
+        translationOrNot = #{translationornot,jdbcType=VARCHAR},
+      </if>
+      <if test="referencefrequency != null">
+        referenceFrequency = #{referencefrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="supportproject != null">
+        supportProject = #{supportproject,jdbcType=VARCHAR},
+      </if>
+      <if test="no2authername != null">
+        no2AutherName = #{no2authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no2authernumber != null">
+        no2AutherNumber = #{no2authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no3authername != null">
+        no3AutherName = #{no3authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no3authernumber != null">
+        no3AutherNumber = #{no3authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no4authername != null">
+        no4AutherName = #{no4authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no4authernumber != null">
+        no4AutherNumber = #{no4authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no5authername != null">
+        no5AutherName = #{no5authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no5authernumber != null">
+        no5AutherNumber = #{no5authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no6authername != null">
+        no6AutherName = #{no6authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no6authernumber != null">
+        no6AutherNumber = #{no6authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no7authername != null">
+        no7AutherName = #{no7authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no7authernumber != null">
+        no7AutherNumber = #{no7authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no8authername != null">
+        no8AutherName = #{no8authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no8authernumber != null">
+        no8AutherNumber = #{no8authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no9authername != null">
+        no9AutherName = #{no9authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no9authernumber != null">
+        no9AutherNumber = #{no9authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no10authername != null">
+        no10AutherName = #{no10authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no10authernumber != null">
+        no10AutherNumber = #{no10authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no1authernumber != null">
+        no1AutherNumber = #{no1authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="authernumber != null">
+        autherNumber = #{authernumber,jdbcType=INTEGER},
+      </if>
+      <if test="sdutauthernumber != null">
+        sdutAutherNumber = #{sdutauthernumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.Thesis">
+    update thesis
+    set type = #{type,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      no1AutherType = #{no1authertype,jdbcType=VARCHAR},
+      no1AutherName = #{no1authername,jdbcType=VARCHAR},
+      communicateAutherName = #{communicateauthername,jdbcType=VARCHAR},
+      workunit = #{workunit,jdbcType=VARCHAR},
+      otherAutherName = #{otherauthername,jdbcType=VARCHAR},
+      publishDate = #{publishdate,jdbcType=VARCHAR},
+      publishMagazineThesisSet = #{publishmagazinethesisset,jdbcType=VARCHAR},
+      magazineType = #{magazinetype,jdbcType=VARCHAR},
+      subjectType = #{subjecttype,jdbcType=VARCHAR},
+      stairSubject = #{stairsubject,jdbcType=VARCHAR},
+      projectSources = #{projectsources,jdbcType=VARCHAR},
+      publishRange = #{publishrange,jdbcType=VARCHAR},
+      thesisSetPublisher = #{thesissetpublisher,jdbcType=VARCHAR},
+      wordsNumbers = #{wordsnumbers,jdbcType=VARCHAR},
+      schoolSign = #{schoolsign,jdbcType=VARCHAR},
+      keyWords = #{keywords,jdbcType=VARCHAR},
+      theAbstract = #{theabstract,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      appearance = #{appearance,jdbcType=VARCHAR},
+      CNKILink = #{cnkilink,jdbcType=VARCHAR},
+      ISSN = #{issn,jdbcType=VARCHAR},
+      CN = #{cn,jdbcType=VARCHAR},
+      volumeNumberPage = #{volumenumberpage,jdbcType=VARCHAR},
+      DOI = #{doi,jdbcType=VARCHAR},
+      conferenceName = #{conferencename,jdbcType=VARCHAR},
+      conferenceSite = #{conferencesite,jdbcType=VARCHAR},
+      conferenceDate = #{conferencedate,jdbcType=VARCHAR},
+      embodyNumber = #{embodynumber,jdbcType=VARCHAR},
+      translationOrNot = #{translationornot,jdbcType=VARCHAR},
+      referenceFrequency = #{referencefrequency,jdbcType=VARCHAR},
+      supportProject = #{supportproject,jdbcType=VARCHAR},
+      no2AutherName = #{no2authername,jdbcType=VARCHAR},
+      no2AutherNumber = #{no2authernumber,jdbcType=VARCHAR},
+      no3AutherName = #{no3authername,jdbcType=VARCHAR},
+      no3AutherNumber = #{no3authernumber,jdbcType=VARCHAR},
+      no4AutherName = #{no4authername,jdbcType=VARCHAR},
+      no4AutherNumber = #{no4authernumber,jdbcType=VARCHAR},
+      no5AutherName = #{no5authername,jdbcType=VARCHAR},
+      no5AutherNumber = #{no5authernumber,jdbcType=VARCHAR},
+      no6AutherName = #{no6authername,jdbcType=VARCHAR},
+      no6AutherNumber = #{no6authernumber,jdbcType=VARCHAR},
+      no7AutherName = #{no7authername,jdbcType=VARCHAR},
+      no7AutherNumber = #{no7authernumber,jdbcType=VARCHAR},
+      no8AutherName = #{no8authername,jdbcType=VARCHAR},
+      no8AutherNumber = #{no8authernumber,jdbcType=VARCHAR},
+      no9AutherName = #{no9authername,jdbcType=VARCHAR},
+      no9AutherNumber = #{no9authernumber,jdbcType=VARCHAR},
+      no10AutherName = #{no10authername,jdbcType=VARCHAR},
+      no10AutherNumber = #{no10authernumber,jdbcType=VARCHAR},
+      no1AutherNumber = #{no1authernumber,jdbcType=VARCHAR},
+      autherNumber = #{authernumber,jdbcType=INTEGER},
+      sdutAutherNumber = #{sdutauthernumber,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="site.gaoyisheng.pojo.Thesis">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="no1AutherType" jdbcType="VARCHAR" property="no1authertype" />
+    <result column="no1AutherName" jdbcType="VARCHAR" property="no1authername" />
+    <result column="communicateAutherName" jdbcType="VARCHAR" property="communicateauthername" />
+    <result column="workunit" jdbcType="VARCHAR" property="workunit" />
+    <result column="otherAutherName" jdbcType="VARCHAR" property="otherauthername" />
+    <result column="publishDate" jdbcType="VARCHAR" property="publishdate" />
+    <result column="publishMagazineThesisSet" jdbcType="VARCHAR" property="publishmagazinethesisset" />
+    <result column="magazineType" jdbcType="VARCHAR" property="magazinetype" />
+    <result column="subjectType" jdbcType="VARCHAR" property="subjecttype" />
+    <result column="stairSubject" jdbcType="VARCHAR" property="stairsubject" />
+    <result column="projectSources" jdbcType="VARCHAR" property="projectsources" />
+    <result column="publishRange" jdbcType="VARCHAR" property="publishrange" />
+    <result column="thesisSetPublisher" jdbcType="VARCHAR" property="thesissetpublisher" />
+    <result column="wordsNumbers" jdbcType="VARCHAR" property="wordsnumbers" />
+    <result column="schoolSign" jdbcType="VARCHAR" property="schoolsign" />
+    <result column="keyWords" jdbcType="VARCHAR" property="keywords" />
+    <result column="abstract" jdbcType="VARCHAR" property="abstract" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="appearance" jdbcType="VARCHAR" property="appearance" />
+    <result column="CNKILink" jdbcType="VARCHAR" property="cnkilink" />
+    <result column="ISSN" jdbcType="VARCHAR" property="issn" />
+    <result column="CN" jdbcType="VARCHAR" property="cn" />
+    <result column="volumeNumberPage" jdbcType="VARCHAR" property="volumenumberpage" />
+    <result column="DOI" jdbcType="VARCHAR" property="doi" />
+    <result column="conferenceName" jdbcType="VARCHAR" property="conferencename" />
+    <result column="conferenceSite" jdbcType="VARCHAR" property="conferencesite" />
+    <result column="conferenceDate" jdbcType="VARCHAR" property="conferencedate" />
+    <result column="embodyNumber" jdbcType="VARCHAR" property="embodynumber" />
+    <result column="translationOrNot" jdbcType="VARCHAR" property="translationornot" />
+    <result column="referenceFrequency" jdbcType="VARCHAR" property="referencefrequency" />
+    <result column="supportProject" jdbcType="VARCHAR" property="supportproject" />
+    <result column="no2AutherName" jdbcType="VARCHAR" property="no2authername" />
+    <result column="no2AutherNumber" jdbcType="VARCHAR" property="no2authernumber" />
+    <result column="no3AutherName" jdbcType="VARCHAR" property="no3authername" />
+    <result column="no3AutherNumber" jdbcType="VARCHAR" property="no3authernumber" />
+    <result column="no4AutherName" jdbcType="VARCHAR" property="no4authername" />
+    <result column="no4AutherNumber" jdbcType="VARCHAR" property="no4authernumber" />
+    <result column="no5AutherName" jdbcType="VARCHAR" property="no5authername" />
+    <result column="no5AutherNumber" jdbcType="VARCHAR" property="no5authernumber" />
+    <result column="no6AutherName" jdbcType="VARCHAR" property="no6authername" />
+    <result column="no6AutherNumber" jdbcType="VARCHAR" property="no6authernumber" />
+    <result column="no7AutherName" jdbcType="VARCHAR" property="no7authername" />
+    <result column="no7AutherNumber" jdbcType="VARCHAR" property="no7authernumber" />
+    <result column="no8AutherName" jdbcType="VARCHAR" property="no8authername" />
+    <result column="no8AutherNumber" jdbcType="VARCHAR" property="no8authernumber" />
+    <result column="no9AutherName" jdbcType="VARCHAR" property="no9authername" />
+    <result column="no9AutherNumber" jdbcType="VARCHAR" property="no9authernumber" />
+    <result column="no10AutherName" jdbcType="VARCHAR" property="no10authername" />
+    <result column="no10AutherNumber" jdbcType="VARCHAR" property="no10authernumber" />
+    <result column="no1AutherNumber" jdbcType="VARCHAR" property="no1authernumber" />
+    <result column="autherNumber" jdbcType="INTEGER" property="authernumber" />
+    <result column="sdutAutherNumber" jdbcType="INTEGER" property="sdutauthernumber" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, name, no1AutherType, no1AutherName, communicateAutherName, workunit, otherAutherName, 
+    publishDate, publishMagazineThesisSet, magazineType, subjectType, stairSubject, projectSources, 
+    publishRange, thesisSetPublisher, wordsNumbers, schoolSign, keyWords, abstract, note, 
+    appearance, CNKILink, ISSN, CN, volumeNumberPage, DOI, conferenceName, conferenceSite, 
+    conferenceDate, embodyNumber, translationOrNot, referenceFrequency, supportProject, 
+    no2AutherName, no2AutherNumber, no3AutherName, no3AutherNumber, no4AutherName, no4AutherNumber, 
+    no5AutherName, no5AutherNumber, no6AutherName, no6AutherNumber, no7AutherName, no7AutherNumber, 
+    no8AutherName, no8AutherNumber, no9AutherName, no9AutherNumber, no10AutherName, no10AutherNumber, 
+    no1AutherNumber, autherNumber, sdutAutherNumber, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from thesis
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from thesis
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="site.gaoyisheng.pojo.Thesis">
+    insert into thesis (id, type, name, 
+      no1AutherType, no1AutherName, communicateAutherName, 
+      workunit, otherAutherName, publishDate, 
+      publishMagazineThesisSet, magazineType, 
+      subjectType, stairSubject, projectSources, 
+      publishRange, thesisSetPublisher, wordsNumbers, 
+      schoolSign, keyWords, abstract, 
+      note, appearance, CNKILink, 
+      ISSN, CN, volumeNumberPage, 
+      DOI, conferenceName, conferenceSite, 
+      conferenceDate, embodyNumber, translationOrNot, 
+      referenceFrequency, supportProject, no2AutherName, 
+      no2AutherNumber, no3AutherName, no3AutherNumber, 
+      no4AutherName, no4AutherNumber, no5AutherName, 
+      no5AutherNumber, no6AutherName, no6AutherNumber, 
+      no7AutherName, no7AutherNumber, no8AutherName, 
+      no8AutherNumber, no9AutherName, no9AutherNumber, 
+      no10AutherName, no10AutherNumber, no1AutherNumber, 
+      autherNumber, sdutAutherNumber, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{no1authertype,jdbcType=VARCHAR}, #{no1authername,jdbcType=VARCHAR}, #{communicateauthername,jdbcType=VARCHAR}, 
+      #{workunit,jdbcType=VARCHAR}, #{otherauthername,jdbcType=VARCHAR}, #{publishdate,jdbcType=VARCHAR}, 
+      #{publishmagazinethesisset,jdbcType=VARCHAR}, #{magazinetype,jdbcType=VARCHAR}, 
+      #{subjecttype,jdbcType=VARCHAR}, #{stairsubject,jdbcType=VARCHAR}, #{projectsources,jdbcType=VARCHAR}, 
+      #{publishrange,jdbcType=VARCHAR}, #{thesissetpublisher,jdbcType=VARCHAR}, #{wordsnumbers,jdbcType=VARCHAR}, 
+      #{schoolsign,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{abstract,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{appearance,jdbcType=VARCHAR}, #{cnkilink,jdbcType=VARCHAR}, 
+      #{issn,jdbcType=VARCHAR}, #{cn,jdbcType=VARCHAR}, #{volumenumberpage,jdbcType=VARCHAR}, 
+      #{doi,jdbcType=VARCHAR}, #{conferencename,jdbcType=VARCHAR}, #{conferencesite,jdbcType=VARCHAR}, 
+      #{conferencedate,jdbcType=VARCHAR}, #{embodynumber,jdbcType=VARCHAR}, #{translationornot,jdbcType=VARCHAR}, 
+      #{referencefrequency,jdbcType=VARCHAR}, #{supportproject,jdbcType=VARCHAR}, #{no2authername,jdbcType=VARCHAR}, 
+      #{no2authernumber,jdbcType=VARCHAR}, #{no3authername,jdbcType=VARCHAR}, #{no3authernumber,jdbcType=VARCHAR}, 
+      #{no4authername,jdbcType=VARCHAR}, #{no4authernumber,jdbcType=VARCHAR}, #{no5authername,jdbcType=VARCHAR}, 
+      #{no5authernumber,jdbcType=VARCHAR}, #{no6authername,jdbcType=VARCHAR}, #{no6authernumber,jdbcType=VARCHAR}, 
+      #{no7authername,jdbcType=VARCHAR}, #{no7authernumber,jdbcType=VARCHAR}, #{no8authername,jdbcType=VARCHAR}, 
+      #{no8authernumber,jdbcType=VARCHAR}, #{no9authername,jdbcType=VARCHAR}, #{no9authernumber,jdbcType=VARCHAR}, 
+      #{no10authername,jdbcType=VARCHAR}, #{no10authernumber,jdbcType=VARCHAR}, #{no1authernumber,jdbcType=VARCHAR}, 
+      #{authernumber,jdbcType=INTEGER}, #{sdutauthernumber,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Thesis">
+    insert into thesis
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="no1authertype != null">
+        no1AutherType,
+      </if>
+      <if test="no1authername != null">
+        no1AutherName,
+      </if>
+      <if test="communicateauthername != null">
+        communicateAutherName,
+      </if>
+      <if test="workunit != null">
+        workunit,
+      </if>
+      <if test="otherauthername != null">
+        otherAutherName,
+      </if>
+      <if test="publishdate != null">
+        publishDate,
+      </if>
+      <if test="publishmagazinethesisset != null">
+        publishMagazineThesisSet,
+      </if>
+      <if test="magazinetype != null">
+        magazineType,
+      </if>
+      <if test="subjecttype != null">
+        subjectType,
+      </if>
+      <if test="stairsubject != null">
+        stairSubject,
+      </if>
+      <if test="projectsources != null">
+        projectSources,
+      </if>
+      <if test="publishrange != null">
+        publishRange,
+      </if>
+      <if test="thesissetpublisher != null">
+        thesisSetPublisher,
+      </if>
+      <if test="wordsnumbers != null">
+        wordsNumbers,
+      </if>
+      <if test="schoolsign != null">
+        schoolSign,
+      </if>
+      <if test="keywords != null">
+        keyWords,
+      </if>
+      <if test="abstract != null">
+        abstract,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="appearance != null">
+        appearance,
+      </if>
+      <if test="cnkilink != null">
+        CNKILink,
+      </if>
+      <if test="issn != null">
+        ISSN,
+      </if>
+      <if test="cn != null">
+        CN,
+      </if>
+      <if test="volumenumberpage != null">
+        volumeNumberPage,
+      </if>
+      <if test="doi != null">
+        DOI,
+      </if>
+      <if test="conferencename != null">
+        conferenceName,
+      </if>
+      <if test="conferencesite != null">
+        conferenceSite,
+      </if>
+      <if test="conferencedate != null">
+        conferenceDate,
+      </if>
+      <if test="embodynumber != null">
+        embodyNumber,
+      </if>
+      <if test="translationornot != null">
+        translationOrNot,
+      </if>
+      <if test="referencefrequency != null">
+        referenceFrequency,
+      </if>
+      <if test="supportproject != null">
+        supportProject,
+      </if>
+      <if test="no2authername != null">
+        no2AutherName,
+      </if>
+      <if test="no2authernumber != null">
+        no2AutherNumber,
+      </if>
+      <if test="no3authername != null">
+        no3AutherName,
+      </if>
+      <if test="no3authernumber != null">
+        no3AutherNumber,
+      </if>
+      <if test="no4authername != null">
+        no4AutherName,
+      </if>
+      <if test="no4authernumber != null">
+        no4AutherNumber,
+      </if>
+      <if test="no5authername != null">
+        no5AutherName,
+      </if>
+      <if test="no5authernumber != null">
+        no5AutherNumber,
+      </if>
+      <if test="no6authername != null">
+        no6AutherName,
+      </if>
+      <if test="no6authernumber != null">
+        no6AutherNumber,
+      </if>
+      <if test="no7authername != null">
+        no7AutherName,
+      </if>
+      <if test="no7authernumber != null">
+        no7AutherNumber,
+      </if>
+      <if test="no8authername != null">
+        no8AutherName,
+      </if>
+      <if test="no8authernumber != null">
+        no8AutherNumber,
+      </if>
+      <if test="no9authername != null">
+        no9AutherName,
+      </if>
+      <if test="no9authernumber != null">
+        no9AutherNumber,
+      </if>
+      <if test="no10authername != null">
+        no10AutherName,
+      </if>
+      <if test="no10authernumber != null">
+        no10AutherNumber,
+      </if>
+      <if test="no1authernumber != null">
+        no1AutherNumber,
+      </if>
+      <if test="authernumber != null">
+        autherNumber,
+      </if>
+      <if test="sdutauthernumber != null">
+        sdutAutherNumber,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="no1authertype != null">
+        #{no1authertype,jdbcType=VARCHAR},
+      </if>
+      <if test="no1authername != null">
+        #{no1authername,jdbcType=VARCHAR},
+      </if>
+      <if test="communicateauthername != null">
+        #{communicateauthername,jdbcType=VARCHAR},
+      </if>
+      <if test="workunit != null">
+        #{workunit,jdbcType=VARCHAR},
+      </if>
+      <if test="otherauthername != null">
+        #{otherauthername,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null">
+        #{publishdate,jdbcType=VARCHAR},
+      </if>
+      <if test="publishmagazinethesisset != null">
+        #{publishmagazinethesisset,jdbcType=VARCHAR},
+      </if>
+      <if test="magazinetype != null">
+        #{magazinetype,jdbcType=VARCHAR},
+      </if>
+      <if test="subjecttype != null">
+        #{subjecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="stairsubject != null">
+        #{stairsubject,jdbcType=VARCHAR},
+      </if>
+      <if test="projectsources != null">
+        #{projectsources,jdbcType=VARCHAR},
+      </if>
+      <if test="publishrange != null">
+        #{publishrange,jdbcType=VARCHAR},
+      </if>
+      <if test="thesissetpublisher != null">
+        #{thesissetpublisher,jdbcType=VARCHAR},
+      </if>
+      <if test="wordsnumbers != null">
+        #{wordsnumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolsign != null">
+        #{schoolsign,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="abstract != null">
+        #{abstract,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="appearance != null">
+        #{appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="cnkilink != null">
+        #{cnkilink,jdbcType=VARCHAR},
+      </if>
+      <if test="issn != null">
+        #{issn,jdbcType=VARCHAR},
+      </if>
+      <if test="cn != null">
+        #{cn,jdbcType=VARCHAR},
+      </if>
+      <if test="volumenumberpage != null">
+        #{volumenumberpage,jdbcType=VARCHAR},
+      </if>
+      <if test="doi != null">
+        #{doi,jdbcType=VARCHAR},
+      </if>
+      <if test="conferencename != null">
+        #{conferencename,jdbcType=VARCHAR},
+      </if>
+      <if test="conferencesite != null">
+        #{conferencesite,jdbcType=VARCHAR},
+      </if>
+      <if test="conferencedate != null">
+        #{conferencedate,jdbcType=VARCHAR},
+      </if>
+      <if test="embodynumber != null">
+        #{embodynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="translationornot != null">
+        #{translationornot,jdbcType=VARCHAR},
+      </if>
+      <if test="referencefrequency != null">
+        #{referencefrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="supportproject != null">
+        #{supportproject,jdbcType=VARCHAR},
+      </if>
+      <if test="no2authername != null">
+        #{no2authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no2authernumber != null">
+        #{no2authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no3authername != null">
+        #{no3authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no3authernumber != null">
+        #{no3authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no4authername != null">
+        #{no4authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no4authernumber != null">
+        #{no4authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no5authername != null">
+        #{no5authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no5authernumber != null">
+        #{no5authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no6authername != null">
+        #{no6authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no6authernumber != null">
+        #{no6authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no7authername != null">
+        #{no7authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no7authernumber != null">
+        #{no7authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no8authername != null">
+        #{no8authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no8authernumber != null">
+        #{no8authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no9authername != null">
+        #{no9authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no9authernumber != null">
+        #{no9authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no10authername != null">
+        #{no10authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no10authernumber != null">
+        #{no10authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no1authernumber != null">
+        #{no1authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="authernumber != null">
+        #{authernumber,jdbcType=INTEGER},
+      </if>
+      <if test="sdutauthernumber != null">
+        #{sdutauthernumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.Thesis">
+    update thesis
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="no1authertype != null">
+        no1AutherType = #{no1authertype,jdbcType=VARCHAR},
+      </if>
+      <if test="no1authername != null">
+        no1AutherName = #{no1authername,jdbcType=VARCHAR},
+      </if>
+      <if test="communicateauthername != null">
+        communicateAutherName = #{communicateauthername,jdbcType=VARCHAR},
+      </if>
+      <if test="workunit != null">
+        workunit = #{workunit,jdbcType=VARCHAR},
+      </if>
+      <if test="otherauthername != null">
+        otherAutherName = #{otherauthername,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null">
+        publishDate = #{publishdate,jdbcType=VARCHAR},
+      </if>
+      <if test="publishmagazinethesisset != null">
+        publishMagazineThesisSet = #{publishmagazinethesisset,jdbcType=VARCHAR},
+      </if>
+      <if test="magazinetype != null">
+        magazineType = #{magazinetype,jdbcType=VARCHAR},
+      </if>
+      <if test="subjecttype != null">
+        subjectType = #{subjecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="stairsubject != null">
+        stairSubject = #{stairsubject,jdbcType=VARCHAR},
+      </if>
+      <if test="projectsources != null">
+        projectSources = #{projectsources,jdbcType=VARCHAR},
+      </if>
+      <if test="publishrange != null">
+        publishRange = #{publishrange,jdbcType=VARCHAR},
+      </if>
+      <if test="thesissetpublisher != null">
+        thesisSetPublisher = #{thesissetpublisher,jdbcType=VARCHAR},
+      </if>
+      <if test="wordsnumbers != null">
+        wordsNumbers = #{wordsnumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolsign != null">
+        schoolSign = #{schoolsign,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        keyWords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="abstract != null">
+        abstract = #{abstract,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="appearance != null">
+        appearance = #{appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="cnkilink != null">
+        CNKILink = #{cnkilink,jdbcType=VARCHAR},
+      </if>
+      <if test="issn != null">
+        ISSN = #{issn,jdbcType=VARCHAR},
+      </if>
+      <if test="cn != null">
+        CN = #{cn,jdbcType=VARCHAR},
+      </if>
+      <if test="volumenumberpage != null">
+        volumeNumberPage = #{volumenumberpage,jdbcType=VARCHAR},
+      </if>
+      <if test="doi != null">
+        DOI = #{doi,jdbcType=VARCHAR},
+      </if>
+      <if test="conferencename != null">
+        conferenceName = #{conferencename,jdbcType=VARCHAR},
+      </if>
+      <if test="conferencesite != null">
+        conferenceSite = #{conferencesite,jdbcType=VARCHAR},
+      </if>
+      <if test="conferencedate != null">
+        conferenceDate = #{conferencedate,jdbcType=VARCHAR},
+      </if>
+      <if test="embodynumber != null">
+        embodyNumber = #{embodynumber,jdbcType=VARCHAR},
+      </if>
+      <if test="translationornot != null">
+        translationOrNot = #{translationornot,jdbcType=VARCHAR},
+      </if>
+      <if test="referencefrequency != null">
+        referenceFrequency = #{referencefrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="supportproject != null">
+        supportProject = #{supportproject,jdbcType=VARCHAR},
+      </if>
+      <if test="no2authername != null">
+        no2AutherName = #{no2authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no2authernumber != null">
+        no2AutherNumber = #{no2authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no3authername != null">
+        no3AutherName = #{no3authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no3authernumber != null">
+        no3AutherNumber = #{no3authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no4authername != null">
+        no4AutherName = #{no4authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no4authernumber != null">
+        no4AutherNumber = #{no4authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no5authername != null">
+        no5AutherName = #{no5authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no5authernumber != null">
+        no5AutherNumber = #{no5authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no6authername != null">
+        no6AutherName = #{no6authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no6authernumber != null">
+        no6AutherNumber = #{no6authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no7authername != null">
+        no7AutherName = #{no7authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no7authernumber != null">
+        no7AutherNumber = #{no7authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no8authername != null">
+        no8AutherName = #{no8authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no8authernumber != null">
+        no8AutherNumber = #{no8authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no9authername != null">
+        no9AutherName = #{no9authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no9authernumber != null">
+        no9AutherNumber = #{no9authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no10authername != null">
+        no10AutherName = #{no10authername,jdbcType=VARCHAR},
+      </if>
+      <if test="no10authernumber != null">
+        no10AutherNumber = #{no10authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no1authernumber != null">
+        no1AutherNumber = #{no1authernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="authernumber != null">
+        autherNumber = #{authernumber,jdbcType=INTEGER},
+      </if>
+      <if test="sdutauthernumber != null">
+        sdutAutherNumber = #{sdutauthernumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.Thesis">
+    update thesis
+    set type = #{type,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      no1AutherType = #{no1authertype,jdbcType=VARCHAR},
+      no1AutherName = #{no1authername,jdbcType=VARCHAR},
+      communicateAutherName = #{communicateauthername,jdbcType=VARCHAR},
+      workunit = #{workunit,jdbcType=VARCHAR},
+      otherAutherName = #{otherauthername,jdbcType=VARCHAR},
+      publishDate = #{publishdate,jdbcType=VARCHAR},
+      publishMagazineThesisSet = #{publishmagazinethesisset,jdbcType=VARCHAR},
+      magazineType = #{magazinetype,jdbcType=VARCHAR},
+      subjectType = #{subjecttype,jdbcType=VARCHAR},
+      stairSubject = #{stairsubject,jdbcType=VARCHAR},
+      projectSources = #{projectsources,jdbcType=VARCHAR},
+      publishRange = #{publishrange,jdbcType=VARCHAR},
+      thesisSetPublisher = #{thesissetpublisher,jdbcType=VARCHAR},
+      wordsNumbers = #{wordsnumbers,jdbcType=VARCHAR},
+      schoolSign = #{schoolsign,jdbcType=VARCHAR},
+      keyWords = #{keywords,jdbcType=VARCHAR},
+      abstract = #{abstract,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      appearance = #{appearance,jdbcType=VARCHAR},
+      CNKILink = #{cnkilink,jdbcType=VARCHAR},
+      ISSN = #{issn,jdbcType=VARCHAR},
+      CN = #{cn,jdbcType=VARCHAR},
+      volumeNumberPage = #{volumenumberpage,jdbcType=VARCHAR},
+      DOI = #{doi,jdbcType=VARCHAR},
+      conferenceName = #{conferencename,jdbcType=VARCHAR},
+      conferenceSite = #{conferencesite,jdbcType=VARCHAR},
+      conferenceDate = #{conferencedate,jdbcType=VARCHAR},
+      embodyNumber = #{embodynumber,jdbcType=VARCHAR},
+      translationOrNot = #{translationornot,jdbcType=VARCHAR},
+      referenceFrequency = #{referencefrequency,jdbcType=VARCHAR},
+      supportProject = #{supportproject,jdbcType=VARCHAR},
+      no2AutherName = #{no2authername,jdbcType=VARCHAR},
+      no2AutherNumber = #{no2authernumber,jdbcType=VARCHAR},
+      no3AutherName = #{no3authername,jdbcType=VARCHAR},
+      no3AutherNumber = #{no3authernumber,jdbcType=VARCHAR},
+      no4AutherName = #{no4authername,jdbcType=VARCHAR},
+      no4AutherNumber = #{no4authernumber,jdbcType=VARCHAR},
+      no5AutherName = #{no5authername,jdbcType=VARCHAR},
+      no5AutherNumber = #{no5authernumber,jdbcType=VARCHAR},
+      no6AutherName = #{no6authername,jdbcType=VARCHAR},
+      no6AutherNumber = #{no6authernumber,jdbcType=VARCHAR},
+      no7AutherName = #{no7authername,jdbcType=VARCHAR},
+      no7AutherNumber = #{no7authernumber,jdbcType=VARCHAR},
+      no8AutherName = #{no8authername,jdbcType=VARCHAR},
+      no8AutherNumber = #{no8authernumber,jdbcType=VARCHAR},
+      no9AutherName = #{no9authername,jdbcType=VARCHAR},
+      no9AutherNumber = #{no9authernumber,jdbcType=VARCHAR},
+      no10AutherName = #{no10authername,jdbcType=VARCHAR},
+      no10AutherNumber = #{no10authernumber,jdbcType=VARCHAR},
+      no1AutherNumber = #{no1authernumber,jdbcType=VARCHAR},
+      autherNumber = #{authernumber,jdbcType=INTEGER},
+      sdutAutherNumber = #{sdutauthernumber,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
