@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ejos Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	
+
 	<properties>
 		<!-- <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir> -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,7 +25,7 @@
 
 	</properties>
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
@@ -42,8 +42,8 @@
 			<artifactId>jedis</artifactId>
 			<version>2.9.0</version>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-web-api</artifactId>
@@ -208,8 +208,6 @@
 			<version>1.9</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-war-runner</artifactId> 
-			<version>2.2</version> </dependency> -->
 	</dependencies>
 
 	<build>

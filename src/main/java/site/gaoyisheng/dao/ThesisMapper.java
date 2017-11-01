@@ -1,5 +1,7 @@
 package site.gaoyisheng.dao;
 
+import java.util.List;
+
 import site.gaoyisheng.pojo.Thesis;
 
 public interface ThesisMapper {
@@ -10,6 +12,8 @@ public interface ThesisMapper {
     int insertSelective(Thesis record);
 
     Thesis selectByPrimaryKey(Integer id);
+    
+    List<Thesis> selectAllThesis();
 
     int updateByPrimaryKeySelective(Thesis record);
 

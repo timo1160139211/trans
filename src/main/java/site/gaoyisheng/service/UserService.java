@@ -1,29 +1,27 @@
 package site.gaoyisheng.service;
 
 import java.util.List;
-import java.util.Map;
 
-import site.gaoyisheng.pojo.User11;
-import site.gaoyisheng.pojo.User11;
+import site.gaoyisheng.pojo.User;
 
 public interface UserService {
-	User11 selectUserByPrimaryKey(Integer userId);
+	User selectUserByPrimaryKey(Integer userId);
 
-	List<User11> selectAllUser();
+	List<User> selectAllUser();
 	
-	List<User11> selectByTeamId(Integer teamId);
+	List<User> selectByTeamId(Integer teamId);
 
-	List<User11> selectAllUserByIdentity(String identity);
+	List<User> selectAllUserByIdentity(String identity);
 
-	int insertUser(User11 user);
+	int insertUser(User user);
 
-	int insertCacheId(User11 user);
+	int insertCacheId(User user);
 
-	List<User11> selectAllUserExceptIdentity(String identity);
+	List<User> selectAllUserExceptIdentity(String identity);
 
-	int updateByPrimaryKey(User11 user);
+	int updateByPrimaryKey(User user);
 	
-	int updateByPrimaryKeySelective(User11 user);
+	int updateByPrimaryKeySelective(User user);
 	
 	int deleteByPrimaryKey(Integer id);
 	

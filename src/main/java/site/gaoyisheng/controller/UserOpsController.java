@@ -13,80 +13,87 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ */ 
 package site.gaoyisheng.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import site.gaoyisheng.pojo.Team;
-import site.gaoyisheng.pojo.User11;
-import site.gaoyisheng.pojo.User11;
-import site.gaoyisheng.service.TeamService;
-import site.gaoyisheng.service.UserService;
+import site.gaoyisheng.pojo.Thesis;
+import site.gaoyisheng.service.ThesisService;
 
 @Controller
-@RequestMapping("/teacher")
+@RequestMapping("/user")
 public class UserOpsController {
 
 	
 	@Autowired
-	private UserService userService;
+	private ThesisService thesisService;
 	
-	@RequestMapping("/home")
-	public ModelAndView home(HttpSession session) {
+	@RequestMapping("/thesis-list")
+	public ModelAndView thesisList(HttpSession session) {
 		
-		User11 currentUser =(User11) session.getAttribute("currentUser");
-		System.out.println("home:" + currentUser.toString());
-		
-		if(!currentUser.getIdentity().equals("teacher")) {}//如果currentUser 不是teacher
+
+		List<Thesis> thesisList = thesisService.selectAllUser();
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("currentUser",currentUser)
-		  .setViewName("/" + currentUser.getIdentity() + "/home");
+		mv
+		  .addObject("thesisList", thesisList)
+		  .setViewName("/user/thesis-list");
 		
 		return mv;
 	}
 	
-	@RequestMapping("/claim-list")
-	public ModelAndView claimList(HttpSession session) {
-		
-		User11 currentUser =(User11) session.getAttribute("currentUser");
-		System.out.println("home:" + currentUser.toString());
-		
-		if(!currentUser.getIdentity().equals("teacher")) {}//如果currentUser 不是teacher
-		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("currentUser",currentUser)
-		  .setViewName("/" + currentUser.getIdentity() + "/home");
-		
-		return mv;
-	}
-	
-	@RequestMapping("/claim")
-	public ModelAndView claim(HttpSession session) {
-		
-		User11 currentUser =(User11) session.getAttribute("currentUser");
-		System.out.println("home:" + currentUser.toString());
-		
-		if(!currentUser.getIdentity().equals("teacher")) {}//如果currentUser 不是teacher
-		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("currentUser",currentUser)
-		  .setViewName("/" + currentUser.getIdentity() + "/home");
-		
-		return mv;
-	}
+//	@RequestMapping("/home")
+//	public ModelAndView home(HttpSession session) {
+//		
+//		User11 currentUser =(User11) session.getAttribute("currentUser");
+//		System.out.println("home:" + currentUser.toString());
+//		
+//		if(!currentUser.getIdentity().equals("teacher")) {}//如果currentUser 不是teacher
+//		
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("currentUser",currentUser)
+//		  .setViewName("/" + currentUser.getIdentity() + "/home");
+//		
+//		return mv;
+//	}
+//	
+//	@RequestMapping("/claim-list")
+//	public ModelAndView claimList(HttpSession session) {
+//		
+//		User11 currentUser =(User11) session.getAttribute("currentUser");
+//		System.out.println("home:" + currentUser.toString());
+//		
+//		if(!currentUser.getIdentity().equals("teacher")) {}//如果currentUser 不是teacher
+//		
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("currentUser",currentUser)
+//		  .setViewName("/" + currentUser.getIdentity() + "/home");
+//		
+//		return mv;
+//	}
+//	
+//	@RequestMapping("/claim")
+//	public ModelAndView claim(HttpSession session) {
+//		
+//		User11 currentUser =(User11) session.getAttribute("currentUser");
+//		System.out.println("home:" + currentUser.toString());
+//		
+//		if(!currentUser.getIdentity().equals("teacher")) {}//如果currentUser 不是teacher
+//		
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("currentUser",currentUser)
+//		  .setViewName("/" + currentUser.getIdentity() + "/home");
+//		
+//		return mv;
+//	}
 	
 /*	@RequestMapping("/student-list")
 	public ModelAndView studentList(HttpSession session,
@@ -169,6 +176,6 @@ public class UserOpsController {
 		mv.setViewName("redirect:" + "/teacher/student-list");
 		
 		return mv;
-	}*/
-	
+	}
+*/	
 }

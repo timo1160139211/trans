@@ -1,4 +1,4 @@
-package site.gaoyisheng.controller;
+/*package site.gaoyisheng.controller;
 
 import java.util.List;
 
@@ -17,11 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 import site.gaoyisheng.pojo.User11;
 import site.gaoyisheng.service.UserService;
 
-/**
+*//**
  * Admin Controller类.
  * @author gaoyisheng
  *
- */
+ *//*
 @Controller
 @RequestMapping("/admin")
 public class AdminOpsController {
@@ -29,15 +29,15 @@ public class AdminOpsController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private XXService service;
+//	@Autowired
+//	private XXService service;
 	
-	/**
+	*//**
 	 * .
 	 * TODO admin主页
 	 * @param session
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("/home")
 	public ModelAndView home(HttpSession session) {
 		
@@ -51,32 +51,32 @@ public class AdminOpsController {
 		return mv;
 	}
 	
-	/**
+	*//**
 	 * .
 	 * TODO 用户列表
 	 * @param session
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("/user-list")
 	public ModelAndView userList(HttpSession session) {
 		User11 currentUser =(User11) session.getAttribute("currentUser");
 		
-		List<User11> users = userService.selectAllUsers();
+//		List<User11> users = userService.selectAllUsers();
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("currentUser", currentUser)
-		  .addObject("users", users)
+//		  .addObject("users", users)
 		  .setViewName("/user/user-list");
 		
 		return mv;
 	}
 	
-	/**
+	*//**
 	 * .
 	 * TODO 更新用户的表单页面
 	 * @param userId
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("/updateUser/{userId}")
 	public ModelAndView editUserForm(@PathVariable("userId") Integer userId) {
 		
@@ -90,12 +90,12 @@ public class AdminOpsController {
 		return mv;
 	}
 	
-	/**
+	*//**
 	 * .
  	 * TODO 提交用户更新
 	 * @param user
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("/update")
 	public ModelAndView updateUser(@ModelAttribute User11 user) {
 		
@@ -107,22 +107,22 @@ public class AdminOpsController {
 		return mv;
 	}
 
-	/**
+	*//**
 	 * .
 	 * TODO 下载文件
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("")
 	public ModelAndView download() {
 		
 		return new ModelAndView();
 	}
 	
-	/**
+	*//**
 	 * .
 	 * TODO 上传文件
 	 * @return
-	 */
+	 *//*
 	@RequestMapping()
 	public ModelAndView upload() {
 		
@@ -130,3 +130,4 @@ public class AdminOpsController {
 	}
 	
 }
+*/

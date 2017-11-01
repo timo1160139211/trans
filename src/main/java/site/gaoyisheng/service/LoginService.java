@@ -2,8 +2,8 @@ package site.gaoyisheng.service;
 
 import java.util.Map;
 
-import site.gaoyisheng.pojo.User11;
+import site.gaoyisheng.pojo.User;
 
 public interface LoginService {
-	 public User11 selectByNumberAndPassword(Map<String,Object> param);  
+	 public User selectByNumberAndPassword(Map<String,Object> param);  
 }

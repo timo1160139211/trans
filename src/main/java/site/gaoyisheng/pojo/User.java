@@ -2,14 +2,11 @@ package site.gaoyisheng.pojo;
 
 public class User {
     private Integer id;
-
     private String name;
-
     private String number;
-
     private String password;
+    private String college;// 学院
 
-    private String college;
 
     public Integer getId() {
         return id;

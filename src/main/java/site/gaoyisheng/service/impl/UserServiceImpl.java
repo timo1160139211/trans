@@ -1,4 +1,4 @@
-package site.gaoyisheng.service.impl;
+/*package site.gaoyisheng.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,9 +19,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper11 userDao;
 
-	/**
+	*//**
 	 * select user by PK.
-	 */
+	 *//*
 	@Override
 	public User11 selectUserByPrimaryKey(Integer userId) {
 		return this.userDao.selectByPrimaryKey(userId);
@@ -44,20 +44,20 @@ public class UserServiceImpl implements UserService {
 		return userDao.selectAllUserExceptIdentity(identity);
 	}
 	
-	/**
+	*//**
 	 * insert user .
 	 * @param user
-	 */
+	 *//*
 	@Override
 	public int insertUser(User11 user) {
 		return this.userDao.insertSelective(user);
 	}
 	
-	/**
+	*//**
 	 * insert user .
 	 * @param user
 	 * @return 返回的并不是id,而是 0,1 = false,true
-	 */
+	 *//*
 	@Override
 	public int insertCacheId(User11 user) {
 		return this.userDao.insertCacheId(user);
@@ -91,3 +91,4 @@ public class UserServiceImpl implements UserService {
 //		return this.userDao.selectByTeacherIdAndTeamId(parameterMap);
 //	}
 }
+*/

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import site.gaoyisheng.pojo.User11;
+import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.LoginService;
 
 /**
@@ -23,7 +23,7 @@ import site.gaoyisheng.service.LoginService;
  */
 @Controller
 @RequestMapping("/user")
-@SessionAttributes(types = { User11.class }) // 设置会话属性
+@SessionAttributes(types = { User.class }) // 设置会话属性
 public class LoginController {
 
 	@Autowired
@@ -50,7 +50,7 @@ public class LoginController {
 			parameterMap.put("number", number);
 			parameterMap.put("password", password);
 			// ajax + jQuery find User in DB or not?
-			User11 currentUser = loginService.selectByNumberAndPassword(parameterMap);
+			User currentUser = loginService.selectByNumberAndPassword(parameterMap);
 			mv.addObject("currentUser", currentUser)
 			  .setViewName("home");
 
@@ -67,7 +67,7 @@ public class LoginController {
 	 * @return
 	 */
 	public boolean isLoggedIn(HttpSession session) {
-		User11 currentUser =(User11) session.getAttribute("currentUser");
+		User currentUser =(User) session.getAttribute("currentUser");
 		
 		return currentUser!=null; 
 	}
