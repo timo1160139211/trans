@@ -9,7 +9,7 @@ import site.gaoyisheng.dao.UserMapper;
 import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.LoginService;
 
-@Service("loginService")
+@Service
 public class LoginServiceImpl implements LoginService {
 
 	@Autowired

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import site.gaoyisheng.pojo.User;
-import site.gaoyisheng.service.LoginService;
+import site.gaoyisheng.service.impl.LoginServiceImpl;
 
 /**
  * 登陆Controller类.
@@ -27,7 +27,7 @@ import site.gaoyisheng.service.LoginService;
 public class LoginController {
 
 	@Autowired
-	private LoginService loginService;
+	private LoginServiceImpl loginService;
 
 	/**
 	 * .
