@@ -22,13 +22,13 @@
 	</filter-mapping>
 
 	<!-- Spring监听器 -->
-	<listener>
+<!-- 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	</listener> -->
 	<!--防止Spring内存溢出监听器 -->
-	<listener>
+<!-- 	<listener>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
-	</listener>
+	</listener> -->
 
 	<!-- Spring MVC servlet -->
 	<servlet>

@@ -40,14 +40,6 @@
 		<!-- 自动扫描mapping.xml文件 -->
 		<property name="mapperLocations" value="classpath:site/gaoyisheng/dao/mapping/*.xml"></property>
 
-       <!-- 配置默认数据库的乐观锁列对应的Java属性为version。 2017-9-23-17:08 -->
-		<!-- <plugins>
-			<plugin interceptor="com.mook.locker.interceptor.OptimisticLocker" />
-		</plugins>  -->
-
-        <!-- 配置默认数据库的乐观锁列对应的Java属性为value="xxx"。 2017-9-23-17:08 -->
-		<!-- <plugin interceptor="com.mook.locker.interceptor.OptimisticLocker"> 
-			<property name="versionColumn" value="xxx" /> </plugin> -->
 	</bean>
 
 	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
