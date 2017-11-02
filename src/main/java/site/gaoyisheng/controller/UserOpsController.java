@@ -22,25 +22,47 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import site.gaoyisheng.pojo.Thesis;
+import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.ThesisService;
+import site.gaoyisheng.service.UserService;
 
 @Controller
 @RequestMapping("/user")
 public class UserOpsController {
-
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private ThesisService thesisService;
 	
+	/**
+	 * 返回论文列表.
+	 *     参数:
+	 *         用户姓名.  
+	 *     返回:
+	 *         论文列表模型.
+	 *     
+	 * TODO
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/thesis-list")
-	public ModelAndView thesisList(HttpSession session) {
+	public ModelAndView thesisList(HttpSession session,
+			@RequestParam(value = "name", required = false) String name) {
+		List<Thesis> thesisList = null;
 		
-
-		List<Thesis> thesisList = thesisService.selectAllThesis();
+		if(name == null) {
+			thesisList = thesisService.selectAllThesisLikeUserName(name);
+		}else {
+			thesisList = thesisService.selectAllThesis();
+		}
 		
 		ModelAndView mv = new ModelAndView();
 		mv
@@ -50,50 +72,67 @@ public class UserOpsController {
 		return mv;
 	}
 	
-//	@RequestMapping("/home")
-//	public ModelAndView home(HttpSession session) {
-//		
-//		User11 currentUser =(User11) session.getAttribute("currentUser");
-//		System.out.println("home:" + currentUser.toString());
-//		
-//		if(!currentUser.getIdentity().equals("teacher")) {}//如果currentUser 不是teacher
-//		
-//		ModelAndView mv = new ModelAndView();
-//		mv.addObject("currentUser",currentUser)
-//		  .setViewName("/" + currentUser.getIdentity() + "/home");
-//		
-//		return mv;
-//	}
-//	
-//	@RequestMapping("/claim-list")
-//	public ModelAndView claimList(HttpSession session) {
-//		
-//		User11 currentUser =(User11) session.getAttribute("currentUser");
-//		System.out.println("home:" + currentUser.toString());
-//		
-//		if(!currentUser.getIdentity().equals("teacher")) {}//如果currentUser 不是teacher
-//		
-//		ModelAndView mv = new ModelAndView();
-//		mv.addObject("currentUser",currentUser)
-//		  .setViewName("/" + currentUser.getIdentity() + "/home");
-//		
-//		return mv;
-//	}
-//	
-//	@RequestMapping("/claim")
-//	public ModelAndView claim(HttpSession session) {
-//		
-//		User11 currentUser =(User11) session.getAttribute("currentUser");
-//		System.out.println("home:" + currentUser.toString());
-//		
-//		if(!currentUser.getIdentity().equals("teacher")) {}//如果currentUser 不是teacher
-//		
-//		ModelAndView mv = new ModelAndView();
-//		mv.addObject("currentUser",currentUser)
-//		  .setViewName("/" + currentUser.getIdentity() + "/home");
-//		
-//		return mv;
-//	}
 	
-
+	/**
+	 * 认领.
+	 *     参数:
+	 * 
+	 *     返回:
+	 * 
+	 * 
+	 * TODO
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/claim")
+	public ModelAndView claim(HttpSession session) {
+		
+		User currentUser =(User) session.getAttribute("currentUser");
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("currentUser",currentUser)
+		  .setViewName("/home");
+		
+		return mv;
+	}
+	
+	
+	/**
+	 * .
+	 * 填写修改个人信息表单.
+	 * TODO
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/user-edit-form}")
+	public ModelAndView editUser(HttpSession session) {
+		User selectedUser =(User) session.getAttribute("currentUser");
+		
+		ModelAndView mv = new ModelAndView();
+		mv
+		  .addObject("selectedUser", selectedUser)
+		  .setViewName("/user/user-edit-form");
+		
+		return mv;
+	}
+	
+	/**
+	 * .
+	 * 提交表单,更新数据库,更改session用户.
+	 * TODO
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/user-update")
+	public ModelAndView updateUser(@ModelAttribute User user,HttpSession session) {
+		userService.updateByPrimaryKeySelective(user);
+		session.setAttribute("currentUser", user);
+		
+		return new ModelAndView("/home");
+	}
+	
+	
+	
+	
+	
 }
