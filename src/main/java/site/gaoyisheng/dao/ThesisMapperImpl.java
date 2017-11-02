@@ -82,4 +82,23 @@ public class ThesisMapperImpl implements ThesisMapper {
 		return 0;
 	}
 
+	@Override
+	public List<Thesis> selectAllThesisLikeUserName(String name) {
+		List<Thesis> thesisList = null;
+		try {
+			MybatisUtil mybatisUtil = new MybatisUtil();
+			sqlSession = mybatisUtil.getSqlSession();
+			thesisList = sqlSession.selectList("selectAllThesisLikeUserName",name);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+
+		return thesisList;
+	}
+
 }

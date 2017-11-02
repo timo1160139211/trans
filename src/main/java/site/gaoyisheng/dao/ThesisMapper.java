@@ -18,4 +18,6 @@ public interface ThesisMapper {
     int updateByPrimaryKeySelective(Thesis record);
 
     int updateByPrimaryKey(Thesis record);
+
+	List<Thesis> selectAllThesisLikeUserName(String name);
 }

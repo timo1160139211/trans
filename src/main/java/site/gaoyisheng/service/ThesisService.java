@@ -33,4 +33,8 @@ public class ThesisService {
 	public List<Thesis> selectAllThesis(){
 		return thesisDao.selectAllThesis();
 	}
+
+	public List<Thesis> selectAllThesisLikeUserName( String name) {
+		return thesisDao.selectAllThesisLikeUserName(name);
+	}
 }
