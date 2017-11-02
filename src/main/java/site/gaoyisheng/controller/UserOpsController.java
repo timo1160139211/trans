@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import site.gaoyisheng.pojo.Thesis;
-import site.gaoyisheng.service.impl.ThesisServiceImpl;
+import site.gaoyisheng.service.ThesisService;
 
 @Controller
 @RequestMapping("/user")
@@ -34,13 +34,13 @@ public class UserOpsController {
 
 	
 	@Autowired
-	private ThesisServiceImpl thesisService;
+	private ThesisService thesisService;
 	
 	@RequestMapping("/thesis-list")
 	public ModelAndView thesisList(HttpSession session) {
 		
 
-		List<Thesis> thesisList = thesisService.selectAllUser();
+		List<Thesis> thesisList = thesisService.selectAllThesis();
 		
 		ModelAndView mv = new ModelAndView();
 		mv

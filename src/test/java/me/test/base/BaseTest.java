@@ -30,7 +30,7 @@ import org.springframework.web.context.WebApplicationContext;
  * @author gaoyisheng
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(locations = { "classpath:spring-mybatis.xml" })
+@ContextConfiguration(locations = { "classpath:spring-mvc.xml", "classpath:spring-mybatis.xml" })
 @WebAppConfiguration
 public class BaseTest {
 

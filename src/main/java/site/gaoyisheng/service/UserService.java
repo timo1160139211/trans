@@ -1,29 +1,25 @@
+/*
+ * file_name: UserService.java
+ *
+ * Copyright GaoYisheng Corporation 2017
+ *
+ * License：
+ * date： 2017年11月2日 下午4:10:45
+ *       https://www.gaoyisheng.site
+ *       https://github.com/timo1160139211
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package site.gaoyisheng.service;
 
-import java.util.List;
+import org.springframework.stereotype.Service;
 
-import site.gaoyisheng.pojo.User;
+@Service
+public class UserService {
 
-public interface UserService {
-	User selectUserByPrimaryKey(Integer userId);
-
-	List<User> selectAllUser();
 	
-	List<User> selectByTeamId(Integer teamId);
-
-	List<User> selectAllUserByIdentity(String identity);
-
-	int insertUser(User user);
-
-	int insertCacheId(User user);
-
-	List<User> selectAllUserExceptIdentity(String identity);
-
-	int updateByPrimaryKey(User user);
-	
-	int updateByPrimaryKeySelective(User user);
-	
-	int deleteByPrimaryKey(Integer id);
-	
-//	List<UserTeamForm> selectByTeacherIdAndTeamId(Integer teacherId,Integer teamId);
 }

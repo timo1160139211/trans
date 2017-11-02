@@ -1,3 +1,19 @@
+/*
+ * file_name: LoginController.java
+ *
+ * Copyright GaoYisheng Corporation 2017
+ *
+ * License：
+ * date： 2017年11月2日 下午4:11:43
+ *       https://www.gaoyisheng.site
+ *       https://github.com/timo1160139211
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package site.gaoyisheng.controller;
 
 import java.util.HashMap;
@@ -14,21 +30,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import site.gaoyisheng.pojo.User;
-import site.gaoyisheng.service.impl.LoginServiceImpl;
+import site.gaoyisheng.service.LoginService;
 
-/**
- * 登陆Controller类.
- * @author gaoyisheng
- *
- */
 @Controller
 @RequestMapping("/user")
-@SessionAttributes(types = { User.class }) // 设置会话属性
+@SessionAttributes(types = { User.class })
 public class LoginController {
 
 	@Autowired
-	private LoginServiceImpl loginService;
+	private LoginService loginService;
 
+	
 	/**
 	 * .
 	 * TODO 登陆
@@ -38,28 +50,27 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/login")
-	public ModelAndView login(HttpServletRequest request,
-			@RequestParam(value = "number", required = true) String number,
+	public ModelAndView login(@RequestParam(value = "number", required = true) String number,
 			@RequestParam(value = "password", required = true) String password) {
-
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("/home");
 
 		if (!(number.equals("") && password.equals(""))) {// not null
-
 			Map<String, Object> parameterMap = new HashMap<String, Object>();
 			parameterMap.put("number", number);
 			parameterMap.put("password", password);
 			// ajax + jQuery find User in DB or not?
 			User currentUser = loginService.selectByNumberAndPassword(parameterMap);
-			mv.addObject("currentUser", currentUser)
-			  .setViewName("home");
+			mv
+			  .addObject("currentUser", currentUser)
+			  .setViewName("redirect:/home");
 
-			return mv;
 		} else {
 			return new ModelAndView("error");
 		}
+
+		return new ModelAndView("/home");
 	}
-	
+
 	/**
 	 * .
 	 * TODO 判断是否已登陆
@@ -82,4 +93,5 @@ public class LoginController {
 		
 		return new ModelAndView();
 	}
+
 }

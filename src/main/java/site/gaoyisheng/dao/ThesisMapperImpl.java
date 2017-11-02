@@ -57,7 +57,7 @@ public class ThesisMapperImpl implements ThesisMapper {
 		try {
 			MybatisUtil mybatisUtil = new MybatisUtil();
 			sqlSession = mybatisUtil.getSqlSession();
-			thesisList = sqlSession.selectList("selectAllUser");
+			thesisList = sqlSession.selectList("selectAllThesis");
 
 		} catch (IOException e) {
 			e.printStackTrace();

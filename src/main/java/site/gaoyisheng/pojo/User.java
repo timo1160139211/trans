@@ -47,4 +47,11 @@ public class User {
     public void setCollege(String college) {
         this.college = college == null ? null : college.trim();
     }
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", number=" + number + ", password=" + password + ", college="
+				+ college + "]";
+	}
+    
 }

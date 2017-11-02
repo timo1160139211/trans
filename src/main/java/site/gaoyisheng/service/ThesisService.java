@@ -4,7 +4,7 @@
  * Copyright GaoYisheng Corporation 2017
  *
  * License：
- * date： 2017年11月1日 上午11:09:40
+ * date： 2017年11月2日 下午5:12:38
  *       https://www.gaoyisheng.site
  *       https://github.com/timo1160139211
  *
@@ -18,10 +18,19 @@ package site.gaoyisheng.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import site.gaoyisheng.dao.ThesisMapper;
 import site.gaoyisheng.pojo.Thesis;
 
-public interface ThesisService {
+@Service
+public class ThesisService {
 
-	List<Thesis> selectAllUser();
-
+	@Autowired
+	private ThesisMapper thesisDao;
+	
+	public List<Thesis> selectAllThesis(){
+		return thesisDao.selectAllThesis();
+	}
 }
