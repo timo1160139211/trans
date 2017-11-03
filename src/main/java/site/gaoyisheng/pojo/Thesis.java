@@ -3,222 +3,120 @@ package site.gaoyisheng.pojo;
 public class Thesis {
     private Integer id;
 
-    /**
-     * 论文类型.
-     */
     private String type;
 
-    /**
-     * 论文题目.
-     */
     private String name;
-    
-    /**
-     * 第一作者类型.
-     */
-    private String no1authertype;
 
-    /**
-     * 第一作者.
-     */
-    private String no1authername;
+    private String no1AutherType;
 
-    /**
-     * 通讯作者.
-     */
-    private String communicateauthername;
+    private String no1AutherName;
 
-    /**
-     * 所属单位.
-     */
+    private String communicateAutherName;
+
     private String workunit;
 
-    /**
-     * 其他作者.
-     */
-    private String otherauthername;
+    private String otherAutherName;
 
-    /**
-     * 发表/出版时间.
-     */
-    private String publishdate;
+    private String publishDate;
 
-    /**
-     * 发表刊物/论文集.
-     */
-    private String publishmagazinethesisset;
+    private String publishMagazineThesisSet;
 
-    /**
-     * 刊物类型.
-     */
-    private String magazinetype;
+    private String magazineType;
 
-    /**
-     * 学科门类.
-     */
-    private String subjecttype;
+    private String subjectType;
 
-    /**
-     * 一级学科.
-     */
-    private String stairsubject;
+    private String stairSubject;
 
-    /**
-     * 项目来源.
-     */
-    private String projectsources;
+    private String projectSources;
 
-    /**
-     * 发表范围.
-     */
-    private String publishrange;
+    private String publishRange;
 
-    /**
-     * 论文集出版单位.
-     */
-    private String thesissetpublisher;
+    private String thesisSetPublisher;
 
-    /**
-     * 字数.
-     */
-    private String wordsnumbers;
+    private String wordsNumbers;
 
-    /**
-     * 学校署名.
-     */
-    private String schoolsign;
+    private String schoolSign;
 
-    /**
-     * 关键字.
-     */
-    private String keywords;
+    private String keyWords;
 
-    /**
-     * 论文摘要.
-     */
-    private String theabstract;
+    private String theAbstract;
 
-    /**
-     * 备注.
-     */
     private String note;
 
-    /**
-     * 版面.
-     */
     private String appearance;
 
-    /**
-     * 知网链接地址.
-     */
-    private String cnkilink;
+    private String cnkiLink;
 
-    /**
-     * ISSN号.
-     */
     private String issn;
 
-    /**
-     * CN号.
-     */
     private String cn;
 
-    /**
-     * 卷期页.
-     */
-    private String volumenumberpage;
+    private String volumeNumberPage;
 
-    /**
-     * DOI.
-     */
     private String doi;
 
-    /**
-     * 会议名称.
-     */
-    private String conferencename;
+    private String conferenceName;
 
-    /**
-     * 会议地址.
-     */
-    private String conferencesite;
+    private String conferenceSite;
 
-    /**
-     * 会议日期.
-     */
-    private String conferencedate;
+    private String conferenceDate;
 
-    /**
-     * 论文收录号码.
-     */
-    private String embodynumber;
+    private String embodyNumber;
 
-    /**
-     * 是否为译文.
-     */
-    private String translationornot;
+    private String translationOrNot;
 
-    /**
-     * 论文他引次数.
-     */
-    private String referencefrequency;
+    private String referenceFrequency;
 
-    /**
-     * 依托项目.
-     */
-    private String supportproject;
+    private String supportProject;
 
-    private String no2authername;
+    private String no2AutherName;
 
-    private String no2authernumber;
+    private String no2AutherNumber;
 
-    private String no3authername;
+    private String no3AutherName;
 
-    private String no3authernumber;
+    private String no3AutherNumber;
 
-    private String no4authername;
+    private String no4AutherName;
 
-    private String no4authernumber;
+    private String no4AutherNumber;
 
-    private String no5authername;
+    private String no5AutherName;
 
-    private String no5authernumber;
+    private String no5AutherNumber;
 
-    private String no6authername;
+    private String no6AutherName;
 
-    private String no6authernumber;
+    private String no6AutherNumber;
 
-    private String no7authername;
+    private String no7AutherName;
 
-    private String no7authernumber;
+    private String no7AutherNumber;
 
-    private String no8authername;
+    private String no8AutherName;
 
-    private String no8authernumber;
+    private String no8AutherNumber;
 
-    private String no9authername;
+    private String no9AutherName;
 
-    private String no9authernumber;
+    private String no9AutherNumber;
 
-    private String no10authername;
+    private String no10AutherName;
 
-    private String no10authernumber;
-
-    private String no1authernumber;
+    private String no10AutherNumber;
 
     /**
      * 第一作者工号.
      */
-    private Integer authernumber;
+    private String no1AutherNumber;
 
     /**
      * sdut作者数量.
      */
-    private Integer sdutauthernumber;
+    private Integer autherNumber;
 
-    /**
-     * 状态(已认领，未认领).
-     */
+    private Integer sdutAutherNumber;
+
     private String status;
 
     public Integer getId() {
@@ -245,28 +143,28 @@ public class Thesis {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getNo1authertype() {
-        return no1authertype;
+    public String getNo1AutherType() {
+        return no1AutherType;
     }
 
-    public void setNo1authertype(String no1authertype) {
-        this.no1authertype = no1authertype == null ? null : no1authertype.trim();
+    public void setNo1AutherType(String no1AutherType) {
+        this.no1AutherType = no1AutherType == null ? null : no1AutherType.trim();
     }
 
-    public String getNo1authername() {
-        return no1authername;
+    public String getNo1AutherName() {
+        return no1AutherName;
     }
 
-    public void setNo1authername(String no1authername) {
-        this.no1authername = no1authername == null ? null : no1authername.trim();
+    public void setNo1AutherName(String no1AutherName) {
+        this.no1AutherName = no1AutherName == null ? null : no1AutherName.trim();
     }
 
-    public String getCommunicateauthername() {
-        return communicateauthername;
+    public String getCommunicateAutherName() {
+        return communicateAutherName;
     }
 
-    public void setCommunicateauthername(String communicateauthername) {
-        this.communicateauthername = communicateauthername == null ? null : communicateauthername.trim();
+    public void setCommunicateAutherName(String communicateAutherName) {
+        this.communicateAutherName = communicateAutherName == null ? null : communicateAutherName.trim();
     }
 
     public String getWorkunit() {
@@ -277,108 +175,108 @@ public class Thesis {
         this.workunit = workunit == null ? null : workunit.trim();
     }
 
-    public String getOtherauthername() {
-        return otherauthername;
+    public String getOtherAutherName() {
+        return otherAutherName;
     }
 
-    public void setOtherauthername(String otherauthername) {
-        this.otherauthername = otherauthername == null ? null : otherauthername.trim();
+    public void setOtherAutherName(String otherAutherName) {
+        this.otherAutherName = otherAutherName == null ? null : otherAutherName.trim();
     }
 
-    public String getPublishdate() {
-        return publishdate;
+    public String getPublishDate() {
+        return publishDate;
     }
 
-    public void setPublishdate(String publishdate) {
-        this.publishdate = publishdate == null ? null : publishdate.trim();
+    public void setPublishDate(String publishDate) {
+        this.publishDate = publishDate == null ? null : publishDate.trim();
     }
 
-    public String getPublishmagazinethesisset() {
-        return publishmagazinethesisset;
+    public String getPublishMagazineThesisSet() {
+        return publishMagazineThesisSet;
     }
 
-    public void setPublishmagazinethesisset(String publishmagazinethesisset) {
-        this.publishmagazinethesisset = publishmagazinethesisset == null ? null : publishmagazinethesisset.trim();
+    public void setPublishMagazineThesisSet(String publishMagazineThesisSet) {
+        this.publishMagazineThesisSet = publishMagazineThesisSet == null ? null : publishMagazineThesisSet.trim();
     }
 
-    public String getMagazinetype() {
-        return magazinetype;
+    public String getMagazineType() {
+        return magazineType;
     }
 
-    public void setMagazinetype(String magazinetype) {
-        this.magazinetype = magazinetype == null ? null : magazinetype.trim();
+    public void setMagazineType(String magazineType) {
+        this.magazineType = magazineType == null ? null : magazineType.trim();
     }
 
-    public String getSubjecttype() {
-        return subjecttype;
+    public String getSubjectType() {
+        return subjectType;
     }
 
-    public void setSubjecttype(String subjecttype) {
-        this.subjecttype = subjecttype == null ? null : subjecttype.trim();
+    public void setSubjectType(String subjectType) {
+        this.subjectType = subjectType == null ? null : subjectType.trim();
     }
 
-    public String getStairsubject() {
-        return stairsubject;
+    public String getStairSubject() {
+        return stairSubject;
     }
 
-    public void setStairsubject(String stairsubject) {
-        this.stairsubject = stairsubject == null ? null : stairsubject.trim();
+    public void setStairSubject(String stairSubject) {
+        this.stairSubject = stairSubject == null ? null : stairSubject.trim();
     }
 
-    public String getProjectsources() {
-        return projectsources;
+    public String getProjectSources() {
+        return projectSources;
     }
 
-    public void setProjectsources(String projectsources) {
-        this.projectsources = projectsources == null ? null : projectsources.trim();
+    public void setProjectSources(String projectSources) {
+        this.projectSources = projectSources == null ? null : projectSources.trim();
     }
 
-    public String getPublishrange() {
-        return publishrange;
+    public String getPublishRange() {
+        return publishRange;
     }
 
-    public void setPublishrange(String publishrange) {
-        this.publishrange = publishrange == null ? null : publishrange.trim();
+    public void setPublishRange(String publishRange) {
+        this.publishRange = publishRange == null ? null : publishRange.trim();
     }
 
-    public String getThesissetpublisher() {
-        return thesissetpublisher;
+    public String getThesisSetPublisher() {
+        return thesisSetPublisher;
     }
 
-    public void setThesissetpublisher(String thesissetpublisher) {
-        this.thesissetpublisher = thesissetpublisher == null ? null : thesissetpublisher.trim();
+    public void setThesisSetPublisher(String thesisSetPublisher) {
+        this.thesisSetPublisher = thesisSetPublisher == null ? null : thesisSetPublisher.trim();
     }
 
-    public String getWordsnumbers() {
-        return wordsnumbers;
+    public String getWordsNumbers() {
+        return wordsNumbers;
     }
 
-    public void setWordsnumbers(String wordsnumbers) {
-        this.wordsnumbers = wordsnumbers == null ? null : wordsnumbers.trim();
+    public void setWordsNumbers(String wordsNumbers) {
+        this.wordsNumbers = wordsNumbers == null ? null : wordsNumbers.trim();
     }
 
-    public String getSchoolsign() {
-        return schoolsign;
+    public String getSchoolSign() {
+        return schoolSign;
     }
 
-    public void setSchoolsign(String schoolsign) {
-        this.schoolsign = schoolsign == null ? null : schoolsign.trim();
+    public void setSchoolSign(String schoolSign) {
+        this.schoolSign = schoolSign == null ? null : schoolSign.trim();
     }
 
-    public String getKeywords() {
-        return keywords;
+    public String getKeyWords() {
+        return keyWords;
     }
 
-    public void setKeywords(String keywords) {
-        this.keywords = keywords == null ? null : keywords.trim();
+    public void setKeyWords(String keyWords) {
+        this.keyWords = keyWords == null ? null : keyWords.trim();
     }
 
-    public String getTheabstract() {
-        return theabstract;
+    public String getTheAbstract() {
+        return theAbstract;
     }
 
-    public void setTheabstract(String theabstract) {
-        this.theabstract = theabstract == null ? null : theabstract.trim();
+    public void setTheAbstract(String theAbstract) {
+        this.theAbstract = theAbstract == null ? null : theAbstract.trim();
     }
 
     public String getNote() {
@@ -397,12 +295,12 @@ public class Thesis {
         this.appearance = appearance == null ? null : appearance.trim();
     }
 
-    public String getCnkilink() {
-        return cnkilink;
+    public String getCnkiLink() {
+        return cnkiLink;
     }
 
-    public void setCnkilink(String cnkilink) {
-        this.cnkilink = cnkilink == null ? null : cnkilink.trim();
+    public void setCnkiLink(String cnkiLink) {
+        this.cnkiLink = cnkiLink == null ? null : cnkiLink.trim();
     }
 
     public String getIssn() {
@@ -421,12 +319,12 @@ public class Thesis {
         this.cn = cn == null ? null : cn.trim();
     }
 
-    public String getVolumenumberpage() {
-        return volumenumberpage;
+    public String getVolumeNumberPage() {
+        return volumeNumberPage;
     }
 
-    public void setVolumenumberpage(String volumenumberpage) {
-        this.volumenumberpage = volumenumberpage == null ? null : volumenumberpage.trim();
+    public void setVolumeNumberPage(String volumeNumberPage) {
+        this.volumeNumberPage = volumeNumberPage == null ? null : volumeNumberPage.trim();
     }
 
     public String getDoi() {
@@ -437,228 +335,228 @@ public class Thesis {
         this.doi = doi == null ? null : doi.trim();
     }
 
-    public String getConferencename() {
-        return conferencename;
+    public String getConferenceName() {
+        return conferenceName;
     }
 
-    public void setConferencename(String conferencename) {
-        this.conferencename = conferencename == null ? null : conferencename.trim();
+    public void setConferenceName(String conferenceName) {
+        this.conferenceName = conferenceName == null ? null : conferenceName.trim();
     }
 
-    public String getConferencesite() {
-        return conferencesite;
+    public String getConferenceSite() {
+        return conferenceSite;
     }
 
-    public void setConferencesite(String conferencesite) {
-        this.conferencesite = conferencesite == null ? null : conferencesite.trim();
+    public void setConferenceSite(String conferenceSite) {
+        this.conferenceSite = conferenceSite == null ? null : conferenceSite.trim();
     }
 
-    public String getConferencedate() {
-        return conferencedate;
+    public String getConferenceDate() {
+        return conferenceDate;
     }
 
-    public void setConferencedate(String conferencedate) {
-        this.conferencedate = conferencedate == null ? null : conferencedate.trim();
+    public void setConferenceDate(String conferenceDate) {
+        this.conferenceDate = conferenceDate == null ? null : conferenceDate.trim();
     }
 
-    public String getEmbodynumber() {
-        return embodynumber;
+    public String getEmbodyNumber() {
+        return embodyNumber;
     }
 
-    public void setEmbodynumber(String embodynumber) {
-        this.embodynumber = embodynumber == null ? null : embodynumber.trim();
+    public void setEmbodyNumber(String embodyNumber) {
+        this.embodyNumber = embodyNumber == null ? null : embodyNumber.trim();
     }
 
-    public String getTranslationornot() {
-        return translationornot;
+    public String getTranslationOrNot() {
+        return translationOrNot;
     }
 
-    public void setTranslationornot(String translationornot) {
-        this.translationornot = translationornot == null ? null : translationornot.trim();
+    public void setTranslationOrNot(String translationOrNot) {
+        this.translationOrNot = translationOrNot == null ? null : translationOrNot.trim();
     }
 
-    public String getReferencefrequency() {
-        return referencefrequency;
+    public String getReferenceFrequency() {
+        return referenceFrequency;
     }
 
-    public void setReferencefrequency(String referencefrequency) {
-        this.referencefrequency = referencefrequency == null ? null : referencefrequency.trim();
+    public void setReferenceFrequency(String referenceFrequency) {
+        this.referenceFrequency = referenceFrequency == null ? null : referenceFrequency.trim();
     }
 
-    public String getSupportproject() {
-        return supportproject;
+    public String getSupportProject() {
+        return supportProject;
     }
 
-    public void setSupportproject(String supportproject) {
-        this.supportproject = supportproject == null ? null : supportproject.trim();
+    public void setSupportProject(String supportProject) {
+        this.supportProject = supportProject == null ? null : supportProject.trim();
     }
 
-    public String getNo2authername() {
-        return no2authername;
+    public String getNo2AutherName() {
+        return no2AutherName;
     }
 
-    public void setNo2authername(String no2authername) {
-        this.no2authername = no2authername == null ? null : no2authername.trim();
+    public void setNo2AutherName(String no2AutherName) {
+        this.no2AutherName = no2AutherName == null ? null : no2AutherName.trim();
     }
 
-    public String getNo2authernumber() {
-        return no2authernumber;
+    public String getNo2AutherNumber() {
+        return no2AutherNumber;
     }
 
-    public void setNo2authernumber(String no2authernumber) {
-        this.no2authernumber = no2authernumber == null ? null : no2authernumber.trim();
+    public void setNo2AutherNumber(String no2AutherNumber) {
+        this.no2AutherNumber = no2AutherNumber == null ? null : no2AutherNumber.trim();
     }
 
-    public String getNo3authername() {
-        return no3authername;
+    public String getNo3AutherName() {
+        return no3AutherName;
     }
 
-    public void setNo3authername(String no3authername) {
-        this.no3authername = no3authername == null ? null : no3authername.trim();
+    public void setNo3AutherName(String no3AutherName) {
+        this.no3AutherName = no3AutherName == null ? null : no3AutherName.trim();
     }
 
-    public String getNo3authernumber() {
-        return no3authernumber;
+    public String getNo3AutherNumber() {
+        return no3AutherNumber;
     }
 
-    public void setNo3authernumber(String no3authernumber) {
-        this.no3authernumber = no3authernumber == null ? null : no3authernumber.trim();
+    public void setNo3AutherNumber(String no3AutherNumber) {
+        this.no3AutherNumber = no3AutherNumber == null ? null : no3AutherNumber.trim();
     }
 
-    public String getNo4authername() {
-        return no4authername;
+    public String getNo4AutherName() {
+        return no4AutherName;
     }
 
-    public void setNo4authername(String no4authername) {
-        this.no4authername = no4authername == null ? null : no4authername.trim();
+    public void setNo4AutherName(String no4AutherName) {
+        this.no4AutherName = no4AutherName == null ? null : no4AutherName.trim();
     }
 
-    public String getNo4authernumber() {
-        return no4authernumber;
+    public String getNo4AutherNumber() {
+        return no4AutherNumber;
     }
 
-    public void setNo4authernumber(String no4authernumber) {
-        this.no4authernumber = no4authernumber == null ? null : no4authernumber.trim();
+    public void setNo4AutherNumber(String no4AutherNumber) {
+        this.no4AutherNumber = no4AutherNumber == null ? null : no4AutherNumber.trim();
     }
 
-    public String getNo5authername() {
-        return no5authername;
+    public String getNo5AutherName() {
+        return no5AutherName;
     }
 
-    public void setNo5authername(String no5authername) {
-        this.no5authername = no5authername == null ? null : no5authername.trim();
+    public void setNo5AutherName(String no5AutherName) {
+        this.no5AutherName = no5AutherName == null ? null : no5AutherName.trim();
     }
 
-    public String getNo5authernumber() {
-        return no5authernumber;
+    public String getNo5AutherNumber() {
+        return no5AutherNumber;
     }
 
-    public void setNo5authernumber(String no5authernumber) {
-        this.no5authernumber = no5authernumber == null ? null : no5authernumber.trim();
+    public void setNo5AutherNumber(String no5AutherNumber) {
+        this.no5AutherNumber = no5AutherNumber == null ? null : no5AutherNumber.trim();
     }
 
-    public String getNo6authername() {
-        return no6authername;
+    public String getNo6AutherName() {
+        return no6AutherName;
     }
 
-    public void setNo6authername(String no6authername) {
-        this.no6authername = no6authername == null ? null : no6authername.trim();
+    public void setNo6AutherName(String no6AutherName) {
+        this.no6AutherName = no6AutherName == null ? null : no6AutherName.trim();
     }
 
-    public String getNo6authernumber() {
-        return no6authernumber;
+    public String getNo6AutherNumber() {
+        return no6AutherNumber;
     }
 
-    public void setNo6authernumber(String no6authernumber) {
-        this.no6authernumber = no6authernumber == null ? null : no6authernumber.trim();
+    public void setNo6AutherNumber(String no6AutherNumber) {
+        this.no6AutherNumber = no6AutherNumber == null ? null : no6AutherNumber.trim();
     }
 
-    public String getNo7authername() {
-        return no7authername;
+    public String getNo7AutherName() {
+        return no7AutherName;
     }
 
-    public void setNo7authername(String no7authername) {
-        this.no7authername = no7authername == null ? null : no7authername.trim();
+    public void setNo7AutherName(String no7AutherName) {
+        this.no7AutherName = no7AutherName == null ? null : no7AutherName.trim();
     }
 
-    public String getNo7authernumber() {
-        return no7authernumber;
+    public String getNo7AutherNumber() {
+        return no7AutherNumber;
     }
 
-    public void setNo7authernumber(String no7authernumber) {
-        this.no7authernumber = no7authernumber == null ? null : no7authernumber.trim();
+    public void setNo7AutherNumber(String no7AutherNumber) {
+        this.no7AutherNumber = no7AutherNumber == null ? null : no7AutherNumber.trim();
     }
 
-    public String getNo8authername() {
-        return no8authername;
+    public String getNo8AutherName() {
+        return no8AutherName;
     }
 
-    public void setNo8authername(String no8authername) {
-        this.no8authername = no8authername == null ? null : no8authername.trim();
+    public void setNo8AutherName(String no8AutherName) {
+        this.no8AutherName = no8AutherName == null ? null : no8AutherName.trim();
     }
 
-    public String getNo8authernumber() {
-        return no8authernumber;
+    public String getNo8AutherNumber() {
+        return no8AutherNumber;
     }
 
-    public void setNo8authernumber(String no8authernumber) {
-        this.no8authernumber = no8authernumber == null ? null : no8authernumber.trim();
+    public void setNo8AutherNumber(String no8AutherNumber) {
+        this.no8AutherNumber = no8AutherNumber == null ? null : no8AutherNumber.trim();
     }
 
-    public String getNo9authername() {
-        return no9authername;
+    public String getNo9AutherName() {
+        return no9AutherName;
     }
 
-    public void setNo9authername(String no9authername) {
-        this.no9authername = no9authername == null ? null : no9authername.trim();
+    public void setNo9AutherName(String no9AutherName) {
+        this.no9AutherName = no9AutherName == null ? null : no9AutherName.trim();
     }
 
-    public String getNo9authernumber() {
-        return no9authernumber;
+    public String getNo9AutherNumber() {
+        return no9AutherNumber;
     }
 
-    public void setNo9authernumber(String no9authernumber) {
-        this.no9authernumber = no9authernumber == null ? null : no9authernumber.trim();
+    public void setNo9AutherNumber(String no9AutherNumber) {
+        this.no9AutherNumber = no9AutherNumber == null ? null : no9AutherNumber.trim();
     }
 
-    public String getNo10authername() {
-        return no10authername;
+    public String getNo10AutherName() {
+        return no10AutherName;
     }
 
-    public void setNo10authername(String no10authername) {
-        this.no10authername = no10authername == null ? null : no10authername.trim();
+    public void setNo10AutherName(String no10AutherName) {
+        this.no10AutherName = no10AutherName == null ? null : no10AutherName.trim();
     }
 
-    public String getNo10authernumber() {
-        return no10authernumber;
+    public String getNo10AutherNumber() {
+        return no10AutherNumber;
     }
 
-    public void setNo10authernumber(String no10authernumber) {
-        this.no10authernumber = no10authernumber == null ? null : no10authernumber.trim();
+    public void setNo10AutherNumber(String no10AutherNumber) {
+        this.no10AutherNumber = no10AutherNumber == null ? null : no10AutherNumber.trim();
     }
 
-    public String getNo1authernumber() {
-        return no1authernumber;
+    public String getNo1AutherNumber() {
+        return no1AutherNumber;
     }
 
-    public void setNo1authernumber(String no1authernumber) {
-        this.no1authernumber = no1authernumber == null ? null : no1authernumber.trim();
+    public void setNo1AutherNumber(String no1AutherNumber) {
+        this.no1AutherNumber = no1AutherNumber == null ? null : no1AutherNumber.trim();
     }
 
-    public Integer getAuthernumber() {
-        return authernumber;
+    public Integer getAutherNumber() {
+        return autherNumber;
     }
 
-    public void setAuthernumber(Integer authernumber) {
-        this.authernumber = authernumber;
+    public void setAutherNumber(Integer autherNumber) {
+        this.autherNumber = autherNumber;
     }
 
-    public Integer getSdutauthernumber() {
-        return sdutauthernumber;
+    public Integer getSdutAutherNumber() {
+        return sdutAutherNumber;
     }
 
-    public void setSdutauthernumber(Integer sdutauthernumber) {
-        this.sdutauthernumber = sdutauthernumber;
+    public void setSdutAutherNumber(Integer sdutAutherNumber) {
+        this.sdutAutherNumber = sdutAutherNumber;
     }
 
     public String getStatus() {
@@ -668,4 +566,31 @@ public class Thesis {
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Thesis [id=" + id + ", type=" + type + ", name=" + name + ", no1AutherType=" + no1AutherType
+				+ ", no1AutherName=" + no1AutherName + ", communicateAutherName=" + communicateAutherName
+				+ ", workunit=" + workunit + ", otherAutherName=" + otherAutherName + ", publishDate=" + publishDate
+				+ ", publishMagazineThesisSet=" + publishMagazineThesisSet + ", magazineType=" + magazineType
+				+ ", subjectType=" + subjectType + ", stairSubject=" + stairSubject + ", projectSources="
+				+ projectSources + ", publishRange=" + publishRange + ", thesisSetPublisher=" + thesisSetPublisher
+				+ ", wordsNumbers=" + wordsNumbers + ", schoolSign=" + schoolSign + ", keyWords=" + keyWords
+				+ ", theAbstract=" + theAbstract + ", note=" + note + ", appearance=" + appearance + ", cnkiLink="
+				+ cnkiLink + ", issn=" + issn + ", cn=" + cn + ", volumeNumberPage=" + volumeNumberPage + ", doi=" + doi
+				+ ", conferenceName=" + conferenceName + ", conferenceSite=" + conferenceSite + ", conferenceDate="
+				+ conferenceDate + ", embodyNumber=" + embodyNumber + ", translationOrNot=" + translationOrNot
+				+ ", referenceFrequency=" + referenceFrequency + ", supportProject=" + supportProject
+				+ ", no2AutherName=" + no2AutherName + ", no2AutherNumber=" + no2AutherNumber + ", no3AutherName="
+				+ no3AutherName + ", no3AutherNumber=" + no3AutherNumber + ", no4AutherName=" + no4AutherName
+				+ ", no4AutherNumber=" + no4AutherNumber + ", no5AutherName=" + no5AutherName + ", no5AutherNumber="
+				+ no5AutherNumber + ", no6AutherName=" + no6AutherName + ", no6AutherNumber=" + no6AutherNumber
+				+ ", no7AutherName=" + no7AutherName + ", no7AutherNumber=" + no7AutherNumber + ", no8AutherName="
+				+ no8AutherName + ", no8AutherNumber=" + no8AutherNumber + ", no9AutherName=" + no9AutherName
+				+ ", no9AutherNumber=" + no9AutherNumber + ", no10AutherName=" + no10AutherName + ", no10AutherNumber="
+				+ no10AutherNumber + ", no1AutherNumber=" + no1AutherNumber + ", autherNumber=" + autherNumber
+				+ ", sdutAutherNumber=" + sdutAutherNumber + ", status=" + status + "]";
+	}
+    
+    
 }

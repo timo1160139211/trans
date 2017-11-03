@@ -22,6 +22,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import site.gaoyisheng.pojo.Thesis;
+import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.ThesisService;
 
 public class UserOpsTest extends BaseTest {
@@ -32,11 +33,13 @@ public class UserOpsTest extends BaseTest {
 	@Test
 	public void loginTest() {
 
-		String name = "1";
+		User user = new User();
+		user.setName("陈鹏");
+		user.setNumber("123");
+		
+		List<Thesis> thesisList = ts.selectAllThesisLikeUserNameAndNumber(user);
 
-//		List<Thesis> thesisList = ts.selectAllThesisLikeUserName(name);
-
-		List<Thesis> thesisList = ts.selectAllThesis();
+//		List<Thesis> thesisList = ts.selectAllThesis();
 		
 		for (Thesis t : thesisList) {
 			System.out.println(t.toString());

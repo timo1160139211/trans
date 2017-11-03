@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import site.gaoyisheng.dao.ThesisMapper;
 import site.gaoyisheng.pojo.Thesis;
+import site.gaoyisheng.pojo.User;
 
 @Service
 public class ThesisService {
@@ -34,7 +35,7 @@ public class ThesisService {
 		return thesisDao.selectAllThesis();
 	}
 
-	public List<Thesis> selectAllThesisLikeUserName( String name) {
-		return thesisDao.selectAllThesisLikeUserName(name);
+	public List<Thesis> selectAllThesisLikeUserNameAndNumber(User user) {
+		return thesisDao.selectAllThesisLikeUserNameAndNumber(user);
 	}
 }

@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import site.gaoyisheng.pojo.Thesis;
+import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.utils.MybatisUtil;
 
 public class ThesisMapperImpl implements ThesisMapper {
@@ -83,12 +84,12 @@ public class ThesisMapperImpl implements ThesisMapper {
 	}
 
 	@Override
-	public List<Thesis> selectAllThesisLikeUserName(String name) {
+	public List<Thesis> selectAllThesisLikeUserNameAndNumber(User user) {
 		List<Thesis> thesisList = null;
 		try {
 			MybatisUtil mybatisUtil = new MybatisUtil();
 			sqlSession = mybatisUtil.getSqlSession();
-			thesisList = sqlSession.selectList("selectAllThesisLikeUserName",name);
+			thesisList = sqlSession.selectList("selectAllThesisLikeUserName",user);
 
 		} catch (IOException e) {
 			e.printStackTrace();

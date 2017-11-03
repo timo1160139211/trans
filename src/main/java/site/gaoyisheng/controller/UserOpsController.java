@@ -54,15 +54,12 @@ public class UserOpsController {
 	 * @return
 	 */
 	@RequestMapping("/thesis-list")
-	public ModelAndView thesisList(HttpSession session,
-			@RequestParam(value = "name", required = false) String name) {
+	public ModelAndView thesisList(HttpSession session) {
 		List<Thesis> thesisList = null;
 		
-		if(name == null) {
-			thesisList = thesisService.selectAllThesisLikeUserName(name);
-		}else {
-			thesisList = thesisService.selectAllThesis();
-		}
+		User currentUser = (User) session.getAttribute("currentUser");
+		
+		thesisList = thesisService.selectAllThesisLikeUserNameAndNumber(currentUser);
 		
 		ModelAndView mv = new ModelAndView();
 		mv

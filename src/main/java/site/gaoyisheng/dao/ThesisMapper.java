@@ -3,6 +3,7 @@ package site.gaoyisheng.dao;
 import java.util.List;
 
 import site.gaoyisheng.pojo.Thesis;
+import site.gaoyisheng.pojo.User;
 
 public interface ThesisMapper {
     int deleteByPrimaryKey(Integer id);
@@ -12,12 +13,12 @@ public interface ThesisMapper {
     int insertSelective(Thesis record);
 
     Thesis selectByPrimaryKey(Integer id);
-    
-    List<Thesis> selectAllThesis();
 
     int updateByPrimaryKeySelective(Thesis record);
 
     int updateByPrimaryKey(Thesis record);
 
-	List<Thesis> selectAllThesisLikeUserName(String name);
+	List<Thesis> selectAllThesisLikeUserNameAndNumber(User user);
+
+	List<Thesis> selectAllThesis();
 }

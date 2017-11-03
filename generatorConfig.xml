@@ -26,7 +26,7 @@
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- 生成映射文件的包名和位置 -->
-		<sqlMapGenerator targetPackage="site.gaoyisheng.dao.mapping"
+		<sqlMapGenerator targetPackage="site.gaoyisheng.mapping"
 			targetProject="src/main/java/">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
@@ -37,10 +37,6 @@
 		</javaClientGenerator>
 
 		<!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名 -->
-<!-- 		<table tableName="user" domainObjectName="User"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"></table> -->
 		<table tableName="thesis" domainObjectName="Thesis"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
