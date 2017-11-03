@@ -19,12 +19,12 @@ package site.gaoyisheng.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,8 +39,12 @@ public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
-
-	
+        
+        @RequestMapping(value = "login",method = RequestMethod.GET)
+	public String index(){
+            return "/user/login";
+        }
+        
 	/**
 	 * .
 	 * TODO 登陆
@@ -49,19 +53,18 @@ public class LoginController {
 	 * @param password
 	 * @return
 	 */
-	@RequestMapping("/login")
+	@RequestMapping(value = "/login",method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam(value = "number", required = true) String number,
-			@RequestParam(value = "password", required = true) String password) {
-		ModelAndView mv = new ModelAndView("/home");
-
+			@RequestParam(value = "password", required = true) String password
+                        ) {
+                ModelAndView mv = new ModelAndView();
 		if (!(number.equals("") && password.equals(""))) {// not null
 			Map<String, Object> parameterMap = new HashMap<String, Object>();
 			parameterMap.put("number", number);
 			parameterMap.put("password", password);
 			// ajax + jQuery find User in DB or not?
 			User currentUser = loginService.selectByNumberAndPassword(parameterMap);
-			mv
-			  .addObject("currentUser", currentUser)
+			mv.addObject("currentUser", currentUser)
 			  .setViewName("redirect:/home");
 
 		} else {

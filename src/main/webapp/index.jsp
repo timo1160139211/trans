@@ -1,5 +1,2 @@
-<html>
-<body>
-<h2>Hello World!hahahahahaha</h2>
-</body>
-</html>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<c:redirect url="/user/login"/>
