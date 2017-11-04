@@ -16,6 +16,8 @@
  */
 package site.gaoyisheng.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +34,7 @@ public class UserService {
 		this.userDao.updateByPrimaryKeySelective(user);
 	}
 
-	
+	public List<User> selectAllUser() {
+		return this.userDao.selectAllUser();
+	}
 }

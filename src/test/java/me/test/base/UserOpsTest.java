@@ -24,11 +24,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import site.gaoyisheng.pojo.Thesis;
 import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.ThesisService;
+import site.gaoyisheng.service.UserService;
 
 public class UserOpsTest extends BaseTest {
 
 	@Autowired
 	private ThesisService ts;
+	
+	@Autowired
+	private UserService us;
 
 /*	@Test
 	public void loginTest() {
@@ -48,14 +52,25 @@ public class UserOpsTest extends BaseTest {
 	}
 */
 	
-//	@Test
-//	public void updateTest() {
-//		Thesis thesis = new Thesis();
-//		
+/*	@Test
+	public void updateTest() {
+		Thesis thesis = new Thesis();
+
+		//注掉此行 将没有数据被更新:
 //		thesis.setId(3);
-//		thesis.setName("haha");
-//		thesis.setNo10AutherName("haha2");
-//		
-//		ts.updateByPrimaryKeySelective(thesis);
-//	}
+		thesis.setName("haha");
+		thesis.setNo10AutherName("haha2");
+		
+		ts.updateByPrimaryKeySelective(thesis);
+	}
+*/
+	@Test
+	public void selectTest() {
+//		List<User> userList = us.selectAllUser();
+//		for (User u : userList) {
+//			System.out.println(u.toString());
+//
+//		}
+	}	
+
 }

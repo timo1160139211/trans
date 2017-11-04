@@ -35,6 +35,16 @@ public class ThesisService {
 		return thesisDao.selectAllThesis();
 	}
 
+//	@Override  
+//    public List<BrandMobileInfoEntity> importBrandPeriodSort(InputStream in) throws Exception  {  
+//          
+//        List<BrandMobileInfoEntity> brandMobileInfos = readBrandPeriodSorXls(in);  
+//        for (BrandMobileInfoEntity brandMobileInfo : brandMobileInfos) {  
+//            mapper.updateByConditions(brandMobileInfo);  
+//        }  
+//        return brandMobileInfos;  
+//    } 
+	
 	public List<Thesis> selectAllThesisLikeUserNameAndNumber(User user) {
 		return thesisDao.selectAllThesisLikeUserNameAndNumber(user);
 	}

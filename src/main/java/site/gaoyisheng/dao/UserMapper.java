@@ -1,5 +1,6 @@
 package site.gaoyisheng.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import site.gaoyisheng.pojo.User;
@@ -18,4 +19,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    List<User> selectAllUser();
 }

@@ -142,7 +142,7 @@ public class UserOpsController {
 	
 	/**
 	 * .
-	 * 设置认领属性.
+	 * 设置认领属性.(无路径映射)
 	 * TODO
 	 * @param thesis
 	 * @param user
@@ -154,9 +154,10 @@ public class UserOpsController {
 		System.out.println("我是被认领的 论文:"+thesis.getName());
 		System.out.println("--<<认领前:" + thesis.toString());
 		
-		//修改 thesis 的三个值
+		//修改 thesis 的四个值  1:理工大学职工参与人数: 
 		thesis.setSdutAutherNumber(sdutNumber);
 		
+		//修改 thesis 的四个值  2:认领人的信息: 
 		//设置对应字段:
 		switch(no){
 			case 1:thesis.setNo1AutherName(user.getName());thesis.setNo1AutherNumber(user.getNumber());break;
@@ -171,9 +172,11 @@ public class UserOpsController {
 			case 10:thesis.setNo10AutherName(user.getName());thesis.setNo10AutherNumber(user.getNumber());break;
 		}
 		
+		//修改 thesis 的四个值  3:标志位自增1: 
 		//每修改一次自增 1
 		thesis.setAutherNumber(thesis.getAutherNumber()+1);
 		
+		//修改 thesis 的四个值  1:认领进度 : (false:认领完成)  
 		//如果值相等，则置不可见:false
 		if (thesis.getSdutAutherNumber()==thesis.getAutherNumber()) {
 			thesis.setStatus("false");
