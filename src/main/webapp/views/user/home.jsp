@@ -4,18 +4,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%-- <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
- --%><c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="en">
 
 <head>
-	<title>${view.title}</title>
+	<title>Home</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<%-- 	<jsp:include page="/resources/head.jsp" flush="true"/>
- --%></head>
+	<jsp:include page="/views/resources/head.jsp" flush="true"/>
+ 
+ </head>
 
 <body>
 	<!-- WRAPPER -->
@@ -23,7 +23,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="index.html"><img src="../assets/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+				<a href="index.html"><img src="${ctx}/views/assets/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -41,7 +41,7 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="../assets/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="${ctx}/views/assets/img/user.png" class="img-circle" alt="Avatar"> <span>${currentUser.name}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
@@ -114,7 +114,6 @@
   													Claim
 													</button>
 													<!-- Modal -->
-													<jsp:include page="options-contant.html" flush="true"/>
 												</td>
 
 											</tr>
@@ -162,13 +161,13 @@
 		</footer>
 	</div>
 	<!-- END WRAPPER -->
-<%-- 	<jsp:include page="/resources/footer.jsp" flush="true"/>
- --%>
+	<jsp:include page="/views/resources/footer.jsp" flush="true"/>
+ 
 	<!-- options-contant -->
 	<script type="text/javascript">
 	$('#myModal1').bind('click', function(event) {
 		console.log($('.copyright').parent('footer'));
-		this.parent(load("options-contant.html"));
+		this.parent().load("../options-contant.html");
 	}); 
 
 		

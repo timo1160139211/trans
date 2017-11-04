@@ -40,10 +40,10 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
         
-        @RequestMapping(value = "login",method = RequestMethod.GET)
+    @RequestMapping(value = "login",method = RequestMethod.GET)
 	public String index(){
-            return "/user/login";
-        }
+        return "/user/login";
+    }
         
 	/**
 	 * .
@@ -55,8 +55,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/login",method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam(value = "number", required = true) String number,
-			@RequestParam(value = "password", required = true) String password
-                        ) {
+			@RequestParam(value = "password", required = true) String password) {
                 ModelAndView mv = new ModelAndView();
 		if (!(number.equals("") && password.equals(""))) {// not null
 			Map<String, Object> parameterMap = new HashMap<String, Object>();
@@ -65,13 +64,13 @@ public class LoginController {
 			// ajax + jQuery find User in DB or not?
 			User currentUser = loginService.selectByNumberAndPassword(parameterMap);
 			mv.addObject("currentUser", currentUser)
-			  .setViewName("redirect:/home");
+			  .setViewName("redirect:/user/home");
 
 		} else {
 			return new ModelAndView("error");
 		}
 
-		return new ModelAndView("/home");
+		return mv;
 	}
 
 	/**
@@ -94,7 +93,7 @@ public class LoginController {
 	public ModelAndView Logout(HttpSession session) {
 		session.setAttribute("currentUser", null);
 		
-		return new ModelAndView();
+		return new ModelAndView("/user/login");
 	}
 
 }
