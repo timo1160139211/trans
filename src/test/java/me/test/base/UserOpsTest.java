@@ -30,7 +30,7 @@ public class UserOpsTest extends BaseTest {
 	@Autowired
 	private ThesisService ts;
 
-	@Test
+/*	@Test
 	public void loginTest() {
 
 		User user = new User();
@@ -46,4 +46,16 @@ public class UserOpsTest extends BaseTest {
 
 		}
 	}
+*/
+	
+//	@Test
+//	public void updateTest() {
+//		Thesis thesis = new Thesis();
+//		
+//		thesis.setId(3);
+//		thesis.setName("haha");
+//		thesis.setNo10AutherName("haha2");
+//		
+//		ts.updateByPrimaryKeySelective(thesis);
+//	}
 }

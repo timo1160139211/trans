@@ -16,6 +16,7 @@
  */ 
 package site.gaoyisheng.controller;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -81,10 +83,19 @@ public class UserOpsController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping("/claim")
-	public ModelAndView claim(HttpSession session) {
+	@RequestMapping(value = "/claim", method = RequestMethod.POST)
+	public ModelAndView claim(HttpSession session,
+			@RequestParam(value = "thesisId", required = true) Integer thesisId,
+			@RequestParam(value = "sdutNumber", required = true) Integer sdutNumber,
+			@RequestParam(value = "no", required = true) Integer no) {
 		
 		User currentUser =(User) session.getAttribute("currentUser");
+		Thesis thesisBefore = thesisService.selectByPrimaryKey(thesisId);
+		
+		//传值，设值:
+		Thesis thesisAfter = setProperties(thesisBefore,currentUser,no,sdutNumber) ;
+		
+		thesisService.updateByPrimaryKeySelective(thesisAfter);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("currentUser",currentUser)
@@ -121,15 +132,55 @@ public class UserOpsController {
 	 * @return
 	 */
 	@RequestMapping("/user-update")
-	public ModelAndView updateUser(@ModelAttribute User user,HttpSession session) {
-		userService.updateByPrimaryKeySelective(user);
-		session.setAttribute("currentUser", user);
+	public ModelAndView updateUser(@ModelAttribute User userForm,HttpSession session) {
+		userService.updateByPrimaryKeySelective(userForm);
+		session.setAttribute("currentUser", userForm);
 		
 		return new ModelAndView("/home");
 	}
 	
 	
-	
-	
-	
+	/**
+	 * .
+	 * 设置认领属性.
+	 * TODO
+	 * @param thesis
+	 * @param user
+	 * @param no
+	 * @return
+	 */
+	public Thesis setProperties(Thesis thesis,User user,Integer no,Integer sdutNumber) {
+		
+		System.out.println("我是被认领的 论文:"+thesis.getName());
+		System.out.println("--<<认领前:" + thesis.toString());
+		
+		//修改 thesis 的三个值
+		thesis.setSdutAutherNumber(sdutNumber);
+		
+		//设置对应字段:
+		switch(no){
+			case 1:thesis.setNo1AutherName(user.getName());thesis.setNo1AutherNumber(user.getNumber());break;
+			case 2:thesis.setNo2AutherName(user.getName());thesis.setNo2AutherNumber(user.getNumber());break;
+			case 3:thesis.setNo3AutherName(user.getName());thesis.setNo3AutherNumber(user.getNumber());break;
+			case 4:thesis.setNo4AutherName(user.getName());thesis.setNo4AutherNumber(user.getNumber());break;
+			case 5:thesis.setNo5AutherName(user.getName());thesis.setNo5AutherNumber(user.getNumber());break;
+			case 6:thesis.setNo6AutherName(user.getName());thesis.setNo6AutherNumber(user.getNumber());break;
+			case 7:thesis.setNo7AutherName(user.getName());thesis.setNo7AutherNumber(user.getNumber());break;
+			case 8:thesis.setNo8AutherName(user.getName());thesis.setNo8AutherNumber(user.getNumber());break;
+			case 9:thesis.setNo9AutherName(user.getName());thesis.setNo9AutherNumber(user.getNumber());break;
+			case 10:thesis.setNo10AutherName(user.getName());thesis.setNo10AutherNumber(user.getNumber());break;
+		}
+		
+		//每修改一次自增 1
+		thesis.setAutherNumber(thesis.getAutherNumber()+1);
+		
+		//如果值相等，则置不可见:false
+		if (thesis.getSdutAutherNumber()==thesis.getAutherNumber()) {
+			thesis.setStatus("false");
+		}
+		
+		System.out.println("-->>认领后:" + thesis.toString());
+		
+		return thesis;
+	}
 }

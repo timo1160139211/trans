@@ -109,8 +109,7 @@
 		    ( t.no1_auther_name like concat('%','${name}','%')
 		   or t.other_auther_name like concat('%','${name}','%')
 	    	)
-		and t.status = 'false'
-		
+		and t.status = 'true'
 	</select>
 	<select id="selectThesisSelective" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">

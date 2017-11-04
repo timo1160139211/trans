@@ -38,4 +38,12 @@ public class ThesisService {
 	public List<Thesis> selectAllThesisLikeUserNameAndNumber(User user) {
 		return thesisDao.selectAllThesisLikeUserNameAndNumber(user);
 	}
+
+	public Thesis selectByPrimaryKey(Integer thesisId) {
+		return thesisDao.selectByPrimaryKey(thesisId);
+	}
+	
+	public int updateByPrimaryKeySelective(Thesis thesis) {
+		return thesisDao.updateByPrimaryKeySelective(thesis);
+	}
 }

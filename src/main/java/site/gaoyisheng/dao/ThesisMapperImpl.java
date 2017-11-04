@@ -73,7 +73,20 @@ public class ThesisMapperImpl implements ThesisMapper {
 
 	@Override
 	public int updateByPrimaryKeySelective(Thesis record) {
-		// TODO Auto-generated method stub
+		
+		try {
+			MybatisUtil mybatisUtil = new MybatisUtil();
+			sqlSession = mybatisUtil.getSqlSession();
+			sqlSession.update("updateByPrimaryKeySelective", record);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+
 		return 0;
 	}
 
