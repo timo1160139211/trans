@@ -18,6 +18,7 @@ package site.gaoyisheng.controller;
 
 import java.lang.reflect.Field;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,6 +29,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import site.gaoyisheng.pojo.Thesis;
@@ -44,32 +46,21 @@ public class UserOpsController {
 	@Autowired
 	private ThesisService thesisService;
 	
-	/**
-	 * 返回论文列表.
-	 *     参数:
-	 *         用户姓名.  
-	 *     返回:
-	 *         论文列表模型.
-	 *     
-	 * TODO
-	 * @param session
-	 * @return
-	 */
-	@RequestMapping("/thesis-list")
-	public ModelAndView thesisList(HttpSession session) {
-		List<Thesis> thesisList = null;
-		
-		User currentUser = (User) session.getAttribute("currentUser");
-		
-		thesisList = thesisService.selectAllThesisLikeUserNameAndNumber(currentUser);
-		
-		ModelAndView mv = new ModelAndView();
-		mv
-		  .addObject("thesisList", thesisList)
-		  .setViewName("/user/thesis-list");
-		
-		return mv;
-	}
+    /**
+     * 返回论文列表. 参数: 用户姓名. 返回: 论文列表模型.
+     *
+     * TODO
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("/thesis-list")
+    @ResponseBody
+    public Object thesisList(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        User currentUser = (User) session.getAttribute("currentUser");
+        return thesisService.selectAllThesisLikeUserNameAndNumber(currentUser);
+    }
 	
 	
 	/**
