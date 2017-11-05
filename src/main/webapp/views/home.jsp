@@ -46,7 +46,7 @@
 								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+								<li><a href="javascript:;" onclick="logout()"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
 					</ul>
@@ -84,64 +84,49 @@
 				<div class="container-fluid">
 					<h3 class="page-title">Tables</h3>
 					<div class="row">
-					<div class="row">
 						<div class="col-md-12">
 							<!-- TABLE HOVER -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Hover Row</h3>
+									<h3 class="panel-title">${manager.title}</h3>
 								</div>
 								<div class="panel-body">
 									<table class="table table-hover">
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>First Name</th>
-												<th>Last Name</th>
-												<th>Username</th>
-												<th>Options</th>
+												<th>类型</th>
+												<th>名称</th>
+												<th>第一作者</th>
+												<th>其他作者</th>
+												<th>操作</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td>Steve</td>
-												<td>Jobs</td>
-												<td>@steve</td>
-												<td>
-													<!-- Button trigger modal -->
-													<button type="button" class="btn btn-primary" data-toggle="modal" id="myModal1" data-target="#myModal1">
-  													Claim
-													</button>
-													<!-- Modal -->
-												</td>
-
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>Simon</td>
-												<td>Philips</td>
-												<td>@simon</td>
-												<td>
-													<!-- Button trigger modal -->
-													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-  													Claim
-													</button>
-												</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>Jane</td>
-												<td>Doe</td>
-												<td>@jane</td>
-												<td>
-													<!-- Button trigger modal -->
-													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-  													Claim
-													</button>
-												</td>
-											</tr>
+										<tbody id="tbody">	
 										</tbody>
+										<div id="Modal"></div>
+										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+											  <div class="modal-dialog" role="document">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											        <form:form>
+											        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+											      </div>
+											      <div class="modal-body">
+												      <label for="sdutNum">山理工职工人数</label>
+												      <input type="text" class="form-control" name="form-control" id="sdutNum" >
+												      <label for="myNo">你是第几作者</label>
+												      <input type="text" class="form-control" name="form-control" id="myNo" >
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											        <button type="button" class="btn btn-primary">Save changes</button>
+											      </div>
+											      </form:form>
+											    </div>
+											  </div>
+											</div>
 									</table>
 								</div>
 							</div>
@@ -152,6 +137,9 @@
 			</div>
 			<!-- END MAIN CONTENT -->
 		</div>
+
+		,<button type="button" class="btn btn-primary" onclick=""></button>
+
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
 		<footer>
@@ -162,14 +150,59 @@
 	</div>
 	<!-- END WRAPPER -->
 	<jsp:include page="/views/resources/footer.jsp" flush="true"/>
- 
 	<!-- options-contant -->
 	<script type="text/javascript">
-	$('#myModal1').bind('click', function(event) {
-		console.log($('.copyright').parent('footer'));
-		this.parent().load("../options-contant.html");
-	}); 
-
+	$(document).ready(function () {
+		if('${currentUser}' == null)
+		{
+			window.location.href = "localhost:8080" + "${ctx}";
+		}
+	    getdataByCurrentUser();
+	    /*$('#myModal').bind('click',function(){
+	    	//$('Modal').load('${ctx}/views/options-contant.jsp');
+	    });*/
+	});
+	function getdataByCurrentUser(){
+		$.ajax({
+			type: 'post',
+	        url: '${ctx}/user/thesis-list',
+	        success: function(data) {
+				if (data != null) {
+					for (var i = 0; i < data.length; i++) {
+						var tr = $("<tr/>");
+	                    $("<td/>").html(i + 1).appendTo(tr);
+	                    $("<td/>").html(data[i].type).appendTo(tr);
+	                    $("<td/>").html(data[i].name).appendTo(tr);
+	                    $("<td/>").html(data[i].no1AutherName).appendTo(tr);
+	                    $("<td/>").html(data[i].otherAutherName).appendTo(tr);
+	                    var button = $("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal\">认领</button>");
+	                    button.appendTo($("<td/>")).appendTo(tr);
+	                    $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>");
+	                    //$("<td/>").html().load("/views/options-contant.html").appendTo(tr);
+	                   	$('#tbody').append(tr);
+					}
+				}
+				else {
+					$.confirm({
+	                	title: 'Data error',
+						content: '没有与您相关的数据!',
+						autoClose: 'cancel|3000',
+						backgroundDismiss: true,
+						buttons: {
+							cancel: {
+								text: '取消',
+								btnClass: 'waves-effect waves-button'
+							}
+						}
+	               	})
+				}
+			}
+		},'json');
+	}
+	/*退出当前用户*/
+	function logout(){
+		$.post('{ctx}/logout', function() {});
+	};
 		
 	</script>
 </body>
