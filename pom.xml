@@ -129,6 +129,24 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.1.4</version>
 		</dependency>
+                
+                <!-- json -->
+                <dependency>
+                    <groupId>com.alibaba</groupId>
+                    <artifactId>fastjson</artifactId>
+                    <version>1.1.26</version>
+                </dependency>
+                <dependency>
+                    <groupId>net.sf.json-lib</groupId>
+                    <artifactId>json-lib</artifactId>
+                    <version>2.4</version>
+                    <classifier>jdk15</classifier>
+                </dependency>
+                <dependency>
+                    <groupId>org.json</groupId>
+                    <artifactId>json</artifactId>
+                    <version>20160212</version>
+                </dependency>
 
 
 		<!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->
