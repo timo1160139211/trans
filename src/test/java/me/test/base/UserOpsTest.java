@@ -16,6 +16,7 @@
  */
 package me.test.base;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -72,5 +73,28 @@ public class UserOpsTest extends BaseTest {
 //
 //		}
 	}	
+	
+//	@Test
+//	public void insertListTest() {
+//		List<Thesis> thesisList = new ArrayList<Thesis>();
+//		
+//		Thesis t1 = new Thesis();
+//		Thesis t2 = new Thesis();
+//		Thesis t3 = new Thesis();
+//		
+//		t1.setName("qq1");
+//		t2.setName("ww2");
+//		t3.setName("asd");
+//		
+//		thesisList.add(t1);
+//		thesisList.add(t2);
+//		thesisList.add(t3);
+//		
+//		try {
+//			System.out.println(ts.insertList(thesisList));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 }

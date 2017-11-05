@@ -17,6 +17,8 @@
 package site.gaoyisheng.utils;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,80 +27,83 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.springframework.expression.ParseException;
 
 import site.gaoyisheng.pojo.Thesis;
 
 public class FileUtil {
 
 	/**
-	 * 
 	 * .
-	 * TODO
+	 * TODO 把数据解析成list并返回.
 	 * @param is
 	 * @return
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-//	private List<BrandMobileInfoEntity> readBrandPeriodSorXls(InputStream is)  
-//            throws IOException, ParseException {  
-//        HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);  
-//        List<BrandMobileInfoEntity> brandMobileInfos = new ArrayList<BrandMobileInfoEntity>();  
-//        BrandMobileInfoEntity brandMobileInfo;  
-//        // 循环工作表Sheet  
-//        for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {  
-//            HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);  
-//            if (hssfSheet == null) {  
-//                continue;  
-//            }  
-//            // 循环行Row  
-//            for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {  
-//                brandMobileInfo = new BrandMobileInfoEntity();  
-//                HSSFRow hssfRow = hssfSheet.getRow(rowNum);  
-//                for (int i = 0; i < hssfRow.getLastCellNum(); i++) {  
-//                    HSSFCell brandIdHSSFCell = hssfRow.getCell(i);  
-//                    if (i == 0) {  
-//                        brandMobileInfo.setBrandId(Integer  
-//                                .parseInt(getCellValue(brandIdHSSFCell)));  
-//                    } else if (i == 1) {  
-//                        continue;  
-//                    } else if (i == 2) {  
-//                        brandMobileInfo.setMobileShowFrom(Integer.parseInt(getCellValue(brandIdHSSFCell)));  
-//                    } else if (i == 3) {  
-//                        brandMobileInfo.setMobileShowTo(Integer.parseInt(getCellValue(brandIdHSSFCell)));  
-//                    } else if (i == 4) {  
-//                        brandMobileInfo.setSellMarkValue(getCellValue(brandIdHSSFCell));  
-//                    } else if (i == 5) {  
-//                        brandMobileInfo.setWarehouse(getCellValue(brandIdHSSFCell));  
-//                    } else if (i == 6) {  
-//                        brandMobileInfo.setSortA1(Integer.parseInt(getCellValue(brandIdHSSFCell)));  
-//                    } else if (i == 7) {  
-//                        brandMobileInfo.setSortA2(Integer.parseInt(getCellValue(brandIdHSSFCell)));  
-//                    } else if (i == 8) {  
-//                        brandMobileInfo.setSortB(Integer.parseInt(getCellValue(brandIdHSSFCell)));  
-//                    } else if (i == 9) {  
-//                        brandMobileInfo.setSortC10(Integer.parseInt(getCellValue(brandIdHSSFCell)));  
-//                    } else if (i == 10) {  
-//                        brandMobileInfo.setSortC(Integer.parseInt(getCellValue(brandIdHSSFCell)));  
-//                    } else if (i == 11) {  
-//                        brandMobileInfo.setHitA(getCellValue(brandIdHSSFCell));  
-//                    } else if (i == 12) {  
-//                        brandMobileInfo.setHitB(getCellValue(brandIdHSSFCell));  
-//                    } else if (i == 13) {  
-//                        brandMobileInfo.setHitC(getCellValue(brandIdHSSFCell));  
-//                    } else if (i == 14) {  
-//                        brandMobileInfo.setCustomSellType(getCellValue(brandIdHSSFCell));  
-//                    }else if (i == 15) {  
-//                      continue;  
-//                    }else if (i == 16) {  
-//                        brandMobileInfo.setChannelId(Integer.parseInt(getCellValue(brandIdHSSFCell)));  
-//                    }  
-//                }  
-//                brandMobileInfos.add(brandMobileInfo);  
-//  
-//            }  
-//        }  
-//        return brandMobileInfos;  
-//    }
+	public List<Thesis> importFile(InputStream is) throws IOException{  
+        @SuppressWarnings("resource")
+		 HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);  
+        List<Thesis> thesisList = new ArrayList<Thesis>();  
+        Thesis thesis; 
+        
+         // 循环工作表Sheet  
+        for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {  
+            HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);  
+            if (hssfSheet == null) {  
+                continue;  
+              }  
+              // 循环行Row  ,从第一行开始.
+            for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {  
+            	  thesis = new Thesis();  
+                HSSFRow hssfRow = hssfSheet.getRow(rowNum);  
+                for (int i = 0; i < hssfRow.getLastCellNum(); i++) {  
+                    HSSFCell thesisIdHSSFCell = hssfRow.getCell(i); 
+                    String value = thesisIdHSSFCell.getStringCellValue();
+                    if (value==null) {value="";}
+                    switch(i) {
+                        case 0:thesis.setType(value);break;
+                        case 1:thesis.setName(value);break;
+                        case 2:thesis.setNo1AutherType(value);break;
+                        case 3:thesis.setNo1AutherName(value);break;
+                        case 4:thesis.setCommunicateAutherName(value);break;
+                        case 5:thesis.setWorkunit(value);break;
+                        case 6:thesis.setOtherAutherName(value);break;
+                        case 7:thesis.setPublishDate(value);break;
+                        case 8:thesis.setPublishMagazineThesisSet(value);break;
+                        case 9:thesis.setMagazineType(value);break;
+                        case 10:thesis.setSubjectType(value);break;
+                        case 11:thesis.setStairSubject(value);break;
+                        case 12:thesis.setProjectSources(value);break;
+                        case 13:thesis.setPublishRange(value);break;
+                        case 14:thesis.setThesisSetPublisher(value);break;
+                        case 15:thesis.setWordsNumbers(value);break;
+                        case 16:thesis.setKeyWords(value);break;
+                        case 17:thesis.setTheAbstract(value);break;
+                        case 18:thesis.setNote(value);break;
+                        case 19:thesis.setAppearance(value);break;
+                        case 20:thesis.setCnkiLink(value);break;
+                        case 21:thesis.setIssn(value);break;
+                        case 22:thesis.setCn(value);break;
+                        case 23:thesis.setVolumeNumberPage(value);break;
+                        case 24:thesis.setDoi(value);break;
+                        case 25:thesis.setConferenceName(value);break;
+                        case 26:thesis.setConferenceSite(value);break;
+                        case 27:thesis.setConferenceDate(value);break;
+                        case 28:thesis.setEmbodyNumber(value);break;
+                        case 29:thesis.setTranslationOrNot(value);break;
+                        case 30:thesis.setTranslationOrNot(value);break;
+                        case 31:thesis.setReferenceFrequency(value);break;
+                        case 32:thesis.setSupportProject(value);break;
+                       }
+                    // null 全部置 ""
+//                  for(thesis.getClass().get) {}
+                }  
+                thesisList.add(thesis);  
+            }  
+        }  
+        return thesisList;  
+    }
 	
 	/**
 	 * .
@@ -110,15 +115,14 @@ public class FileUtil {
 	public byte[] exportFile(List<Thesis> list) throws Exception{
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		// 第一步，创建一个webbook，对应一个Excel文件
+		// 第一步，创建一个web book，对应一个Excel文件
 		HSSFWorkbook wb = new HSSFWorkbook();
-		// 第二步，在webbook中添加一个sheet,对应Excel文件中的sheet
+		// 第二步，在web book中添加一个sheet,对应Excel文件中的sheet
 		HSSFSheet sheet = wb.createSheet("论文成果表");
-		// 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
+		// 第三步，在sheet中添加表头第0行,注意老版本p o i对Excel的行数列数有限制short
 		HSSFRow row = sheet.createRow((int) 0);
 		// 第四步，创建单元格，并设置值表头 设置表头居中
 		HSSFCellStyle style = wb.createCellStyle();
-		style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
 
 		// 设置表头
 		List<String> excelHead = getExcelHead();
@@ -201,7 +205,7 @@ public class FileUtil {
 			}
 			
 		}
-		wb.write(out);
+		wb.write(out);wb.close();
 		return out.toByteArray();
 	}
 

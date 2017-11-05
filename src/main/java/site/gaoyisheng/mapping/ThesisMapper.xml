@@ -70,21 +70,30 @@
 	<sql id="Base_Column_List">
 		id, type, name, no1_auther_type, no1_auther_name,
 		communicate_auther_name, workunit,
-		other_auther_name, publish_date, publish_magazine_thesis_set, magazine_type,
+		other_auther_name, publish_date,
+		publish_magazine_thesis_set, magazine_type,
 		subject_type,
-		stair_subject, project_sources, publish_range, thesis_set_publisher, words_numbers,
-		school_sign, key_words, the_abstract, note, appearance, cnki_link,
+		stair_subject, project_sources, publish_range, thesis_set_publisher,
+		words_numbers,
+		school_sign, key_words, the_abstract, note, appearance,
+		cnki_link,
 		issn, cn, volume_number_page,
-		doi, conference_name, conference_site, conference_date, embody_number,
+		doi, conference_name,
+		conference_site, conference_date, embody_number,
 		translation_or_not,
-		reference_frequency, support_project, no2_auther_name, no2_auther_number, no3_auther_name,
-		no3_auther_number, no4_auther_name, no4_auther_number,
+		reference_frequency, support_project, no2_auther_name,
+		no2_auther_number, no3_auther_name,
+		no3_auther_number, no4_auther_name,
+		no4_auther_number,
 		no5_auther_name, no5_auther_number,
-		no6_auther_name, no6_auther_number, no7_auther_name, no7_auther_number,
+		no6_auther_name,
+		no6_auther_number, no7_auther_name, no7_auther_number,
 		no8_auther_name,
-		no8_auther_number, no9_auther_name, no9_auther_number, no10_auther_name,
+		no8_auther_number, no9_auther_name, no9_auther_number,
+		no10_auther_name,
 		no10_auther_number,
-		no1_auther_number, auther_number, sdut_auther_number, status
+		no1_auther_number, auther_number,
+		sdut_auther_number, status
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">
@@ -101,14 +110,17 @@
 		from public.thesis
 	</select>
 
-	<select id="selectAllThesisLikeUserNameAndNumber" parameterType="site.gaoyisheng.pojo.User"	resultMap="BaseResultMap">
+	<select id="selectAllThesisLikeUserNameAndNumber" parameterType="site.gaoyisheng.pojo.User"
+		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from public."thesis" t
-		where  
-		    ( t.no1_auther_name like concat('%','${name}','%')
-		   or t.other_auther_name like concat('%','${name}','%')
-	    	)
+		where
+		( t.no1_auther_name like
+		concat('%','${name}','%')
+		or t.other_auther_name like
+		concat('%','${name}','%')
+		)
 		and t.status = 'true'
 	</select>
 	<select id="selectThesisSelective" parameterType="java.lang.Integer"
@@ -124,16 +136,21 @@
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="site.gaoyisheng.pojo.Thesis">
-		insert into thesis (id, type, name,
+		insert into thesis (id, type,
+		name,
 		no1_auther_type, no1_auther_name, communicate_auther_name,
 		workunit, other_auther_name, publish_date,
 		publish_magazine_thesis_set, magazine_type,
-		subject_type, stair_subject, project_sources,
-		publish_range, thesis_set_publisher, words_numbers,
+		subject_type,
+		stair_subject, project_sources,
+		publish_range, thesis_set_publisher,
+		words_numbers,
 		school_sign, key_words, the_abstract,
-		note, appearance, cnki_link,
+		note, appearance,
+		cnki_link,
 		issn, cn, volume_number_page,
-		doi, conference_name, conference_site,
+		doi, conference_name,
+		conference_site,
 		conference_date, embody_number, translation_or_not,
 		reference_frequency, support_project, no2_auther_name,
 		no2_auther_number, no3_auther_name, no3_auther_number,
@@ -144,22 +161,27 @@
 		no10_auther_name, no10_auther_number, no1_auther_number,
 		auther_number, sdut_auther_number, status
 		)
-		values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR},
+		values
+		(#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR},
 		#{name,jdbcType=VARCHAR},
-		#{no1AutherType,jdbcType=VARCHAR}, #{no1AutherName,jdbcType=VARCHAR},
+		#{no1AutherType,jdbcType=VARCHAR},
+		#{no1AutherName,jdbcType=VARCHAR},
 		#{communicateAutherName,jdbcType=VARCHAR},
 		#{workunit,jdbcType=VARCHAR}, #{otherAutherName,jdbcType=VARCHAR},
 		#{publishDate,jdbcType=VARCHAR},
 		#{publishMagazineThesisSet,jdbcType=VARCHAR},
 		#{magazineType,jdbcType=VARCHAR},
-		#{subjectType,jdbcType=VARCHAR}, #{stairSubject,jdbcType=VARCHAR}, #{projectSources,jdbcType=VARCHAR},
+		#{subjectType,jdbcType=VARCHAR},
+		#{stairSubject,jdbcType=VARCHAR}, #{projectSources,jdbcType=VARCHAR},
 		#{publishRange,jdbcType=VARCHAR},
 		#{thesisSetPublisher,jdbcType=VARCHAR},
 		#{wordsNumbers,jdbcType=VARCHAR},
-		#{schoolSign,jdbcType=VARCHAR}, #{keyWords,jdbcType=VARCHAR}, #{theAbstract,jdbcType=VARCHAR},
+		#{schoolSign,jdbcType=VARCHAR},
+		#{keyWords,jdbcType=VARCHAR}, #{theAbstract,jdbcType=VARCHAR},
 		#{note,jdbcType=VARCHAR}, #{appearance,jdbcType=VARCHAR},
 		#{cnkiLink,jdbcType=VARCHAR},
-		#{issn,jdbcType=VARCHAR}, #{cn,jdbcType=VARCHAR}, #{volumeNumberPage,jdbcType=VARCHAR},
+		#{issn,jdbcType=VARCHAR},
+		#{cn,jdbcType=VARCHAR}, #{volumeNumberPage,jdbcType=VARCHAR},
 		#{doi,jdbcType=VARCHAR}, #{conferenceName,jdbcType=VARCHAR},
 		#{conferenceSite,jdbcType=VARCHAR},
 		#{conferenceDate,jdbcType=VARCHAR}, #{embodyNumber,jdbcType=VARCHAR},
@@ -184,7 +206,8 @@
 		#{no10AutherName,jdbcType=VARCHAR},
 		#{no10AutherNumber,jdbcType=VARCHAR},
 		#{no1AutherNumber,jdbcType=VARCHAR},
-		#{autherNumber,jdbcType=INTEGER}, #{sdutAutherNumber,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
+		#{autherNumber,jdbcType=INTEGER},
+		#{sdutAutherNumber,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Thesis">
@@ -530,6 +553,105 @@
 			</if>
 		</trim>
 	</insert>
+
+	<!-- 批量插入 -->
+	<insert id="insertList" parameterType="java.util.List">
+		
+		insert into public.thesis
+		(type, name, no1_auther_type,
+		no1_auther_name,
+		communicate_auther_name,
+		workunit,
+		other_auther_name,
+		publish_date, publish_magazine_thesis_set,
+		magazine_type,subject_type,
+		stair_subject, project_sources,
+		publish_range, thesis_set_publisher,
+		words_numbers,
+		school_sign,
+		key_words, the_abstract, note, appearance,
+		cnki_link,
+		issn, cn,volume_number_page,
+		doi, conference_name,
+		conference_site,
+		conference_date, embody_number,
+		translation_or_not,reference_frequency, support_project,
+		no2_auther_name,
+		no2_auther_number, no3_auther_name,
+		no3_auther_number,
+		no4_auther_name,
+		no4_auther_number,
+		no5_auther_name, no5_auther_number,
+		no6_auther_name,
+		no6_auther_number, no7_auther_name, no7_auther_number,
+		no8_auther_name,
+		no8_auther_number, no9_auther_name, no9_auther_number,
+		no10_auther_name,
+		no10_auther_number,
+		no1_auther_number, auther_number,
+		sdut_auther_number, status)
+		values
+		<foreach collection="list" item="t" index="index" separator=",">
+			(
+			#{t.type},
+			#{t.name},
+			#{t.no1AutherType},
+			#{t.no1AutherName},
+			#{t.communicateAutherName},
+			#{t.workunit},
+			#{t.otherAutherName},
+			#{t.publishDate},
+			#{t.publishMagazineThesisSet},
+			#{t.magazineType},
+			#{t.subjectType},
+			#{t.stairSubject},
+			#{t.projectSources},
+			#{t.publishRange},
+			#{t.thesisSetPublisher},
+			#{t.wordsNumbers},
+			#{t.schoolSign},
+			#{t.keyWords},
+			#{t.theAbstract},
+			#{t.note},
+			#{t.appearance},
+			#{t.cnkiLink},
+			#{t.issn},
+			#{t.cn},
+			#{t.volumeNumberPage},
+			#{t.doi},
+			#{t.conferenceName},
+			#{t.conferenceSite},
+			#{t.conferenceDate},
+			#{t.embodyNumber},
+			#{t.translationOrNot},
+			#{t.referenceFrequency},
+			#{t.supportProject},
+			#{t.no2AutherName},
+			#{t.no2AutherNumber},
+			#{t.no2AutherName},
+			#{t.no2AutherNumber},
+			#{t.no2AutherName},
+			#{t.no2AutherNumber},
+			#{t.no2AutherName},
+			#{t.no2AutherNumber},
+			#{t.no2AutherName},
+			#{t.no2AutherNumber},
+			#{t.no2AutherName},
+			#{t.no2AutherNumber},
+			#{t.no2AutherName},
+			#{t.no2AutherNumber},
+			#{t.no2AutherName},
+			#{t.no2AutherNumber},
+			#{t.no2AutherName},
+			#{t.no2AutherNumber},
+			#{t.no1AutherNumber},
+			#{t.autherNumber},
+			#{t.sdutAutherNumber},
+			#{t.status}
+			)
+		</foreach>
+	</insert>
+
 	<update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.Thesis">
 		update thesis
 		<set>
@@ -546,7 +668,8 @@
 				no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
 			</if>
 			<if test="communicateAutherName != null">
-				communicate_auther_name = #{communicateAutherName,jdbcType=VARCHAR},
+				communicate_auther_name =
+				#{communicateAutherName,jdbcType=VARCHAR},
 			</if>
 			<if test="workunit != null">
 				workunit = #{workunit,jdbcType=VARCHAR},
@@ -558,7 +681,8 @@
 				publish_date = #{publishDate,jdbcType=VARCHAR},
 			</if>
 			<if test="publishMagazineThesisSet != null">
-				publish_magazine_thesis_set = #{publishMagazineThesisSet,jdbcType=VARCHAR},
+				publish_magazine_thesis_set =
+				#{publishMagazineThesisSet,jdbcType=VARCHAR},
 			</if>
 			<if test="magazineType != null">
 				magazine_type = #{magazineType,jdbcType=VARCHAR},
@@ -576,7 +700,8 @@
 				publish_range = #{publishRange,jdbcType=VARCHAR},
 			</if>
 			<if test="thesisSetPublisher != null">
-				thesis_set_publisher = #{thesisSetPublisher,jdbcType=VARCHAR},
+				thesis_set_publisher =
+				#{thesisSetPublisher,jdbcType=VARCHAR},
 			</if>
 			<if test="wordsNumbers != null">
 				words_numbers = #{wordsNumbers,jdbcType=VARCHAR},
@@ -606,7 +731,8 @@
 				cn = #{cn,jdbcType=VARCHAR},
 			</if>
 			<if test="volumeNumberPage != null">
-				volume_number_page = #{volumeNumberPage,jdbcType=VARCHAR},
+				volume_number_page =
+				#{volumeNumberPage,jdbcType=VARCHAR},
 			</if>
 			<if test="doi != null">
 				doi = #{doi,jdbcType=VARCHAR},
@@ -624,10 +750,12 @@
 				embody_number = #{embodyNumber,jdbcType=VARCHAR},
 			</if>
 			<if test="translationOrNot != null">
-				translation_or_not = #{translationOrNot,jdbcType=VARCHAR},
+				translation_or_not =
+				#{translationOrNot,jdbcType=VARCHAR},
 			</if>
 			<if test="referenceFrequency != null">
-				reference_frequency = #{referenceFrequency,jdbcType=VARCHAR},
+				reference_frequency =
+				#{referenceFrequency,jdbcType=VARCHAR},
 			</if>
 			<if test="supportProject != null">
 				support_project = #{supportProject,jdbcType=VARCHAR},
@@ -684,7 +812,8 @@
 				no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
 			</if>
 			<if test="no10AutherNumber != null">
-				no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
+				no10_auther_number =
+				#{no10AutherNumber,jdbcType=VARCHAR},
 			</if>
 			<if test="no1AutherNumber != null">
 				no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
@@ -693,7 +822,8 @@
 				auther_number = #{autherNumber,jdbcType=INTEGER},
 			</if>
 			<if test="sdutAutherNumber != null">
-				sdut_auther_number = #{sdutAutherNumber,jdbcType=INTEGER},
+				sdut_auther_number =
+				#{sdutAutherNumber,jdbcType=INTEGER},
 			</if>
 			<if test="status != null">
 				status = #{status,jdbcType=VARCHAR},
@@ -703,61 +833,109 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.Thesis">
 		update thesis
-		set type = #{type,jdbcType=VARCHAR},
+		set
+		type = #{type,jdbcType=VARCHAR},
 		name = #{name,jdbcType=VARCHAR},
 		no1_auther_type = #{no1AutherType,jdbcType=VARCHAR},
-		no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
-		communicate_auther_name = #{communicateAutherName,jdbcType=VARCHAR},
-		workunit = #{workunit,jdbcType=VARCHAR},
-		other_auther_name = #{otherAutherName,jdbcType=VARCHAR},
-		publish_date = #{publishDate,jdbcType=VARCHAR},
-		publish_magazine_thesis_set = #{publishMagazineThesisSet,jdbcType=VARCHAR},
-		magazine_type = #{magazineType,jdbcType=VARCHAR},
-		subject_type = #{subjectType,jdbcType=VARCHAR},
-		stair_subject = #{stairSubject,jdbcType=VARCHAR},
-		project_sources = #{projectSources,jdbcType=VARCHAR},
-		publish_range = #{publishRange,jdbcType=VARCHAR},
-		thesis_set_publisher = #{thesisSetPublisher,jdbcType=VARCHAR},
-		words_numbers = #{wordsNumbers,jdbcType=VARCHAR},
-		school_sign = #{schoolSign,jdbcType=VARCHAR},
-		key_words = #{keyWords,jdbcType=VARCHAR},
-		the_abstract = #{theAbstract,jdbcType=VARCHAR},
+		no1_auther_name =
+		#{no1AutherName,jdbcType=VARCHAR},
+		communicate_auther_name =
+		#{communicateAutherName,jdbcType=VARCHAR},
+		workunit =
+		#{workunit,jdbcType=VARCHAR},
+		other_auther_name =
+		#{otherAutherName,jdbcType=VARCHAR},
+		publish_date =
+		#{publishDate,jdbcType=VARCHAR},
+		publish_magazine_thesis_set =
+		#{publishMagazineThesisSet,jdbcType=VARCHAR},
+		magazine_type =
+		#{magazineType,jdbcType=VARCHAR},
+		subject_type =
+		#{subjectType,jdbcType=VARCHAR},
+		stair_subject =
+		#{stairSubject,jdbcType=VARCHAR},
+		project_sources =
+		#{projectSources,jdbcType=VARCHAR},
+		publish_range =
+		#{publishRange,jdbcType=VARCHAR},
+		thesis_set_publisher =
+		#{thesisSetPublisher,jdbcType=VARCHAR},
+		words_numbers =
+		#{wordsNumbers,jdbcType=VARCHAR},
+		school_sign =
+		#{schoolSign,jdbcType=VARCHAR},
+		key_words =
+		#{keyWords,jdbcType=VARCHAR},
+		the_abstract =
+		#{theAbstract,jdbcType=VARCHAR},
 		note = #{note,jdbcType=VARCHAR},
 		appearance = #{appearance,jdbcType=VARCHAR},
-		cnki_link = #{cnkiLink,jdbcType=VARCHAR},
+		cnki_link =
+		#{cnkiLink,jdbcType=VARCHAR},
 		issn = #{issn,jdbcType=VARCHAR},
-		cn = #{cn,jdbcType=VARCHAR},
-		volume_number_page = #{volumeNumberPage,jdbcType=VARCHAR},
+		cn =
+		#{cn,jdbcType=VARCHAR},
+		volume_number_page =
+		#{volumeNumberPage,jdbcType=VARCHAR},
 		doi = #{doi,jdbcType=VARCHAR},
 		conference_name = #{conferenceName,jdbcType=VARCHAR},
-		conference_site = #{conferenceSite,jdbcType=VARCHAR},
-		conference_date = #{conferenceDate,jdbcType=VARCHAR},
-		embody_number = #{embodyNumber,jdbcType=VARCHAR},
-		translation_or_not = #{translationOrNot,jdbcType=VARCHAR},
-		reference_frequency = #{referenceFrequency,jdbcType=VARCHAR},
-		support_project = #{supportProject,jdbcType=VARCHAR},
-		no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
-		no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
-		no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
-		no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
-		no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
-		no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
-		no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
-		no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
-		no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
-		no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
-		no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
-		no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
-		no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
-		no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
-		no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
-		no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
-		no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
-		no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
-		no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
-		auther_number = #{autherNumber,jdbcType=INTEGER},
-		sdut_auther_number = #{sdutAutherNumber,jdbcType=INTEGER},
-		status = #{status,jdbcType=VARCHAR}
+		conference_site =
+		#{conferenceSite,jdbcType=VARCHAR},
+		conference_date =
+		#{conferenceDate,jdbcType=VARCHAR},
+		embody_number =
+		#{embodyNumber,jdbcType=VARCHAR},
+		translation_or_not =
+		#{translationOrNot,jdbcType=VARCHAR},
+		reference_frequency =
+		#{referenceFrequency,jdbcType=VARCHAR},
+		support_project =
+		#{supportProject,jdbcType=VARCHAR},
+		no2_auther_name =
+		#{no2AutherName,jdbcType=VARCHAR},
+		no2_auther_number =
+		#{no2AutherNumber,jdbcType=VARCHAR},
+		no3_auther_name =
+		#{no3AutherName,jdbcType=VARCHAR},
+		no3_auther_number =
+		#{no3AutherNumber,jdbcType=VARCHAR},
+		no4_auther_name =
+		#{no4AutherName,jdbcType=VARCHAR},
+		no4_auther_number =
+		#{no4AutherNumber,jdbcType=VARCHAR},
+		no5_auther_name =
+		#{no5AutherName,jdbcType=VARCHAR},
+		no5_auther_number =
+		#{no5AutherNumber,jdbcType=VARCHAR},
+		no6_auther_name =
+		#{no6AutherName,jdbcType=VARCHAR},
+		no6_auther_number =
+		#{no6AutherNumber,jdbcType=VARCHAR},
+		no7_auther_name =
+		#{no7AutherName,jdbcType=VARCHAR},
+		no7_auther_number =
+		#{no7AutherNumber,jdbcType=VARCHAR},
+		no8_auther_name =
+		#{no8AutherName,jdbcType=VARCHAR},
+		no8_auther_number =
+		#{no8AutherNumber,jdbcType=VARCHAR},
+		no9_auther_name =
+		#{no9AutherName,jdbcType=VARCHAR},
+		no9_auther_number =
+		#{no9AutherNumber,jdbcType=VARCHAR},
+		no10_auther_name =
+		#{no10AutherName,jdbcType=VARCHAR},
+		no10_auther_number =
+		#{no10AutherNumber,jdbcType=VARCHAR},
+		no1_auther_number =
+		#{no1AutherNumber,jdbcType=VARCHAR},
+		auther_number =
+		#{autherNumber,jdbcType=INTEGER},
+		sdut_auther_number =
+		#{sdutAutherNumber,jdbcType=INTEGER},
+		status =
+		#{status,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 </mapper>
