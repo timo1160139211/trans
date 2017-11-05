@@ -28,7 +28,7 @@
                                     <div class="logo text-center"><img src="${ctx}/views/assets/img/logo-dark.png" alt="Klorofil Logo"></div>
                                     <p class="lead">Login to your account</p>
                                 </div>
-                                <form:form class="form-auth-small" action="${ctx}/user/login" method="post">
+                                <form:form class="form-auth-small" action="${ctx}/login" method="post">
                                     <div class="form-group">
                                         <label for="signin-email" class="control-label sr-only">Num</label>
                                         <input type="text" class="form-control" id="login-number" name="number" placeholder="samuel.gold@domain.com">

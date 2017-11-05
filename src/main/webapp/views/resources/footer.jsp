@@ -11,4 +11,5 @@
 <script src="${ctx}/views/assets/vendor/jquery/jquery.min.js"></script>
 <script src="${ctx}/views/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="${ctx}/views/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="${ctx}/views/assets/vendor/jquery-confirm/jquery-confirm.min.js"></script>
 <script src="${ctx}/views/assets/scripts/klorofil-common.js"></script>

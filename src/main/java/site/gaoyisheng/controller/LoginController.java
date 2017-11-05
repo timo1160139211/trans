@@ -18,6 +18,7 @@ package site.gaoyisheng.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpSession;
 
@@ -33,7 +34,7 @@ import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.LoginService;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/")
 @SessionAttributes(types = { User.class })
 public class LoginController {
 
@@ -42,7 +43,12 @@ public class LoginController {
         
     @RequestMapping(value = "login",method = RequestMethod.GET)
 	public String index(){
-        return "/user/login";
+        return "/login";
+    }
+
+    @RequestMapping(value = "home",method = RequestMethod.GET)
+	public String home(){
+        return "/home";
     }
         
 	/**
@@ -64,7 +70,7 @@ public class LoginController {
 			// ajax + jQuery find User in DB or not?
 			User currentUser = loginService.selectByNumberAndPassword(parameterMap);
 			mv.addObject("currentUser", currentUser)
-			  .setViewName("redirect:/user/home");
+			  .setViewName("redirect:/home");
 
 		} else {
 			return new ModelAndView("error");
@@ -85,15 +91,19 @@ public class LoginController {
 		return currentUser!=null; 
 	}
 	
-	/**
-	 * .
-	 * TODO 登出
-	 * @return
-	 */
-	public ModelAndView Logout(HttpSession session) {
-		session.setAttribute("currentUser", null);
-		
-		return new ModelAndView("/user/login");
-	}
+    /**
+     * .
+     * TODO 登出
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "logout", method = RequestMethod.POST)
+    public ModelAndView Logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        session.setAttribute("currentUser", null);
+
+        return new ModelAndView("/login");
+    }
 
 }

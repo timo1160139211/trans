@@ -8,6 +8,7 @@
 <script type="text/javascript"> var BASE_PATH = '${ctx}';</script>
 <link rel="stylesheet" href="${ctx}/views/assets/vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="${ctx}/views/assets/vendor/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/views/assets/vendor/jquery-confirm/jquery-confirm.min.css">
 <link rel="stylesheet" href="${ctx}/views/assets/vendor/linearicons/style.css">
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="${ctx}/views/assets/css/main.css">
