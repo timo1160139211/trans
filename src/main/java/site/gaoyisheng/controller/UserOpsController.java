@@ -24,6 +24,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -90,45 +91,59 @@ public class UserOpsController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("currentUser",currentUser)
-		  .setViewName("/home");
+		  .setViewName("redirect:/home");
 		
 		return mv;
 	}
+        
+    @RequestMapping(value = "/options-contant", method = RequestMethod.POST)
+    public ModelAndView optionsContant(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView();
+        Thesis thesis = thesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
+        mv.addObject("thesis", thesis)
+          .setViewName("/user/options-contant");
+        return mv;
+    }
 	
 	
-	/**
-	 * .
-	 * 填写修改个人信息表单.
-	 * TODO
-	 * @param session
-	 * @return
-	 */
-	@RequestMapping("/user-edit-form}")
-	public ModelAndView editUser(HttpSession session) {
-		User selectedUser =(User) session.getAttribute("currentUser");
-		
-		ModelAndView mv = new ModelAndView();
-		mv
-		  .addObject("selectedUser", selectedUser)
-		  .setViewName("/user/user-edit-form");
-		
-		return mv;
-	}
+    /**
+     * .
+     * 填写修改个人信息表单. TODO
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("/user-edit-form}")
+    public ModelAndView editUser(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        User selectedUser = (User) session.getAttribute("currentUser");
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("selectedUser", selectedUser)
+           .setViewName("/user/user-edit-form");
+        return mv;
+    }
+    
+    @RequestMapping(value = "/user-update", method = RequestMethod.GET)
+    public String updateUser() {
+        return "/user/modify";
+    }
 	
-	/**
-	 * .
-	 * 提交表单,更新数据库,更改session用户.
-	 * TODO
-	 * @param user
-	 * @return
-	 */
-	@RequestMapping("/user-update")
-	public ModelAndView updateUser(@ModelAttribute User userForm,HttpSession session) {
-		userService.updateByPrimaryKeySelective(userForm);
-		session.setAttribute("currentUser", userForm);
-		
-		return new ModelAndView("/home");
-	}
+    /**
+     * .
+     * 提交表单,更新数据库,更改session用户. TODO
+     *
+     * @param userForm
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/user-update", method = RequestMethod.POST)
+    public void updateUser(User userForm, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        User selectedUser = (User) session.getAttribute("currentUser");
+        userForm.setId(selectedUser.getId());
+        userService.updateByPrimaryKeySelective(userForm);
+        session.setAttribute("currentUser", userForm);
+    }
 	
 	
 	/**

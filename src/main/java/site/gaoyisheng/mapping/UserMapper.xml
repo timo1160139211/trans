@@ -35,7 +35,7 @@
 	</select>
 	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from user
+		delete from public.user
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="site.gaoyisheng.pojo.User">
@@ -46,7 +46,7 @@
 		#{password,jdbcType=VARCHAR}, #{college,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="site.gaoyisheng.pojo.User">
-		insert into user
+		insert into public.user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
 				id,
@@ -83,7 +83,7 @@
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.User">
-		update user
+		update public.user
 		<set>
 			<if test="name != null">
 				name = #{name,jdbcType=VARCHAR},
@@ -101,7 +101,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.User">
-		update user
+		update public.user
 		set name = #{name,jdbcType=VARCHAR},
 		number = #{number,jdbcType=VARCHAR},
 		password = #{password,jdbcType=VARCHAR},
