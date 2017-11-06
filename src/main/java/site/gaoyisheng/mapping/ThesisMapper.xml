@@ -90,7 +90,7 @@
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from thesis
+		from public.thesis
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 
@@ -120,11 +120,11 @@
 
 
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from thesis
+		delete from public.thesis
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="site.gaoyisheng.pojo.Thesis">
-		insert into thesis (id, type, name,
+		insert into public.thesis (id, type, name,
 		no1_auther_type, no1_auther_name, communicate_auther_name,
 		workunit, other_auther_name, publish_date,
 		publish_magazine_thesis_set, magazine_type,
@@ -188,7 +188,7 @@
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Thesis">
-		insert into thesis
+		insert into public.thesis
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
 				id,
@@ -531,7 +531,7 @@
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.Thesis">
-		update thesis
+		update public.thesis
 		<set>
 			<if test="type != null">
 				type = #{type,jdbcType=VARCHAR},
@@ -702,7 +702,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.Thesis">
-		update thesis
+		update public.thesis
 		set type = #{type,jdbcType=VARCHAR},
 		name = #{name,jdbcType=VARCHAR},
 		no1_auther_type = #{no1AutherType,jdbcType=VARCHAR},
