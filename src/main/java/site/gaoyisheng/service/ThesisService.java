@@ -16,6 +16,7 @@
  */
 package site.gaoyisheng.service;
 
+import java.io.InputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,27 +25,28 @@ import org.springframework.stereotype.Service;
 import site.gaoyisheng.dao.ThesisMapper;
 import site.gaoyisheng.pojo.Thesis;
 import site.gaoyisheng.pojo.User;
+import site.gaoyisheng.utils.FileUtil;
 
 @Service
 public class ThesisService {
 
 	@Autowired
 	private ThesisMapper thesisDao;
-	
-	public List<Thesis> selectAllThesis(){
+
+	public List<Thesis> selectAllThesis() {
 		return thesisDao.selectAllThesis();
 	}
 
-//	@Override  
-//    public List<BrandMobileInfoEntity> importBrandPeriodSort(InputStream in) throws Exception  {  
-//          
-//        List<BrandMobileInfoEntity> brandMobileInfos = readBrandPeriodSorXls(in);  
-//        for (BrandMobileInfoEntity brandMobileInfo : brandMobileInfos) {  
-//            mapper.updateByConditions(brandMobileInfo);  
-//        }  
-//        return brandMobileInfos;  
-//    } 
+	public int readStreamAndInsertList(InputStream in) throws Exception {
+		FileUtil fileUtil = new FileUtil();
+		List<Thesis> thesisList = fileUtil.importFile(in);
+		return thesisDao.insertList(thesisList);
+	}
 	
+	public int insertList(List<Thesis> thesisList) throws Exception {
+		return thesisDao.insertList(thesisList);
+	}
+
 	public List<Thesis> selectAllThesisLikeUserNameAndNumber(User user) {
 		return thesisDao.selectAllThesisLikeUserNameAndNumber(user);
 	}
@@ -52,7 +54,7 @@ public class ThesisService {
 	public Thesis selectByPrimaryKey(Integer thesisId) {
 		return thesisDao.selectByPrimaryKey(thesisId);
 	}
-	
+
 	public int updateByPrimaryKeySelective(Thesis thesis) {
 		return thesisDao.updateByPrimaryKeySelective(thesis);
 	}
