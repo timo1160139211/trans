@@ -1755,4 +1755,8 @@ ul.activity-timeline > li {
     width: 22px;
     border: 1px solid #CCC; }
 
+.id{
+  display: none;
+}
+
 /*# sourceMappingURL=main.css.map */

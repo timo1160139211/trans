@@ -98,12 +98,11 @@ public class LoginController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "logout", method = RequestMethod.POST)
-    public ModelAndView Logout(HttpServletRequest request) {
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public String Logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         session.setAttribute("currentUser", null);
-
-        return new ModelAndView("/login");
+        return "login";
     }
 
 }
