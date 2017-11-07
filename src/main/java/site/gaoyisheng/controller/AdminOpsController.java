@@ -44,36 +44,41 @@ public class AdminOpsController {
 
 	@Autowired
 	private ThesisService thesisService;
+        
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+    public String upload() {
+        return "/admin/upload";
+    }
 
-	/**
-	 * . 
-	 * TODO 上传文件,并解析入库
-	 * @return
-	 */
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)  
-    public ModelAndView importBrandSort(@RequestParam("filename") MultipartFile file,HttpServletRequest request,HttpServletResponse response) throws Exception {  
-        if (file == null) { 
-            String strAlertMsg= "文件上传失败: 服务器未接收到文件";  
-            request.getSession().setAttribute("msg",strAlertMsg);
-            return null;  
-         }
-  
+    /**
+     * .
+     * TODO 上传文件,并解析入库
+     *
+     * @param file
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public ModelAndView importBrandSort(@RequestParam("filename") MultipartFile file, 
+                                    HttpServletRequest request) throws Exception {
+        if (file.isEmpty()) {
+            String strAlertMsg = "文件上传失败: 服务器未接收到文件";
+            request.getSession().setAttribute("msg", strAlertMsg);
+            return null;
+        }
         String name = file.getOriginalFilename();// 获取上传文件名,包括路径  
-        long size = file.getSize();  
-        if ((name == null || name.equals("")) && size == 0)  {
-            String strAlertMsg= "文件上传失败: 文件内容为空"; 
-            request.getSession().setAttribute("msg",strAlertMsg);
-            return null;  
-         }
-        InputStream in = file.getInputStream();  
-        int count = thesisService.readStreamAndInsertList(in);  
-  
-        String strAlertMsg= "成功插入" + count + "条！";  
-          
-        request.getSession().setAttribute("msg",strAlertMsg);  
-//        return get(request, response);  
-        return null;  
-    }  
+        long size = file.getSize();
+        if ((name == null || name.equals("")) && size == 0) {
+            String strAlertMsg = "文件上传失败: 文件内容为空";
+            request.getSession().setAttribute("msg", strAlertMsg);
+            return null;
+        }
+        InputStream in = file.getInputStream();
+        int count = thesisService.readStreamAndInsertList(in);
+        String strAlertMsg = "成功插入" + count + "条！";
+        request.getSession().setAttribute("msg", strAlertMsg);
+        return new ModelAndView("redirect:/admin/upload");
+    } 
 	
 
 	/**
