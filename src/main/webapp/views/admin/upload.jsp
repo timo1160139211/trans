@@ -14,7 +14,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <jsp:include page="/views/resources/head.jsp" flush="true"/>
-
     </head>
 
     <body>
@@ -35,20 +34,13 @@
                         <h3 class="page-title">修改个人信息</h3>
                         <div class="row">
                             <div class="col-md-12">
-                                <form:form id="user-modify" action="${ctx}/user/user-update" method="post">
+                                <form:form id="admin-upload" action="${ctx}/admin/upload" enctype="multipart/form-data" method="post">
                                     <div class="form-group">
-                                        <label for="name">姓名</label>
-                                        <input type="text" class="form-control" name="name" id="name">
+                                        <label for="upload">File input</label>
+                                        <input type="file" id="upload" name="filename">
+                                        <p class="help-block"></p>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="password">密码</label>
-                                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="college">学院</label>
-                                        <input type="text" name="college" class="form-control" id="college">
-                                    </div>
-                                    <button type="submit" id="modify-submit" class="btn btn-default">Submit</button>
+                                    <button type="submit" id="modify-submit" class="btn btn-default">Upload</button>
                                 </form:form>
                             </div>
                         </div>
@@ -67,54 +59,5 @@
         </div>
         <!-- END WRAPPER -->
         <jsp:include page="/views/resources/footer.jsp" flush="true"/>
-		<script type="text/javascript">
-			$('#modify-submit').bind('click',function(){
-				$.ajax({
-					type: 'post',
-			        url: '${ctx}/user/user-update',
-			        data: $('#user-modify').serialize(),
-			        beforeSend: function() {
-			            if ($('#name').val() == '') {
-			                $('#name').focus();
-			                return false;
-			            }
-			        },
-			        success:function(){
-		        		$.confirm({
-		        			theme: 'dark',
-							animation: 'rotateX',
-							closeAnimation: 'rotateX',
-							title: false,
-							content: '个人新已修改!',
-							buttons: {
-								confirm: {
-									text: '确认',
-									btnClass: 'waves-effect waves-button waves-light'
-								}
-							}
-		        		})
-			        }
-			        /*error:function(XMLHttpRequest, textStatus, errorThrown){
-			        	$.confirm({
-			        		theme: 'dark',
-							animation: 'rotateX',
-							closeAnimation: 'rotateX',
-							title: false,
-							content: textStatus,
-							buttons: {
-								confirm: {
-									text: '确认',
-									btnClass: 'waves-effect waves-button waves-light'
-								}
-							}
-			        	})
-			        }*/
-				})
-			});
-			function logout(){
-
-			}
-		</script>
     </body>
-
 </html>

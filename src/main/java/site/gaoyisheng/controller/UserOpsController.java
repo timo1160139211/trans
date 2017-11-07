@@ -16,20 +16,16 @@
  */ 
 package site.gaoyisheng.controller;
 
-import java.lang.reflect.Field;
-import java.util.List;
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -64,38 +60,38 @@ public class UserOpsController {
     }
 	
 	
-	/**
-	 * 认领.
-	 *     参数:
-	 * 
-	 *     返回:
-	 * 
-	 * 
-	 * TODO
-	 * @param session
-	 * @return
-	 */
-	@RequestMapping(value = "/claim", method = RequestMethod.POST)
-	public ModelAndView claim(HttpSession session,
-			@RequestParam(value = "thesisId", required = true) Integer thesisId,
-			@RequestParam(value = "sdutNumber", required = true) Integer sdutNumber,
-			@RequestParam(value = "no", required = true) Integer no) {
-		
-		User currentUser =(User) session.getAttribute("currentUser");
-		Thesis thesisBefore = thesisService.selectByPrimaryKey(thesisId);
-		
-		//传值，设值:
-		Thesis thesisAfter = setProperties(thesisBefore,currentUser,no,sdutNumber) ;
-		
-		thesisService.updateByPrimaryKeySelective(thesisAfter);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("currentUser",currentUser)
-		  .setViewName("redirect:/home");
-		
-		return mv;
-	}
+    /**
+     * 认领. 参数:
+     *
+     * 返回:
+     *
+     *
+     * TODO
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/claim", method = RequestMethod.POST)
+    public ModelAndView claim(HttpServletRequest request) throws UnsupportedEncodingException {
+        HttpSession session = request.getSession(false);
+        Integer no = Integer.valueOf(request.getParameter("no"));
+        Integer sdutNumber = Integer.valueOf(request.getParameter("sdutNumber"));
+        Integer thesisId = Integer.valueOf(request.getParameter("id"));
+        User currentUser = (User) session.getAttribute("currentUser");
+        Thesis thesisBefore = thesisService.selectByPrimaryKey(thesisId);
+        Thesis thesisAfter = setProperties(thesisBefore, currentUser, no, sdutNumber);
+        thesisService.updateByPrimaryKeySelective(thesisAfter);
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("currentUser", currentUser)
+                .setViewName("redirect:/home");
+        return mv;
+    }
         
+    /**
+     * 根据表单后面的认领按钮提交对应的id返回相应的表单填写页面
+     * @param request
+     * @return 
+     */
     @RequestMapping(value = "/options-contant", method = RequestMethod.POST)
     public ModelAndView optionsContant(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
