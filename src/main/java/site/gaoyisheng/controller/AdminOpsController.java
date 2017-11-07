@@ -116,7 +116,7 @@ public class AdminOpsController {
 	 * @return
 	 */
 	public String userList() {
-
+		userService.selectAllUser();
 		return null;
 	}
 

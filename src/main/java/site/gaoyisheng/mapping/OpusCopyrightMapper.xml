@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.gaoyisheng.dao.OpusCopyrightMapper">
+  <resultMap id="BaseResultMap" type="site.gaoyisheng.pojo.OpusCopyright">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="no1_auther_type" jdbcType="VARCHAR" property="no1AutherType" />
+    <result column="no1_auther_name" jdbcType="VARCHAR" property="no1AutherName" />
+    <result column="no1_auther_number" jdbcType="VARCHAR" property="no1AutherNumber" />
+    <result column="workunit" jdbcType="VARCHAR" property="workunit" />
+    <result column="other_auther_name" jdbcType="VARCHAR" property="otherAutherName" />
+    <result column="registration_no" jdbcType="VARCHAR" property="registrationNo" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="publish_date" jdbcType="VARCHAR" property="publishDate" />
+    <result column="subject_type" jdbcType="VARCHAR" property="subjectType" />
+    <result column="stair_subject" jdbcType="VARCHAR" property="stairSubject" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="no2_auther_name" jdbcType="VARCHAR" property="no2AutherName" />
+    <result column="no2_auther_number" jdbcType="VARCHAR" property="no2AutherNumber" />
+    <result column="no3_auther_name" jdbcType="VARCHAR" property="no3AutherName" />
+    <result column="no3_auther_number" jdbcType="VARCHAR" property="no3AutherNumber" />
+    <result column="no4_auther_name" jdbcType="VARCHAR" property="no4AutherName" />
+    <result column="no4_auther_number" jdbcType="VARCHAR" property="no4AutherNumber" />
+    <result column="no5_auther_name" jdbcType="VARCHAR" property="no5AutherName" />
+    <result column="no5_auther_number" jdbcType="VARCHAR" property="no5AutherNumber" />
+    <result column="no6_auther_name" jdbcType="VARCHAR" property="no6AutherName" />
+    <result column="no6_auther_number" jdbcType="VARCHAR" property="no6AutherNumber" />
+    <result column="no7_auther_name" jdbcType="VARCHAR" property="no7AutherName" />
+    <result column="no7_auther_number" jdbcType="VARCHAR" property="no7AutherNumber" />
+    <result column="no8_auther_name" jdbcType="VARCHAR" property="no8AutherName" />
+    <result column="no8_auther_number" jdbcType="VARCHAR" property="no8AutherNumber" />
+    <result column="no9_auther_name" jdbcType="VARCHAR" property="no9AutherName" />
+    <result column="no9_auther_number" jdbcType="VARCHAR" property="no9AutherNumber" />
+    <result column="no10_auther_name" jdbcType="VARCHAR" property="no10AutherName" />
+    <result column="no10_auther_number" jdbcType="VARCHAR" property="no10AutherNumber" />
+    <result column="auther_number" jdbcType="INTEGER" property="autherNumber" />
+    <result column="sdut_auther_number" jdbcType="INTEGER" property="sdutAutherNumber" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, number, no1_auther_type, no1_auther_name, no1_auther_number, workunit, 
+    other_auther_name, registration_no, type, publish_date, subject_type, stair_subject, 
+    note, no2_auther_name, no2_auther_number, no3_auther_name, no3_auther_number, no4_auther_name, 
+    no4_auther_number, no5_auther_name, no5_auther_number, no6_auther_name, no6_auther_number, 
+    no7_auther_name, no7_auther_number, no8_auther_name, no8_auther_number, no9_auther_name, 
+    no9_auther_number, no10_auther_name, no10_auther_number, auther_number, sdut_auther_number, 
+    status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from opus_copyright
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from opus_copyright
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="site.gaoyisheng.pojo.OpusCopyright">
+    insert into opus_copyright (id, name, number, 
+      no1_auther_type, no1_auther_name, no1_auther_number, 
+      workunit, other_auther_name, registration_no, 
+      type, publish_date, subject_type, 
+      stair_subject, note, no2_auther_name, 
+      no2_auther_number, no3_auther_name, no3_auther_number, 
+      no4_auther_name, no4_auther_number, no5_auther_name, 
+      no5_auther_number, no6_auther_name, no6_auther_number, 
+      no7_auther_name, no7_auther_number, no8_auther_name, 
+      no8_auther_number, no9_auther_name, no9_auther_number, 
+      no10_auther_name, no10_auther_number, auther_number, 
+      sdut_auther_number, status)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, 
+      #{no1AutherType,jdbcType=VARCHAR}, #{no1AutherName,jdbcType=VARCHAR}, #{no1AutherNumber,jdbcType=VARCHAR}, 
+      #{workunit,jdbcType=VARCHAR}, #{otherAutherName,jdbcType=VARCHAR}, #{registrationNo,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{publishDate,jdbcType=VARCHAR}, #{subjectType,jdbcType=VARCHAR}, 
+      #{stairSubject,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{no2AutherName,jdbcType=VARCHAR}, 
+      #{no2AutherNumber,jdbcType=VARCHAR}, #{no3AutherName,jdbcType=VARCHAR}, #{no3AutherNumber,jdbcType=VARCHAR}, 
+      #{no4AutherName,jdbcType=VARCHAR}, #{no4AutherNumber,jdbcType=VARCHAR}, #{no5AutherName,jdbcType=VARCHAR}, 
+      #{no5AutherNumber,jdbcType=VARCHAR}, #{no6AutherName,jdbcType=VARCHAR}, #{no6AutherNumber,jdbcType=VARCHAR}, 
+      #{no7AutherName,jdbcType=VARCHAR}, #{no7AutherNumber,jdbcType=VARCHAR}, #{no8AutherName,jdbcType=VARCHAR}, 
+      #{no8AutherNumber,jdbcType=VARCHAR}, #{no9AutherName,jdbcType=VARCHAR}, #{no9AutherNumber,jdbcType=VARCHAR}, 
+      #{no10AutherName,jdbcType=VARCHAR}, #{no10AutherNumber,jdbcType=VARCHAR}, #{autherNumber,jdbcType=INTEGER}, 
+      #{sdutAutherNumber,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.OpusCopyright">
+    insert into opus_copyright
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="no1AutherType != null">
+        no1_auther_type,
+      </if>
+      <if test="no1AutherName != null">
+        no1_auther_name,
+      </if>
+      <if test="no1AutherNumber != null">
+        no1_auther_number,
+      </if>
+      <if test="workunit != null">
+        workunit,
+      </if>
+      <if test="otherAutherName != null">
+        other_auther_name,
+      </if>
+      <if test="registrationNo != null">
+        registration_no,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="publishDate != null">
+        publish_date,
+      </if>
+      <if test="subjectType != null">
+        subject_type,
+      </if>
+      <if test="stairSubject != null">
+        stair_subject,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="no2AutherName != null">
+        no2_auther_name,
+      </if>
+      <if test="no2AutherNumber != null">
+        no2_auther_number,
+      </if>
+      <if test="no3AutherName != null">
+        no3_auther_name,
+      </if>
+      <if test="no3AutherNumber != null">
+        no3_auther_number,
+      </if>
+      <if test="no4AutherName != null">
+        no4_auther_name,
+      </if>
+      <if test="no4AutherNumber != null">
+        no4_auther_number,
+      </if>
+      <if test="no5AutherName != null">
+        no5_auther_name,
+      </if>
+      <if test="no5AutherNumber != null">
+        no5_auther_number,
+      </if>
+      <if test="no6AutherName != null">
+        no6_auther_name,
+      </if>
+      <if test="no6AutherNumber != null">
+        no6_auther_number,
+      </if>
+      <if test="no7AutherName != null">
+        no7_auther_name,
+      </if>
+      <if test="no7AutherNumber != null">
+        no7_auther_number,
+      </if>
+      <if test="no8AutherName != null">
+        no8_auther_name,
+      </if>
+      <if test="no8AutherNumber != null">
+        no8_auther_number,
+      </if>
+      <if test="no9AutherName != null">
+        no9_auther_name,
+      </if>
+      <if test="no9AutherNumber != null">
+        no9_auther_number,
+      </if>
+      <if test="no10AutherName != null">
+        no10_auther_name,
+      </if>
+      <if test="no10AutherNumber != null">
+        no10_auther_number,
+      </if>
+      <if test="autherNumber != null">
+        auther_number,
+      </if>
+      <if test="sdutAutherNumber != null">
+        sdut_auther_number,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherType != null">
+        #{no1AutherType,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherName != null">
+        #{no1AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherNumber != null">
+        #{no1AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="workunit != null">
+        #{workunit,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAutherName != null">
+        #{otherAutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationNo != null">
+        #{registrationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDate != null">
+        #{publishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectType != null">
+        #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="stairSubject != null">
+        #{stairSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="no2AutherName != null">
+        #{no2AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no2AutherNumber != null">
+        #{no2AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no3AutherName != null">
+        #{no3AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no3AutherNumber != null">
+        #{no3AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no4AutherName != null">
+        #{no4AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no4AutherNumber != null">
+        #{no4AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no5AutherName != null">
+        #{no5AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no5AutherNumber != null">
+        #{no5AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no6AutherName != null">
+        #{no6AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no6AutherNumber != null">
+        #{no6AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no7AutherName != null">
+        #{no7AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no7AutherNumber != null">
+        #{no7AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no8AutherName != null">
+        #{no8AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no8AutherNumber != null">
+        #{no8AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no9AutherName != null">
+        #{no9AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no9AutherNumber != null">
+        #{no9AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no10AutherName != null">
+        #{no10AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no10AutherNumber != null">
+        #{no10AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="autherNumber != null">
+        #{autherNumber,jdbcType=INTEGER},
+      </if>
+      <if test="sdutAutherNumber != null">
+        #{sdutAutherNumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.OpusCopyright">
+    update opus_copyright
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherType != null">
+        no1_auther_type = #{no1AutherType,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherName != null">
+        no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherNumber != null">
+        no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="workunit != null">
+        workunit = #{workunit,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAutherName != null">
+        other_auther_name = #{otherAutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationNo != null">
+        registration_no = #{registrationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDate != null">
+        publish_date = #{publishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectType != null">
+        subject_type = #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="stairSubject != null">
+        stair_subject = #{stairSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="no2AutherName != null">
+        no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no2AutherNumber != null">
+        no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no3AutherName != null">
+        no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no3AutherNumber != null">
+        no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no4AutherName != null">
+        no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no4AutherNumber != null">
+        no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no5AutherName != null">
+        no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no5AutherNumber != null">
+        no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no6AutherName != null">
+        no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no6AutherNumber != null">
+        no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no7AutherName != null">
+        no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no7AutherNumber != null">
+        no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no8AutherName != null">
+        no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no8AutherNumber != null">
+        no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no9AutherName != null">
+        no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no9AutherNumber != null">
+        no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no10AutherName != null">
+        no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no10AutherNumber != null">
+        no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="autherNumber != null">
+        auther_number = #{autherNumber,jdbcType=INTEGER},
+      </if>
+      <if test="sdutAutherNumber != null">
+        sdut_auther_number = #{sdutAutherNumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.OpusCopyright">
+    update opus_copyright
+    set name = #{name,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      no1_auther_type = #{no1AutherType,jdbcType=VARCHAR},
+      no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
+      no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
+      workunit = #{workunit,jdbcType=VARCHAR},
+      other_auther_name = #{otherAutherName,jdbcType=VARCHAR},
+      registration_no = #{registrationNo,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      publish_date = #{publishDate,jdbcType=VARCHAR},
+      subject_type = #{subjectType,jdbcType=VARCHAR},
+      stair_subject = #{stairSubject,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
+      no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
+      no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
+      no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
+      no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
+      no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
+      no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
+      no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
+      no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
+      no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
+      no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
+      no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
+      no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
+      no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
+      no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
+      no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
+      no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
+      no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
+      auther_number = #{autherNumber,jdbcType=INTEGER},
+      sdut_auther_number = #{sdutAutherNumber,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.gaoyisheng.dao.AchievementAwardMapper">
+  <resultMap id="BaseResultMap" type="site.gaoyisheng.pojo.AchievementAward">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="award_name" jdbcType="VARCHAR" property="awardName" />
+    <result column="no1_auther_type" jdbcType="VARCHAR" property="no1AutherType" />
+    <result column="no1_auther_name" jdbcType="VARCHAR" property="no1AutherName" />
+    <result column="achievement_name" jdbcType="VARCHAR" property="achievementName" />
+    <result column="workunit" jdbcType="VARCHAR" property="workunit" />
+    <result column="auther_number" jdbcType="VARCHAR" property="autherNumber" />
+    <result column="other_auther_name" jdbcType="VARCHAR" property="otherAutherName" />
+    <result column="license_issuing_agencies" jdbcType="VARCHAR" property="licenseIssuingAgencies" />
+    <result column="award_date" jdbcType="VARCHAR" property="awardDate" />
+    <result column="award_range" jdbcType="VARCHAR" property="awardRange" />
+    <result column="award_grade" jdbcType="VARCHAR" property="awardGrade" />
+    <result column="finished_workunit" jdbcType="VARCHAR" property="finishedWorkunit" />
+    <result column="workunit_number" jdbcType="VARCHAR" property="workunitNumber" />
+    <result column="workunit_rank" jdbcType="VARCHAR" property="workunitRank" />
+    <result column="award_grant_no" jdbcType="VARCHAR" property="awardGrantNo" />
+    <result column="subject_category" jdbcType="VARCHAR" property="subjectCategory" />
+    <result column="project_sources" jdbcType="VARCHAR" property="projectSources" />
+    <result column="award_form" jdbcType="VARCHAR" property="awardForm" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="award_type" jdbcType="VARCHAR" property="awardType" />
+    <result column="no1_auther_number" jdbcType="VARCHAR" property="no1AutherNumber" />
+    <result column="no2_auther_name" jdbcType="VARCHAR" property="no2AutherName" />
+    <result column="no2_auther_number" jdbcType="VARCHAR" property="no2AutherNumber" />
+    <result column="no3_auther_name" jdbcType="VARCHAR" property="no3AutherName" />
+    <result column="no3_auther_number" jdbcType="VARCHAR" property="no3AutherNumber" />
+    <result column="no4_auther_name" jdbcType="VARCHAR" property="no4AutherName" />
+    <result column="no4_auther_number" jdbcType="VARCHAR" property="no4AutherNumber" />
+    <result column="no5_auther_name" jdbcType="VARCHAR" property="no5AutherName" />
+    <result column="no5_auther_number" jdbcType="VARCHAR" property="no5AutherNumber" />
+    <result column="no6_auther_name" jdbcType="VARCHAR" property="no6AutherName" />
+    <result column="no6_auther_number" jdbcType="VARCHAR" property="no6AutherNumber" />
+    <result column="no7_auther_name" jdbcType="VARCHAR" property="no7AutherName" />
+    <result column="no7_auther_number" jdbcType="VARCHAR" property="no7AutherNumber" />
+    <result column="no8_auther_name" jdbcType="VARCHAR" property="no8AutherName" />
+    <result column="no8_auther_number" jdbcType="VARCHAR" property="no8AutherNumber" />
+    <result column="no9_auther_name" jdbcType="VARCHAR" property="no9AutherName" />
+    <result column="no9_auther_number" jdbcType="VARCHAR" property="no9AutherNumber" />
+    <result column="no10_auther_name" jdbcType="VARCHAR" property="no10AutherName" />
+    <result column="no10_auther_number" jdbcType="VARCHAR" property="no10AutherNumber" />
+    <result column="claim_number" jdbcType="INTEGER" property="claimNumber" />
+    <result column="claim_status" jdbcType="VARCHAR" property="claimStatus" />
+    <result column="sdut_auther_number" jdbcType="INTEGER" property="sdutAutherNumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, award_name, no1_auther_type, no1_auther_name, achievement_name, workunit, auther_number, 
+    other_auther_name, license_issuing_agencies, award_date, award_range, award_grade, 
+    finished_workunit, workunit_number, workunit_rank, award_grant_no, subject_category, 
+    project_sources, award_form, note, award_type, no1_auther_number, no2_auther_name, 
+    no2_auther_number, no3_auther_name, no3_auther_number, no4_auther_name, no4_auther_number, 
+    no5_auther_name, no5_auther_number, no6_auther_name, no6_auther_number, no7_auther_name, 
+    no7_auther_number, no8_auther_name, no8_auther_number, no9_auther_name, no9_auther_number, 
+    no10_auther_name, no10_auther_number, claim_number, claim_status, sdut_auther_number
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from achievement_award
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from achievement_award
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="site.gaoyisheng.pojo.AchievementAward">
+    insert into achievement_award (id, award_name, no1_auther_type, 
+      no1_auther_name, achievement_name, workunit, 
+      auther_number, other_auther_name, license_issuing_agencies, 
+      award_date, award_range, award_grade, 
+      finished_workunit, workunit_number, workunit_rank, 
+      award_grant_no, subject_category, project_sources, 
+      award_form, note, award_type, 
+      no1_auther_number, no2_auther_name, no2_auther_number, 
+      no3_auther_name, no3_auther_number, no4_auther_name, 
+      no4_auther_number, no5_auther_name, no5_auther_number, 
+      no6_auther_name, no6_auther_number, no7_auther_name, 
+      no7_auther_number, no8_auther_name, no8_auther_number, 
+      no9_auther_name, no9_auther_number, no10_auther_name, 
+      no10_auther_number, claim_number, claim_status, 
+      sdut_auther_number)
+    values (#{id,jdbcType=INTEGER}, #{awardName,jdbcType=VARCHAR}, #{no1AutherType,jdbcType=VARCHAR}, 
+      #{no1AutherName,jdbcType=VARCHAR}, #{achievementName,jdbcType=VARCHAR}, #{workunit,jdbcType=VARCHAR}, 
+      #{autherNumber,jdbcType=VARCHAR}, #{otherAutherName,jdbcType=VARCHAR}, #{licenseIssuingAgencies,jdbcType=VARCHAR}, 
+      #{awardDate,jdbcType=VARCHAR}, #{awardRange,jdbcType=VARCHAR}, #{awardGrade,jdbcType=VARCHAR}, 
+      #{finishedWorkunit,jdbcType=VARCHAR}, #{workunitNumber,jdbcType=VARCHAR}, #{workunitRank,jdbcType=VARCHAR}, 
+      #{awardGrantNo,jdbcType=VARCHAR}, #{subjectCategory,jdbcType=VARCHAR}, #{projectSources,jdbcType=VARCHAR}, 
+      #{awardForm,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{awardType,jdbcType=VARCHAR}, 
+      #{no1AutherNumber,jdbcType=VARCHAR}, #{no2AutherName,jdbcType=VARCHAR}, #{no2AutherNumber,jdbcType=VARCHAR}, 
+      #{no3AutherName,jdbcType=VARCHAR}, #{no3AutherNumber,jdbcType=VARCHAR}, #{no4AutherName,jdbcType=VARCHAR}, 
+      #{no4AutherNumber,jdbcType=VARCHAR}, #{no5AutherName,jdbcType=VARCHAR}, #{no5AutherNumber,jdbcType=VARCHAR}, 
+      #{no6AutherName,jdbcType=VARCHAR}, #{no6AutherNumber,jdbcType=VARCHAR}, #{no7AutherName,jdbcType=VARCHAR}, 
+      #{no7AutherNumber,jdbcType=VARCHAR}, #{no8AutherName,jdbcType=VARCHAR}, #{no8AutherNumber,jdbcType=VARCHAR}, 
+      #{no9AutherName,jdbcType=VARCHAR}, #{no9AutherNumber,jdbcType=VARCHAR}, #{no10AutherName,jdbcType=VARCHAR}, 
+      #{no10AutherNumber,jdbcType=VARCHAR}, #{claimNumber,jdbcType=INTEGER}, #{claimStatus,jdbcType=VARCHAR}, 
+      #{sdutAutherNumber,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.AchievementAward">
+    insert into achievement_award
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="awardName != null">
+        award_name,
+      </if>
+      <if test="no1AutherType != null">
+        no1_auther_type,
+      </if>
+      <if test="no1AutherName != null">
+        no1_auther_name,
+      </if>
+      <if test="achievementName != null">
+        achievement_name,
+      </if>
+      <if test="workunit != null">
+        workunit,
+      </if>
+      <if test="autherNumber != null">
+        auther_number,
+      </if>
+      <if test="otherAutherName != null">
+        other_auther_name,
+      </if>
+      <if test="licenseIssuingAgencies != null">
+        license_issuing_agencies,
+      </if>
+      <if test="awardDate != null">
+        award_date,
+      </if>
+      <if test="awardRange != null">
+        award_range,
+      </if>
+      <if test="awardGrade != null">
+        award_grade,
+      </if>
+      <if test="finishedWorkunit != null">
+        finished_workunit,
+      </if>
+      <if test="workunitNumber != null">
+        workunit_number,
+      </if>
+      <if test="workunitRank != null">
+        workunit_rank,
+      </if>
+      <if test="awardGrantNo != null">
+        award_grant_no,
+      </if>
+      <if test="subjectCategory != null">
+        subject_category,
+      </if>
+      <if test="projectSources != null">
+        project_sources,
+      </if>
+      <if test="awardForm != null">
+        award_form,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="awardType != null">
+        award_type,
+      </if>
+      <if test="no1AutherNumber != null">
+        no1_auther_number,
+      </if>
+      <if test="no2AutherName != null">
+        no2_auther_name,
+      </if>
+      <if test="no2AutherNumber != null">
+        no2_auther_number,
+      </if>
+      <if test="no3AutherName != null">
+        no3_auther_name,
+      </if>
+      <if test="no3AutherNumber != null">
+        no3_auther_number,
+      </if>
+      <if test="no4AutherName != null">
+        no4_auther_name,
+      </if>
+      <if test="no4AutherNumber != null">
+        no4_auther_number,
+      </if>
+      <if test="no5AutherName != null">
+        no5_auther_name,
+      </if>
+      <if test="no5AutherNumber != null">
+        no5_auther_number,
+      </if>
+      <if test="no6AutherName != null">
+        no6_auther_name,
+      </if>
+      <if test="no6AutherNumber != null">
+        no6_auther_number,
+      </if>
+      <if test="no7AutherName != null">
+        no7_auther_name,
+      </if>
+      <if test="no7AutherNumber != null">
+        no7_auther_number,
+      </if>
+      <if test="no8AutherName != null">
+        no8_auther_name,
+      </if>
+      <if test="no8AutherNumber != null">
+        no8_auther_number,
+      </if>
+      <if test="no9AutherName != null">
+        no9_auther_name,
+      </if>
+      <if test="no9AutherNumber != null">
+        no9_auther_number,
+      </if>
+      <if test="no10AutherName != null">
+        no10_auther_name,
+      </if>
+      <if test="no10AutherNumber != null">
+        no10_auther_number,
+      </if>
+      <if test="claimNumber != null">
+        claim_number,
+      </if>
+      <if test="claimStatus != null">
+        claim_status,
+      </if>
+      <if test="sdutAutherNumber != null">
+        sdut_auther_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="awardName != null">
+        #{awardName,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherType != null">
+        #{no1AutherType,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherName != null">
+        #{no1AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="achievementName != null">
+        #{achievementName,jdbcType=VARCHAR},
+      </if>
+      <if test="workunit != null">
+        #{workunit,jdbcType=VARCHAR},
+      </if>
+      <if test="autherNumber != null">
+        #{autherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAutherName != null">
+        #{otherAutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseIssuingAgencies != null">
+        #{licenseIssuingAgencies,jdbcType=VARCHAR},
+      </if>
+      <if test="awardDate != null">
+        #{awardDate,jdbcType=VARCHAR},
+      </if>
+      <if test="awardRange != null">
+        #{awardRange,jdbcType=VARCHAR},
+      </if>
+      <if test="awardGrade != null">
+        #{awardGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="finishedWorkunit != null">
+        #{finishedWorkunit,jdbcType=VARCHAR},
+      </if>
+      <if test="workunitNumber != null">
+        #{workunitNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="workunitRank != null">
+        #{workunitRank,jdbcType=VARCHAR},
+      </if>
+      <if test="awardGrantNo != null">
+        #{awardGrantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectCategory != null">
+        #{subjectCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="projectSources != null">
+        #{projectSources,jdbcType=VARCHAR},
+      </if>
+      <if test="awardForm != null">
+        #{awardForm,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="awardType != null">
+        #{awardType,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherNumber != null">
+        #{no1AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no2AutherName != null">
+        #{no2AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no2AutherNumber != null">
+        #{no2AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no3AutherName != null">
+        #{no3AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no3AutherNumber != null">
+        #{no3AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no4AutherName != null">
+        #{no4AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no4AutherNumber != null">
+        #{no4AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no5AutherName != null">
+        #{no5AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no5AutherNumber != null">
+        #{no5AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no6AutherName != null">
+        #{no6AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no6AutherNumber != null">
+        #{no6AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no7AutherName != null">
+        #{no7AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no7AutherNumber != null">
+        #{no7AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no8AutherName != null">
+        #{no8AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no8AutherNumber != null">
+        #{no8AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no9AutherName != null">
+        #{no9AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no9AutherNumber != null">
+        #{no9AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no10AutherName != null">
+        #{no10AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no10AutherNumber != null">
+        #{no10AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="claimNumber != null">
+        #{claimNumber,jdbcType=INTEGER},
+      </if>
+      <if test="claimStatus != null">
+        #{claimStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sdutAutherNumber != null">
+        #{sdutAutherNumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.AchievementAward">
+    update achievement_award
+    <set>
+      <if test="awardName != null">
+        award_name = #{awardName,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherType != null">
+        no1_auther_type = #{no1AutherType,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherName != null">
+        no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="achievementName != null">
+        achievement_name = #{achievementName,jdbcType=VARCHAR},
+      </if>
+      <if test="workunit != null">
+        workunit = #{workunit,jdbcType=VARCHAR},
+      </if>
+      <if test="autherNumber != null">
+        auther_number = #{autherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAutherName != null">
+        other_auther_name = #{otherAutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseIssuingAgencies != null">
+        license_issuing_agencies = #{licenseIssuingAgencies,jdbcType=VARCHAR},
+      </if>
+      <if test="awardDate != null">
+        award_date = #{awardDate,jdbcType=VARCHAR},
+      </if>
+      <if test="awardRange != null">
+        award_range = #{awardRange,jdbcType=VARCHAR},
+      </if>
+      <if test="awardGrade != null">
+        award_grade = #{awardGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="finishedWorkunit != null">
+        finished_workunit = #{finishedWorkunit,jdbcType=VARCHAR},
+      </if>
+      <if test="workunitNumber != null">
+        workunit_number = #{workunitNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="workunitRank != null">
+        workunit_rank = #{workunitRank,jdbcType=VARCHAR},
+      </if>
+      <if test="awardGrantNo != null">
+        award_grant_no = #{awardGrantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectCategory != null">
+        subject_category = #{subjectCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="projectSources != null">
+        project_sources = #{projectSources,jdbcType=VARCHAR},
+      </if>
+      <if test="awardForm != null">
+        award_form = #{awardForm,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="awardType != null">
+        award_type = #{awardType,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherNumber != null">
+        no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no2AutherName != null">
+        no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no2AutherNumber != null">
+        no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no3AutherName != null">
+        no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no3AutherNumber != null">
+        no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no4AutherName != null">
+        no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no4AutherNumber != null">
+        no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no5AutherName != null">
+        no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no5AutherNumber != null">
+        no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no6AutherName != null">
+        no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no6AutherNumber != null">
+        no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no7AutherName != null">
+        no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no7AutherNumber != null">
+        no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no8AutherName != null">
+        no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no8AutherNumber != null">
+        no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no9AutherName != null">
+        no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no9AutherNumber != null">
+        no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no10AutherName != null">
+        no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no10AutherNumber != null">
+        no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="claimNumber != null">
+        claim_number = #{claimNumber,jdbcType=INTEGER},
+      </if>
+      <if test="claimStatus != null">
+        claim_status = #{claimStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sdutAutherNumber != null">
+        sdut_auther_number = #{sdutAutherNumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.AchievementAward">
+    update achievement_award
+    set award_name = #{awardName,jdbcType=VARCHAR},
+      no1_auther_type = #{no1AutherType,jdbcType=VARCHAR},
+      no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
+      achievement_name = #{achievementName,jdbcType=VARCHAR},
+      workunit = #{workunit,jdbcType=VARCHAR},
+      auther_number = #{autherNumber,jdbcType=VARCHAR},
+      other_auther_name = #{otherAutherName,jdbcType=VARCHAR},
+      license_issuing_agencies = #{licenseIssuingAgencies,jdbcType=VARCHAR},
+      award_date = #{awardDate,jdbcType=VARCHAR},
+      award_range = #{awardRange,jdbcType=VARCHAR},
+      award_grade = #{awardGrade,jdbcType=VARCHAR},
+      finished_workunit = #{finishedWorkunit,jdbcType=VARCHAR},
+      workunit_number = #{workunitNumber,jdbcType=VARCHAR},
+      workunit_rank = #{workunitRank,jdbcType=VARCHAR},
+      award_grant_no = #{awardGrantNo,jdbcType=VARCHAR},
+      subject_category = #{subjectCategory,jdbcType=VARCHAR},
+      project_sources = #{projectSources,jdbcType=VARCHAR},
+      award_form = #{awardForm,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      award_type = #{awardType,jdbcType=VARCHAR},
+      no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
+      no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
+      no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
+      no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
+      no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
+      no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
+      no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
+      no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
+      no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
+      no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
+      no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
+      no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
+      no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
+      no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
+      no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
+      no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
+      no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
+      no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
+      no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
+      claim_number = #{claimNumber,jdbcType=INTEGER},
+      claim_status = #{claimStatus,jdbcType=VARCHAR},
+      sdut_auther_number = #{sdutAutherNumber,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
