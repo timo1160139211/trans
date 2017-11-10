@@ -133,7 +133,7 @@
 			    data: {id: id},
 			    success:function(data){
 			    	contant.html(data);
-			    	/*$.confirm({
+			    	$.confirm({
 			    		title: 'Data error',
 						content: '数据记载完毕!',
 						autoClose: 'cancel|1000',
@@ -144,7 +144,7 @@
 								btnClass: 'waves-effect waves-button'
 							}
 						}
-			    	})*/
+			    	})
 			    }
 			})
 		}

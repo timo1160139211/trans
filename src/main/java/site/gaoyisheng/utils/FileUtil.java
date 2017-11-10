@@ -96,9 +96,11 @@ public class FileUtil {
                         case 31:thesis.setReferenceFrequency(value);break;
                         case 32:thesis.setSupportProject(value);break;
                        }
+                    thesis.setStatus("true");
                     // null 全部置 ""
 //                  for(thesis.getClass().get) {}
                 }  
+               
                 thesisList.add(thesis);  
             }  
         }  
