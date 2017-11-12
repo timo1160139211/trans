@@ -1,31 +1,27 @@
 package site.gaoyisheng.pojo;
 
-public class Patent {
+public class EnPeriodicalThesis {
     private Integer id;
 
     private String keyId;
 
     private String name;
 
-    private String type;
-
-    private String authorizationNumber;
-
-    private String authorizationDate;
-
-    private String pctPatentOrNot;
-
-    private String pctPatentName;
-
-    private String pctPatentApplicationNumber;
-
-    private String pctPatentApplicationDate;
-
-    private String pctPatentPriorityDate;
-
-    private String inCountry;
-
     private String allAutherName;
+
+    private String provenance;
+
+    private String subject;
+
+    private String volume;
+
+    private String period;
+
+    private String page;
+
+    private String year;
+
+    private String no1AutherName;
 
     private String no1AutherNumber;
 
@@ -65,9 +61,7 @@ public class Patent {
 
     private String no10AutherNumber;
 
-    private String claimStatus;
-
-    private String no1AutherName;
+    private String cliamStatus;
 
     public Integer getId() {
         return id;
@@ -93,84 +87,68 @@ public class Patent {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
-    }
-
-    public String getAuthorizationNumber() {
-        return authorizationNumber;
-    }
-
-    public void setAuthorizationNumber(String authorizationNumber) {
-        this.authorizationNumber = authorizationNumber == null ? null : authorizationNumber.trim();
-    }
-
-    public String getAuthorizationDate() {
-        return authorizationDate;
-    }
-
-    public void setAuthorizationDate(String authorizationDate) {
-        this.authorizationDate = authorizationDate == null ? null : authorizationDate.trim();
-    }
-
-    public String getPctPatentOrNot() {
-        return pctPatentOrNot;
-    }
-
-    public void setPctPatentOrNot(String pctPatentOrNot) {
-        this.pctPatentOrNot = pctPatentOrNot == null ? null : pctPatentOrNot.trim();
-    }
-
-    public String getPctPatentName() {
-        return pctPatentName;
-    }
-
-    public void setPctPatentName(String pctPatentName) {
-        this.pctPatentName = pctPatentName == null ? null : pctPatentName.trim();
-    }
-
-    public String getPctPatentApplicationNumber() {
-        return pctPatentApplicationNumber;
-    }
-
-    public void setPctPatentApplicationNumber(String pctPatentApplicationNumber) {
-        this.pctPatentApplicationNumber = pctPatentApplicationNumber == null ? null : pctPatentApplicationNumber.trim();
-    }
-
-    public String getPctPatentApplicationDate() {
-        return pctPatentApplicationDate;
-    }
-
-    public void setPctPatentApplicationDate(String pctPatentApplicationDate) {
-        this.pctPatentApplicationDate = pctPatentApplicationDate == null ? null : pctPatentApplicationDate.trim();
-    }
-
-    public String getPctPatentPriorityDate() {
-        return pctPatentPriorityDate;
-    }
-
-    public void setPctPatentPriorityDate(String pctPatentPriorityDate) {
-        this.pctPatentPriorityDate = pctPatentPriorityDate == null ? null : pctPatentPriorityDate.trim();
-    }
-
-    public String getInCountry() {
-        return inCountry;
-    }
-
-    public void setInCountry(String inCountry) {
-        this.inCountry = inCountry == null ? null : inCountry.trim();
-    }
-
     public String getAllAutherName() {
         return allAutherName;
     }
 
     public void setAllAutherName(String allAutherName) {
         this.allAutherName = allAutherName == null ? null : allAutherName.trim();
+    }
+
+    public String getProvenance() {
+        return provenance;
+    }
+
+    public void setProvenance(String provenance) {
+        this.provenance = provenance == null ? null : provenance.trim();
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject == null ? null : subject.trim();
+    }
+
+    public String getVolume() {
+        return volume;
+    }
+
+    public void setVolume(String volume) {
+        this.volume = volume == null ? null : volume.trim();
+    }
+
+    public String getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(String period) {
+        this.period = period == null ? null : period.trim();
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page == null ? null : page.trim();
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year == null ? null : year.trim();
+    }
+
+    public String getNo1AutherName() {
+        return no1AutherName;
+    }
+
+    public void setNo1AutherName(String no1AutherName) {
+        this.no1AutherName = no1AutherName == null ? null : no1AutherName.trim();
     }
 
     public String getNo1AutherNumber() {
@@ -325,19 +303,11 @@ public class Patent {
         this.no10AutherNumber = no10AutherNumber == null ? null : no10AutherNumber.trim();
     }
 
-    public String getClaimStatus() {
-        return claimStatus;
+    public String getCliamStatus() {
+        return cliamStatus;
     }
 
-    public void setClaimStatus(String claimStatus) {
-        this.claimStatus = claimStatus == null ? null : claimStatus.trim();
-    }
-
-    public String getNo1AutherName() {
-        return no1AutherName;
-    }
-
-    public void setNo1AutherName(String no1AutherName) {
-        this.no1AutherName = no1AutherName == null ? null : no1AutherName.trim();
+    public void setCliamStatus(String cliamStatus) {
+        this.cliamStatus = cliamStatus == null ? null : cliamStatus.trim();
     }
 }

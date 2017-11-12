@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.gaoyisheng.dao.EnPeriodicalThesisMapper">
+  <resultMap id="BaseResultMap" type="site.gaoyisheng.pojo.EnPeriodicalThesis">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="key_id" jdbcType="VARCHAR" property="keyId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="all_auther_name" jdbcType="VARCHAR" property="allAutherName" />
+    <result column="provenance" jdbcType="VARCHAR" property="provenance" />
+    <result column="subject " jdbcType="VARCHAR" property="subject" />
+    <result column="volume" jdbcType="VARCHAR" property="volume" />
+    <result column="period" jdbcType="VARCHAR" property="period" />
+    <result column="page" jdbcType="VARCHAR" property="page" />
+    <result column="year" jdbcType="VARCHAR" property="year" />
+    <result column="no1_auther_name" jdbcType="VARCHAR" property="no1AutherName" />
+    <result column="no1_auther_number" jdbcType="VARCHAR" property="no1AutherNumber" />
+    <result column="no2_auther_name" jdbcType="VARCHAR" property="no2AutherName" />
+    <result column="no2_auther_number" jdbcType="VARCHAR" property="no2AutherNumber" />
+    <result column="no3_auther_name" jdbcType="VARCHAR" property="no3AutherName" />
+    <result column="no3_auther_number" jdbcType="VARCHAR" property="no3AutherNumber" />
+    <result column="no4_auther_name" jdbcType="VARCHAR" property="no4AutherName" />
+    <result column="no4_auther_number" jdbcType="VARCHAR" property="no4AutherNumber" />
+    <result column="no5_auther_name" jdbcType="VARCHAR" property="no5AutherName" />
+    <result column="no5_auther_number" jdbcType="VARCHAR" property="no5AutherNumber" />
+    <result column="no6_auther_name" jdbcType="VARCHAR" property="no6AutherName" />
+    <result column="no6_auther_number" jdbcType="VARCHAR" property="no6AutherNumber" />
+    <result column="no7_auther_name" jdbcType="VARCHAR" property="no7AutherName" />
+    <result column="no7_auther_number" jdbcType="VARCHAR" property="no7AutherNumber" />
+    <result column="no8_auther_name" jdbcType="VARCHAR" property="no8AutherName" />
+    <result column="no8_auther_number" jdbcType="VARCHAR" property="no8AutherNumber" />
+    <result column="no9_auther_name" jdbcType="VARCHAR" property="no9AutherName" />
+    <result column="no9_auther_number" jdbcType="VARCHAR" property="no9AutherNumber" />
+    <result column="no10_auther_name" jdbcType="VARCHAR" property="no10AutherName" />
+    <result column="no10_auther_number" jdbcType="VARCHAR" property="no10AutherNumber" />
+    <result column="cliam_status" jdbcType="VARCHAR" property="cliamStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, key_id, name, all_auther_name, provenance, "subject ", volume, period, page, 
+    year, no1_auther_name, no1_auther_number, no2_auther_name, no2_auther_number, no3_auther_name, 
+    no3_auther_number, no4_auther_name, no4_auther_number, no5_auther_name, no5_auther_number, 
+    no6_auther_name, no6_auther_number, no7_auther_name, no7_auther_number, no8_auther_name, 
+    no8_auther_number, no9_auther_name, no9_auther_number, no10_auther_name, no10_auther_number, 
+    cliam_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from en_periodical_thesis
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from en_periodical_thesis
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="site.gaoyisheng.pojo.EnPeriodicalThesis">
+    insert into en_periodical_thesis (id, key_id, name, 
+      all_auther_name, provenance, "subject ", 
+      volume, period, page, 
+      year, no1_auther_name, no1_auther_number, 
+      no2_auther_name, no2_auther_number, no3_auther_name, 
+      no3_auther_number, no4_auther_name, no4_auther_number, 
+      no5_auther_name, no5_auther_number, no6_auther_name, 
+      no6_auther_number, no7_auther_name, no7_auther_number, 
+      no8_auther_name, no8_auther_number, no9_auther_name, 
+      no9_auther_number, no10_auther_name, no10_auther_number, 
+      cliam_status)
+    values (#{id,jdbcType=INTEGER}, #{keyId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{allAutherName,jdbcType=VARCHAR}, #{provenance,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, 
+      #{volume,jdbcType=VARCHAR}, #{period,jdbcType=VARCHAR}, #{page,jdbcType=VARCHAR}, 
+      #{year,jdbcType=VARCHAR}, #{no1AutherName,jdbcType=VARCHAR}, #{no1AutherNumber,jdbcType=VARCHAR}, 
+      #{no2AutherName,jdbcType=VARCHAR}, #{no2AutherNumber,jdbcType=VARCHAR}, #{no3AutherName,jdbcType=VARCHAR}, 
+      #{no3AutherNumber,jdbcType=VARCHAR}, #{no4AutherName,jdbcType=VARCHAR}, #{no4AutherNumber,jdbcType=VARCHAR}, 
+      #{no5AutherName,jdbcType=VARCHAR}, #{no5AutherNumber,jdbcType=VARCHAR}, #{no6AutherName,jdbcType=VARCHAR}, 
+      #{no6AutherNumber,jdbcType=VARCHAR}, #{no7AutherName,jdbcType=VARCHAR}, #{no7AutherNumber,jdbcType=VARCHAR}, 
+      #{no8AutherName,jdbcType=VARCHAR}, #{no8AutherNumber,jdbcType=VARCHAR}, #{no9AutherName,jdbcType=VARCHAR}, 
+      #{no9AutherNumber,jdbcType=VARCHAR}, #{no10AutherName,jdbcType=VARCHAR}, #{no10AutherNumber,jdbcType=VARCHAR}, 
+      #{cliamStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.EnPeriodicalThesis">
+    insert into en_periodical_thesis
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="keyId != null">
+        key_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="allAutherName != null">
+        all_auther_name,
+      </if>
+      <if test="provenance != null">
+        provenance,
+      </if>
+      <if test="subject != null">
+        "subject ",
+      </if>
+      <if test="volume != null">
+        volume,
+      </if>
+      <if test="period != null">
+        period,
+      </if>
+      <if test="page != null">
+        page,
+      </if>
+      <if test="year != null">
+        year,
+      </if>
+      <if test="no1AutherName != null">
+        no1_auther_name,
+      </if>
+      <if test="no1AutherNumber != null">
+        no1_auther_number,
+      </if>
+      <if test="no2AutherName != null">
+        no2_auther_name,
+      </if>
+      <if test="no2AutherNumber != null">
+        no2_auther_number,
+      </if>
+      <if test="no3AutherName != null">
+        no3_auther_name,
+      </if>
+      <if test="no3AutherNumber != null">
+        no3_auther_number,
+      </if>
+      <if test="no4AutherName != null">
+        no4_auther_name,
+      </if>
+      <if test="no4AutherNumber != null">
+        no4_auther_number,
+      </if>
+      <if test="no5AutherName != null">
+        no5_auther_name,
+      </if>
+      <if test="no5AutherNumber != null">
+        no5_auther_number,
+      </if>
+      <if test="no6AutherName != null">
+        no6_auther_name,
+      </if>
+      <if test="no6AutherNumber != null">
+        no6_auther_number,
+      </if>
+      <if test="no7AutherName != null">
+        no7_auther_name,
+      </if>
+      <if test="no7AutherNumber != null">
+        no7_auther_number,
+      </if>
+      <if test="no8AutherName != null">
+        no8_auther_name,
+      </if>
+      <if test="no8AutherNumber != null">
+        no8_auther_number,
+      </if>
+      <if test="no9AutherName != null">
+        no9_auther_name,
+      </if>
+      <if test="no9AutherNumber != null">
+        no9_auther_number,
+      </if>
+      <if test="no10AutherName != null">
+        no10_auther_name,
+      </if>
+      <if test="no10AutherNumber != null">
+        no10_auther_number,
+      </if>
+      <if test="cliamStatus != null">
+        cliam_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="keyId != null">
+        #{keyId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="allAutherName != null">
+        #{allAutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="provenance != null">
+        #{provenance,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="volume != null">
+        #{volume,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null">
+        #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="page != null">
+        #{page,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherName != null">
+        #{no1AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherNumber != null">
+        #{no1AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no2AutherName != null">
+        #{no2AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no2AutherNumber != null">
+        #{no2AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no3AutherName != null">
+        #{no3AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no3AutherNumber != null">
+        #{no3AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no4AutherName != null">
+        #{no4AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no4AutherNumber != null">
+        #{no4AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no5AutherName != null">
+        #{no5AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no5AutherNumber != null">
+        #{no5AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no6AutherName != null">
+        #{no6AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no6AutherNumber != null">
+        #{no6AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no7AutherName != null">
+        #{no7AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no7AutherNumber != null">
+        #{no7AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no8AutherName != null">
+        #{no8AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no8AutherNumber != null">
+        #{no8AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no9AutherName != null">
+        #{no9AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no9AutherNumber != null">
+        #{no9AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no10AutherName != null">
+        #{no10AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no10AutherNumber != null">
+        #{no10AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cliamStatus != null">
+        #{cliamStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.EnPeriodicalThesis">
+    update en_periodical_thesis
+    <set>
+      <if test="keyId != null">
+        key_id = #{keyId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="allAutherName != null">
+        all_auther_name = #{allAutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="provenance != null">
+        provenance = #{provenance,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        "subject " = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="volume != null">
+        volume = #{volume,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null">
+        period = #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="page != null">
+        page = #{page,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherName != null">
+        no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no1AutherNumber != null">
+        no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no2AutherName != null">
+        no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no2AutherNumber != null">
+        no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no3AutherName != null">
+        no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no3AutherNumber != null">
+        no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no4AutherName != null">
+        no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no4AutherNumber != null">
+        no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no5AutherName != null">
+        no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no5AutherNumber != null">
+        no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no6AutherName != null">
+        no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no6AutherNumber != null">
+        no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no7AutherName != null">
+        no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no7AutherNumber != null">
+        no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no8AutherName != null">
+        no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no8AutherNumber != null">
+        no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no9AutherName != null">
+        no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no9AutherNumber != null">
+        no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="no10AutherName != null">
+        no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
+      </if>
+      <if test="no10AutherNumber != null">
+        no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cliamStatus != null">
+        cliam_status = #{cliamStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.EnPeriodicalThesis">
+    update en_periodical_thesis
+    set key_id = #{keyId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      all_auther_name = #{allAutherName,jdbcType=VARCHAR},
+      provenance = #{provenance,jdbcType=VARCHAR},
+      "subject " = #{subject,jdbcType=VARCHAR},
+      volume = #{volume,jdbcType=VARCHAR},
+      period = #{period,jdbcType=VARCHAR},
+      page = #{page,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR},
+      no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
+      no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
+      no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
+      no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
+      no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
+      no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
+      no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
+      no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
+      no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
+      no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
+      no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
+      no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
+      no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
+      no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
+      no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
+      no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
+      no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
+      no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
+      no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
+      no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
+      cliam_status = #{cliamStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

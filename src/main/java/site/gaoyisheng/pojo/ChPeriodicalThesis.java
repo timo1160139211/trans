@@ -1,31 +1,27 @@
 package site.gaoyisheng.pojo;
 
-public class Patent {
+public class ChPeriodicalThesis {
     private Integer id;
 
     private String keyId;
 
+    private String provenance;
+
+    private String year;
+
+    private String ministry;
+
+    private String period;
+
     private String name;
 
-    private String type;
-
-    private String authorizationNumber;
-
-    private String authorizationDate;
-
-    private String pctPatentOrNot;
-
-    private String pctPatentName;
-
-    private String pctPatentApplicationNumber;
-
-    private String pctPatentApplicationDate;
-
-    private String pctPatentPriorityDate;
-
-    private String inCountry;
+    private String keyWords;
 
     private String allAutherName;
+
+    private String mechanism;
+
+    private String no1AutherName;
 
     private String no1AutherNumber;
 
@@ -65,9 +61,7 @@ public class Patent {
 
     private String no10AutherNumber;
 
-    private String claimStatus;
-
-    private String no1AutherName;
+    private String cliamStatus;
 
     public Integer getId() {
         return id;
@@ -85,6 +79,38 @@ public class Patent {
         this.keyId = keyId == null ? null : keyId.trim();
     }
 
+    public String getProvenance() {
+        return provenance;
+    }
+
+    public void setProvenance(String provenance) {
+        this.provenance = provenance == null ? null : provenance.trim();
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year == null ? null : year.trim();
+    }
+
+    public String getMinistry() {
+        return ministry;
+    }
+
+    public void setMinistry(String ministry) {
+        this.ministry = ministry == null ? null : ministry.trim();
+    }
+
+    public String getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(String period) {
+        this.period = period == null ? null : period.trim();
+    }
+
     public String getName() {
         return name;
     }
@@ -93,76 +119,12 @@ public class Patent {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getType() {
-        return type;
+    public String getKeyWords() {
+        return keyWords;
     }
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
-    }
-
-    public String getAuthorizationNumber() {
-        return authorizationNumber;
-    }
-
-    public void setAuthorizationNumber(String authorizationNumber) {
-        this.authorizationNumber = authorizationNumber == null ? null : authorizationNumber.trim();
-    }
-
-    public String getAuthorizationDate() {
-        return authorizationDate;
-    }
-
-    public void setAuthorizationDate(String authorizationDate) {
-        this.authorizationDate = authorizationDate == null ? null : authorizationDate.trim();
-    }
-
-    public String getPctPatentOrNot() {
-        return pctPatentOrNot;
-    }
-
-    public void setPctPatentOrNot(String pctPatentOrNot) {
-        this.pctPatentOrNot = pctPatentOrNot == null ? null : pctPatentOrNot.trim();
-    }
-
-    public String getPctPatentName() {
-        return pctPatentName;
-    }
-
-    public void setPctPatentName(String pctPatentName) {
-        this.pctPatentName = pctPatentName == null ? null : pctPatentName.trim();
-    }
-
-    public String getPctPatentApplicationNumber() {
-        return pctPatentApplicationNumber;
-    }
-
-    public void setPctPatentApplicationNumber(String pctPatentApplicationNumber) {
-        this.pctPatentApplicationNumber = pctPatentApplicationNumber == null ? null : pctPatentApplicationNumber.trim();
-    }
-
-    public String getPctPatentApplicationDate() {
-        return pctPatentApplicationDate;
-    }
-
-    public void setPctPatentApplicationDate(String pctPatentApplicationDate) {
-        this.pctPatentApplicationDate = pctPatentApplicationDate == null ? null : pctPatentApplicationDate.trim();
-    }
-
-    public String getPctPatentPriorityDate() {
-        return pctPatentPriorityDate;
-    }
-
-    public void setPctPatentPriorityDate(String pctPatentPriorityDate) {
-        this.pctPatentPriorityDate = pctPatentPriorityDate == null ? null : pctPatentPriorityDate.trim();
-    }
-
-    public String getInCountry() {
-        return inCountry;
-    }
-
-    public void setInCountry(String inCountry) {
-        this.inCountry = inCountry == null ? null : inCountry.trim();
+    public void setKeyWords(String keyWords) {
+        this.keyWords = keyWords == null ? null : keyWords.trim();
     }
 
     public String getAllAutherName() {
@@ -171,6 +133,22 @@ public class Patent {
 
     public void setAllAutherName(String allAutherName) {
         this.allAutherName = allAutherName == null ? null : allAutherName.trim();
+    }
+
+    public String getMechanism() {
+        return mechanism;
+    }
+
+    public void setMechanism(String mechanism) {
+        this.mechanism = mechanism == null ? null : mechanism.trim();
+    }
+
+    public String getNo1AutherName() {
+        return no1AutherName;
+    }
+
+    public void setNo1AutherName(String no1AutherName) {
+        this.no1AutherName = no1AutherName == null ? null : no1AutherName.trim();
     }
 
     public String getNo1AutherNumber() {
@@ -325,19 +303,11 @@ public class Patent {
         this.no10AutherNumber = no10AutherNumber == null ? null : no10AutherNumber.trim();
     }
 
-    public String getClaimStatus() {
-        return claimStatus;
+    public String getCliamStatus() {
+        return cliamStatus;
     }
 
-    public void setClaimStatus(String claimStatus) {
-        this.claimStatus = claimStatus == null ? null : claimStatus.trim();
-    }
-
-    public String getNo1AutherName() {
-        return no1AutherName;
-    }
-
-    public void setNo1AutherName(String no1AutherName) {
-        this.no1AutherName = no1AutherName == null ? null : no1AutherName.trim();
+    public void setCliamStatus(String cliamStatus) {
+        this.cliamStatus = cliamStatus == null ? null : cliamStatus.trim();
     }
 }
