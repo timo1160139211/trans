@@ -22,15 +22,17 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Thesis;
 import site.gaoyisheng.pojo.User;
+import site.gaoyisheng.service.EnPeriodicalThesisService;
 import site.gaoyisheng.service.ThesisService;
 import site.gaoyisheng.service.UserService;
 
 public class UserOpsTest extends BaseTest {
 
 	@Autowired
-	private ThesisService ts;
+	private EnPeriodicalThesisService ts;
 	
 	@Autowired
 	private UserService us;
@@ -72,15 +74,16 @@ public class UserOpsTest extends BaseTest {
 //			System.out.println(u.toString());
 //
 //		}
+		//System.out.println(ts.selectByPrimaryKey(101));
 	}	
 	
 //	@Test
 //	public void insertListTest() {
-//		List<Thesis> thesisList = new ArrayList<Thesis>();
+//		List<EnPeriodicalThesis> thesisList = new ArrayList<EnPeriodicalThesis>();
 //		
-//		Thesis t1 = new Thesis();
-//		Thesis t2 = new Thesis();
-//		Thesis t3 = new Thesis();
+//		EnPeriodicalThesis t1 = new EnPeriodicalThesis();
+//		EnPeriodicalThesis t2 = new EnPeriodicalThesis();
+//		EnPeriodicalThesis t3 = new EnPeriodicalThesis();
 //		
 //		t1.setName("qq1");
 //		t2.setName("ww2");

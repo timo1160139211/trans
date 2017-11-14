@@ -109,7 +109,7 @@ public class UserOpsController {
      * @param request
      * @return
      */
-    @RequestMapping("/user-edit-form}")
+    @RequestMapping("/user-edit-form")
     public ModelAndView editUser(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         User selectedUser = (User) session.getAttribute("currentUser");

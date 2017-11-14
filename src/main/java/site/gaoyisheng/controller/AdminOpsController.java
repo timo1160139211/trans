@@ -24,13 +24,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Thesis;
+import site.gaoyisheng.service.EnPeriodicalThesisService;
 import site.gaoyisheng.service.ThesisService;
 import site.gaoyisheng.service.UserService;
 import site.gaoyisheng.utils.FileUtil;
@@ -44,6 +47,9 @@ public class AdminOpsController {
 
 	@Autowired
 	private ThesisService thesisService;
+	
+	@Autowired
+	private EnPeriodicalThesisService enPeriodicalThesisService;
         
     @RequestMapping(value = "/upload", method = RequestMethod.GET)
     public String upload() {
@@ -89,17 +95,54 @@ public class AdminOpsController {
 	 * @param response
 	 * @throws Exception
 	 */
+//	@RequestMapping(value = "/download", method = RequestMethod.GET)
+//	public void exportBrandSort(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//
+//		try {
+//			List<Thesis> list = thesisService.selectAllThesis();
+//
+//			byte[] fileNameByte = ("下载.xls").getBytes("GBK");
+//			String filename = new String(fileNameByte, "ISO8859-1");
+//
+//			FileUtil fileUtil = new FileUtil();
+//			byte[] bytes = fileUtil.exportFile(list);
+//
+//			response.setContentType("application/x-msdownload");
+//			response.setContentLength(bytes.length);
+//			response.setHeader("Content-Disposition", "attachment;filename=" + filename);
+//			response.getOutputStream().write(bytes);
+//
+//		} catch (Exception ex) {
+//		}
+//	}
+
+	/**
+	 * 
+	 * .
+	 * TODO 查库,声称文件,并下载
+	 * @param <E>
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/download", method = RequestMethod.GET)
-	public void exportBrandSort(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void exportExcel(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		try {
-			List<Thesis> list = thesisService.selectAllThesis();
-
+			//成果类型: {"patent"、"enPeriodicalThesis","chPeriodicalThesis"}
+			String type = request.getParameter("awardType");
+			FileUtil fileUtil = new FileUtil();
+			byte[] bytes = null;
+			
+			switch(type) {
+//				case "chPeriodicalThesis": bytes = fileUtil.exportFile(thesisService.selectAllThesis(),new Thesis());break;
+//			    case "patent": bytes = fileUtil.exportFile(thesisService.selectAllThesis(),new Thesis());break;
+			    case "enPeriodicalThesis": bytes = fileUtil.exportFile(enPeriodicalThesisService.selectAll(),new EnPeriodicalThesis());break;
+			    default : return ; //退出,并返回"无该类型文档"
+			}
+			
 			byte[] fileNameByte = ("下载.xls").getBytes("GBK");
 			String filename = new String(fileNameByte, "ISO8859-1");
-
-			FileUtil fileUtil = new FileUtil();
-			byte[] bytes = fileUtil.exportFile(list);
 
 			response.setContentType("application/x-msdownload");
 			response.setContentLength(bytes.length);
@@ -110,6 +153,7 @@ public class AdminOpsController {
 		}
 	}
 
+	
 	/**
 	 * . 
 	 * TODO 查用户
