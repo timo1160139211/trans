@@ -61,9 +61,43 @@ public class EnPeriodicalThesis {
 
     private String no10AutherNumber;
 
-    private String cliamStatus;
+    private String claimStatus;
 
-    public Integer getId() {
+    public EnPeriodicalThesis() {
+		super();
+		this.keyId = "";
+		this.name = "";
+		this.allAutherName = "";
+		this.provenance = "";
+		this.subject = "";
+		this.volume = "";
+		this.period = "";
+		this.page = "";
+		this.year = "";
+		this.no1AutherName = "";
+		this.no1AutherNumber = "";
+		this.no2AutherName = "";
+		this.no2AutherNumber = "";
+		this.no3AutherName = "";
+		this.no3AutherNumber = "";
+		this.no4AutherName = "";
+		this.no4AutherNumber = "";
+		this.no5AutherName = "";
+		this.no5AutherNumber = "";
+		this.no6AutherName = "";
+		this.no6AutherNumber = "";
+		this.no7AutherName = "";
+		this.no7AutherNumber = "";
+		this.no8AutherName = "";
+		this.no8AutherNumber = "";
+		this.no9AutherName = "";
+		this.no9AutherNumber = "";
+		this.no10AutherName = "";
+		this.no10AutherNumber = "";
+		this.claimStatus = "未认领";
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -303,11 +337,82 @@ public class EnPeriodicalThesis {
         this.no10AutherNumber = no10AutherNumber == null ? null : no10AutherNumber.trim();
     }
 
-    public String getCliamStatus() {
-        return cliamStatus;
+    public String getClaimStatus() {
+        return claimStatus;
     }
 
-    public void setCliamStatus(String cliamStatus) {
-        this.cliamStatus = cliamStatus == null ? null : cliamStatus.trim();
+    public void setClaimStatus(String claimStatus) {
+        this.claimStatus = claimStatus == null ? null : claimStatus.trim();
     }
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("EnPeriodicalThesis [id=");
+		builder.append(id);
+		builder.append(", keyId=");
+		builder.append(keyId);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", allAutherName=");
+		builder.append(allAutherName);
+		builder.append(", provenance=");
+		builder.append(provenance);
+		builder.append(", subject=");
+		builder.append(subject);
+		builder.append(", volume=");
+		builder.append(volume);
+		builder.append(", period=");
+		builder.append(period);
+		builder.append(", page=");
+		builder.append(page);
+		builder.append(", year=");
+		builder.append(year);
+		builder.append(", no1AutherName=");
+		builder.append(no1AutherName);
+		builder.append(", no1AutherNumber=");
+		builder.append(no1AutherNumber);
+		builder.append(", no2AutherName=");
+		builder.append(no2AutherName);
+		builder.append(", no2AutherNumber=");
+		builder.append(no2AutherNumber);
+		builder.append(", no3AutherName=");
+		builder.append(no3AutherName);
+		builder.append(", no3AutherNumber=");
+		builder.append(no3AutherNumber);
+		builder.append(", no4AutherName=");
+		builder.append(no4AutherName);
+		builder.append(", no4AutherNumber=");
+		builder.append(no4AutherNumber);
+		builder.append(", no5AutherName=");
+		builder.append(no5AutherName);
+		builder.append(", no5AutherNumber=");
+		builder.append(no5AutherNumber);
+		builder.append(", no6AutherName=");
+		builder.append(no6AutherName);
+		builder.append(", no6AutherNumber=");
+		builder.append(no6AutherNumber);
+		builder.append(", no7AutherName=");
+		builder.append(no7AutherName);
+		builder.append(", no7AutherNumber=");
+		builder.append(no7AutherNumber);
+		builder.append(", no8AutherName=");
+		builder.append(no8AutherName);
+		builder.append(", no8AutherNumber=");
+		builder.append(no8AutherNumber);
+		builder.append(", no9AutherName=");
+		builder.append(no9AutherName);
+		builder.append(", no9AutherNumber=");
+		builder.append(no9AutherNumber);
+		builder.append(", no10AutherName=");
+		builder.append(no10AutherName);
+		builder.append(", no10AutherNumber=");
+		builder.append(no10AutherNumber);
+		builder.append(", claimStatus=");
+		builder.append(claimStatus);
+		builder.append("]");
+		return builder.toString();
+	}
+    
+    
 }
