@@ -1,2376 +1,502 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.gaoyisheng.dao.PatentMapper">
-  <resultMap id="BaseResultMap" type="site.gaoyisheng.pojo.Patent">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="key_id" jdbcType="VARCHAR" property="keyId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="authorization_number" jdbcType="VARCHAR" property="authorizationNumber" />
-    <result column="authorization_date" jdbcType="VARCHAR" property="authorizationDate" />
-    <result column="pct_patent_or_not" jdbcType="VARCHAR" property="pctPatentOrNot" />
-    <result column="pct_patent_name" jdbcType="VARCHAR" property="pctPatentName" />
-    <result column="pct_patent_application_number" jdbcType="VARCHAR" property="pctPatentApplicationNumber" />
-    <result column="pct_patent_application_date" jdbcType="VARCHAR" property="pctPatentApplicationDate" />
-    <result column="pct_patent_priority_date" jdbcType="VARCHAR" property="pctPatentPriorityDate" />
-    <result column="in_country" jdbcType="VARCHAR" property="inCountry" />
-    <result column="all_auther_name" jdbcType="VARCHAR" property="allAutherName" />
-    <result column="no1_auther_number" jdbcType="VARCHAR" property="no1AutherNumber" />
-    <result column="no2_auther_name" jdbcType="VARCHAR" property="no2AutherName" />
-    <result column="no2_auther_number" jdbcType="VARCHAR" property="no2AutherNumber" />
-    <result column="no3_auther_name" jdbcType="VARCHAR" property="no3AutherName" />
-    <result column="no3_auther_number" jdbcType="VARCHAR" property="no3AutherNumber" />
-    <result column="no4_auther_name" jdbcType="VARCHAR" property="no4AutherName" />
-    <result column="no4_auther_number" jdbcType="VARCHAR" property="no4AutherNumber" />
-    <result column="no5_auther_name" jdbcType="VARCHAR" property="no5AutherName" />
-    <result column="no5_auther_number" jdbcType="VARCHAR" property="no5AutherNumber" />
-    <result column="no6_auther_name" jdbcType="VARCHAR" property="no6AutherName" />
-    <result column="no6_auther_number" jdbcType="VARCHAR" property="no6AutherNumber" />
-    <result column="no7_auther_name" jdbcType="VARCHAR" property="no7AutherName" />
-    <result column="no7_auther_number" jdbcType="VARCHAR" property="no7AutherNumber" />
-    <result column="no8_auther_name" jdbcType="VARCHAR" property="no8AutherName" />
-    <result column="no8_auther_number" jdbcType="VARCHAR" property="no8AutherNumber" />
-    <result column="no9_auther_name" jdbcType="VARCHAR" property="no9AutherName" />
-    <result column="no9_auther_number" jdbcType="VARCHAR" property="no9AutherNumber" />
-    <result column="no10_auther_name" jdbcType="VARCHAR" property="no10AutherName" />
-    <result column="no10_auther_number" jdbcType="VARCHAR" property="no10AutherNumber" />
-    <result column="claim_status" jdbcType="VARCHAR" property="claimStatus" />
-    <result column="no1_auther_name" jdbcType="VARCHAR" property="no1AutherName" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, key_id, name, type, authorization_number, authorization_date, pct_patent_or_not, 
-    pct_patent_name, pct_patent_application_number, pct_patent_application_date, pct_patent_priority_date, 
-    in_country, all_auther_name, no1_auther_number, no2_auther_name, no2_auther_number, 
-    no3_auther_name, no3_auther_number, no4_auther_name, no4_auther_number, no5_auther_name, 
-    no5_auther_number, no6_auther_name, no6_auther_number, no7_auther_name, no7_auther_number, 
-    no8_auther_name, no8_auther_number, no9_auther_name, no9_auther_number, no10_auther_name, 
-    no10_auther_number, claim_status, no1_auther_name
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from patent
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from patent
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="site.gaoyisheng.pojo.Patent">
-    insert into patent (id, key_id, name, 
-      type, authorization_number, authorization_date, 
-      pct_patent_or_not, pct_patent_name, pct_patent_application_number, 
-      pct_patent_application_date, pct_patent_priority_date, 
-      in_country, all_auther_name, no1_auther_number, 
-      no2_auther_name, no2_auther_number, no3_auther_name, 
-      no3_auther_number, no4_auther_name, no4_auther_number, 
-      no5_auther_name, no5_auther_number, no6_auther_name, 
-      no6_auther_number, no7_auther_name, no7_auther_number, 
-      no8_auther_name, no8_auther_number, no9_auther_name, 
-      no9_auther_number, no10_auther_name, no10_auther_number, 
-      claim_status, no1_auther_name)
-    values (#{id,jdbcType=INTEGER}, #{keyId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{authorizationNumber,jdbcType=VARCHAR}, #{authorizationDate,jdbcType=VARCHAR}, 
-      #{pctPatentOrNot,jdbcType=VARCHAR}, #{pctPatentName,jdbcType=VARCHAR}, #{pctPatentApplicationNumber,jdbcType=VARCHAR}, 
-      #{pctPatentApplicationDate,jdbcType=VARCHAR}, #{pctPatentPriorityDate,jdbcType=VARCHAR}, 
-      #{inCountry,jdbcType=VARCHAR}, #{allAutherName,jdbcType=VARCHAR}, #{no1AutherNumber,jdbcType=VARCHAR}, 
-      #{no2AutherName,jdbcType=VARCHAR}, #{no2AutherNumber,jdbcType=VARCHAR}, #{no3AutherName,jdbcType=VARCHAR}, 
-      #{no3AutherNumber,jdbcType=VARCHAR}, #{no4AutherName,jdbcType=VARCHAR}, #{no4AutherNumber,jdbcType=VARCHAR}, 
-      #{no5AutherName,jdbcType=VARCHAR}, #{no5AutherNumber,jdbcType=VARCHAR}, #{no6AutherName,jdbcType=VARCHAR}, 
-      #{no6AutherNumber,jdbcType=VARCHAR}, #{no7AutherName,jdbcType=VARCHAR}, #{no7AutherNumber,jdbcType=VARCHAR}, 
-      #{no8AutherName,jdbcType=VARCHAR}, #{no8AutherNumber,jdbcType=VARCHAR}, #{no9AutherName,jdbcType=VARCHAR}, 
-      #{no9AutherNumber,jdbcType=VARCHAR}, #{no10AutherName,jdbcType=VARCHAR}, #{no10AutherNumber,jdbcType=VARCHAR}, 
-      #{claimStatus,jdbcType=VARCHAR}, #{no1AutherName,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Patent">
-    insert into patent
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="keyId != null">
-        key_id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="type != null">
-        type,
-      </if>
-      <if test="authorizationNumber != null">
-        authorization_number,
-      </if>
-      <if test="authorizationDate != null">
-        authorization_date,
-      </if>
-      <if test="pctPatentOrNot != null">
-        pct_patent_or_not,
-      </if>
-      <if test="pctPatentName != null">
-        pct_patent_name,
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        pct_patent_application_number,
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        pct_patent_application_date,
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        pct_patent_priority_date,
-      </if>
-      <if test="inCountry != null">
-        in_country,
-      </if>
-      <if test="allAutherName != null">
-        all_auther_name,
-      </if>
-      <if test="no1AutherNumber != null">
-        no1_auther_number,
-      </if>
-      <if test="no2AutherName != null">
-        no2_auther_name,
-      </if>
-      <if test="no2AutherNumber != null">
-        no2_auther_number,
-      </if>
-      <if test="no3AutherName != null">
-        no3_auther_name,
-      </if>
-      <if test="no3AutherNumber != null">
-        no3_auther_number,
-      </if>
-      <if test="no4AutherName != null">
-        no4_auther_name,
-      </if>
-      <if test="no4AutherNumber != null">
-        no4_auther_number,
-      </if>
-      <if test="no5AutherName != null">
-        no5_auther_name,
-      </if>
-      <if test="no5AutherNumber != null">
-        no5_auther_number,
-      </if>
-      <if test="no6AutherName != null">
-        no6_auther_name,
-      </if>
-      <if test="no6AutherNumber != null">
-        no6_auther_number,
-      </if>
-      <if test="no7AutherName != null">
-        no7_auther_name,
-      </if>
-      <if test="no7AutherNumber != null">
-        no7_auther_number,
-      </if>
-      <if test="no8AutherName != null">
-        no8_auther_name,
-      </if>
-      <if test="no8AutherNumber != null">
-        no8_auther_number,
-      </if>
-      <if test="no9AutherName != null">
-        no9_auther_name,
-      </if>
-      <if test="no9AutherNumber != null">
-        no9_auther_number,
-      </if>
-      <if test="no10AutherName != null">
-        no10_auther_name,
-      </if>
-      <if test="no10AutherNumber != null">
-        no10_auther_number,
-      </if>
-      <if test="claimStatus != null">
-        claim_status,
-      </if>
-      <if test="no1AutherName != null">
-        no1_auther_name,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="keyId != null">
-        #{keyId,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationNumber != null">
-        #{authorizationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationDate != null">
-        #{authorizationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentOrNot != null">
-        #{pctPatentOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentName != null">
-        #{pctPatentName,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      </if>
-      <if test="inCountry != null">
-        #{inCountry,jdbcType=VARCHAR},
-      </if>
-      <if test="allAutherName != null">
-        #{allAutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherNumber != null">
-        #{no1AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherName != null">
-        #{no2AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherNumber != null">
-        #{no2AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherName != null">
-        #{no3AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherNumber != null">
-        #{no3AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherName != null">
-        #{no4AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherNumber != null">
-        #{no4AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherName != null">
-        #{no5AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherNumber != null">
-        #{no5AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherName != null">
-        #{no6AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherNumber != null">
-        #{no6AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherName != null">
-        #{no7AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherNumber != null">
-        #{no7AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherName != null">
-        #{no8AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherNumber != null">
-        #{no8AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherName != null">
-        #{no9AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherNumber != null">
-        #{no9AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherName != null">
-        #{no10AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherNumber != null">
-        #{no10AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="claimStatus != null">
-        #{claimStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherName != null">
-        #{no1AutherName,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.Patent">
-    update patent
-    <set>
-      <if test="keyId != null">
-        key_id = #{keyId,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        type = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationNumber != null">
-        authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationDate != null">
-        authorization_date = #{authorizationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentOrNot != null">
-        pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentName != null">
-        pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        pct_patent_application_date = #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      </if>
-      <if test="inCountry != null">
-        in_country = #{inCountry,jdbcType=VARCHAR},
-      </if>
-      <if test="allAutherName != null">
-        all_auther_name = #{allAutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherNumber != null">
-        no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherName != null">
-        no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherNumber != null">
-        no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherName != null">
-        no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherNumber != null">
-        no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherName != null">
-        no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherNumber != null">
-        no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherName != null">
-        no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherNumber != null">
-        no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherName != null">
-        no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherNumber != null">
-        no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherName != null">
-        no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherNumber != null">
-        no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherName != null">
-        no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherNumber != null">
-        no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherName != null">
-        no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherNumber != null">
-        no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherName != null">
-        no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherNumber != null">
-        no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="claimStatus != null">
-        claim_status = #{claimStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherName != null">
-        no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.Patent">
-    update patent
-    set key_id = #{keyId,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
-      authorization_date = #{authorizationDate,jdbcType=VARCHAR},
-      pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
-      pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
-      pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      pct_patent_application_date = #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      in_country = #{inCountry,jdbcType=VARCHAR},
-      all_auther_name = #{allAutherName,jdbcType=VARCHAR},
-      no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
-      no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
-      no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
-      no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
-      no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
-      no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
-      no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
-      no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
-      no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
-      no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
-      no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
-      no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
-      no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
-      no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
-      no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
-      no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
-      no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
-      no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
-      no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
-      claim_status = #{claimStatus,jdbcType=VARCHAR},
-      no1_auther_name = #{no1AutherName,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="site.gaoyisheng.pojo.Patent">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="key_id" jdbcType="VARCHAR" property="keyId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="authorization_number" jdbcType="VARCHAR" property="authorizationNumber" />
-    <result column="authorization_date" jdbcType="VARCHAR" property="authorizationDate" />
-    <result column="pct_patent_or_not" jdbcType="VARCHAR" property="pctPatentOrNot" />
-    <result column="pct_patent_name" jdbcType="VARCHAR" property="pctPatentName" />
-    <result column="pct_patent_application_number" jdbcType="VARCHAR" property="pctPatentApplicationNumber" />
-    <result column="pct_patent_application_date" jdbcType="VARCHAR" property="pctPatentApplicationDate" />
-    <result column="pct_patent_priority_date" jdbcType="VARCHAR" property="pctPatentPriorityDate" />
-    <result column="in_country" jdbcType="VARCHAR" property="inCountry" />
-    <result column="all_auther_name" jdbcType="VARCHAR" property="allAutherName" />
-    <result column="no1_auther_number" jdbcType="VARCHAR" property="no1AutherNumber" />
-    <result column="no2_auther_name" jdbcType="VARCHAR" property="no2AutherName" />
-    <result column="no2_auther_number" jdbcType="VARCHAR" property="no2AutherNumber" />
-    <result column="no3_auther_name" jdbcType="VARCHAR" property="no3AutherName" />
-    <result column="no3_auther_number" jdbcType="VARCHAR" property="no3AutherNumber" />
-    <result column="no4_auther_name" jdbcType="VARCHAR" property="no4AutherName" />
-    <result column="no4_auther_number" jdbcType="VARCHAR" property="no4AutherNumber" />
-    <result column="no5_auther_name" jdbcType="VARCHAR" property="no5AutherName" />
-    <result column="no5_auther_number" jdbcType="VARCHAR" property="no5AutherNumber" />
-    <result column="no6_auther_name" jdbcType="VARCHAR" property="no6AutherName" />
-    <result column="no6_auther_number" jdbcType="VARCHAR" property="no6AutherNumber" />
-    <result column="no7_auther_name" jdbcType="VARCHAR" property="no7AutherName" />
-    <result column="no7_auther_number" jdbcType="VARCHAR" property="no7AutherNumber" />
-    <result column="no8_auther_name" jdbcType="VARCHAR" property="no8AutherName" />
-    <result column="no8_auther_number" jdbcType="VARCHAR" property="no8AutherNumber" />
-    <result column="no9_auther_name" jdbcType="VARCHAR" property="no9AutherName" />
-    <result column="no9_auther_number" jdbcType="VARCHAR" property="no9AutherNumber" />
-    <result column="no10_auther_name" jdbcType="VARCHAR" property="no10AutherName" />
-    <result column="no10_auther_number" jdbcType="VARCHAR" property="no10AutherNumber" />
-    <result column="claim_status" jdbcType="VARCHAR" property="claimStatus" />
-    <result column="no1_auther_name" jdbcType="VARCHAR" property="no1AutherName" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, key_id, name, type, authorization_number, authorization_date, pct_patent_or_not, 
-    pct_patent_name, pct_patent_application_number, pct_patent_application_date, pct_patent_priority_date, 
-    in_country, all_auther_name, no1_auther_number, no2_auther_name, no2_auther_number, 
-    no3_auther_name, no3_auther_number, no4_auther_name, no4_auther_number, no5_auther_name, 
-    no5_auther_number, no6_auther_name, no6_auther_number, no7_auther_name, no7_auther_number, 
-    no8_auther_name, no8_auther_number, no9_auther_name, no9_auther_number, no10_auther_name, 
-    no10_auther_number, claim_status, no1_auther_name
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from patent
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from patent
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="site.gaoyisheng.pojo.Patent">
-    insert into patent (id, key_id, name, 
-      type, authorization_number, authorization_date, 
-      pct_patent_or_not, pct_patent_name, pct_patent_application_number, 
-      pct_patent_application_date, pct_patent_priority_date, 
-      in_country, all_auther_name, no1_auther_number, 
-      no2_auther_name, no2_auther_number, no3_auther_name, 
-      no3_auther_number, no4_auther_name, no4_auther_number, 
-      no5_auther_name, no5_auther_number, no6_auther_name, 
-      no6_auther_number, no7_auther_name, no7_auther_number, 
-      no8_auther_name, no8_auther_number, no9_auther_name, 
-      no9_auther_number, no10_auther_name, no10_auther_number, 
-      claim_status, no1_auther_name)
-    values (#{id,jdbcType=INTEGER}, #{keyId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{authorizationNumber,jdbcType=VARCHAR}, #{authorizationDate,jdbcType=VARCHAR}, 
-      #{pctPatentOrNot,jdbcType=VARCHAR}, #{pctPatentName,jdbcType=VARCHAR}, #{pctPatentApplicationNumber,jdbcType=VARCHAR}, 
-      #{pctPatentApplicationDate,jdbcType=VARCHAR}, #{pctPatentPriorityDate,jdbcType=VARCHAR}, 
-      #{inCountry,jdbcType=VARCHAR}, #{allAutherName,jdbcType=VARCHAR}, #{no1AutherNumber,jdbcType=VARCHAR}, 
-      #{no2AutherName,jdbcType=VARCHAR}, #{no2AutherNumber,jdbcType=VARCHAR}, #{no3AutherName,jdbcType=VARCHAR}, 
-      #{no3AutherNumber,jdbcType=VARCHAR}, #{no4AutherName,jdbcType=VARCHAR}, #{no4AutherNumber,jdbcType=VARCHAR}, 
-      #{no5AutherName,jdbcType=VARCHAR}, #{no5AutherNumber,jdbcType=VARCHAR}, #{no6AutherName,jdbcType=VARCHAR}, 
-      #{no6AutherNumber,jdbcType=VARCHAR}, #{no7AutherName,jdbcType=VARCHAR}, #{no7AutherNumber,jdbcType=VARCHAR}, 
-      #{no8AutherName,jdbcType=VARCHAR}, #{no8AutherNumber,jdbcType=VARCHAR}, #{no9AutherName,jdbcType=VARCHAR}, 
-      #{no9AutherNumber,jdbcType=VARCHAR}, #{no10AutherName,jdbcType=VARCHAR}, #{no10AutherNumber,jdbcType=VARCHAR}, 
-      #{claimStatus,jdbcType=VARCHAR}, #{no1AutherName,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Patent">
-    insert into patent
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="keyId != null">
-        key_id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="type != null">
-        type,
-      </if>
-      <if test="authorizationNumber != null">
-        authorization_number,
-      </if>
-      <if test="authorizationDate != null">
-        authorization_date,
-      </if>
-      <if test="pctPatentOrNot != null">
-        pct_patent_or_not,
-      </if>
-      <if test="pctPatentName != null">
-        pct_patent_name,
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        pct_patent_application_number,
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        pct_patent_application_date,
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        pct_patent_priority_date,
-      </if>
-      <if test="inCountry != null">
-        in_country,
-      </if>
-      <if test="allAutherName != null">
-        all_auther_name,
-      </if>
-      <if test="no1AutherNumber != null">
-        no1_auther_number,
-      </if>
-      <if test="no2AutherName != null">
-        no2_auther_name,
-      </if>
-      <if test="no2AutherNumber != null">
-        no2_auther_number,
-      </if>
-      <if test="no3AutherName != null">
-        no3_auther_name,
-      </if>
-      <if test="no3AutherNumber != null">
-        no3_auther_number,
-      </if>
-      <if test="no4AutherName != null">
-        no4_auther_name,
-      </if>
-      <if test="no4AutherNumber != null">
-        no4_auther_number,
-      </if>
-      <if test="no5AutherName != null">
-        no5_auther_name,
-      </if>
-      <if test="no5AutherNumber != null">
-        no5_auther_number,
-      </if>
-      <if test="no6AutherName != null">
-        no6_auther_name,
-      </if>
-      <if test="no6AutherNumber != null">
-        no6_auther_number,
-      </if>
-      <if test="no7AutherName != null">
-        no7_auther_name,
-      </if>
-      <if test="no7AutherNumber != null">
-        no7_auther_number,
-      </if>
-      <if test="no8AutherName != null">
-        no8_auther_name,
-      </if>
-      <if test="no8AutherNumber != null">
-        no8_auther_number,
-      </if>
-      <if test="no9AutherName != null">
-        no9_auther_name,
-      </if>
-      <if test="no9AutherNumber != null">
-        no9_auther_number,
-      </if>
-      <if test="no10AutherName != null">
-        no10_auther_name,
-      </if>
-      <if test="no10AutherNumber != null">
-        no10_auther_number,
-      </if>
-      <if test="claimStatus != null">
-        claim_status,
-      </if>
-      <if test="no1AutherName != null">
-        no1_auther_name,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="keyId != null">
-        #{keyId,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationNumber != null">
-        #{authorizationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationDate != null">
-        #{authorizationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentOrNot != null">
-        #{pctPatentOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentName != null">
-        #{pctPatentName,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      </if>
-      <if test="inCountry != null">
-        #{inCountry,jdbcType=VARCHAR},
-      </if>
-      <if test="allAutherName != null">
-        #{allAutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherNumber != null">
-        #{no1AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherName != null">
-        #{no2AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherNumber != null">
-        #{no2AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherName != null">
-        #{no3AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherNumber != null">
-        #{no3AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherName != null">
-        #{no4AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherNumber != null">
-        #{no4AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherName != null">
-        #{no5AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherNumber != null">
-        #{no5AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherName != null">
-        #{no6AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherNumber != null">
-        #{no6AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherName != null">
-        #{no7AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherNumber != null">
-        #{no7AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherName != null">
-        #{no8AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherNumber != null">
-        #{no8AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherName != null">
-        #{no9AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherNumber != null">
-        #{no9AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherName != null">
-        #{no10AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherNumber != null">
-        #{no10AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="claimStatus != null">
-        #{claimStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherName != null">
-        #{no1AutherName,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.Patent">
-    update patent
-    <set>
-      <if test="keyId != null">
-        key_id = #{keyId,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        type = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationNumber != null">
-        authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationDate != null">
-        authorization_date = #{authorizationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentOrNot != null">
-        pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentName != null">
-        pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        pct_patent_application_date = #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      </if>
-      <if test="inCountry != null">
-        in_country = #{inCountry,jdbcType=VARCHAR},
-      </if>
-      <if test="allAutherName != null">
-        all_auther_name = #{allAutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherNumber != null">
-        no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherName != null">
-        no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherNumber != null">
-        no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherName != null">
-        no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherNumber != null">
-        no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherName != null">
-        no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherNumber != null">
-        no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherName != null">
-        no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherNumber != null">
-        no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherName != null">
-        no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherNumber != null">
-        no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherName != null">
-        no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherNumber != null">
-        no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherName != null">
-        no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherNumber != null">
-        no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherName != null">
-        no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherNumber != null">
-        no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherName != null">
-        no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherNumber != null">
-        no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="claimStatus != null">
-        claim_status = #{claimStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherName != null">
-        no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.Patent">
-    update patent
-    set key_id = #{keyId,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
-      authorization_date = #{authorizationDate,jdbcType=VARCHAR},
-      pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
-      pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
-      pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      pct_patent_application_date = #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      in_country = #{inCountry,jdbcType=VARCHAR},
-      all_auther_name = #{allAutherName,jdbcType=VARCHAR},
-      no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
-      no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
-      no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
-      no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
-      no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
-      no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
-      no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
-      no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
-      no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
-      no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
-      no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
-      no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
-      no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
-      no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
-      no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
-      no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
-      no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
-      no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
-      no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
-      claim_status = #{claimStatus,jdbcType=VARCHAR},
-      no1_auther_name = #{no1AutherName,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="site.gaoyisheng.pojo.Patent">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="key_id" jdbcType="VARCHAR" property="keyId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="authorization_number" jdbcType="VARCHAR" property="authorizationNumber" />
-    <result column="authorization_date" jdbcType="VARCHAR" property="authorizationDate" />
-    <result column="pct_patent_or_not" jdbcType="VARCHAR" property="pctPatentOrNot" />
-    <result column="pct_patent_name" jdbcType="VARCHAR" property="pctPatentName" />
-    <result column="pct_patent_application_number" jdbcType="VARCHAR" property="pctPatentApplicationNumber" />
-    <result column="pct_patent_application_date" jdbcType="VARCHAR" property="pctPatentApplicationDate" />
-    <result column="pct_patent_priority_date" jdbcType="VARCHAR" property="pctPatentPriorityDate" />
-    <result column="in_country" jdbcType="VARCHAR" property="inCountry" />
-    <result column="all_auther_name" jdbcType="VARCHAR" property="allAutherName" />
-    <result column="no1_auther_number" jdbcType="VARCHAR" property="no1AutherNumber" />
-    <result column="no2_auther_name" jdbcType="VARCHAR" property="no2AutherName" />
-    <result column="no2_auther_number" jdbcType="VARCHAR" property="no2AutherNumber" />
-    <result column="no3_auther_name" jdbcType="VARCHAR" property="no3AutherName" />
-    <result column="no3_auther_number" jdbcType="VARCHAR" property="no3AutherNumber" />
-    <result column="no4_auther_name" jdbcType="VARCHAR" property="no4AutherName" />
-    <result column="no4_auther_number" jdbcType="VARCHAR" property="no4AutherNumber" />
-    <result column="no5_auther_name" jdbcType="VARCHAR" property="no5AutherName" />
-    <result column="no5_auther_number" jdbcType="VARCHAR" property="no5AutherNumber" />
-    <result column="no6_auther_name" jdbcType="VARCHAR" property="no6AutherName" />
-    <result column="no6_auther_number" jdbcType="VARCHAR" property="no6AutherNumber" />
-    <result column="no7_auther_name" jdbcType="VARCHAR" property="no7AutherName" />
-    <result column="no7_auther_number" jdbcType="VARCHAR" property="no7AutherNumber" />
-    <result column="no8_auther_name" jdbcType="VARCHAR" property="no8AutherName" />
-    <result column="no8_auther_number" jdbcType="VARCHAR" property="no8AutherNumber" />
-    <result column="no9_auther_name" jdbcType="VARCHAR" property="no9AutherName" />
-    <result column="no9_auther_number" jdbcType="VARCHAR" property="no9AutherNumber" />
-    <result column="no10_auther_name" jdbcType="VARCHAR" property="no10AutherName" />
-    <result column="no10_auther_number" jdbcType="VARCHAR" property="no10AutherNumber" />
-    <result column="claim_status" jdbcType="VARCHAR" property="claimStatus" />
-    <result column="no1_auther_name" jdbcType="VARCHAR" property="no1AutherName" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, key_id, name, type, authorization_number, authorization_date, pct_patent_or_not, 
-    pct_patent_name, pct_patent_application_number, pct_patent_application_date, pct_patent_priority_date, 
-    in_country, all_auther_name, no1_auther_number, no2_auther_name, no2_auther_number, 
-    no3_auther_name, no3_auther_number, no4_auther_name, no4_auther_number, no5_auther_name, 
-    no5_auther_number, no6_auther_name, no6_auther_number, no7_auther_name, no7_auther_number, 
-    no8_auther_name, no8_auther_number, no9_auther_name, no9_auther_number, no10_auther_name, 
-    no10_auther_number, claim_status, no1_auther_name
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from patent
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from patent
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="site.gaoyisheng.pojo.Patent">
-    insert into patent (id, key_id, name, 
-      type, authorization_number, authorization_date, 
-      pct_patent_or_not, pct_patent_name, pct_patent_application_number, 
-      pct_patent_application_date, pct_patent_priority_date, 
-      in_country, all_auther_name, no1_auther_number, 
-      no2_auther_name, no2_auther_number, no3_auther_name, 
-      no3_auther_number, no4_auther_name, no4_auther_number, 
-      no5_auther_name, no5_auther_number, no6_auther_name, 
-      no6_auther_number, no7_auther_name, no7_auther_number, 
-      no8_auther_name, no8_auther_number, no9_auther_name, 
-      no9_auther_number, no10_auther_name, no10_auther_number, 
-      claim_status, no1_auther_name)
-    values (#{id,jdbcType=INTEGER}, #{keyId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{authorizationNumber,jdbcType=VARCHAR}, #{authorizationDate,jdbcType=VARCHAR}, 
-      #{pctPatentOrNot,jdbcType=VARCHAR}, #{pctPatentName,jdbcType=VARCHAR}, #{pctPatentApplicationNumber,jdbcType=VARCHAR}, 
-      #{pctPatentApplicationDate,jdbcType=VARCHAR}, #{pctPatentPriorityDate,jdbcType=VARCHAR}, 
-      #{inCountry,jdbcType=VARCHAR}, #{allAutherName,jdbcType=VARCHAR}, #{no1AutherNumber,jdbcType=VARCHAR}, 
-      #{no2AutherName,jdbcType=VARCHAR}, #{no2AutherNumber,jdbcType=VARCHAR}, #{no3AutherName,jdbcType=VARCHAR}, 
-      #{no3AutherNumber,jdbcType=VARCHAR}, #{no4AutherName,jdbcType=VARCHAR}, #{no4AutherNumber,jdbcType=VARCHAR}, 
-      #{no5AutherName,jdbcType=VARCHAR}, #{no5AutherNumber,jdbcType=VARCHAR}, #{no6AutherName,jdbcType=VARCHAR}, 
-      #{no6AutherNumber,jdbcType=VARCHAR}, #{no7AutherName,jdbcType=VARCHAR}, #{no7AutherNumber,jdbcType=VARCHAR}, 
-      #{no8AutherName,jdbcType=VARCHAR}, #{no8AutherNumber,jdbcType=VARCHAR}, #{no9AutherName,jdbcType=VARCHAR}, 
-      #{no9AutherNumber,jdbcType=VARCHAR}, #{no10AutherName,jdbcType=VARCHAR}, #{no10AutherNumber,jdbcType=VARCHAR}, 
-      #{claimStatus,jdbcType=VARCHAR}, #{no1AutherName,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Patent">
-    insert into patent
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="keyId != null">
-        key_id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="type != null">
-        type,
-      </if>
-      <if test="authorizationNumber != null">
-        authorization_number,
-      </if>
-      <if test="authorizationDate != null">
-        authorization_date,
-      </if>
-      <if test="pctPatentOrNot != null">
-        pct_patent_or_not,
-      </if>
-      <if test="pctPatentName != null">
-        pct_patent_name,
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        pct_patent_application_number,
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        pct_patent_application_date,
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        pct_patent_priority_date,
-      </if>
-      <if test="inCountry != null">
-        in_country,
-      </if>
-      <if test="allAutherName != null">
-        all_auther_name,
-      </if>
-      <if test="no1AutherNumber != null">
-        no1_auther_number,
-      </if>
-      <if test="no2AutherName != null">
-        no2_auther_name,
-      </if>
-      <if test="no2AutherNumber != null">
-        no2_auther_number,
-      </if>
-      <if test="no3AutherName != null">
-        no3_auther_name,
-      </if>
-      <if test="no3AutherNumber != null">
-        no3_auther_number,
-      </if>
-      <if test="no4AutherName != null">
-        no4_auther_name,
-      </if>
-      <if test="no4AutherNumber != null">
-        no4_auther_number,
-      </if>
-      <if test="no5AutherName != null">
-        no5_auther_name,
-      </if>
-      <if test="no5AutherNumber != null">
-        no5_auther_number,
-      </if>
-      <if test="no6AutherName != null">
-        no6_auther_name,
-      </if>
-      <if test="no6AutherNumber != null">
-        no6_auther_number,
-      </if>
-      <if test="no7AutherName != null">
-        no7_auther_name,
-      </if>
-      <if test="no7AutherNumber != null">
-        no7_auther_number,
-      </if>
-      <if test="no8AutherName != null">
-        no8_auther_name,
-      </if>
-      <if test="no8AutherNumber != null">
-        no8_auther_number,
-      </if>
-      <if test="no9AutherName != null">
-        no9_auther_name,
-      </if>
-      <if test="no9AutherNumber != null">
-        no9_auther_number,
-      </if>
-      <if test="no10AutherName != null">
-        no10_auther_name,
-      </if>
-      <if test="no10AutherNumber != null">
-        no10_auther_number,
-      </if>
-      <if test="claimStatus != null">
-        claim_status,
-      </if>
-      <if test="no1AutherName != null">
-        no1_auther_name,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="keyId != null">
-        #{keyId,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationNumber != null">
-        #{authorizationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationDate != null">
-        #{authorizationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentOrNot != null">
-        #{pctPatentOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentName != null">
-        #{pctPatentName,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      </if>
-      <if test="inCountry != null">
-        #{inCountry,jdbcType=VARCHAR},
-      </if>
-      <if test="allAutherName != null">
-        #{allAutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherNumber != null">
-        #{no1AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherName != null">
-        #{no2AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherNumber != null">
-        #{no2AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherName != null">
-        #{no3AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherNumber != null">
-        #{no3AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherName != null">
-        #{no4AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherNumber != null">
-        #{no4AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherName != null">
-        #{no5AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherNumber != null">
-        #{no5AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherName != null">
-        #{no6AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherNumber != null">
-        #{no6AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherName != null">
-        #{no7AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherNumber != null">
-        #{no7AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherName != null">
-        #{no8AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherNumber != null">
-        #{no8AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherName != null">
-        #{no9AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherNumber != null">
-        #{no9AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherName != null">
-        #{no10AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherNumber != null">
-        #{no10AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="claimStatus != null">
-        #{claimStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherName != null">
-        #{no1AutherName,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.Patent">
-    update patent
-    <set>
-      <if test="keyId != null">
-        key_id = #{keyId,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        type = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationNumber != null">
-        authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationDate != null">
-        authorization_date = #{authorizationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentOrNot != null">
-        pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentName != null">
-        pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        pct_patent_application_date = #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      </if>
-      <if test="inCountry != null">
-        in_country = #{inCountry,jdbcType=VARCHAR},
-      </if>
-      <if test="allAutherName != null">
-        all_auther_name = #{allAutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherNumber != null">
-        no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherName != null">
-        no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherNumber != null">
-        no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherName != null">
-        no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherNumber != null">
-        no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherName != null">
-        no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherNumber != null">
-        no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherName != null">
-        no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherNumber != null">
-        no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherName != null">
-        no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherNumber != null">
-        no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherName != null">
-        no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherNumber != null">
-        no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherName != null">
-        no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherNumber != null">
-        no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherName != null">
-        no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherNumber != null">
-        no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherName != null">
-        no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherNumber != null">
-        no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="claimStatus != null">
-        claim_status = #{claimStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherName != null">
-        no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.Patent">
-    update patent
-    set key_id = #{keyId,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
-      authorization_date = #{authorizationDate,jdbcType=VARCHAR},
-      pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
-      pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
-      pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      pct_patent_application_date = #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      in_country = #{inCountry,jdbcType=VARCHAR},
-      all_auther_name = #{allAutherName,jdbcType=VARCHAR},
-      no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
-      no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
-      no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
-      no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
-      no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
-      no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
-      no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
-      no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
-      no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
-      no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
-      no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
-      no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
-      no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
-      no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
-      no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
-      no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
-      no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
-      no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
-      no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
-      claim_status = #{claimStatus,jdbcType=VARCHAR},
-      no1_auther_name = #{no1AutherName,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="site.gaoyisheng.pojo.Patent">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="key_id" jdbcType="VARCHAR" property="keyId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="authorization_number" jdbcType="VARCHAR" property="authorizationNumber" />
-    <result column="authorization_date" jdbcType="VARCHAR" property="authorizationDate" />
-    <result column="pct_patent_or_not" jdbcType="VARCHAR" property="pctPatentOrNot" />
-    <result column="pct_patent_name" jdbcType="VARCHAR" property="pctPatentName" />
-    <result column="pct_patent_application_number" jdbcType="VARCHAR" property="pctPatentApplicationNumber" />
-    <result column="pct_patent_application_date" jdbcType="VARCHAR" property="pctPatentApplicationDate" />
-    <result column="pct_patent_priority_date" jdbcType="VARCHAR" property="pctPatentPriorityDate" />
-    <result column="in_country" jdbcType="VARCHAR" property="inCountry" />
-    <result column="all_auther_name" jdbcType="VARCHAR" property="allAutherName" />
-    <result column="no1_auther_number" jdbcType="VARCHAR" property="no1AutherNumber" />
-    <result column="no2_auther_name" jdbcType="VARCHAR" property="no2AutherName" />
-    <result column="no2_auther_number" jdbcType="VARCHAR" property="no2AutherNumber" />
-    <result column="no3_auther_name" jdbcType="VARCHAR" property="no3AutherName" />
-    <result column="no3_auther_number" jdbcType="VARCHAR" property="no3AutherNumber" />
-    <result column="no4_auther_name" jdbcType="VARCHAR" property="no4AutherName" />
-    <result column="no4_auther_number" jdbcType="VARCHAR" property="no4AutherNumber" />
-    <result column="no5_auther_name" jdbcType="VARCHAR" property="no5AutherName" />
-    <result column="no5_auther_number" jdbcType="VARCHAR" property="no5AutherNumber" />
-    <result column="no6_auther_name" jdbcType="VARCHAR" property="no6AutherName" />
-    <result column="no6_auther_number" jdbcType="VARCHAR" property="no6AutherNumber" />
-    <result column="no7_auther_name" jdbcType="VARCHAR" property="no7AutherName" />
-    <result column="no7_auther_number" jdbcType="VARCHAR" property="no7AutherNumber" />
-    <result column="no8_auther_name" jdbcType="VARCHAR" property="no8AutherName" />
-    <result column="no8_auther_number" jdbcType="VARCHAR" property="no8AutherNumber" />
-    <result column="no9_auther_name" jdbcType="VARCHAR" property="no9AutherName" />
-    <result column="no9_auther_number" jdbcType="VARCHAR" property="no9AutherNumber" />
-    <result column="no10_auther_name" jdbcType="VARCHAR" property="no10AutherName" />
-    <result column="no10_auther_number" jdbcType="VARCHAR" property="no10AutherNumber" />
-    <result column="claim_status" jdbcType="VARCHAR" property="claimStatus" />
-    <result column="no1_auther_name" jdbcType="VARCHAR" property="no1AutherName" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, key_id, name, type, authorization_number, authorization_date, pct_patent_or_not, 
-    pct_patent_name, pct_patent_application_number, pct_patent_application_date, pct_patent_priority_date, 
-    in_country, all_auther_name, no1_auther_number, no2_auther_name, no2_auther_number, 
-    no3_auther_name, no3_auther_number, no4_auther_name, no4_auther_number, no5_auther_name, 
-    no5_auther_number, no6_auther_name, no6_auther_number, no7_auther_name, no7_auther_number, 
-    no8_auther_name, no8_auther_number, no9_auther_name, no9_auther_number, no10_auther_name, 
-    no10_auther_number, claim_status, no1_auther_name
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from patent
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from patent
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="site.gaoyisheng.pojo.Patent">
-    insert into patent (id, key_id, name, 
-      type, authorization_number, authorization_date, 
-      pct_patent_or_not, pct_patent_name, pct_patent_application_number, 
-      pct_patent_application_date, pct_patent_priority_date, 
-      in_country, all_auther_name, no1_auther_number, 
-      no2_auther_name, no2_auther_number, no3_auther_name, 
-      no3_auther_number, no4_auther_name, no4_auther_number, 
-      no5_auther_name, no5_auther_number, no6_auther_name, 
-      no6_auther_number, no7_auther_name, no7_auther_number, 
-      no8_auther_name, no8_auther_number, no9_auther_name, 
-      no9_auther_number, no10_auther_name, no10_auther_number, 
-      claim_status, no1_auther_name)
-    values (#{id,jdbcType=INTEGER}, #{keyId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{authorizationNumber,jdbcType=VARCHAR}, #{authorizationDate,jdbcType=VARCHAR}, 
-      #{pctPatentOrNot,jdbcType=VARCHAR}, #{pctPatentName,jdbcType=VARCHAR}, #{pctPatentApplicationNumber,jdbcType=VARCHAR}, 
-      #{pctPatentApplicationDate,jdbcType=VARCHAR}, #{pctPatentPriorityDate,jdbcType=VARCHAR}, 
-      #{inCountry,jdbcType=VARCHAR}, #{allAutherName,jdbcType=VARCHAR}, #{no1AutherNumber,jdbcType=VARCHAR}, 
-      #{no2AutherName,jdbcType=VARCHAR}, #{no2AutherNumber,jdbcType=VARCHAR}, #{no3AutherName,jdbcType=VARCHAR}, 
-      #{no3AutherNumber,jdbcType=VARCHAR}, #{no4AutherName,jdbcType=VARCHAR}, #{no4AutherNumber,jdbcType=VARCHAR}, 
-      #{no5AutherName,jdbcType=VARCHAR}, #{no5AutherNumber,jdbcType=VARCHAR}, #{no6AutherName,jdbcType=VARCHAR}, 
-      #{no6AutherNumber,jdbcType=VARCHAR}, #{no7AutherName,jdbcType=VARCHAR}, #{no7AutherNumber,jdbcType=VARCHAR}, 
-      #{no8AutherName,jdbcType=VARCHAR}, #{no8AutherNumber,jdbcType=VARCHAR}, #{no9AutherName,jdbcType=VARCHAR}, 
-      #{no9AutherNumber,jdbcType=VARCHAR}, #{no10AutherName,jdbcType=VARCHAR}, #{no10AutherNumber,jdbcType=VARCHAR}, 
-      #{claimStatus,jdbcType=VARCHAR}, #{no1AutherName,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Patent">
-    insert into patent
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="keyId != null">
-        key_id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="type != null">
-        type,
-      </if>
-      <if test="authorizationNumber != null">
-        authorization_number,
-      </if>
-      <if test="authorizationDate != null">
-        authorization_date,
-      </if>
-      <if test="pctPatentOrNot != null">
-        pct_patent_or_not,
-      </if>
-      <if test="pctPatentName != null">
-        pct_patent_name,
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        pct_patent_application_number,
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        pct_patent_application_date,
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        pct_patent_priority_date,
-      </if>
-      <if test="inCountry != null">
-        in_country,
-      </if>
-      <if test="allAutherName != null">
-        all_auther_name,
-      </if>
-      <if test="no1AutherNumber != null">
-        no1_auther_number,
-      </if>
-      <if test="no2AutherName != null">
-        no2_auther_name,
-      </if>
-      <if test="no2AutherNumber != null">
-        no2_auther_number,
-      </if>
-      <if test="no3AutherName != null">
-        no3_auther_name,
-      </if>
-      <if test="no3AutherNumber != null">
-        no3_auther_number,
-      </if>
-      <if test="no4AutherName != null">
-        no4_auther_name,
-      </if>
-      <if test="no4AutherNumber != null">
-        no4_auther_number,
-      </if>
-      <if test="no5AutherName != null">
-        no5_auther_name,
-      </if>
-      <if test="no5AutherNumber != null">
-        no5_auther_number,
-      </if>
-      <if test="no6AutherName != null">
-        no6_auther_name,
-      </if>
-      <if test="no6AutherNumber != null">
-        no6_auther_number,
-      </if>
-      <if test="no7AutherName != null">
-        no7_auther_name,
-      </if>
-      <if test="no7AutherNumber != null">
-        no7_auther_number,
-      </if>
-      <if test="no8AutherName != null">
-        no8_auther_name,
-      </if>
-      <if test="no8AutherNumber != null">
-        no8_auther_number,
-      </if>
-      <if test="no9AutherName != null">
-        no9_auther_name,
-      </if>
-      <if test="no9AutherNumber != null">
-        no9_auther_number,
-      </if>
-      <if test="no10AutherName != null">
-        no10_auther_name,
-      </if>
-      <if test="no10AutherNumber != null">
-        no10_auther_number,
-      </if>
-      <if test="claimStatus != null">
-        claim_status,
-      </if>
-      <if test="no1AutherName != null">
-        no1_auther_name,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="keyId != null">
-        #{keyId,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationNumber != null">
-        #{authorizationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationDate != null">
-        #{authorizationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentOrNot != null">
-        #{pctPatentOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentName != null">
-        #{pctPatentName,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      </if>
-      <if test="inCountry != null">
-        #{inCountry,jdbcType=VARCHAR},
-      </if>
-      <if test="allAutherName != null">
-        #{allAutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherNumber != null">
-        #{no1AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherName != null">
-        #{no2AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherNumber != null">
-        #{no2AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherName != null">
-        #{no3AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherNumber != null">
-        #{no3AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherName != null">
-        #{no4AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherNumber != null">
-        #{no4AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherName != null">
-        #{no5AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherNumber != null">
-        #{no5AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherName != null">
-        #{no6AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherNumber != null">
-        #{no6AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherName != null">
-        #{no7AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherNumber != null">
-        #{no7AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherName != null">
-        #{no8AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherNumber != null">
-        #{no8AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherName != null">
-        #{no9AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherNumber != null">
-        #{no9AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherName != null">
-        #{no10AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherNumber != null">
-        #{no10AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="claimStatus != null">
-        #{claimStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherName != null">
-        #{no1AutherName,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.Patent">
-    update patent
-    <set>
-      <if test="keyId != null">
-        key_id = #{keyId,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        type = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationNumber != null">
-        authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationDate != null">
-        authorization_date = #{authorizationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentOrNot != null">
-        pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentName != null">
-        pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        pct_patent_application_date = #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      </if>
-      <if test="inCountry != null">
-        in_country = #{inCountry,jdbcType=VARCHAR},
-      </if>
-      <if test="allAutherName != null">
-        all_auther_name = #{allAutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherNumber != null">
-        no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherName != null">
-        no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherNumber != null">
-        no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherName != null">
-        no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherNumber != null">
-        no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherName != null">
-        no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherNumber != null">
-        no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherName != null">
-        no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherNumber != null">
-        no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherName != null">
-        no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherNumber != null">
-        no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherName != null">
-        no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherNumber != null">
-        no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherName != null">
-        no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherNumber != null">
-        no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherName != null">
-        no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherNumber != null">
-        no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherName != null">
-        no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherNumber != null">
-        no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="claimStatus != null">
-        claim_status = #{claimStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherName != null">
-        no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.Patent">
-    update patent
-    set key_id = #{keyId,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
-      authorization_date = #{authorizationDate,jdbcType=VARCHAR},
-      pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
-      pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
-      pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      pct_patent_application_date = #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      in_country = #{inCountry,jdbcType=VARCHAR},
-      all_auther_name = #{allAutherName,jdbcType=VARCHAR},
-      no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
-      no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
-      no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
-      no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
-      no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
-      no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
-      no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
-      no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
-      no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
-      no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
-      no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
-      no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
-      no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
-      no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
-      no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
-      no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
-      no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
-      no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
-      no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
-      claim_status = #{claimStatus,jdbcType=VARCHAR},
-      no1_auther_name = #{no1AutherName,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="site.gaoyisheng.pojo.Patent">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="no1_auther_type" jdbcType="VARCHAR" property="no1AutherType" />
-    <result column="no1_auther_name" jdbcType="VARCHAR" property="no1AutherName" />
-    <result column="workunit" jdbcType="VARCHAR" property="workunit" />
-    <result column="other_auther" jdbcType="VARCHAR" property="otherAuther" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="range" jdbcType="VARCHAR" property="range" />
-    <result column="status" jdbcType="VARCHAR" property="status" />
-    <result column="application_number" jdbcType="VARCHAR" property="applicationNumber" />
-    <result column="application_date" jdbcType="VARCHAR" property="applicationDate" />
-    <result column="publication_number" jdbcType="VARCHAR" property="publicationNumber" />
-    <result column="publication_date" jdbcType="VARCHAR" property="publicationDate" />
-    <result column="authorization_number" jdbcType="VARCHAR" property="authorizationNumber" />
-    <result column="authorization_date" jdbcType="VARCHAR" property="authorizationDate" />
-    <result column="school_sign" jdbcType="VARCHAR" property="schoolSign" />
-    <result column="note" jdbcType="VARCHAR" property="note" />
-    <result column="applicant" jdbcType="VARCHAR" property="applicant" />
-    <result column="patentee" jdbcType="VARCHAR" property="patentee" />
-    <result column="invalid_or_not" jdbcType="VARCHAR" property="invalidOrNot" />
-    <result column="cooperation_type" jdbcType="VARCHAR" property="cooperationType" />
-    <result column="service_patent_or_not" jdbcType="VARCHAR" property="servicePatentOrNot" />
-    <result column="pct_patent_or_not" jdbcType="VARCHAR" property="pctPatentOrNot" />
-    <result column="pct_patent_name" jdbcType="VARCHAR" property="pctPatentName" />
-    <result column="pct_patent_application_number" jdbcType="VARCHAR" property="pctPatentApplicationNumber" />
-    <result column="pct_patent_application_date" jdbcType="VARCHAR" property="pctPatentApplicationDate" />
-    <result column="pct_patent_priority_date" jdbcType="VARCHAR" property="pctPatentPriorityDate" />
-    <result column="in_country" jdbcType="VARCHAR" property="inCountry" />
-    <result column="application_or_not" jdbcType="VARCHAR" property="applicationOrNot" />
-    <result column="no1_auther_number" jdbcType="VARCHAR" property="no1AutherNumber" />
-    <result column="no2_auther_name" jdbcType="VARCHAR" property="no2AutherName" />
-    <result column="no2_auther_number" jdbcType="VARCHAR" property="no2AutherNumber" />
-    <result column="no3_auther_name" jdbcType="VARCHAR" property="no3AutherName" />
-    <result column="no3_auther_number" jdbcType="VARCHAR" property="no3AutherNumber" />
-    <result column="no4_auther_name" jdbcType="VARCHAR" property="no4AutherName" />
-    <result column="no4_auther_number" jdbcType="VARCHAR" property="no4AutherNumber" />
-    <result column="no5_auther_name" jdbcType="VARCHAR" property="no5AutherName" />
-    <result column="no5_auther_number" jdbcType="VARCHAR" property="no5AutherNumber" />
-    <result column="no6_auther_name" jdbcType="VARCHAR" property="no6AutherName" />
-    <result column="no6_auther_number" jdbcType="VARCHAR" property="no6AutherNumber" />
-    <result column="no7_auther_name" jdbcType="VARCHAR" property="no7AutherName" />
-    <result column="no7_auther_number" jdbcType="VARCHAR" property="no7AutherNumber" />
-    <result column="no8_auther_name" jdbcType="VARCHAR" property="no8AutherName" />
-    <result column="no8_auther_number" jdbcType="VARCHAR" property="no8AutherNumber" />
-    <result column="no9_auther_name" jdbcType="VARCHAR" property="no9AutherName" />
-    <result column="no9_auther_number" jdbcType="VARCHAR" property="no9AutherNumber" />
-    <result column="no10_auther_name" jdbcType="VARCHAR" property="no10AutherName" />
-    <result column="no10_auther_number" jdbcType="VARCHAR" property="no10AutherNumber" />
-    <result column="claim_or_not" jdbcType="VARCHAR" property="claimOrNot" />
-    <result column="auther_number" jdbcType="INTEGER" property="autherNumber" />
-    <result column="sdut_auther_number" jdbcType="INTEGER" property="sdutAutherNumber" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, name, no1_auther_type, no1_auther_name, workunit, other_auther, type, range, 
-    status, application_number, application_date, publication_number, publication_date, 
-    authorization_number, authorization_date, school_sign, note, applicant, patentee, 
-    invalid_or_not, cooperation_type, service_patent_or_not, pct_patent_or_not, pct_patent_name, 
-    pct_patent_application_number, pct_patent_application_date, pct_patent_priority_date, 
-    in_country, application_or_not, no1_auther_number, no2_auther_name, no2_auther_number, 
-    no3_auther_name, no3_auther_number, no4_auther_name, no4_auther_number, no5_auther_name, 
-    no5_auther_number, no6_auther_name, no6_auther_number, no7_auther_name, no7_auther_number, 
-    no8_auther_name, no8_auther_number, no9_auther_name, no9_auther_number, no10_auther_name, 
-    no10_auther_number, claim_or_not, auther_number, sdut_auther_number
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from patent
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from patent
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="site.gaoyisheng.pojo.Patent">
-    insert into patent (id, name, no1_auther_type, 
-      no1_auther_name, workunit, other_auther, 
-      type, range, status, 
-      application_number, application_date, publication_number, 
-      publication_date, authorization_number, authorization_date, 
-      school_sign, note, applicant, 
-      patentee, invalid_or_not, cooperation_type, 
-      service_patent_or_not, pct_patent_or_not, pct_patent_name, 
-      pct_patent_application_number, pct_patent_application_date, 
-      pct_patent_priority_date, in_country, application_or_not, 
-      no1_auther_number, no2_auther_name, no2_auther_number, 
-      no3_auther_name, no3_auther_number, no4_auther_name, 
-      no4_auther_number, no5_auther_name, no5_auther_number, 
-      no6_auther_name, no6_auther_number, no7_auther_name, 
-      no7_auther_number, no8_auther_name, no8_auther_number, 
-      no9_auther_name, no9_auther_number, no10_auther_name, 
-      no10_auther_number, claim_or_not, auther_number, 
-      sdut_auther_number)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{no1AutherType,jdbcType=VARCHAR}, 
-      #{no1AutherName,jdbcType=VARCHAR}, #{workunit,jdbcType=VARCHAR}, #{otherAuther,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{range,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
-      #{applicationNumber,jdbcType=VARCHAR}, #{applicationDate,jdbcType=VARCHAR}, #{publicationNumber,jdbcType=VARCHAR}, 
-      #{publicationDate,jdbcType=VARCHAR}, #{authorizationNumber,jdbcType=VARCHAR}, #{authorizationDate,jdbcType=VARCHAR}, 
-      #{schoolSign,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{applicant,jdbcType=VARCHAR}, 
-      #{patentee,jdbcType=VARCHAR}, #{invalidOrNot,jdbcType=VARCHAR}, #{cooperationType,jdbcType=VARCHAR}, 
-      #{servicePatentOrNot,jdbcType=VARCHAR}, #{pctPatentOrNot,jdbcType=VARCHAR}, #{pctPatentName,jdbcType=VARCHAR}, 
-      #{pctPatentApplicationNumber,jdbcType=VARCHAR}, #{pctPatentApplicationDate,jdbcType=VARCHAR}, 
-      #{pctPatentPriorityDate,jdbcType=VARCHAR}, #{inCountry,jdbcType=VARCHAR}, #{applicationOrNot,jdbcType=VARCHAR}, 
-      #{no1AutherNumber,jdbcType=VARCHAR}, #{no2AutherName,jdbcType=VARCHAR}, #{no2AutherNumber,jdbcType=VARCHAR}, 
-      #{no3AutherName,jdbcType=VARCHAR}, #{no3AutherNumber,jdbcType=VARCHAR}, #{no4AutherName,jdbcType=VARCHAR}, 
-      #{no4AutherNumber,jdbcType=VARCHAR}, #{no5AutherName,jdbcType=VARCHAR}, #{no5AutherNumber,jdbcType=VARCHAR}, 
-      #{no6AutherName,jdbcType=VARCHAR}, #{no6AutherNumber,jdbcType=VARCHAR}, #{no7AutherName,jdbcType=VARCHAR}, 
-      #{no7AutherNumber,jdbcType=VARCHAR}, #{no8AutherName,jdbcType=VARCHAR}, #{no8AutherNumber,jdbcType=VARCHAR}, 
-      #{no9AutherName,jdbcType=VARCHAR}, #{no9AutherNumber,jdbcType=VARCHAR}, #{no10AutherName,jdbcType=VARCHAR}, 
-      #{no10AutherNumber,jdbcType=VARCHAR}, #{claimOrNot,jdbcType=VARCHAR}, #{autherNumber,jdbcType=INTEGER}, 
-      #{sdutAutherNumber,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Patent">
-    insert into patent
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="no1AutherType != null">
-        no1_auther_type,
-      </if>
-      <if test="no1AutherName != null">
-        no1_auther_name,
-      </if>
-      <if test="workunit != null">
-        workunit,
-      </if>
-      <if test="otherAuther != null">
-        other_auther,
-      </if>
-      <if test="type != null">
-        type,
-      </if>
-      <if test="range != null">
-        range,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="applicationNumber != null">
-        application_number,
-      </if>
-      <if test="applicationDate != null">
-        application_date,
-      </if>
-      <if test="publicationNumber != null">
-        publication_number,
-      </if>
-      <if test="publicationDate != null">
-        publication_date,
-      </if>
-      <if test="authorizationNumber != null">
-        authorization_number,
-      </if>
-      <if test="authorizationDate != null">
-        authorization_date,
-      </if>
-      <if test="schoolSign != null">
-        school_sign,
-      </if>
-      <if test="note != null">
-        note,
-      </if>
-      <if test="applicant != null">
-        applicant,
-      </if>
-      <if test="patentee != null">
-        patentee,
-      </if>
-      <if test="invalidOrNot != null">
-        invalid_or_not,
-      </if>
-      <if test="cooperationType != null">
-        cooperation_type,
-      </if>
-      <if test="servicePatentOrNot != null">
-        service_patent_or_not,
-      </if>
-      <if test="pctPatentOrNot != null">
-        pct_patent_or_not,
-      </if>
-      <if test="pctPatentName != null">
-        pct_patent_name,
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        pct_patent_application_number,
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        pct_patent_application_date,
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        pct_patent_priority_date,
-      </if>
-      <if test="inCountry != null">
-        in_country,
-      </if>
-      <if test="applicationOrNot != null">
-        application_or_not,
-      </if>
-      <if test="no1AutherNumber != null">
-        no1_auther_number,
-      </if>
-      <if test="no2AutherName != null">
-        no2_auther_name,
-      </if>
-      <if test="no2AutherNumber != null">
-        no2_auther_number,
-      </if>
-      <if test="no3AutherName != null">
-        no3_auther_name,
-      </if>
-      <if test="no3AutherNumber != null">
-        no3_auther_number,
-      </if>
-      <if test="no4AutherName != null">
-        no4_auther_name,
-      </if>
-      <if test="no4AutherNumber != null">
-        no4_auther_number,
-      </if>
-      <if test="no5AutherName != null">
-        no5_auther_name,
-      </if>
-      <if test="no5AutherNumber != null">
-        no5_auther_number,
-      </if>
-      <if test="no6AutherName != null">
-        no6_auther_name,
-      </if>
-      <if test="no6AutherNumber != null">
-        no6_auther_number,
-      </if>
-      <if test="no7AutherName != null">
-        no7_auther_name,
-      </if>
-      <if test="no7AutherNumber != null">
-        no7_auther_number,
-      </if>
-      <if test="no8AutherName != null">
-        no8_auther_name,
-      </if>
-      <if test="no8AutherNumber != null">
-        no8_auther_number,
-      </if>
-      <if test="no9AutherName != null">
-        no9_auther_name,
-      </if>
-      <if test="no9AutherNumber != null">
-        no9_auther_number,
-      </if>
-      <if test="no10AutherName != null">
-        no10_auther_name,
-      </if>
-      <if test="no10AutherNumber != null">
-        no10_auther_number,
-      </if>
-      <if test="claimOrNot != null">
-        claim_or_not,
-      </if>
-      <if test="autherNumber != null">
-        auther_number,
-      </if>
-      <if test="sdutAutherNumber != null">
-        sdut_auther_number,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherType != null">
-        #{no1AutherType,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherName != null">
-        #{no1AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="workunit != null">
-        #{workunit,jdbcType=VARCHAR},
-      </if>
-      <if test="otherAuther != null">
-        #{otherAuther,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="range != null">
-        #{range,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="applicationNumber != null">
-        #{applicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="applicationDate != null">
-        #{applicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="publicationNumber != null">
-        #{publicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="publicationDate != null">
-        #{publicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationNumber != null">
-        #{authorizationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationDate != null">
-        #{authorizationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="schoolSign != null">
-        #{schoolSign,jdbcType=VARCHAR},
-      </if>
-      <if test="note != null">
-        #{note,jdbcType=VARCHAR},
-      </if>
-      <if test="applicant != null">
-        #{applicant,jdbcType=VARCHAR},
-      </if>
-      <if test="patentee != null">
-        #{patentee,jdbcType=VARCHAR},
-      </if>
-      <if test="invalidOrNot != null">
-        #{invalidOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="cooperationType != null">
-        #{cooperationType,jdbcType=VARCHAR},
-      </if>
-      <if test="servicePatentOrNot != null">
-        #{servicePatentOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentOrNot != null">
-        #{pctPatentOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentName != null">
-        #{pctPatentName,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      </if>
-      <if test="inCountry != null">
-        #{inCountry,jdbcType=VARCHAR},
-      </if>
-      <if test="applicationOrNot != null">
-        #{applicationOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherNumber != null">
-        #{no1AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherName != null">
-        #{no2AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherNumber != null">
-        #{no2AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherName != null">
-        #{no3AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherNumber != null">
-        #{no3AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherName != null">
-        #{no4AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherNumber != null">
-        #{no4AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherName != null">
-        #{no5AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherNumber != null">
-        #{no5AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherName != null">
-        #{no6AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherNumber != null">
-        #{no6AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherName != null">
-        #{no7AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherNumber != null">
-        #{no7AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherName != null">
-        #{no8AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherNumber != null">
-        #{no8AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherName != null">
-        #{no9AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherNumber != null">
-        #{no9AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherName != null">
-        #{no10AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherNumber != null">
-        #{no10AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="claimOrNot != null">
-        #{claimOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="autherNumber != null">
-        #{autherNumber,jdbcType=INTEGER},
-      </if>
-      <if test="sdutAutherNumber != null">
-        #{sdutAutherNumber,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.Patent">
-    update patent
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherType != null">
-        no1_auther_type = #{no1AutherType,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherName != null">
-        no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="workunit != null">
-        workunit = #{workunit,jdbcType=VARCHAR},
-      </if>
-      <if test="otherAuther != null">
-        other_auther = #{otherAuther,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        type = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="range != null">
-        range = #{range,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="applicationNumber != null">
-        application_number = #{applicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="applicationDate != null">
-        application_date = #{applicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="publicationNumber != null">
-        publication_number = #{publicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="publicationDate != null">
-        publication_date = #{publicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationNumber != null">
-        authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="authorizationDate != null">
-        authorization_date = #{authorizationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="schoolSign != null">
-        school_sign = #{schoolSign,jdbcType=VARCHAR},
-      </if>
-      <if test="note != null">
-        note = #{note,jdbcType=VARCHAR},
-      </if>
-      <if test="applicant != null">
-        applicant = #{applicant,jdbcType=VARCHAR},
-      </if>
-      <if test="patentee != null">
-        patentee = #{patentee,jdbcType=VARCHAR},
-      </if>
-      <if test="invalidOrNot != null">
-        invalid_or_not = #{invalidOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="cooperationType != null">
-        cooperation_type = #{cooperationType,jdbcType=VARCHAR},
-      </if>
-      <if test="servicePatentOrNot != null">
-        service_patent_or_not = #{servicePatentOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentOrNot != null">
-        pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentName != null">
-        pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationNumber != null">
-        pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentApplicationDate != null">
-        pct_patent_application_date = #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      </if>
-      <if test="pctPatentPriorityDate != null">
-        pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      </if>
-      <if test="inCountry != null">
-        in_country = #{inCountry,jdbcType=VARCHAR},
-      </if>
-      <if test="applicationOrNot != null">
-        application_or_not = #{applicationOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="no1AutherNumber != null">
-        no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherName != null">
-        no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no2AutherNumber != null">
-        no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherName != null">
-        no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no3AutherNumber != null">
-        no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherName != null">
-        no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no4AutherNumber != null">
-        no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherName != null">
-        no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no5AutherNumber != null">
-        no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherName != null">
-        no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no6AutherNumber != null">
-        no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherName != null">
-        no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no7AutherNumber != null">
-        no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherName != null">
-        no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no8AutherNumber != null">
-        no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherName != null">
-        no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no9AutherNumber != null">
-        no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherName != null">
-        no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
-      </if>
-      <if test="no10AutherNumber != null">
-        no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="claimOrNot != null">
-        claim_or_not = #{claimOrNot,jdbcType=VARCHAR},
-      </if>
-      <if test="autherNumber != null">
-        auther_number = #{autherNumber,jdbcType=INTEGER},
-      </if>
-      <if test="sdutAutherNumber != null">
-        sdut_auther_number = #{sdutAutherNumber,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.Patent">
-    update patent
-    set name = #{name,jdbcType=VARCHAR},
-      no1_auther_type = #{no1AutherType,jdbcType=VARCHAR},
-      no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
-      workunit = #{workunit,jdbcType=VARCHAR},
-      other_auther = #{otherAuther,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      range = #{range,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
-      application_number = #{applicationNumber,jdbcType=VARCHAR},
-      application_date = #{applicationDate,jdbcType=VARCHAR},
-      publication_number = #{publicationNumber,jdbcType=VARCHAR},
-      publication_date = #{publicationDate,jdbcType=VARCHAR},
-      authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
-      authorization_date = #{authorizationDate,jdbcType=VARCHAR},
-      school_sign = #{schoolSign,jdbcType=VARCHAR},
-      note = #{note,jdbcType=VARCHAR},
-      applicant = #{applicant,jdbcType=VARCHAR},
-      patentee = #{patentee,jdbcType=VARCHAR},
-      invalid_or_not = #{invalidOrNot,jdbcType=VARCHAR},
-      cooperation_type = #{cooperationType,jdbcType=VARCHAR},
-      service_patent_or_not = #{servicePatentOrNot,jdbcType=VARCHAR},
-      pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
-      pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
-      pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
-      pct_patent_application_date = #{pctPatentApplicationDate,jdbcType=VARCHAR},
-      pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
-      in_country = #{inCountry,jdbcType=VARCHAR},
-      application_or_not = #{applicationOrNot,jdbcType=VARCHAR},
-      no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
-      no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
-      no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
-      no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
-      no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
-      no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
-      no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
-      no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
-      no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
-      no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
-      no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
-      no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
-      no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
-      no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
-      no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
-      no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
-      no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
-      no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
-      no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
-      claim_or_not = #{claimOrNot,jdbcType=VARCHAR},
-      auther_number = #{autherNumber,jdbcType=INTEGER},
-      sdut_auther_number = #{sdutAutherNumber,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+	<resultMap id="BaseResultMap" type="site.gaoyisheng.pojo.Patent">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="key_id" jdbcType="VARCHAR" property="keyId" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="authorization_number" jdbcType="VARCHAR"
+			property="authorizationNumber" />
+		<result column="authorization_date" jdbcType="VARCHAR"
+			property="authorizationDate" />
+		<result column="pct_patent_or_not" jdbcType="VARCHAR" property="pctPatentOrNot" />
+		<result column="pct_patent_name" jdbcType="VARCHAR" property="pctPatentName" />
+		<result column="pct_patent_application_number" jdbcType="VARCHAR"
+			property="pctPatentApplicationNumber" />
+		<result column="pct_patent_application_date" jdbcType="VARCHAR"
+			property="pctPatentApplicationDate" />
+		<result column="pct_patent_priority_date" jdbcType="VARCHAR"
+			property="pctPatentPriorityDate" />
+		<result column="in_country" jdbcType="VARCHAR" property="inCountry" />
+		<result column="all_auther_name" jdbcType="VARCHAR" property="allAutherName" />
+		<result column="no1_auther_number" jdbcType="VARCHAR" property="no1AutherNumber" />
+		<result column="no2_auther_name" jdbcType="VARCHAR" property="no2AutherName" />
+		<result column="no2_auther_number" jdbcType="VARCHAR" property="no2AutherNumber" />
+		<result column="no3_auther_name" jdbcType="VARCHAR" property="no3AutherName" />
+		<result column="no3_auther_number" jdbcType="VARCHAR" property="no3AutherNumber" />
+		<result column="no4_auther_name" jdbcType="VARCHAR" property="no4AutherName" />
+		<result column="no4_auther_number" jdbcType="VARCHAR" property="no4AutherNumber" />
+		<result column="no5_auther_name" jdbcType="VARCHAR" property="no5AutherName" />
+		<result column="no5_auther_number" jdbcType="VARCHAR" property="no5AutherNumber" />
+		<result column="no6_auther_name" jdbcType="VARCHAR" property="no6AutherName" />
+		<result column="no6_auther_number" jdbcType="VARCHAR" property="no6AutherNumber" />
+		<result column="no7_auther_name" jdbcType="VARCHAR" property="no7AutherName" />
+		<result column="no7_auther_number" jdbcType="VARCHAR" property="no7AutherNumber" />
+		<result column="no8_auther_name" jdbcType="VARCHAR" property="no8AutherName" />
+		<result column="no8_auther_number" jdbcType="VARCHAR" property="no8AutherNumber" />
+		<result column="no9_auther_name" jdbcType="VARCHAR" property="no9AutherName" />
+		<result column="no9_auther_number" jdbcType="VARCHAR" property="no9AutherNumber" />
+		<result column="no10_auther_name" jdbcType="VARCHAR" property="no10AutherName" />
+		<result column="no10_auther_number" jdbcType="VARCHAR"
+			property="no10AutherNumber" />
+		<result column="claim_status" jdbcType="VARCHAR" property="claimStatus" />
+		<result column="no1_auther_name" jdbcType="VARCHAR" property="no1AutherName" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, key_id, name, type, authorization_number, authorization_date,
+		pct_patent_or_not,
+		pct_patent_name, pct_patent_application_number, pct_patent_application_date,
+		pct_patent_priority_date,
+		in_country, all_auther_name, no1_auther_number, no2_auther_name,
+		no2_auther_number,
+		no3_auther_name, no3_auther_number, no4_auther_name, no4_auther_number,
+		no5_auther_name,
+		no5_auther_number, no6_auther_name, no6_auther_number, no7_auther_name,
+		no7_auther_number,
+		no8_auther_name, no8_auther_number, no9_auther_name, no9_auther_number,
+		no10_auther_name,
+		no10_auther_number, claim_status, no1_auther_name
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from patent
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from patent
+	</select>
+
+	<!-- 通过唯一标识符 查找 -->
+	<select id="selectByKeyId" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from patent
+		where key_id = #{keyId}
+	</select>
+	
+	<select id="selectByMultiConditions" parameterType="map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from patent
+		<where>
+			<if test="name != null">
+				name like concat('%','${name}','%')
+			</if>
+			<if test="title != null">
+				AND all_auther_name like concat('%','${autherName}','%')
+			</if>
+			<if test="claimStatus != null">
+				AND claim_status = #{claimStatus}
+			</if>
+		</where>
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from patent
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="site.gaoyisheng.pojo.Patent">
+		insert into patent (id, key_id, name,
+		type, authorization_number, authorization_date,
+		pct_patent_or_not, pct_patent_name, pct_patent_application_number,
+		pct_patent_application_date, pct_patent_priority_date,
+		in_country, all_auther_name, no1_auther_number,
+		no2_auther_name, no2_auther_number, no3_auther_name,
+		no3_auther_number, no4_auther_name, no4_auther_number,
+		no5_auther_name, no5_auther_number, no6_auther_name,
+		no6_auther_number, no7_auther_name, no7_auther_number,
+		no8_auther_name, no8_auther_number, no9_auther_name,
+		no9_auther_number, no10_auther_name, no10_auther_number,
+		claim_status, no1_auther_name)
+		values (#{id,jdbcType=INTEGER}, #{keyId,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR}, #{authorizationNumber,jdbcType=VARCHAR},
+		#{authorizationDate,jdbcType=VARCHAR},
+		#{pctPatentOrNot,jdbcType=VARCHAR}, #{pctPatentName,jdbcType=VARCHAR},
+		#{pctPatentApplicationNumber,jdbcType=VARCHAR},
+		#{pctPatentApplicationDate,jdbcType=VARCHAR},
+		#{pctPatentPriorityDate,jdbcType=VARCHAR},
+		#{inCountry,jdbcType=VARCHAR}, #{allAutherName,jdbcType=VARCHAR},
+		#{no1AutherNumber,jdbcType=VARCHAR},
+		#{no2AutherName,jdbcType=VARCHAR},
+		#{no2AutherNumber,jdbcType=VARCHAR},
+		#{no3AutherName,jdbcType=VARCHAR},
+		#{no3AutherNumber,jdbcType=VARCHAR},
+		#{no4AutherName,jdbcType=VARCHAR},
+		#{no4AutherNumber,jdbcType=VARCHAR},
+		#{no5AutherName,jdbcType=VARCHAR},
+		#{no5AutherNumber,jdbcType=VARCHAR},
+		#{no6AutherName,jdbcType=VARCHAR},
+		#{no6AutherNumber,jdbcType=VARCHAR},
+		#{no7AutherName,jdbcType=VARCHAR},
+		#{no7AutherNumber,jdbcType=VARCHAR},
+		#{no8AutherName,jdbcType=VARCHAR},
+		#{no8AutherNumber,jdbcType=VARCHAR},
+		#{no9AutherName,jdbcType=VARCHAR},
+		#{no9AutherNumber,jdbcType=VARCHAR},
+		#{no10AutherName,jdbcType=VARCHAR},
+		#{no10AutherNumber,jdbcType=VARCHAR},
+		#{claimStatus,jdbcType=VARCHAR}, #{no1AutherName,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Patent">
+		insert into patent
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="keyId != null">
+				key_id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="authorizationNumber != null">
+				authorization_number,
+			</if>
+			<if test="authorizationDate != null">
+				authorization_date,
+			</if>
+			<if test="pctPatentOrNot != null">
+				pct_patent_or_not,
+			</if>
+			<if test="pctPatentName != null">
+				pct_patent_name,
+			</if>
+			<if test="pctPatentApplicationNumber != null">
+				pct_patent_application_number,
+			</if>
+			<if test="pctPatentApplicationDate != null">
+				pct_patent_application_date,
+			</if>
+			<if test="pctPatentPriorityDate != null">
+				pct_patent_priority_date,
+			</if>
+			<if test="inCountry != null">
+				in_country,
+			</if>
+			<if test="allAutherName != null">
+				all_auther_name,
+			</if>
+			<if test="no1AutherNumber != null">
+				no1_auther_number,
+			</if>
+			<if test="no2AutherName != null">
+				no2_auther_name,
+			</if>
+			<if test="no2AutherNumber != null">
+				no2_auther_number,
+			</if>
+			<if test="no3AutherName != null">
+				no3_auther_name,
+			</if>
+			<if test="no3AutherNumber != null">
+				no3_auther_number,
+			</if>
+			<if test="no4AutherName != null">
+				no4_auther_name,
+			</if>
+			<if test="no4AutherNumber != null">
+				no4_auther_number,
+			</if>
+			<if test="no5AutherName != null">
+				no5_auther_name,
+			</if>
+			<if test="no5AutherNumber != null">
+				no5_auther_number,
+			</if>
+			<if test="no6AutherName != null">
+				no6_auther_name,
+			</if>
+			<if test="no6AutherNumber != null">
+				no6_auther_number,
+			</if>
+			<if test="no7AutherName != null">
+				no7_auther_name,
+			</if>
+			<if test="no7AutherNumber != null">
+				no7_auther_number,
+			</if>
+			<if test="no8AutherName != null">
+				no8_auther_name,
+			</if>
+			<if test="no8AutherNumber != null">
+				no8_auther_number,
+			</if>
+			<if test="no9AutherName != null">
+				no9_auther_name,
+			</if>
+			<if test="no9AutherNumber != null">
+				no9_auther_number,
+			</if>
+			<if test="no10AutherName != null">
+				no10_auther_name,
+			</if>
+			<if test="no10AutherNumber != null">
+				no10_auther_number,
+			</if>
+			<if test="claimStatus != null">
+				claim_status,
+			</if>
+			<if test="no1AutherName != null">
+				no1_auther_name,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="keyId != null">
+				#{keyId,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="authorizationNumber != null">
+				#{authorizationNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="authorizationDate != null">
+				#{authorizationDate,jdbcType=VARCHAR},
+			</if>
+			<if test="pctPatentOrNot != null">
+				#{pctPatentOrNot,jdbcType=VARCHAR},
+			</if>
+			<if test="pctPatentName != null">
+				#{pctPatentName,jdbcType=VARCHAR},
+			</if>
+			<if test="pctPatentApplicationNumber != null">
+				#{pctPatentApplicationNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="pctPatentApplicationDate != null">
+				#{pctPatentApplicationDate,jdbcType=VARCHAR},
+			</if>
+			<if test="pctPatentPriorityDate != null">
+				#{pctPatentPriorityDate,jdbcType=VARCHAR},
+			</if>
+			<if test="inCountry != null">
+				#{inCountry,jdbcType=VARCHAR},
+			</if>
+			<if test="allAutherName != null">
+				#{allAutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no1AutherNumber != null">
+				#{no1AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no2AutherName != null">
+				#{no2AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no2AutherNumber != null">
+				#{no2AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no3AutherName != null">
+				#{no3AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no3AutherNumber != null">
+				#{no3AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no4AutherName != null">
+				#{no4AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no4AutherNumber != null">
+				#{no4AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no5AutherName != null">
+				#{no5AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no5AutherNumber != null">
+				#{no5AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no6AutherName != null">
+				#{no6AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no6AutherNumber != null">
+				#{no6AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no7AutherName != null">
+				#{no7AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no7AutherNumber != null">
+				#{no7AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no8AutherName != null">
+				#{no8AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no8AutherNumber != null">
+				#{no8AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no9AutherName != null">
+				#{no9AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no9AutherNumber != null">
+				#{no9AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no10AutherName != null">
+				#{no10AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no10AutherNumber != null">
+				#{no10AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="claimStatus != null">
+				#{claimStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="no1AutherName != null">
+				#{no1AutherName,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.Patent">
+		update patent
+		<set>
+			<if test="keyId != null">
+				key_id = #{keyId,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="authorizationNumber != null">
+				authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="authorizationDate != null">
+				authorization_date = #{authorizationDate,jdbcType=VARCHAR},
+			</if>
+			<if test="pctPatentOrNot != null">
+				pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
+			</if>
+			<if test="pctPatentName != null">
+				pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
+			</if>
+			<if test="pctPatentApplicationNumber != null">
+				pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="pctPatentApplicationDate != null">
+				pct_patent_application_date = #{pctPatentApplicationDate,jdbcType=VARCHAR},
+			</if>
+			<if test="pctPatentPriorityDate != null">
+				pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
+			</if>
+			<if test="inCountry != null">
+				in_country = #{inCountry,jdbcType=VARCHAR},
+			</if>
+			<if test="allAutherName != null">
+				all_auther_name = #{allAutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no1AutherNumber != null">
+				no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no2AutherName != null">
+				no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no2AutherNumber != null">
+				no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no3AutherName != null">
+				no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no3AutherNumber != null">
+				no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no4AutherName != null">
+				no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no4AutherNumber != null">
+				no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no5AutherName != null">
+				no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no5AutherNumber != null">
+				no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no6AutherName != null">
+				no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no6AutherNumber != null">
+				no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no7AutherName != null">
+				no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no7AutherNumber != null">
+				no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no8AutherName != null">
+				no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no8AutherNumber != null">
+				no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no9AutherName != null">
+				no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no9AutherNumber != null">
+				no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="no10AutherName != null">
+				no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
+			</if>
+			<if test="no10AutherNumber != null">
+				no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="claimStatus != null">
+				claim_status = #{claimStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="no1AutherName != null">
+				no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.Patent">
+		update patent
+		set key_id = #{keyId,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
+		authorization_date = #{authorizationDate,jdbcType=VARCHAR},
+		pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
+		pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
+		pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
+		pct_patent_application_date =
+		#{pctPatentApplicationDate,jdbcType=VARCHAR},
+		pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
+		in_country = #{inCountry,jdbcType=VARCHAR},
+		all_auther_name = #{allAutherName,jdbcType=VARCHAR},
+		no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
+		no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
+		no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
+		no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
+		no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
+		no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
+		no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
+		no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
+		no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
+		no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
+		no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
+		no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
+		no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
+		no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
+		no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
+		no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
+		no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
+		no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
+		no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
+		claim_status = #{claimStatus,jdbcType=VARCHAR},
+		no1_auther_name = #{no1AutherName,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>
