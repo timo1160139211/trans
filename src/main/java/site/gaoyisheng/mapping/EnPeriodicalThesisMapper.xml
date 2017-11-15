@@ -35,6 +35,7 @@
 			property="no10AutherNumber" />
 		<result column="claim_status" jdbcType="VARCHAR" property="claimStatus" />
 	</resultMap>
+	
 	<sql id="Base_Column_List">
 		id, key_id, name, all_auther_name, provenance, "subject ", volume,
 		period, page,
@@ -60,6 +61,27 @@
 		select
 		<include refid="Base_Column_List" />
 		from en_periodical_thesis
+	</select>
+	
+	<!-- 根据 认领状态 查询 -->
+	<select id="selectByStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from en_periodical_thesis e
+		where e.claim_status = #{status}
+	</select>
+	
+	<!-- 统计数目: 未认领/已认领 -->	
+	<select id="selectCountByStatus" resultType="Integer">
+		select count(*) as claimed
+		from en_periodical_thesis e
+		where e.claim_status = #{status}
+	</select>
+	
+	<!-- 统计数目:  所有 -->	
+	<select id="selectCount" resultType="Integer">
+		select count(*) as total
+		from en_periodical_thesis e
 	</select>
 	
 	<!-- 通过唯一标识符 查找 -->

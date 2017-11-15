@@ -62,6 +62,27 @@
 		from ch_periodical_thesis
 	</select>
 	
+	<!-- 根据 认领状态 查询 -->
+	<select id="selectByStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ch_periodical_thesis e
+		where e.claim_status = #{status}
+	</select>
+	
+	<!-- 统计数目: 未认领/已认领 -->	
+	<select id="selectCountByStatus" resultType="Integer">
+		select count(*) as claimed
+		from ch_periodical_thesis e
+		where e.claim_status = #{status}
+	</select>
+	
+	<!-- 统计数目:  所有 -->	
+	<select id="selectCount" resultType="Integer">
+		select count(*) as total
+		from ch_periodical_thesis e
+	</select>
+	
 	<!-- 通过唯一标识符 查找 -->
 	<select id="selectByKeyId" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">

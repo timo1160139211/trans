@@ -43,18 +43,28 @@
 		<result column="claim_status" jdbcType="VARCHAR" property="claimStatus" />
 		<result column="no1_auther_name" jdbcType="VARCHAR" property="no1AutherName" />
 	</resultMap>
+	   
+	<resultMap id="StatisticMap" type="site.gaoyisheng.pojo.Patent">
+	    <result column="no9_auther_number" jdbcType="VARCHAR" property="no9AutherNumber" />
+	</resultMap>
 	<sql id="Base_Column_List">
-		id, key_id, name, type, authorization_number, authorization_date,
+		id, key_id, name, type, authorization_number,
+		authorization_date,
 		pct_patent_or_not,
-		pct_patent_name, pct_patent_application_number, pct_patent_application_date,
+		pct_patent_name,
+		pct_patent_application_number, pct_patent_application_date,
 		pct_patent_priority_date,
-		in_country, all_auther_name, no1_auther_number, no2_auther_name,
+		in_country, all_auther_name,
+		no1_auther_number, no2_auther_name,
 		no2_auther_number,
-		no3_auther_name, no3_auther_number, no4_auther_name, no4_auther_number,
+		no3_auther_name,
+		no3_auther_number, no4_auther_name, no4_auther_number,
 		no5_auther_name,
-		no5_auther_number, no6_auther_name, no6_auther_number, no7_auther_name,
+		no5_auther_number, no6_auther_name, no6_auther_number,
+		no7_auther_name,
 		no7_auther_number,
-		no8_auther_name, no8_auther_number, no9_auther_name, no9_auther_number,
+		no8_auther_name, no8_auther_number,
+		no9_auther_name, no9_auther_number,
 		no10_auther_name,
 		no10_auther_number, claim_status, no1_auther_name
 	</sql>
@@ -72,6 +82,27 @@
 		from patent
 	</select>
 
+	<!-- 根据 认领状态 查询 -->
+	<select id="selectByStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from patent e
+		where e.claim_status = #{status}
+	</select>
+	
+	<!-- 统计数目: 未认领/已认领 -->	
+	<select id="selectCountByStatus" resultType="Integer">
+		select count(*) as claimed
+		from patent e
+		where e.claim_status = #{status}
+	</select>
+	
+	<!-- 统计数目:  所有 -->	
+	<select id="selectCount" resultType="Integer">
+		select count(*) as total
+		from patent e
+	</select>
+	
 	<!-- 通过唯一标识符 查找 -->
 	<select id="selectByKeyId" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">
@@ -80,7 +111,7 @@
 		from patent
 		where key_id = #{keyId}
 	</select>
-	
+
 	<select id="selectByMultiConditions" parameterType="map"
 		resultMap="BaseResultMap">
 		select
@@ -103,19 +134,24 @@
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="site.gaoyisheng.pojo.Patent">
-		insert into patent (id, key_id, name,
+		insert into patent (id,
+		key_id, name,
 		type, authorization_number, authorization_date,
 		pct_patent_or_not, pct_patent_name, pct_patent_application_number,
 		pct_patent_application_date, pct_patent_priority_date,
-		in_country, all_auther_name, no1_auther_number,
-		no2_auther_name, no2_auther_number, no3_auther_name,
+		in_country,
+		all_auther_name, no1_auther_number,
+		no2_auther_name, no2_auther_number,
+		no3_auther_name,
 		no3_auther_number, no4_auther_name, no4_auther_number,
 		no5_auther_name, no5_auther_number, no6_auther_name,
 		no6_auther_number, no7_auther_name, no7_auther_number,
 		no8_auther_name, no8_auther_number, no9_auther_name,
 		no9_auther_number, no10_auther_name, no10_auther_number,
-		claim_status, no1_auther_name)
-		values (#{id,jdbcType=INTEGER}, #{keyId,jdbcType=VARCHAR},
+		claim_status,
+		no1_auther_name)
+		values (#{id,jdbcType=INTEGER},
+		#{keyId,jdbcType=VARCHAR},
 		#{name,jdbcType=VARCHAR},
 		#{type,jdbcType=VARCHAR}, #{authorizationNumber,jdbcType=VARCHAR},
 		#{authorizationDate,jdbcType=VARCHAR},
@@ -143,7 +179,73 @@
 		#{no9AutherNumber,jdbcType=VARCHAR},
 		#{no10AutherName,jdbcType=VARCHAR},
 		#{no10AutherNumber,jdbcType=VARCHAR},
-		#{claimStatus,jdbcType=VARCHAR}, #{no1AutherName,jdbcType=VARCHAR})
+		#{claimStatus,jdbcType=VARCHAR},
+		#{no1AutherName,jdbcType=VARCHAR})
+	</insert>
+
+	<!-- 批量插入 -->
+	<insert id="insertList" parameterType="java.util.List">
+
+		insert into public.patent
+		(
+		key_id, name, type,
+		authorization_number, authorization_date,
+		pct_patent_or_not,
+		pct_patent_name, pct_patent_application_number,
+		pct_patent_application_date,
+		pct_patent_priority_date,
+		in_country,
+		all_auther_name, no1_auther_number, no2_auther_name,
+		no2_auther_number,
+		no3_auther_name, no3_auther_number, no4_auther_name,
+		no4_auther_number,
+		no5_auther_name,
+		no5_auther_number, no6_auther_name,
+		no6_auther_number, no7_auther_name,
+		no7_auther_number,
+		no8_auther_name,
+		no8_auther_number, no9_auther_name, no9_auther_number,
+		no10_auther_name,
+		no10_auther_number, claim_status, no1_auther_name
+		)
+		values
+		<foreach collection="list" item="t" index="index" separator=",">
+			(
+			#{t.keyId},
+			#{t.name},
+			#{t.type},
+			#{t.authorizationNumber},
+			#{t.authorizationDate},
+			#{t.pctPatentOrNot},
+			#{t.pctPatentName},
+			#{t.pctPatentApplicationNumber},
+			#{t.pctPatentApplicationDate},
+			#{t.pctPatentPriorityDate},
+			#{t.inCountry},
+			#{t.allAutherName},
+			#{t.no1AutherNumber},
+			#{t.no2AutherName},
+			#{t.no2AutherNumber},
+			#{t.no3AutherName},
+			#{t.no3AutherNumber},
+			#{t.no4AutherName},
+			#{t.no4AutherNumber},
+			#{t.no5AutherName},
+			#{t.no5AutherNumber},
+			#{t.no6AutherName},
+			#{t.no6AutherNumber},
+			#{t.no7AutherName},
+			#{t.no7AutherNumber},
+			#{t.no8AutherName},
+			#{t.no8AutherNumber},
+			#{t.no9AutherName},
+			#{t.no9AutherNumber},
+			#{t.no10AutherName},
+			#{t.no10AutherNumber},
+			#{t.claimStatus},
+			#{t.no1AutherName}
+			)
+		</foreach>
 	</insert>
 	<insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Patent">
 		insert into patent
@@ -369,10 +471,12 @@
 				type = #{type,jdbcType=VARCHAR},
 			</if>
 			<if test="authorizationNumber != null">
-				authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
+				authorization_number =
+				#{authorizationNumber,jdbcType=VARCHAR},
 			</if>
 			<if test="authorizationDate != null">
-				authorization_date = #{authorizationDate,jdbcType=VARCHAR},
+				authorization_date =
+				#{authorizationDate,jdbcType=VARCHAR},
 			</if>
 			<if test="pctPatentOrNot != null">
 				pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
@@ -381,13 +485,16 @@
 				pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
 			</if>
 			<if test="pctPatentApplicationNumber != null">
-				pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
+				pct_patent_application_number =
+				#{pctPatentApplicationNumber,jdbcType=VARCHAR},
 			</if>
 			<if test="pctPatentApplicationDate != null">
-				pct_patent_application_date = #{pctPatentApplicationDate,jdbcType=VARCHAR},
+				pct_patent_application_date =
+				#{pctPatentApplicationDate,jdbcType=VARCHAR},
 			</if>
 			<if test="pctPatentPriorityDate != null">
-				pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
+				pct_patent_priority_date =
+				#{pctPatentPriorityDate,jdbcType=VARCHAR},
 			</if>
 			<if test="inCountry != null">
 				in_country = #{inCountry,jdbcType=VARCHAR},
@@ -450,7 +557,8 @@
 				no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
 			</if>
 			<if test="no10AutherNumber != null">
-				no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
+				no10_auther_number =
+				#{no10AutherNumber,jdbcType=VARCHAR},
 			</if>
 			<if test="claimStatus != null">
 				claim_status = #{claimStatus,jdbcType=VARCHAR},
@@ -463,40 +571,70 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="site.gaoyisheng.pojo.Patent">
 		update patent
-		set key_id = #{keyId,jdbcType=VARCHAR},
+		set
+		key_id = #{keyId,jdbcType=VARCHAR},
 		name = #{name,jdbcType=VARCHAR},
 		type = #{type,jdbcType=VARCHAR},
-		authorization_number = #{authorizationNumber,jdbcType=VARCHAR},
-		authorization_date = #{authorizationDate,jdbcType=VARCHAR},
-		pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
-		pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
-		pct_patent_application_number = #{pctPatentApplicationNumber,jdbcType=VARCHAR},
+		authorization_number =
+		#{authorizationNumber,jdbcType=VARCHAR},
+		authorization_date =
+		#{authorizationDate,jdbcType=VARCHAR},
+		pct_patent_or_not =
+		#{pctPatentOrNot,jdbcType=VARCHAR},
+		pct_patent_name =
+		#{pctPatentName,jdbcType=VARCHAR},
+		pct_patent_application_number =
+		#{pctPatentApplicationNumber,jdbcType=VARCHAR},
 		pct_patent_application_date =
 		#{pctPatentApplicationDate,jdbcType=VARCHAR},
-		pct_patent_priority_date = #{pctPatentPriorityDate,jdbcType=VARCHAR},
-		in_country = #{inCountry,jdbcType=VARCHAR},
-		all_auther_name = #{allAutherName,jdbcType=VARCHAR},
-		no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
-		no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
-		no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
-		no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
-		no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
-		no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
-		no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
-		no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
-		no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
-		no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
-		no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
-		no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
-		no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
-		no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
-		no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
-		no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
-		no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
-		no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
-		no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
-		claim_status = #{claimStatus,jdbcType=VARCHAR},
-		no1_auther_name = #{no1AutherName,jdbcType=VARCHAR}
+		pct_patent_priority_date
+		= #{pctPatentPriorityDate,jdbcType=VARCHAR},
+		in_country =
+		#{inCountry,jdbcType=VARCHAR},
+		all_auther_name =
+		#{allAutherName,jdbcType=VARCHAR},
+		no1_auther_number =
+		#{no1AutherNumber,jdbcType=VARCHAR},
+		no2_auther_name =
+		#{no2AutherName,jdbcType=VARCHAR},
+		no2_auther_number =
+		#{no2AutherNumber,jdbcType=VARCHAR},
+		no3_auther_name =
+		#{no3AutherName,jdbcType=VARCHAR},
+		no3_auther_number =
+		#{no3AutherNumber,jdbcType=VARCHAR},
+		no4_auther_name =
+		#{no4AutherName,jdbcType=VARCHAR},
+		no4_auther_number =
+		#{no4AutherNumber,jdbcType=VARCHAR},
+		no5_auther_name =
+		#{no5AutherName,jdbcType=VARCHAR},
+		no5_auther_number =
+		#{no5AutherNumber,jdbcType=VARCHAR},
+		no6_auther_name =
+		#{no6AutherName,jdbcType=VARCHAR},
+		no6_auther_number =
+		#{no6AutherNumber,jdbcType=VARCHAR},
+		no7_auther_name =
+		#{no7AutherName,jdbcType=VARCHAR},
+		no7_auther_number =
+		#{no7AutherNumber,jdbcType=VARCHAR},
+		no8_auther_name =
+		#{no8AutherName,jdbcType=VARCHAR},
+		no8_auther_number =
+		#{no8AutherNumber,jdbcType=VARCHAR},
+		no9_auther_name =
+		#{no9AutherName,jdbcType=VARCHAR},
+		no9_auther_number =
+		#{no9AutherNumber,jdbcType=VARCHAR},
+		no10_auther_name =
+		#{no10AutherName,jdbcType=VARCHAR},
+		no10_auther_number =
+		#{no10AutherNumber,jdbcType=VARCHAR},
+		claim_status =
+		#{claimStatus,jdbcType=VARCHAR},
+		no1_auther_name =
+		#{no1AutherName,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 </mapper>

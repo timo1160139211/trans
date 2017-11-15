@@ -18,6 +18,7 @@ package me.test.base;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,21 @@ public class UserOpsTest extends BaseTest {
 //
 //		}
 		//System.out.println(ts.selectByPrimaryKey(101));
+		
+//		List<EnPeriodicalThesis> list = ts.selectByStatus("未认领");
+//		for (EnPeriodicalThesis e : list) {
+//			System.out.println(e.toString());
+//		}
+		
+		
+//		Map<String,Integer> map = ts.selectStatistic();
+//		
+//		System.out.println("**************************** 已认领:"+map.get("claimed").toString());
+//		System.out.println("**************************** 未认领:"+map.get("notClaimed").toString());
+//		System.out.println("**************************** 总数  :"+map.get("total").toString());
+		
+		
+		
 	}	
 	
 //	@Test
