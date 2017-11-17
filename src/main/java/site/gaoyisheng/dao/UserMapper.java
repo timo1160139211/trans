@@ -3,6 +3,7 @@ package site.gaoyisheng.dao;
 import java.util.List;
 import java.util.Map;
 
+import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.pojo.User;
 
 public interface UserMapper {
@@ -21,4 +22,8 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
     
     List<User> selectAllUser();
+    
+    List<User> selectBySelectiveParam();
+    
+    int insertList(List<User> userList);
 }

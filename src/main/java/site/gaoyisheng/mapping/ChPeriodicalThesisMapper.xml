@@ -93,7 +93,7 @@
 	</select>
 	
 	
-		<select id="selectByMultiConditions" parameterType="map"
+	<select id="selectByMultiConditions" parameterType="map"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
@@ -356,6 +356,62 @@
 			</if>
 		</trim>
 	</insert>
+	
+	
+	<!-- 批量插入 -->
+	<insert id="insertList" parameterType="java.util.List">
+
+		insert into public.ch_periodical_thesis
+		(
+		key_id, provenance, year, ministry, period, name, key_words,
+		all_auther_name,
+		mechanism,no1_auther_name, no1_auther_number, no2_auther_name,
+		no2_auther_number, no3_auther_name,
+		no3_auther_number, no4_auther_name, no4_auther_number, no5_auther_name,
+		no5_auther_number,
+		no6_auther_name, no6_auther_number, no7_auther_name, no7_auther_number,
+		no8_auther_name,
+		no8_auther_number, no9_auther_name, no9_auther_number, no10_auther_name,
+		no10_auther_number,
+		claim_status
+		)
+		values
+		<foreach collection="list" item="t" index="index" separator=",">
+			(
+			#{t.keyId},
+			#{t.provenance},
+			#{t.year},
+			#{t.ministry},
+			#{t.period},
+			#{t.name},
+			#{t.key_words},
+			#{t.all_auther_name},
+			#{t.mechanism},
+			#{t.no1AutherName},
+			#{t.no1AutherNumber},
+			#{t.no2AutherName},
+			#{t.no2AutherNumber},
+			#{t.no3AutherName},
+			#{t.no3AutherNumber},
+			#{t.no4AutherName},
+			#{t.no4AutherNumber},
+			#{t.no5AutherName},
+			#{t.no5AutherNumber},
+			#{t.no6AutherName},
+			#{t.no6AutherNumber},
+			#{t.no7AutherName},
+			#{t.no7AutherNumber},
+			#{t.no8AutherName},
+			#{t.no8AutherNumber},
+			#{t.no9AutherName},
+			#{t.no9AutherNumber},
+			#{t.no10AutherName},
+			#{t.no10AutherNumber},
+			#{t.claimStatus}
+			)
+		</foreach>
+	</insert>
+	
 	<update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.ChPeriodicalThesis">
 		update ch_periodical_thesis
 		<set>

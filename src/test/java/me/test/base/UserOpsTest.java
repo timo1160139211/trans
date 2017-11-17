@@ -93,27 +93,25 @@ public class UserOpsTest extends BaseTest {
 		
 	}	
 	
-//	@Test
-//	public void insertListTest() {
+	@Test
+	public void insertListTest() {
 //		List<EnPeriodicalThesis> thesisList = new ArrayList<EnPeriodicalThesis>();
+//		List<User> thesisList = new ArrayList<User>();
 //		
-//		EnPeriodicalThesis t1 = new EnPeriodicalThesis();
-//		EnPeriodicalThesis t2 = new EnPeriodicalThesis();
-//		EnPeriodicalThesis t3 = new EnPeriodicalThesis();
+//		User t1 = new User();
+//		User t2 = new User();
 //		
 //		t1.setName("qq1");
 //		t2.setName("ww2");
-//		t3.setName("asd");
 //		
 //		thesisList.add(t1);
 //		thesisList.add(t2);
-//		thesisList.add(t3);
 //		
 //		try {
-//			System.out.println(ts.insertList(thesisList));
+//			System.out.println(us.insertList(thesisList));
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
-//	}
+	}
 
 }

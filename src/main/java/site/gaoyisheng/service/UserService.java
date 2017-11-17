@@ -30,11 +30,29 @@ public class UserService {
 	@Autowired
 	private UserMapper userDao;
 	
+	/**
+	 * 
+	 * .
+	 * TODO 多条件查询
+	 * @param user
+	 * @return
+	 */
 	public void updateByPrimaryKeySelective(User user) {
 		this.userDao.updateByPrimaryKeySelective(user);
 	}
 
 	public List<User> selectAllUser() {
 		return this.userDao.selectAllUser();
+	}
+	
+	/**
+	 * .
+	 * TODO 批量插入
+	 * @param userList
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertList(List<User> userList) throws Exception {
+		return userDao.insertList(userList);
 	}
 }

@@ -35,6 +35,27 @@
 		from public."user"
 	</select>
 	
+	<select id="selectBySelectiveParam" parameterType="site.gaoyisheng.pojo.User"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from public."user"
+		<where>
+			<if test="name != null">
+				name like concat('%','${name}','%')
+			</if>
+			<if test="number != null">
+				name like concat('%','${number}','%')
+			</if>
+			<if test="college != null">
+				name like concat('%','${college}','%')
+			</if>
+			<if test="status != null">
+				name like concat('%','${status}','%')
+			</if>
+		</where>
+	</select>
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from public.user
 		where id = #{id,jdbcType=INTEGER}
@@ -88,6 +109,25 @@
 				#{status,jdbcType=VARCHAR},
 			</if>
 		</trim>
+	</insert>
+	
+	<!-- 批量插入 -->
+	<insert id="insertList" parameterType="java.util.List">
+
+		insert into public.user
+		(
+		name, number, password, college, status
+		)
+		values
+		<foreach collection="list" item="u" index="index" separator=",">
+			(
+			#{u.name},
+			#{u.number},
+			#{u.password},
+			#{u.college},
+			#{u.status}
+			)
+		</foreach>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.User">
 		update public.user
