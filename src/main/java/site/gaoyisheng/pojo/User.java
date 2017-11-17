@@ -6,8 +6,16 @@ public class User {
     private String number;
     private String password;
     private String college;// 学院
+    private String status;//状态:{在职,离退休,调出,去世}
 
-
+    public User() {
+    	this.name="";
+    	this.number="";
+    	this.password="";
+    	this.college="";
+    	this.status="";
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -51,7 +59,15 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", number=" + number + ", password=" + password + ", college="
-				+ college + "]";
+				+ college + ", status=" + status + "]";
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
     
 }

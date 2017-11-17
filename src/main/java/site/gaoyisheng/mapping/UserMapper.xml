@@ -7,9 +7,10 @@
 		<result column="number" jdbcType="VARCHAR" property="number" />
 		<result column="password" jdbcType="VARCHAR" property="password" />
 		<result column="college" jdbcType="VARCHAR" property="college" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, name, number, password, college
+		id, name, number, password, college, status
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">
@@ -40,10 +41,10 @@
 	</delete>
 	<insert id="insert" parameterType="site.gaoyisheng.pojo.User">
 		insert into user (id, name, number,
-		password, college)
+		password, college,status)
 		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
 		#{number,jdbcType=VARCHAR},
-		#{password,jdbcType=VARCHAR}, #{college,jdbcType=VARCHAR})
+		#{password,jdbcType=VARCHAR}, #{college,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="site.gaoyisheng.pojo.User">
 		insert into public.user
@@ -63,6 +64,9 @@
 			<if test="college != null">
 				college,
 			</if>
+			<if test="status != null">
+				status,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -79,6 +83,9 @@
 			</if>
 			<if test="college != null">
 				#{college,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -97,6 +104,9 @@
 			<if test="college != null">
 				college = #{college,jdbcType=VARCHAR},
 			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
@@ -106,6 +116,7 @@
 		number = #{number,jdbcType=VARCHAR},
 		password = #{password,jdbcType=VARCHAR},
 		college = #{college,jdbcType=VARCHAR}
+		status = #{status,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 </mapper>
