@@ -29,14 +29,17 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.expression.ParseException;
 
+import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
+import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.pojo.Thesis;
+import site.gaoyisheng.pojo.User;
 
 public class FileUtil {
 
 	/**
 	 * .
-	 * TODO 把数据解析成list并返回.
+	 * TODO 文件导入: 把数据解析成list.  --Thesis
 	 * @param is
 	 * @return
 	 * @throws IOException
@@ -110,9 +113,56 @@ public class FileUtil {
 	
 	/**
 	 * .
-	 * TODO 把数据解析成 EnPeriodicalThesis list 并返回
+	 * TODO 文件导入: 把数据解析成list.  --User
+	 * @param is
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	public List<User> importFileOfUser(InputStream is) throws IOException{  
+        @SuppressWarnings("resource")
+		 HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);  
+        List<User> userList = new ArrayList<User>();  
+        User user; 
+        
+         // 循环工作表Sheet  
+        for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {  
+            HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);  
+            if (hssfSheet == null) {  
+                continue;  
+              }  
+            String hssfSheetName = hssfSheet.getSheetName();
+            
+              // 循环行Row  ,从第一行开始.
+            for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {  
+            	 user = new User();  
+                HSSFRow hssfRow = hssfSheet.getRow(rowNum); 
+                  //从第二列开始
+                for (int i = 1; i < hssfRow.getLastCellNum(); i++) {  
+                    HSSFCell thesisIdHSSFCell = hssfRow.getCell(i); 
+                    String value = thesisIdHSSFCell.getStringCellValue();
+                    if (value==null) {value="";}
+                    switch(i) {
+                           //初始化工号同时初始化密码  number==password
+                        case 1:user.setNumber(value);user.setPassword(value);break;
+                        case 2:user.setCollege(value);break;
+                        case 3:user.setName(value);break;
+                       }
+                    
+                   }
+                  //额外设置状态为表名
+                user.setStatus(hssfSheetName);
+                userList.add(user);  
+                }  
+            
+          }  
+         return userList;  
+    }
+	
+	/**
+	 * .
+	 * TODO 文件导入: 把数据解析成list.   --EnPeriodicalThesis 
 	 * @param InputStream
-	 * @param EnPeriodicalThesis
 	 * @return
 	 * @throws IOException
 	 */
@@ -154,15 +204,111 @@ public class FileUtil {
         }  
         return enPeriodicalThesisList;  
     }
+
+	/**
+	 * .
+	 * TODO 文件导入: 把数据解析成list    --ChPeriodicalThesis 
+	 * @param InputStream
+	 * @return
+	 * @throws IOException
+	 */
+	public List<ChPeriodicalThesis> importFileOfChPeriodicalThesis(InputStream is) throws IOException{  
+        @SuppressWarnings("resource")
+		 HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);  
+        List<ChPeriodicalThesis> chPeriodicalThesisList = new ArrayList<ChPeriodicalThesis>();  
+        ChPeriodicalThesis thesis; 
+        
+         // 循环工作表Sheet  
+        for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {  
+            HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);  
+            if (hssfSheet == null) {  
+                continue;  
+              }  
+              // 循环行Row  ,从第2 行开始.  0 1 2 
+            for (int rowNum = 2; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {  
+            	  thesis = new ChPeriodicalThesis();  //有默认值 全为 ""
+                HSSFRow hssfRow = hssfSheet.getRow(rowNum);  
+                  //循环赋值
+                for (int i = 0; i < hssfRow.getLastCellNum(); i++) {  
+                    HSSFCell thesisIdHSSFCell = hssfRow.getCell(i); 
+                    String value = thesisIdHSSFCell.getStringCellValue();
+                    if (value==null) {value="";}
+                    switch(i) {
+                        case 1:thesis.setKeyId(value);break;
+                        case 2:thesis.setProvenance(value);break;
+                        case 3:thesis.setYear(value);break;
+                        case 4:thesis.setMinistry(value);break;
+                        case 5:thesis.setPeriod(value);break;
+                        case 6:thesis.setName(value);break;
+                        case 7:thesis.setKeyWords(value);break;
+                        case 8:thesis.setAllAutherName(value);break;
+                        case 9:thesis.setMechanism(value);break;
+                       }
+                }  
+                chPeriodicalThesisList.add(thesis);  
+            }  
+        }  
+        return chPeriodicalThesisList;  
+    }	
+
+	/**
+	 * .
+	 * TODO 文件导入: 把数据解析成list.   --Patent
+	 * @param InputStream
+	 * @return
+	 * @throws IOException
+	 */
+	public List<Patent> importFileOfPatent(InputStream is) throws IOException{  
+        @SuppressWarnings("resource")
+		 HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);  
+        List<Patent> patentList = new ArrayList<Patent>();  
+        Patent patent; 
+        
+         // 循环工作表Sheet  
+        for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {  
+            HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);  
+            if (hssfSheet == null) {  
+                continue;  
+              }  
+              // 循环行Row  ,从第2 行开始.  0 1 2 
+            for (int rowNum = 2; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {  
+            	patent = new Patent();  //有默认值 全为 ""
+                HSSFRow hssfRow = hssfSheet.getRow(rowNum);  
+                  //循环赋值
+                for (int i = 0; i < hssfRow.getLastCellNum(); i++) {  
+                    HSSFCell thesisIdHSSFCell = hssfRow.getCell(i); 
+                    String value = thesisIdHSSFCell.getStringCellValue();
+                    if (value==null) {value="";}
+                    switch(i) {
+                        case 1:patent.setKeyId(value);break;
+                        case 2:patent.setName(value);break;
+                        case 3:patent.setType(value);break;
+                        case 4:patent.setAuthorizationNumber(value);break;
+                        case 5:patent.setAuthorizationDate(value);break;
+                        case 6:patent.setPctPatentOrNot(value);break;
+                        case 7:patent.setPctPatentName(value);break;
+                        case 8:patent.setPctPatentApplicationNumber(value);break;
+                        case 9:patent.setPctPatentApplicationDate(value);break;
+                        case 10:patent.setPctPatentPriorityDate(value);break;
+                        case 11:patent.setInCountry(value);break;
+                        case 12:patent.setAllAutherName(value);break;
+                       }
+                   }  
+                patentList.add(patent);  
+               }  
+        }  
+        return patentList;  
+    }	
+	
 	
 	/**
 	 * .
-	 * TODO 导出文件.
+	 * TODO 导出文件: 把数据解析成byte[]  ----EnPeriodicalThesis
 	 * @param list
 	 * @return
 	 * @throws Exception
 	 */
-	public byte[] exportFile(List<EnPeriodicalThesis> list,EnPeriodicalThesis e) throws Exception{
+	public byte[] exportFileOfEnPeriodicalThesis(List<EnPeriodicalThesis> list) throws Exception{
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		// 第一步，创建一个web book，对应一个Excel文件
@@ -222,12 +368,142 @@ public class FileUtil {
 	
 	/**
 	 * .
-	 * TODO 导出文件.
+	 * TODO 导出文件: 把数据解析成byte[]  ----ChPeriodicalThesis
 	 * @param list
 	 * @return
 	 * @throws Exception
 	 */
-	public byte[] exportFile(List<Thesis> list,Thesis t) throws Exception{
+	public byte[] exportFileOfChPeriodicalThesis(List<ChPeriodicalThesis> list) throws Exception{
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		// 第一步，创建一个web book，对应一个Excel文件
+		HSSFWorkbook wb = new HSSFWorkbook();
+		// 第二步，在web book中添加一个sheet,对应Excel文件中的sheet
+		HSSFSheet sheet = wb.createSheet("中文期刊论文表");
+		// 第三步，在sheet中添加表头第0行,注意老版本p o i对Excel的行数列数有限制short
+		HSSFRow row = sheet.createRow((int) 0);
+		// 第四步，创建单元格，并设置值表头 设置表头居中
+		HSSFCellStyle style = wb.createCellStyle();
+
+		// 设置表头
+		List<String> excelHead = combileExcelHead();
+
+		HSSFCell cell = null;
+		// excel头
+		for (int i = 0; i < excelHead.size(); i++) {
+			cell = row.createCell(i);
+			cell.setCellValue(excelHead.get(i));
+			cell.setCellStyle(style);
+		}
+
+		// 第五步，写入实体数据 实际应用中这些数据从数据库得到
+		ChPeriodicalThesis thesis = null; // 拼装excel内容
+		for (int i = 0; i < list.size(); i++) {
+			row = sheet.createRow((int) i + 1);
+			thesis = list.get(i);
+			// 创建单元格，并设置值
+
+			int j = 0;
+			insertCell(row, j++, thesis.getKeyId());
+			insertCell(row, j++, thesis.getNo1AutherName());
+			insertCell(row, j++, thesis.getNo1AutherNumber());
+			insertCell(row, j++, thesis.getNo2AutherName());
+			insertCell(row, j++, thesis.getNo2AutherNumber());
+			insertCell(row, j++, thesis.getNo3AutherName());
+			insertCell(row, j++, thesis.getNo3AutherNumber());
+			insertCell(row, j++, thesis.getNo4AutherName());
+			insertCell(row, j++, thesis.getNo4AutherNumber());
+			insertCell(row, j++, thesis.getNo5AutherName());
+			insertCell(row, j++, thesis.getNo5AutherNumber());
+			insertCell(row, j++, thesis.getNo6AutherName());
+			insertCell(row, j++, thesis.getNo6AutherNumber());
+			insertCell(row, j++, thesis.getNo7AutherName());
+			insertCell(row, j++, thesis.getNo7AutherNumber());
+			insertCell(row, j++, thesis.getNo8AutherName());
+			insertCell(row, j++, thesis.getNo8AutherNumber());
+			insertCell(row, j++, thesis.getNo9AutherName());
+			insertCell(row, j++, thesis.getNo9AutherNumber());
+			insertCell(row, j++, thesis.getNo10AutherName());
+			insertCell(row, j++, thesis.getNo10AutherNumber());
+			insertCell(row, j++, thesis.getClaimStatus());
+		}
+		wb.write(out);wb.close();
+		return out.toByteArray();
+	}	
+	
+	/**
+	 * .
+	 * TODO 导出文件: 把数据解析成byte[]  ----Patent
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
+	public byte[] exportFileOfPatent(List<Patent> list) throws Exception{
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		// 第一步，创建一个web book，对应一个Excel文件
+		HSSFWorkbook wb = new HSSFWorkbook();
+		// 第二步，在web book中添加一个sheet,对应Excel文件中的sheet
+		HSSFSheet sheet = wb.createSheet("中文期刊论文表");
+		// 第三步，在sheet中添加表头第0行,注意老版本p o i对Excel的行数列数有限制short
+		HSSFRow row = sheet.createRow((int) 0);
+		// 第四步，创建单元格，并设置值表头 设置表头居中
+		HSSFCellStyle style = wb.createCellStyle();
+
+		// 设置表头
+		List<String> excelHead = combileExcelHead();
+
+		HSSFCell cell = null;
+		// excel头
+		for (int i = 0; i < excelHead.size(); i++) {
+			cell = row.createCell(i);
+			cell.setCellValue(excelHead.get(i));
+			cell.setCellStyle(style);
+		}
+
+		// 第五步，写入实体数据 实际应用中这些数据从数据库得到
+		Patent patent = null; // 拼装excel内容
+		for (int i = 0; i < list.size(); i++) {
+			row = sheet.createRow((int) i + 1);
+			patent = list.get(i);
+			// 创建单元格，并设置值
+
+			int j = 0;
+			insertCell(row, j++, patent.getKeyId());
+			insertCell(row, j++, patent.getNo1AutherName());
+			insertCell(row, j++, patent.getNo1AutherNumber());
+			insertCell(row, j++, patent.getNo2AutherName());
+			insertCell(row, j++, patent.getNo2AutherNumber());
+			insertCell(row, j++, patent.getNo3AutherName());
+			insertCell(row, j++, patent.getNo3AutherNumber());
+			insertCell(row, j++, patent.getNo4AutherName());
+			insertCell(row, j++, patent.getNo4AutherNumber());
+			insertCell(row, j++, patent.getNo5AutherName());
+			insertCell(row, j++, patent.getNo5AutherNumber());
+			insertCell(row, j++, patent.getNo6AutherName());
+			insertCell(row, j++, patent.getNo6AutherNumber());
+			insertCell(row, j++, patent.getNo7AutherName());
+			insertCell(row, j++, patent.getNo7AutherNumber());
+			insertCell(row, j++, patent.getNo8AutherName());
+			insertCell(row, j++, patent.getNo8AutherNumber());
+			insertCell(row, j++, patent.getNo9AutherName());
+			insertCell(row, j++, patent.getNo9AutherNumber());
+			insertCell(row, j++, patent.getNo10AutherName());
+			insertCell(row, j++, patent.getNo10AutherNumber());
+			insertCell(row, j++, patent.getClaimStatus());
+		}
+		wb.write(out);wb.close();
+		return out.toByteArray();
+	}
+	
+	/**
+	 * .
+	 * TODO 导出文件: 把数据解析成byte[]   -----Thesis
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
+	public byte[] exportFile(List<Thesis> list) throws Exception{
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		// 第一步，创建一个web book，对应一个Excel文件
@@ -323,7 +599,8 @@ public class FileUtil {
 		wb.write(out);wb.close();
 		return out.toByteArray();
 	}
-
+	
+	
 	/**
 	 * .
 	 * TODO 获取excel表头.

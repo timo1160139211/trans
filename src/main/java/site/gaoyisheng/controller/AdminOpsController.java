@@ -33,7 +33,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Thesis;
+import site.gaoyisheng.service.ChPeriodicalThesisService;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
+import site.gaoyisheng.service.PatentService;
 import site.gaoyisheng.service.ThesisService;
 import site.gaoyisheng.service.UserService;
 import site.gaoyisheng.utils.FileUtil;
@@ -44,13 +46,16 @@ public class AdminOpsController {
 
 	@Autowired
 	private UserService userService;
-
-	@Autowired
-	private ThesisService thesisService;
 	
 	@Autowired
+	private PatentService patentService;
+
+	@Autowired
 	private EnPeriodicalThesisService enPeriodicalThesisService;
-        
+  
+	@Autowired
+	private ChPeriodicalThesisService chPeriodicalThesisService;
+	
     @RequestMapping(value = "/upload", method = RequestMethod.GET)
     public String upload() {
         return "/admin/upload";
@@ -58,69 +63,48 @@ public class AdminOpsController {
 
     /**
      * .
-     * TODO 上传文件,并解析入库
+     * TODO 上传文件,并解析入库  : request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
      *
      * @param file
      * @param request
      * @return
      */
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public ModelAndView importBrandSort(@RequestParam("filename") MultipartFile file, 
+    public ModelAndView importXlsFile(@RequestParam("filename") MultipartFile file, 
                                     HttpServletRequest request) throws Exception {
-        if (file.isEmpty()) {
-            String strAlertMsg = "文件上传失败: 服务器未接收到文件";
-            request.getSession().setAttribute("msg", strAlertMsg);
-            return null;
+    	String strAlertMsg = null;
+       if (file.isEmpty()) {
+           strAlertMsg = "文件上传失败: 服务器未接收到文件";
+           request.getSession().setAttribute("msg", strAlertMsg);
+           return null;
         }
-        String name = file.getOriginalFilename();// 获取上传文件名,包括路径  
-        long size = file.getSize();
-        if ((name == null || name.equals("")) && size == 0) {
-            String strAlertMsg = "文件上传失败: 文件内容为空";
-            request.getSession().setAttribute("msg", strAlertMsg);
-            return null;
+        
+       String name = file.getOriginalFilename();// 获取上传文件名,包括路径  
+       long size = file.getSize();
+        
+       if ((name == null || name.equals("")) && size == 0) {
+           strAlertMsg = "文件上传失败: 文件内容为空";
+           request.getSession().setAttribute("msg", strAlertMsg);
+           return null;
         }
-        InputStream in = file.getInputStream();
-        int count = thesisService.readStreamAndInsertList(in);
-        String strAlertMsg = "成功插入" + count + "条！";
-        request.getSession().setAttribute("msg", strAlertMsg);
-        return new ModelAndView("redirect:/admin/upload");
+        
+       InputStream in = file.getInputStream();
+       switch(request.getParameter("awardsType")) {
+             //插入并返回 提示
+           case "patent":strAlertMsg = "成功插入" + patentService.readStreamAndInsertList(in) + "条！";break;
+           case "enPeriodicalThesis":strAlertMsg = "成功插入" + enPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
+           case "chPeriodicalThesis":strAlertMsg = "成功插入" + chPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
+           default:strAlertMsg = "数据插入失败: 请检查log输出或开发人员";
+        }
+       
+       request.getSession().setAttribute("msg", strAlertMsg);
+        
+       return new ModelAndView("redirect:/admin/upload");
     } 
 	
-
 	/**
-	 * 
 	 * .
-	 * TODO 查库,声称文件,并下载
-	 * @param request
-	 * @param response
-	 * @throws Exception
-	 */
-//	@RequestMapping(value = "/download", method = RequestMethod.GET)
-//	public void exportBrandSort(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//
-//		try {
-//			List<Thesis> list = thesisService.selectAllThesis();
-//
-//			byte[] fileNameByte = ("下载.xls").getBytes("GBK");
-//			String filename = new String(fileNameByte, "ISO8859-1");
-//
-//			FileUtil fileUtil = new FileUtil();
-//			byte[] bytes = fileUtil.exportFile(list);
-//
-//			response.setContentType("application/x-msdownload");
-//			response.setContentLength(bytes.length);
-//			response.setHeader("Content-Disposition", "attachment;filename=" + filename);
-//			response.getOutputStream().write(bytes);
-//
-//		} catch (Exception ex) {
-//		}
-//	}
-
-	/**
-	 * 
-	 * .
-	 * TODO 查库,声称文件,并下载
-	 * @param <E>
+	 * TODO 生成Xls文件,并下载  : request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
 	 * @param request
 	 * @param response
 	 * @throws Exception
@@ -128,16 +112,16 @@ public class AdminOpsController {
 	@RequestMapping(value = "/download", method = RequestMethod.GET)
 	public void exportExcel(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+		
 		try {
-			//成果类型: {"patent"、"enPeriodicalThesis","chPeriodicalThesis"}
-			String type = request.getParameter("awardType");
+			String type = request.getParameter("awardsType");
 			FileUtil fileUtil = new FileUtil();
 			byte[] bytes = null;
 			
 			switch(type) {
-//				case "chPeriodicalThesis": bytes = fileUtil.exportFile(thesisService.selectAllThesis(),new Thesis());break;
-//			    case "patent": bytes = fileUtil.exportFile(thesisService.selectAllThesis(),new Thesis());break;
-			    case "enPeriodicalThesis": bytes = fileUtil.exportFile(enPeriodicalThesisService.selectAll(),new EnPeriodicalThesis());break;
+			    case "patent": bytes = fileUtil.exportFileOfPatent(patentService.selectAll());break;
+			    case "enPeriodicalThesis": bytes = fileUtil.exportFileOfEnPeriodicalThesis(enPeriodicalThesisService.selectAll());break;
+			    case "chPeriodicalThesis": bytes = fileUtil.exportFileOfChPeriodicalThesis(chPeriodicalThesisService.selectAll());break;
 			    default : return ; //退出,并返回"无该类型文档"
 			}
 			
@@ -148,7 +132,6 @@ public class AdminOpsController {
 			response.setContentLength(bytes.length);
 			response.setHeader("Content-Disposition", "attachment;filename=" + filename);
 			response.getOutputStream().write(bytes);
-
 		} catch (Exception ex) {
 		}
 	}
