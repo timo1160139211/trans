@@ -16,6 +16,7 @@
  */
 package site.gaoyisheng.service;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,19 +26,31 @@ import org.springframework.stereotype.Service;
 
 import site.gaoyisheng.dao.PatentMapper;
 import site.gaoyisheng.pojo.Patent;
+import site.gaoyisheng.utils.FileUtil;
 
 @Service
 public class PatentService {
 
 	@Autowired
-	private PatentMapper thesisDao;
+	private PatentMapper patentDao;
 
+	/**
+	 * .
+	 * TODO 查询所有
+	 * @return
+	 */
 	public List<Patent> selectAll() {
-		return thesisDao.selectAll();
+		return patentDao.selectAll();
 	}
 
+	/**
+	 * .
+	 * TODO 通过认领状态查询
+	 * @param status
+	 * @return
+	 */
 	public List<Patent> selectByStatus(String status) {
-		return thesisDao.selectByStatus(status);
+		return patentDao.selectByStatus(status);
 	}
 
 	/**
@@ -49,28 +62,55 @@ public class PatentService {
 	public Map<String, Integer> selectStatistic() {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 
-		map.put("claimed", thesisDao.selectCountByStatus("已认领"));
-		map.put("notClaimed", thesisDao.selectCountByStatus("未认领"));
-		map.put("total", thesisDao.selectCount());
+		map.put("claimed", patentDao.selectCountByStatus("已认领"));
+		map.put("notClaimed", patentDao.selectCountByStatus("未认领"));
+		map.put("total", patentDao.selectCount());
 
 		return map;
 	}
 
-	public Patent selectByPrimaryKey(Integer thesisId) {
-		return thesisDao.selectByPrimaryKey(thesisId);
+	/**
+	 * .
+	 * TODO 主键查询
+	 * @param patentId
+	 * @return
+	 */
+	public Patent selectByPrimaryKey(Integer patentId) {
+		return patentDao.selectByPrimaryKey(patentId);
 	}
 
+	/**
+	 * 
+	 * .
+	 * TODO 多条件查询
+	 * @param map
+	 * @return
+	 */
 	public List<Patent> selectByMultiConditions(Map<String, String> map) {
-		return thesisDao.selectByMultiConditions(map);
+		return patentDao.selectByMultiConditions(map);
 	}
 
-//	public int readStreamAndInsertList(InputStream in) throws Exception {
-//		FileUtil fileUtil = new FileUtil();
-//		List<Patent> thesisList = fileUtil.importFileOfPatent(in);
-//		return thesisDao.insertList(thesisList);
-//	}
+	/**
+	 * .
+	 * TODO 将数据流读取并批量插入
+	 * @param in
+	 * @return
+	 * @throws Exception
+	 */
+	public int readStreamAndInsertList(InputStream in) throws Exception {
+		FileUtil fileUtil = new FileUtil();
+		List<Patent> patentList = fileUtil.importFileOfPatent(in);
+		return patentDao.insertList(patentList);
+	}
 
-	public int insertList(List<Patent> thesisList) throws Exception {
-		return thesisDao.insertList(thesisList);
+	/**
+	 * .
+	 * TODO 批量插入
+	 * @param patentList
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertList(List<Patent> patentList) throws Exception {
+		return patentDao.insertList(patentList);
 	}
 }

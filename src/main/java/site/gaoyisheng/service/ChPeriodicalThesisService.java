@@ -34,10 +34,21 @@ public class ChPeriodicalThesisService {
 	@Autowired
 	private ChPeriodicalThesisMapper thesisDao;
 
+	/**
+	 * .
+	 * TODO 查询所有
+	 * @return
+	 */
 	public List<ChPeriodicalThesis> selectAll() {
 		return thesisDao.selectAll();
 	}
 
+	/**
+	 * .
+	 * TODO 通过认领状态查询
+	 * @param status
+	 * @return
+	 */
 	public List<ChPeriodicalThesis> selectByStatus(String status) {
 		return thesisDao.selectByStatus(status);
 	}
@@ -58,20 +69,46 @@ public class ChPeriodicalThesisService {
 		return map;
 	}
 
+	/**
+	 * .
+	 * TODO 主键查询
+	 * @param thesisId
+	 * @return
+	 */
 	public ChPeriodicalThesis selectByPrimaryKey(Integer thesisId) {
 		return thesisDao.selectByPrimaryKey(thesisId);
 	}
 
+	/**
+	 * .
+	 * TODO 多条件查询
+	 * @param map
+	 * @return
+	 */
 	public List<ChPeriodicalThesis> selectByMultiConditions(Map<String, String> map) {
 		return thesisDao.selectByMultiConditions(map);
 	}
 
-//	public int readStreamAndInsertList(InputStream in) throws Exception {
-//		FileUtil fileUtil = new FileUtil();
-//		List<ChPeriodicalThesis> thesisList = fileUtil.importFileOfChPeriodicalThesis(in);
-//		return thesisDao.insertList(thesisList);
-//	}
+	/**
+	 * .
+	 * TODO 将数据流读取并批量插入
+	 * @param in
+	 * @return
+	 * @throws Exception
+	 */
+	public int readStreamAndInsertList(InputStream in) throws Exception {
+		FileUtil fileUtil = new FileUtil();
+		List<ChPeriodicalThesis> thesisList = fileUtil.importFileOfChPeriodicalThesis(in);
+		return thesisDao.insertList(thesisList);
+	}
 
+	/**
+	 * .
+	 * TODO  批量插入
+	 * @param thesisList
+	 * @return
+	 * @throws Exception
+	 */
 	public int insertList(List<ChPeriodicalThesis> thesisList) throws Exception {
 		return thesisDao.insertList(thesisList);
 	}
