@@ -70,11 +70,13 @@ public class UserOpsTest extends BaseTest {
 */
 	@Test
 	public void selectTest() {
-//		List<User> userList = us.selectAllUser();
-//		for (User u : userList) {
-//			System.out.println(u.toString());
-//
-//		}
+		User u = new User();
+		u.setName("e");
+		List<User> userList = us.searchUserFuzzyQuery(u);
+		for (User user : userList) {
+			System.out.println(user.toString());
+
+		}
 		//System.out.println(ts.selectByPrimaryKey(101));
 		
 //		List<EnPeriodicalThesis> list = ts.selectByStatus("未认领");

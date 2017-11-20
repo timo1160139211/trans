@@ -78,6 +78,17 @@ public class PatentService {
 	public Patent selectByPrimaryKey(Integer patentId) {
 		return patentDao.selectByPrimaryKey(patentId);
 	}
+	
+	/**
+	 * 
+	 * .
+	 * TODO 唯一
+	 * @param patentId
+	 * @return
+	 */
+	public Patent selectByuniqueKey(Integer patentId) {
+		return patentDao.selectByPrimaryKey(patentId);
+	}
 
 	/**
 	 * 
@@ -90,6 +101,16 @@ public class PatentService {
 		return patentDao.selectByMultiConditions(map);
 	}
 
+	/**
+	 * .
+	 * TODO 通过主键更新.(值为  null , '' 的字段将不被更新)
+	 * @param p
+	 * @return
+	 */
+	public int updateByPrimaryKeySelective(Patent p) {
+		return patentDao.updateByPrimaryKeySelective(p);
+	}
+	
 	/**
 	 * .
 	 * TODO 将数据流读取并批量插入

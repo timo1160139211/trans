@@ -31,7 +31,6 @@ public class UserService {
 	private UserMapper userDao;
 	
 	/**
-	 * 
 	 * .
 	 * TODO 多条件查询
 	 * @param user
@@ -41,9 +40,25 @@ public class UserService {
 		this.userDao.updateByPrimaryKeySelective(user);
 	}
 
+	/**
+	 * .
+	 * TODO 查询所有用户.
+	 * @return
+	 */
 	public List<User> selectAllUser() {
 		return this.userDao.selectAllUser();
 	}
+	
+	/**
+	 * .
+	 * TODO 模糊查询.
+	 * @param u
+	 * @return
+	 */
+	public List<User> searchUserFuzzyQuery(User u){
+		return this.userDao.selectBySelectiveParam(u);
+	}
+	
 	
 	/**
 	 * .

@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -90,6 +89,16 @@ public class EnPeriodicalThesisService {
 		return thesisDao.selectByMultiConditions(map);
 	}
 
+	/**
+	 * .
+	 * TODO 通过主键更新.(值为  null , '' 的字段将不被更新)
+	 * @param p
+	 * @return
+	 */
+	public int updateByPrimaryKeySelective(EnPeriodicalThesis p) {
+		return thesisDao.updateByPrimaryKeySelective(p);
+	}
+	
 	/**
 	 * .
 	 * TODO 将数据流读取并批量插入

@@ -91,6 +91,16 @@ public class ChPeriodicalThesisService {
 
 	/**
 	 * .
+	 * TODO 通过主键更新.(值为  null , '' 的字段将不被更新)
+	 * @param p
+	 * @return
+	 */
+	public int updateByPrimaryKeySelective(ChPeriodicalThesis p) {
+		return thesisDao.updateByPrimaryKeySelective(p);
+	}
+	
+	/**
+	 * .
 	 * TODO 将数据流读取并批量插入
 	 * @param in
 	 * @return

@@ -17,7 +17,7 @@
 package site.gaoyisheng.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Map;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpSession;
@@ -44,7 +44,9 @@ public class UserOpsController {
 	private ThesisService thesisService;
 	
     /**
-     * 返回论文列表. 参数: 用户姓名. 返回: 论文列表模型.
+     * 返回论文列表. 
+     * 参数: 用户姓名. 
+     * 返回: 论文列表模型.
      *
      * TODO
      *
@@ -101,7 +103,6 @@ public class UserOpsController {
         return mv;
     }
 	
-	
     /**
      * .
      * 填写修改个人信息表单. TODO
@@ -141,6 +142,23 @@ public class UserOpsController {
         session.setAttribute("currentUser", userForm);
     }
 	
+    /**
+     * .
+     * TODO 模糊查找一个用户.
+     * @return
+     */
+    @RequestMapping(value = "/fuzzySearch", method = RequestMethod.GET)
+    public List<User> fuzzySearchUser(HttpServletRequest request){
+    	
+    	User u = new User();
+
+    	//非空判断 => 设值 用于查询.
+    	if(request.getParameter("name")!=null) {u.setName(request.getParameter("name"));}
+    	if(request.getParameter("college")!=null) {u.setCollege(request.getParameter("college"));}
+    	if(request.getParameter("status")!=null) {u.setStatus(request.getParameter("status"));}
+    	
+    	return userService.searchUserFuzzyQuery(u);
+    } 
 	
 	/**
 	 * .
@@ -151,7 +169,7 @@ public class UserOpsController {
 	 * @param no
 	 * @return
 	 */
-	public Thesis setProperties(Thesis thesis,User user,Integer no,Integer sdutNumber) {
+	 private Thesis setProperties(Thesis thesis,User user,Integer no,Integer sdutNumber) {
 		
 		System.out.println("我是被认领的 论文:"+thesis.getName());
 		System.out.println("--<<认领前:" + thesis.toString());

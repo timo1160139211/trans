@@ -17,26 +17,25 @@
 package site.gaoyisheng.controller;
 
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import site.gaoyisheng.pojo.EnPeriodicalThesis;
-import site.gaoyisheng.pojo.Thesis;
+import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.ChPeriodicalThesisService;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
 import site.gaoyisheng.service.PatentService;
-import site.gaoyisheng.service.ThesisService;
 import site.gaoyisheng.service.UserService;
 import site.gaoyisheng.utils.FileUtil;
 
@@ -136,16 +135,55 @@ public class AdminOpsController {
 		}
 	}
 
-	
 	/**
-	 * . 
-	 * TODO 查用户
+	 * .
+	 * TODO 查看认领进度. (进度统计):  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+	 * @param request
 	 * @return
 	 */
-	public String userList() {
-		userService.selectAllUser();
+	@RequestMapping(value = "/statistic", method = RequestMethod.GET)
+	public String speedStatistic(HttpServletRequest request,ModelAndView mv) {
+		String type = request.getParameter("awardsType");
+		Map<String,Integer> statisticalMap = new HashMap<String,Integer>();
+		
+		switch(type) {
+		    case "patent":statisticalMap=patentService.selectStatistic() ;break;
+		    case "enPeriodicalThesis":statisticalMap=enPeriodicalThesisService.selectStatistic();break;
+		    case "chPeriodicalThesis": statisticalMap=chPeriodicalThesisService.selectStatistic();break;
+		}
+		
+		//退出,并返回"无该类型文档"
+		statisticalMap.isEmpty();
+		
+		mv.addObject(statisticalMap);
+		
 		return null;
 	}
+	
+	/**
+	 * .
+	 * TODO  查看所有未认领的awards
+	 * @param request
+	 * @param mv 包含对象:{notClaimedAwardsList} :未认领awards对象的list
+	 * @return
+	 */
+	@RequestMapping(value = "/notClaimed-list", method = RequestMethod.GET)
+	public String notClaimedList(HttpServletRequest request,ModelAndView mv) {
+
+		String type = request.getParameter("awardsType");
+		
+		switch(type) {
+		    case "patent":mv.addObject("notClaimedAwardsList", patentService.selectByStatus("未认领")) ;break;
+		    case "enPeriodicalThesis":mv.addObject("notClaimedAwardsList", enPeriodicalThesisService.selectByStatus("未认领"));break;
+		    case "chPeriodicalThesis": mv.addObject("notClaimedAwardsList", chPeriodicalThesisService.selectByStatus("未认领"));break;
+		}
+		
+		//如果mv为空
+		if(mv.isEmpty());
+		
+		return null;
+	}
+	
 
 	/**
 	 * . 
@@ -153,7 +191,9 @@ public class AdminOpsController {
 	 * @return
 	 */
 	public String updateUser() {
-
+		User user = new User();
+		
+		userService.updateByPrimaryKeySelective(user);
 		return null;
 	}
 

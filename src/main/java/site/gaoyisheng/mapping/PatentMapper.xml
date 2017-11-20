@@ -118,16 +118,43 @@
 		<include refid="Base_Column_List" />
 		from patent
 		<where>
-			<if test="name != null">
+			<if test="name != '' and name != null">
 				name like concat('%','${name}','%')
 			</if>
-			<if test="title != null">
+			<if test="type != '' and type != null">
+				AND type like concat('%','${type}','%')
+			</if>
+			<if test="authorizationNumber != '' and authorizationNumber != null">
+				AND authorization_number like concat('%','${authorizationNumber}','%')
+			</if>
+			<if test="authorizationDate != '' and authorizationDate != null">
+				AND authorization_date like concat('%','${authorizationDate}','%')
+			</if>
+			<if test="pctPatentOrNot != '' and pctPatentOrNot != null">
+				AND pct_patent_or_not like concat('%','${pctPatentOrNot}','%')
+			</if>
+			<if test="pctPatentName != '' and pctPatentName != null">
+				AND pct_patent_name like concat('%','${pctPatentName}','%')
+			</if>
+			<if test="pctPatentApplicationNumber != '' and pctPatentApplicationNumber != null">
+				AND pct_patent_application_number like concat('%','${pctPatentApplicationNumber}','%')
+			</if>
+			<if test="pctPatentApplicationDate != '' and pctPatentApplicationDate != null">
+				AND pct_patent_application_date like concat('%','${pctPatentApplicationDate}','%')
+			</if>
+			<if test="pctPatentPriorityDate != '' and pctPatentPriorityDate != null">
+				AND pct_patent_priority_date like concat('%','${pctPatentPriorityDate}','%')
+			</if>
+			<if test="inCountry != '' and inCountry != null">
+				AND in_country like concat('%','${inCountry}','%')
+			</if>
+			<if test="autherName != '' and autherName != null">
 				AND all_auther_name like concat('%','${autherName}','%')
 			</if>
-			<if test="claimStatus != null">
+			<if test="claimStatus != '' and claimStatus != null">
 				AND claim_status = #{claimStatus}
 			</if>
-		</where>
+		</where> 
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from patent
@@ -461,109 +488,109 @@
 	<update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.Patent">
 		update patent
 		<set>
-			<if test="keyId != null">
+			<if test="keyId != null and KeyId != ''">
 				key_id = #{keyId,jdbcType=VARCHAR},
 			</if>
-			<if test="name != null">
+			<if test="name != null and KeyId != ''">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="type != null">
+			<if test="type != null and  != ''">
 				type = #{type,jdbcType=VARCHAR},
 			</if>
-			<if test="authorizationNumber != null">
+			<if test="authorizationNumber != null and authorizationNumber != ''">
 				authorization_number =
 				#{authorizationNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="authorizationDate != null">
+			<if test="authorizationDate != null and authorizationDate != ''">
 				authorization_date =
 				#{authorizationDate,jdbcType=VARCHAR},
 			</if>
-			<if test="pctPatentOrNot != null">
+			<if test="pctPatentOrNot != null and pctPatentOrNot != ''">
 				pct_patent_or_not = #{pctPatentOrNot,jdbcType=VARCHAR},
 			</if>
-			<if test="pctPatentName != null">
+			<if test="pctPatentName != null and pctPatentName != ''">
 				pct_patent_name = #{pctPatentName,jdbcType=VARCHAR},
 			</if>
-			<if test="pctPatentApplicationNumber != null">
+			<if test="pctPatentApplicationNumber != null and pctPatentApplicationNumber != ''">
 				pct_patent_application_number =
 				#{pctPatentApplicationNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="pctPatentApplicationDate != null">
+			<if test="pctPatentApplicationDate != null and pctPatentApplicationDate != ''">
 				pct_patent_application_date =
 				#{pctPatentApplicationDate,jdbcType=VARCHAR},
 			</if>
-			<if test="pctPatentPriorityDate != null">
+			<if test="pctPatentPriorityDate != null and pctPatentPriorityDate != ''">
 				pct_patent_priority_date =
 				#{pctPatentPriorityDate,jdbcType=VARCHAR},
 			</if>
-			<if test="inCountry != null">
+			<if test="inCountry != null and inCountry != ''">
 				in_country = #{inCountry,jdbcType=VARCHAR},
 			</if>
-			<if test="allAutherName != null">
+			<if test="allAutherName != null and allAutherName != ''">
 				all_auther_name = #{allAutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no1AutherNumber != null">
+			<if test="no1AutherNumber != null and no1AutherNumber != ''">
 				no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no2AutherName != null">
+			<if test="no2AutherName != null and no2AutherName != ''">
 				no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no2AutherNumber != null">
+			<if test="no2AutherNumber != null and no2AutherNumber != ''">
 				no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no3AutherName != null">
+			<if test="no3AutherName != null and no3AutherName != ''">
 				no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no3AutherNumber != null">
+			<if test="no3AutherNumber != null and no3AutherNumber != ''">
 				no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no4AutherName != null">
+			<if test="no4AutherName != null and no4AutherName != ''">
 				no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no4AutherNumber != null">
+			<if test="no4AutherNumber != null and no4AutherNumber != ''">
 				no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no5AutherName != null">
+			<if test="no5AutherName != null and no5AutherName != ''">
 				no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no5AutherNumber != null">
+			<if test="no5AutherNumber != null and no5AutherNumber != ''">
 				no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no6AutherName != null">
+			<if test="no6AutherName != null and no6AutherName != ''">
 				no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no6AutherNumber != null">
+			<if test="no6AutherNumber != null and no6AutherNumber != ''">
 				no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no7AutherName != null">
+			<if test="no7AutherName != null and no7AutherName != ''">
 				no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no7AutherNumber != null">
+			<if test="no7AutherNumber != null and no7AutherNumber != ''">
 				no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no8AutherName != null">
+			<if test="no8AutherName != null and no8AutherName != ''">
 				no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no8AutherNumber != null">
+			<if test="no8AutherNumber != null and no8AutherNumber != ''">
 				no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no9AutherName != null">
+			<if test="no9AutherName != null and no9AutherName != ''">
 				no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no9AutherNumber != null">
+			<if test="no9AutherNumber != null and no9AutherNumber != ''">
 				no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no10AutherName != null">
+			<if test="no10AutherName != null and no10AutherName != ''">
 				no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no10AutherNumber != null">
+			<if test="no10AutherNumber != null and no10AutherNumber != ''">
 				no10_auther_number =
 				#{no10AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="claimStatus != null">
+			<if test="claimStatus != null and claimStatus != ''">
 				claim_status = #{claimStatus,jdbcType=VARCHAR},
 			</if>
-			<if test="no1AutherName != null">
+			<if test="no1AutherName != null and no1AutherName != ''">
 				no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
 			</if>
 		</set>

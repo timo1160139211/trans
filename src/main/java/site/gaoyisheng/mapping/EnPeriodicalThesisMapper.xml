@@ -98,31 +98,31 @@
 		<include refid="Base_Column_List" />
 		from en_periodical_thesis
 		<where>
-			<if test="name != null">
+			<if test="name != '' and name != null">
 				name like concat('%','${name}','%')
 			</if>
-			<if test="title != null">
+			<if test="title != '' and title != null">
 				AND all_auther_name like concat('%','${autherName}','%')
 			</if>
-			<if test="provenance != null">
+			<if test="provenance != '' and provenance != null">
 				AND provenance like concat('%','${provenance}','%')
 			</if>
-			<if test="subject != null">
+			<if test="subject != '' and subject != null">
 				AND subject like concat('%','${subject}','%')
 			</if>
-			<if test="volume != null">
+			<if test="volume != '' and volume != null">
 				AND volume like concat('%','${volume}','%')
 			</if>
-			<if test="period != null">
+			<if test="period != '' and period != null">
 				AND period like concat('%','${period}','%')
 			</if>
-			<if test="page != null">
+			<if test="page != '' and page != null">
 				AND page like concat('%','${page}','%')
 			</if>
-			<if test="year != null">
+			<if test="year != '' and year != null">
 				AND year like concat('%','${year}','%')
 			</if>
-			<if test="claimStatus != null">
+			<if test="claimStatus != '' and claimStatus != null">
 				AND claim_status = #{claimStatus}
 			</if>
 		</where>
@@ -419,94 +419,94 @@
 	<update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.EnPeriodicalThesis">
 		update en_periodical_thesis
 		<set>
-			<if test="keyId != null">
+			<if test="keyId != null and keyId != ''">
 				key_id = #{keyId,jdbcType=VARCHAR},
 			</if>
-			<if test="name != null">
+			<if test="name != null and name != ''">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="allAutherName != null">
+			<if test="allAutherName != null and allAutherName != ''">
 				all_auther_name = #{allAutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="provenance != null">
+			<if test="provenance != null and provenance != ''">
 				provenance = #{provenance,jdbcType=VARCHAR},
 			</if>
-			<if test="subject != null">
+			<if test="subject != null and subject != ''">
 				"subject " = #{subject,jdbcType=VARCHAR},
 			</if>
-			<if test="volume != null">
+			<if test="volume != null and volume != ''">
 				volume = #{volume,jdbcType=VARCHAR},
 			</if>
-			<if test="period != null">
+			<if test="period != null and period != ''">
 				period = #{period,jdbcType=VARCHAR},
 			</if>
-			<if test="page != null">
+			<if test="page != null and page != ''">
 				page = #{page,jdbcType=VARCHAR},
 			</if>
-			<if test="year != null">
+			<if test="year != null and year != ''">
 				year = #{year,jdbcType=VARCHAR},
 			</if>
-			<if test="no1AutherName != null">
+			<if test="no1AutherName != null and no1AutherName != ''">
 				no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no1AutherNumber != null">
+			<if test="no1AutherNumber != null and no1AutherNumber != ''">
 				no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no2AutherName != null">
+			<if test="no2AutherName != null and no2AutherName != ''">
 				no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no2AutherNumber != null">
+			<if test="no2AutherNumber != null and no2AutherNumber != ''">
 				no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no3AutherName != null">
+			<if test="no3AutherName != null and no3AutherName != ''">
 				no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no3AutherNumber != null">
+			<if test="no3AutherNumber != null and no3AutherNumber != ''">
 				no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no4AutherName != null">
+			<if test="no4AutherName != null and no4AutherName != ''">
 				no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no4AutherNumber != null">
+			<if test="no4AutherNumber != null and no4AutherNumber != ''">
 				no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no5AutherName != null">
+			<if test="no5AutherName != null and no5AutherName != ''">
 				no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no5AutherNumber != null">
+			<if test="no5AutherNumber != null and no5AutherNumber != ''">
 				no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no6AutherName != null">
+			<if test="no6AutherName != null and no6AutherName != ''">
 				no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no6AutherNumber != null">
+			<if test="no6AutherNumber != null and no6AutherNumber != ''">
 				no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no7AutherName != null">
+			<if test="no7AutherName != null and no7AutherName != ''">
 				no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no7AutherNumber != null">
+			<if test="no7AutherNumber != null and no7AutherNumber != ''">
 				no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no8AutherName != null">
+			<if test="no8AutherName != null and no8AutherName != ''">
 				no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no8AutherNumber != null">
+			<if test="no8AutherNumber != null and no8AutherNumber != ''">
 				no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no9AutherName != null">
+			<if test="no9AutherName != null and no9AutherName != ''">
 				no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no9AutherNumber != null">
+			<if test="no9AutherNumber != null and no9AutherNumber != ''">
 				no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no10AutherName != null">
+			<if test="no10AutherName != null and no10AutherName != ''">
 				no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no10AutherNumber != null">
+			<if test="no10AutherNumber != null and no10AutherNumber != ''">
 				no10_auther_number = #{no10AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="claimStatus != null">
+			<if test="claimStatus != null and claimStatus != ''">
 				claim_status = #{claimStatus,jdbcType=VARCHAR},
 			</if>
 		</set>

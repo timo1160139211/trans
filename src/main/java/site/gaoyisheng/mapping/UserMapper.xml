@@ -41,17 +41,17 @@
 		<include refid="Base_Column_List" />
 		from public."user"
 		<where>
-			<if test="name != null">
+			<if test="name != '' and name != null">
 				name like concat('%','${name}','%')
 			</if>
-			<if test="number != null">
-				name like concat('%','${number}','%')
+			<if test="number != '' and number != null">
+				and number like concat('%','${number}','%')
 			</if>
-			<if test="college != null">
-				name like concat('%','${college}','%')
+			<if test="college != '' and college != null">
+				and college like concat('%','${college}','%')
 			</if>
-			<if test="status != null">
-				name like concat('%','${status}','%')
+			<if test="status != '' and status != null">
+				and status like concat('%','${status}','%')
 			</if>
 		</where>
 	</select>
