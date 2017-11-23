@@ -17,22 +17,24 @@
 package site.gaoyisheng.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import site.gaoyisheng.pojo.Thesis;
-import site.gaoyisheng.pojo.User;
-import site.gaoyisheng.service.ThesisService;
-import site.gaoyisheng.service.UserService;
+import site.gaoyisheng.pojo.*;
+import site.gaoyisheng.service.*;
 
 @Controller
 @RequestMapping("/user")
@@ -42,6 +44,15 @@ public class UserOpsController {
 	
 	@Autowired
 	private ThesisService thesisService;
+	
+	@Autowired
+	private PatentService patentService;
+	
+	@Autowired
+	private ChPeriodicalThesisService chPeriodicalThesisService;
+	
+	@Autowired
+	private EnPeriodicalThesisService enPeriodicalThesisService;
 	
     /**
      * 返回论文列表. 
@@ -53,14 +64,52 @@ public class UserOpsController {
      * @param request
      * @return
      */
-    @RequestMapping("/thesis-list")
-    @ResponseBody
-    public Object thesisList(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        User currentUser = (User) session.getAttribute("currentUser");
-        return thesisService.selectAllThesisLikeUserNameAndNumber(currentUser);
-    }
+//	@RequestMapping("/thesis-list")
+//	@ResponseBody
+//	public Object thesisList(HttpServletRequest request) {
+//		HttpSession session = request.getSession(false);
+//		User currentUser = (User) session.getAttribute("currentUser");
+//		return thesisService.selectAllThesisLikeUserNameAndNumber(currentUser);
+//	}
 	
+    /**
+     * .
+     * TODO 返回 成果 列表.  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+     * @param request
+     * @return
+     */
+    @RequestMapping("/awards-list")
+    @ResponseBody
+    public Object awardsList(HttpServletRequest request) {
+        Map<String,String> map = new HashMap<String,String>();
+    	 map.put("name", request.getParameter("name"));
+    	 map.put("title", request.getParameter("title"));
+    	 map.put("provenance", request.getParameter("provenance"));
+    	 map.put("period", request.getParameter("period"));
+    	 map.put("year", request.getParameter("year"));
+    	 map.put("subject", request.getParameter("subject"));
+    	 map.put("volume", request.getParameter("volume"));
+    	 map.put("page", request.getParameter("page"));
+    	 map.put("type", request.getParameter("type"));
+    	 map.put("authorizationNumber", request.getParameter("authorizationNumber"));
+    	 map.put("authorizationDate", request.getParameter("authorizationDate"));
+    	 map.put("pctPatentOrNot", request.getParameter("pctPatentOrNot"));
+    	 map.put("pctPatentName", request.getParameter("pctPatentName"));
+    	 map.put("pctPatentApplicationNumber", request.getParameter("pctPatentApplicationNumber"));
+    	 map.put("pctPatentApplicationDate", request.getParameter("pctPatentApplicationDate"));
+    	 map.put("pctPatentPriorityDate", request.getParameter("pctPatentPriorityDate"));
+    	 map.put("inCountry", request.getParameter("inCountry"));
+    	 map.put("autherName", request.getParameter("autherName"));
+    	 map.put("claimStatus", request.getParameter("claimStatus"));
+        
+    	 switch(request.getParameter("awardsType")) {
+              //插入并返回 提示
+            case "patent": return patentService.selectByMultiConditions(map);
+            case "enPeriodicalThesis": return chPeriodicalThesisService.selectByMultiConditions(map);
+            case "chPeriodicalThesis": return enPeriodicalThesisService.selectByMultiConditions(map);
+            default : return null;
+         }
+    }
 	
     /**
      * 认领. 参数:
@@ -73,22 +122,47 @@ public class UserOpsController {
      * @param request
      * @return
      */
+//    @RequestMapping(value = "/claim", method = RequestMethod.POST)
+//    public ModelAndView claim(HttpServletRequest request) throws UnsupportedEncodingException {
+//        HttpSession session = request.getSession(false);
+//        Integer no = Integer.valueOf(request.getParameter("no"));
+//        Integer sdutNumber = Integer.valueOf(request.getParameter("sdutNumber"));
+//        Integer thesisId = Integer.valueOf(request.getParameter("id"));
+//        User currentUser = (User) session.getAttribute("currentUser");
+//        Thesis thesisBefore = thesisService.selectByPrimaryKey(thesisId);
+//        Thesis thesisAfter = setProperties(thesisBefore, currentUser, no, sdutNumber);
+//        thesisService.updateByPrimaryKeySelective(thesisAfter);
+//        ModelAndView mv = new ModelAndView();
+//        mv.addObject("currentUser", currentUser)
+//                .setViewName("redirect:/home");
+//        return mv;
+//    }
+        
+    /**
+     * .
+     * TODO 认领      request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+     * @param request
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     @RequestMapping(value = "/claim", method = RequestMethod.POST)
-    public ModelAndView claim(HttpServletRequest request) throws UnsupportedEncodingException {
-        HttpSession session = request.getSession(false);
-        Integer no = Integer.valueOf(request.getParameter("no"));
-        Integer sdutNumber = Integer.valueOf(request.getParameter("sdutNumber"));
-        Integer thesisId = Integer.valueOf(request.getParameter("id"));
-        User currentUser = (User) session.getAttribute("currentUser");
-        Thesis thesisBefore = thesisService.selectByPrimaryKey(thesisId);
-        Thesis thesisAfter = setProperties(thesisBefore, currentUser, no, sdutNumber);
-        thesisService.updateByPrimaryKeySelective(thesisAfter);
+    public ModelAndView claim(HttpServletRequest request,
+    		@ModelAttribute Patent patent,
+    		@ModelAttribute EnPeriodicalThesis enPeriodicalThesis,
+    		@ModelAttribute ChPeriodicalThesis chPeriodicalThesis)  {
+        
+        switch(request.getParameter("awardsType")) {
+            case "patent": patentService.updateByPrimaryKeySelective(patent);break;
+            case "enPeriodicalThesis":  enPeriodicalThesisService.updateByPrimaryKeySelective(enPeriodicalThesis);break;
+            case "chPeriodicalThesis":  chPeriodicalThesisService.updateByPrimaryKeySelective(chPeriodicalThesis);break;
+            default : break;
+         }
+        
         ModelAndView mv = new ModelAndView();
-        mv.addObject("currentUser", currentUser)
-                .setViewName("redirect:/home");
+        mv.setViewName("redirect:/home");
         return mv;
     }
-        
+    
     /**
      * 根据表单后面的认领按钮提交对应的id返回相应的表单填写页面
      * @param request

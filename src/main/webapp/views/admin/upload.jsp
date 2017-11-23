@@ -36,11 +36,11 @@
                             <div class="col-md-12">
                                 <form:form id="admin-upload" action="${ctx}/admin/upload" enctype="multipart/form-data" method="post">
                                     <div class="form-group">
-                                        <label for="upload">File input</label>
+                                        <label for="upload">选择文件</label>
                                         <input type="file" id="upload" name="filename">
                                         <p class="help-block"></p>
                                     </div>
-                                    <button type="submit" id="modify-submit" class="btn btn-default">Upload</button>
+                                    <button type="submit" id="modify-submit" class="btn btn-default">上传</button>
                                 </form:form>
                             </div>
                         </div>

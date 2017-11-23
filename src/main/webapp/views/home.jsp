@@ -81,7 +81,7 @@
 	$(document).ready(function () {
 		if('${currentUser}' == '')
 		{
-			window.location.href = "localhost:8080" + "${ctx}";
+			window.location.href = "localhost:8080" + "${ctx}" + "/login";
 		}
 	    getdataByCurrentUser();
 	});

@@ -92,6 +92,8 @@
 		from en_periodical_thesis
 		where key_id = #{keyId}
 	</select>
+	
+	
 	<select id="selectByMultiConditions" parameterType="map"
 		resultMap="BaseResultMap">
 		select

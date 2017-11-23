@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -108,16 +109,16 @@ public class AdminOpsController {
 	 * @param response
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/download", method = RequestMethod.GET)
-	public void exportExcel(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "/download/{awardsType}", method = RequestMethod.GET)
+	public void exportExcel(HttpServletRequest request, HttpServletResponse response,@PathVariable("awardsType") String awardsType) throws Exception {
 
 		
 		try {
-			String type = request.getParameter("awardsType");
+//			String type = request.getParameter("awardsType");
 			FileUtil fileUtil = new FileUtil();
 			byte[] bytes = null;
 			
-			switch(type) {
+			switch(awardsType) {
 			    case "patent": bytes = fileUtil.exportFileOfPatent(patentService.selectAll());break;
 			    case "enPeriodicalThesis": bytes = fileUtil.exportFileOfEnPeriodicalThesis(enPeriodicalThesisService.selectAll());break;
 			    case "chPeriodicalThesis": bytes = fileUtil.exportFileOfChPeriodicalThesis(chPeriodicalThesisService.selectAll());break;

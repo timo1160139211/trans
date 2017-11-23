@@ -17,6 +17,7 @@
 package me.test.base;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,9 +25,11 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
+import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.pojo.Thesis;
 import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
+import site.gaoyisheng.service.PatentService;
 import site.gaoyisheng.service.ThesisService;
 import site.gaoyisheng.service.UserService;
 
@@ -34,6 +37,9 @@ public class UserOpsTest extends BaseTest {
 
 	@Autowired
 	private EnPeriodicalThesisService ts;
+	
+	@Autowired
+	private PatentService ps;
 	
 	@Autowired
 	private UserService us;
@@ -70,13 +76,24 @@ public class UserOpsTest extends BaseTest {
 */
 	@Test
 	public void selectTest() {
-		User u = new User();
-		u.setName("e");
-		List<User> userList = us.searchUserFuzzyQuery(u);
-		for (User user : userList) {
-			System.out.println(user.toString());
-
-		}
+//		User u = new User();
+//		u.setName("e");
+//		List<User> userList = us.searchUserFuzzyQuery(u);
+//		for (User user : userList) {
+//			System.out.println(user.toString());
+//
+//		}
+		
+//		Map<String,String> map = new HashMap<String,String>();
+//		
+////		map.put("name", "1");
+//		
+//		List<Patent> patentList = ps.selectByMultiConditions(map);
+//		for (Patent p : patentList) {
+//			System.out.println(p.toString());
+//
+//		}
+		
 		//System.out.println(ts.selectByPrimaryKey(101));
 		
 //		List<EnPeriodicalThesis> list = ts.selectByStatus("未认领");

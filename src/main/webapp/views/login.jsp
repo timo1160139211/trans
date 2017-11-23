@@ -31,11 +31,11 @@
                                 <form:form class="form-auth-small" action="${ctx}/login" method="post">
                                     <div class="form-group">
                                         <label for="signin-email" class="control-label sr-only">Num</label>
-                                        <input type="text" class="form-control" id="login-number" name="number" placeholder="samuel.gold@domain.com">
+                                        <input type="text" class="form-control" id="login-number" name="number" placeholder="工号 e.g. 120100">
                                     </div>
                                     <div class="form-group">
                                         <label for="signin-password" class="control-label sr-only">Password</label>
-                                        <input type="password" class="form-control" id="signin-password" name="password" placeholder="thisisthepassword">
+                                        <input type="password" class="form-control" id="signin-password" name="password" placeholder="密码">
                                     </div>
                                     <div class="form-group clearfix">
                                         <label class="fancy-checkbox element-left">
@@ -54,7 +54,7 @@
                             <div class="overlay"></div>
                             <div class="content text">
                                 <h1 class="heading">SDUT Task Scheduling System OF TD</h1>
-                                <p>by The Develovers</p>
+                                <p>by GaoYisheng＆Huanlu </p>
                             </div>
                         </div>
                         <div class="clearfix"></div>

@@ -1,21 +1,41 @@
+<%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <div id="sidebar-nav" class="sidebar">
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="${ctx}/home" class=""><i class="lnr lnr-home"></i> <span>Home</span></a></li>
-						<li><a href="${ctx}/admin/upload" class=""><i class="fa fa-upload"></i> <span>Upload</span></a></li>
-						<li><a href="${ctx}/admin/download" class=""><i class="fa fa-download"></i> <span>Download</span></a></li>
-						<li><a href="${ctx}/admin/search" class=""><i class="fa fa-search"></i> <span>Search</span></a></li>
-						<li><a href="${ctx}/user/user-update" class=""><i class="lnr lnr-pencil"></i> <span>Modify</span></a></li>
+						<li><a href="${ctx}/home" class=""><i class="lnr lnr-home"></i> <span>主页</span></a></li>
+						<li><a href="${ctx}/admin/search" class=""><i class="fa fa-search"></i> <span>查找</span></a></li>
+						<li><a href="${ctx}/admin/search" class=""><i class="fa fa-search"></i> <span>查看进度</span></a></li>
+						<li><a href="${ctx}/user/user-update" class=""><i class="lnr lnr-pencil"></i> <span>修改个人信息</span></a></li>
 						<li>
-							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Claim</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>认领</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
-									<li><a href="page-profile.html" class="">Profile</a></li>
-									<li><a href="page-login.html" class="">Login</a></li>
-									<li><a href="page-lockscreen.html" class="">Lockscreen</a></li>
+									<li><a href="page-profile.html" class="">专利</a></li>
+									<li><a href="page-login.html" class="">中文期刊论文</a></li>
+									<li><a href="page-lockscreen.html" class="">英文期刊论文</a></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#subPagesUpload" data-toggle="collapse" class="collapsed"><i class="fa fa-upload"></i> <span>上传数据</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPagesUpload" class="collapse ">
+								<ul class="nav">
+									<li><a href="page-profile.html" class="">专利</a></li>
+									<li><a href="page-login.html" class="">中文期刊论文</a></li>
+									<li><a href="page-lockscreen.html" class="">英文期刊论文</a></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#subPagesDownload" data-toggle="collapse" class="collapsed"><i class="fa fa-download"></i> <span>下载数据</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPagesDownload" class="collapse ">
+								<ul class="nav">
+									<li><a href="${ctx}/admin/download/patent" class="">专利</a></li>
+									<li><a href="${ctx}/admin/download/chPeriodicalThesis" class="">中文期刊论文</a></li>
+									<li><a href="${ctx}/admin/download/enPeriodicalThesis" class="">英文期刊论文</a></li>
 								</ul>
 							</div>
 						</li>
