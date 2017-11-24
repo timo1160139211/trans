@@ -18,18 +18,18 @@
 	<!-- 配置拦截器 -->
 	<mvc:interceptors>
 		<!-- 多个拦截器，顺序执行 -->
- 		<!-- <mvc:interceptor>
-			/** 表示所有的url，包括子url路径
-			<mvc:mapping path="/**" />
-			<bean class="cn.labelnet.ssm.filter.HanderInterceptor1"></bean>
-		</mvc:interceptor>  -->
+
 		<!-- 配置登陆拦截器 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<mvc:exclude-mapping path="/trans/login*" />
 			<bean class="site.gaoyisheng.filter.LoginHandlerInterceptor"></bean>
 		</mvc:interceptor>
-		<!-- ..... -->
+		
+		<!-- 配置admin操作安全检查拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="site.gaoyisheng.filter.SecurityInterceptor"></bean>
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 	<!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
