@@ -99,9 +99,8 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "logout", method = RequestMethod.GET)
-    public String Logout(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        session.setAttribute("currentUser", null);
+    public String Logout( HttpSession session) {
+		 session.invalidate();
         return "login";
     }
 

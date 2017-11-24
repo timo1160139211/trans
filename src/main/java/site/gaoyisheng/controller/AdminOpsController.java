@@ -69,9 +69,10 @@ public class AdminOpsController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/upload/{awardsType}", method = RequestMethod.POST)
     public ModelAndView importXlsFile(@RequestParam("filename") MultipartFile file, 
-                                    HttpServletRequest request) throws Exception {
+                                    HttpServletRequest request,
+                                    @PathVariable("awardsType") String awardsType) throws Exception {
     	String strAlertMsg = null;
        if (file.isEmpty()) {
            strAlertMsg = "文件上传失败: 服务器未接收到文件";
@@ -89,7 +90,7 @@ public class AdminOpsController {
         }
         
        InputStream in = file.getInputStream();
-       switch(request.getParameter("awardsType")) {
+       switch(awardsType) {
              //插入并返回 提示
            case "patent":strAlertMsg = "成功插入" + patentService.readStreamAndInsertList(in) + "条！";break;
            case "enPeriodicalThesis":strAlertMsg = "成功插入" + enPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
@@ -142,7 +143,7 @@ public class AdminOpsController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/statistic", method = RequestMethod.GET)
+	@RequestMapping(value = "/claim-statistic", method = RequestMethod.GET)
 	public String speedStatistic(HttpServletRequest request,ModelAndView mv) {
 		String type = request.getParameter("awardsType");
 		Map<String,Integer> statisticalMap = new HashMap<String,Integer>();

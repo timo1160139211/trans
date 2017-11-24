@@ -7,7 +7,7 @@
 					<ul class="nav">
 						<li><a href="${ctx}/home" class=""><i class="lnr lnr-home"></i> <span>主页</span></a></li>
 						<li><a href="${ctx}/admin/search" class=""><i class="fa fa-search"></i> <span>查找</span></a></li>
-						<li><a href="${ctx}/admin/search" class=""><i class="fa fa-search"></i> <span>查看进度</span></a></li>
+						<li><a href="${ctx}/admin/claim-statistic" class=""><i class="fa fa-search"></i> <span>查看进度</span></a></li>
 						<li><a href="${ctx}/user/user-update" class=""><i class="lnr lnr-pencil"></i> <span>修改个人信息</span></a></li>
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>认领</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
@@ -23,9 +23,9 @@
 							<a href="#subPagesUpload" data-toggle="collapse" class="collapsed"><i class="fa fa-upload"></i> <span>上传数据</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPagesUpload" class="collapse ">
 								<ul class="nav">
-									<li><a href="page-profile.html" class="">专利</a></li>
-									<li><a href="page-login.html" class="">中文期刊论文</a></li>
-									<li><a href="page-lockscreen.html" class="">英文期刊论文</a></li>
+									<li><a href="${ctx}/admin/upload/patent" class="">专利</a></li>
+									<li><a href="${ctx}/admin/upload/chPeriodicalThesis" class="">中文期刊论文</a></li>
+									<li><a href="${ctx}/admin/upload/enPeriodicalThesis" class="">英文期刊论文</a></li>
 								</ul>
 							</div>
 						</li>
