@@ -94,21 +94,6 @@
 							}
 		        		})
 			        }
-			        /*error:function(XMLHttpRequest, textStatus, errorThrown){
-			        	$.confirm({
-			        		theme: 'dark',
-							animation: 'rotateX',
-							closeAnimation: 'rotateX',
-							title: false,
-							content: textStatus,
-							buttons: {
-								confirm: {
-									text: '确认',
-									btnClass: 'waves-effect waves-button waves-light'
-								}
-							}
-			        	})
-			        }*/
 				})
 			});
 			function logout(){

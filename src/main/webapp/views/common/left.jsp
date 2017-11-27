@@ -7,16 +7,16 @@
 			<c:if test="${currentUser.name != 'admin'}">
 				<!-- 用户 -->
 				<ul class="nav">
-					<li><a href="${ctx}/home" class=""><i class="lnr lnr-home"></i>
-							<span>主页</span></a></li>
+					<li><a href="${ctx}/home" class=""><i class="lnr lnr-file-empty"></i>
+							<span>认领</span></a></li>
 					<!-- 用户: 查找 操作 -->
-					<li><a href="${ctx}/admin/search" class=""><i
+					<li><a href="${ctx}/user/search" class=""><i
 							class="fa fa-search"></i> <span>查找</span></a></li>
 					<!-- 用户: 修改个人 操作 -->
 					<li><a href="${ctx}/user/user-update" class=""><i
 							class="lnr lnr-pencil"></i> <span>修改个人信息</span></a></li>
 					<!-- 用户: 认领 操作 -->
-					<li><a href="#subPages" data-toggle="collapse"
+					<!-- <li><a href="#subPages" data-toggle="collapse"
 						class="collapsed"><i class="lnr lnr-file-empty"></i> <span>认领</span>
 							<i class="icon-submenu lnr lnr-chevron-left"></i></a>
 						<div id="subPages" class="collapse ">
@@ -26,7 +26,7 @@
 								<li><a href="page-lockscreen.html" class="">英文期刊论文</a></li>
 							</ul>
 						</div>
-					</li>
+					</li> -->
 				</ul>
 			</c:if>
 
