@@ -69,8 +69,15 @@ public class LoginController {
 			parameterMap.put("password", password);
 			// ajax + jQuery find User in DB or not?
 			User currentUser = loginService.selectByNumberAndPassword(parameterMap);
+			
+			String type = "";
+			if(currentUser.getName().equals("admin")) {
+				type = "/admin";
+			}else {
+				type = "/user";
+			}
 			mv.addObject("currentUser", currentUser)
-			  .setViewName("redirect:/home");
+			  .setViewName("redirect:" + type + "/home");
 
 		} else {
 			return new ModelAndView("error");

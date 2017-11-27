@@ -36,12 +36,12 @@
                             <div class="col-md-12">
                                 <div class="panel">
                                     <ul class="nav nav-tabs" id="myTab">
-                                        <li class="active"><a href="#patent" data-toggle="tab">专利</a></li>
-                                        <li><a href="#English" data-toggle="tab">中文期刊论文</a></li>
-                                        <li><a href="#Chinese" data-toggle="tab">英文期刊论文</a></li>
+                                        <li class="active"><a href="#Patent" data-toggle="tab">专利</a></li>
+                                        <li><a href="#English" data-toggle="tab">英文期刊论文</a></li>
+                                        <li><a href="#Chinese" data-toggle="tab">中文期刊论文</a></li>
                                     </ul>
                                     <div class="tab-content">
-                                        <div class="tab-pane active" id="patent">
+                                        <div class="tab-pane active" id="Patent">
                                             <div class="panel-body">
                                                 <form class="form-inline" id="PatentForm">
                                                     <div class="form-group" style="display: none;">
@@ -81,7 +81,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>标题:</label>
-                                                    <input type="text" name="title" class="form-control">
+                                                    <input type="text" name="name" class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>作者:</label>
@@ -120,7 +120,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>标题:</label>
-                                                    <input type="text" name="title" class="form-control">
+                                                    <input type="text" name="name" class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>作者:</label>
@@ -263,7 +263,7 @@
                             contant.html(data);
                             $.confirm({
                                 title: 'Data error',
-                                content: '数据记载完毕!',
+                                content: '数据记载完毕!请再次点击认领.',
                                 autoClose: 'cancel|1000',
                                 backgroundDismiss: true,
                                 buttons: {

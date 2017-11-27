@@ -60,11 +60,16 @@ public class AdminOpsController {
     public String upload() {
         return "/admin/upload";
     }
+    
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String home() {
+        return "/admin/home";
+    }
 
     /**
      * .
      * TODO 上传文件,并解析入库  : request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
-     *
+     *                                                   由于还需上传 User 表,此处再加一个 {user}
      * @param file
      * @param request
      * @return
@@ -92,6 +97,7 @@ public class AdminOpsController {
        InputStream in = file.getInputStream();
        switch(awardsType) {
              //插入并返回 提示
+           case "user":strAlertMsg = "成功插入" + userService.readStreamAndInsertList(in) + "条！";break;
            case "patent":strAlertMsg = "成功插入" + patentService.readStreamAndInsertList(in) + "条！";break;
            case "enPeriodicalThesis":strAlertMsg = "成功插入" + enPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
            case "chPeriodicalThesis":strAlertMsg = "成功插入" + chPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
@@ -99,7 +105,6 @@ public class AdminOpsController {
         }
        
        request.getSession().setAttribute("msg", strAlertMsg);
-        
        return new ModelAndView("redirect:/admin/upload");
     } 
 	
@@ -139,12 +144,23 @@ public class AdminOpsController {
 
 	/**
 	 * .
-	 * TODO 查看认领进度. (进度统计):  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+	 * TODO 查看认领进度. 
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/claim-statistic", method = RequestMethod.GET)
-	public String speedStatistic(HttpServletRequest request,ModelAndView mv) {
+	public String toClaimStatistic(HttpServletRequest request) {
+		return "/admin/claim-statistic";
+	}
+	
+	/**
+	 * .
+	 * TODO 查看认领进度. (进度统计):  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/claim-statistic", method = RequestMethod.POST)
+	public String claimStatistic(HttpServletRequest request,ModelAndView mv) {
 		String type = request.getParameter("awardsType");
 		Map<String,Integer> statisticalMap = new HashMap<String,Integer>();
 		
@@ -159,7 +175,7 @@ public class AdminOpsController {
 		
 		mv.addObject(statisticalMap);
 		
-		return null;
+		return "/admin/claim-statistic";
 	}
 	
 	/**
@@ -170,6 +186,18 @@ public class AdminOpsController {
 	 * @return
 	 */
 	@RequestMapping(value = "/notClaimed-list", method = RequestMethod.GET)
+	public String toNotClaimedList(HttpServletRequest request,ModelAndView mv) {
+		return "/admin/notClaimed-list";
+	}
+	
+	/**
+	 * .
+	 * TODO  查看所有未认领的awards
+	 * @param request
+	 * @param mv 包含对象:{notClaimedAwardsList} :未认领awards对象的list
+	 * @return
+	 */
+	@RequestMapping(value = "/notClaimed-list", method = RequestMethod.POST)
 	public String notClaimedList(HttpServletRequest request,ModelAndView mv) {
 
 		String type = request.getParameter("awardsType");

@@ -75,12 +75,12 @@ public class UserOpsController {
     
     @RequestMapping(value = "/awards-list" ,method = RequestMethod.GET)
     public String toAwardsList(){
-        return "/home";
+        return "/user/awards-list";
     }
     
     @RequestMapping(value = "/search" ,method = RequestMethod.GET)
     public String searchUser(){
-        return "/user/like_search";
+        return "/user/like-search";
     }
         
     /** 
@@ -94,7 +94,6 @@ public class UserOpsController {
     public Object awardsList(HttpServletRequest request) {
         Map<String,String> map = new HashMap<String,String>();
     	 map.put("name", request.getParameter("name"));
-    	 map.put("title", request.getParameter("title"));
     	 map.put("provenance", request.getParameter("provenance"));
     	 map.put("period", request.getParameter("period"));
     	 map.put("year", request.getParameter("year"));
@@ -133,21 +132,10 @@ public class UserOpsController {
      * @param request
      * @return
      */
-//    @RequestMapping(value = "/claim", method = RequestMethod.POST)
-//    public ModelAndView claim(HttpServletRequest request) throws UnsupportedEncodingException {
-//        HttpSession session = request.getSession(false);
-//        Integer no = Integer.valueOf(request.getParameter("no"));
-//        Integer sdutNumber = Integer.valueOf(request.getParameter("sdutNumber"));
-//        Integer thesisId = Integer.valueOf(request.getParameter("id"));
-//        User currentUser = (User) session.getAttribute("currentUser");
-//        Thesis thesisBefore = thesisService.selectByPrimaryKey(thesisId);
-//        Thesis thesisAfter = setProperties(thesisBefore, currentUser, no, sdutNumber);
-//        thesisService.updateByPrimaryKeySelective(thesisAfter);
-//        ModelAndView mv = new ModelAndView();
-//        mv.addObject("currentUser", currentUser)
-//                .setViewName("redirect:/home");
-//        return mv;
-//    }
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String home(HttpServletRequest request) {
+    		return "/user/home";
+    }
         
     /**
      * .
@@ -170,7 +158,7 @@ public class UserOpsController {
          }
         
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("redirect:/home");
+        mv.setViewName("redirect:/awards-list");
         return mv;
     }
     

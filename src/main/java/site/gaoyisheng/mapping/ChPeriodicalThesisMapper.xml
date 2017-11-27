@@ -102,7 +102,7 @@
 			<if test="name != '' and name != null">
 				name like concat('%','${name}','%')
 			</if>
-			<if test="title != '' and title != null">
+			<if test="autherName != '' and autherName != null">
 				AND all_auther_name like concat('%','${autherName}','%')
 			</if>
 			<if test="provenance != '' and provenance != null">

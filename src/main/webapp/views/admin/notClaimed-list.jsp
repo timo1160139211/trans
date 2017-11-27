@@ -9,7 +9,7 @@
 <html lang="en">
 
 <head>
-<title>认领进度</title>
+<title>未认领列表</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -32,7 +32,7 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">截至当前,认领进度如下:</h3>
+					<h3 class="page-title">截至当前,未认领数据如下:</h3>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="panel">
@@ -48,14 +48,24 @@
 									<div class="tab-pane active" id="Patent">
 										<div class="panel-body">
 											<div class="form-group">
-												<p class="help-block">
-													<label>已认领专利:</label> <input type="text"
-														class="form-control" id="patent-claimed" value="" />
-												</p>
-												<p class="help-block">
-													<label>专利总数:</label> <input type="text"
-														class="form-control" id="patent-total" value="" />
-												</p>
+												<div class="panel-body">
+													<table class="table table-hover">
+														<thead>
+															<tr>
+																<th>#</th>
+																<th>类型</th>
+																<th>名称</th>
+																<th>第一作者</th>
+																<th>其他作者</th>
+																<th>操作1</th>
+																<th>操作2</th>
+															</tr>
+														</thead>
+														<tbody id="tbody">
+														</tbody>
+														<div id="Modal"></div>
+													</table>
+												</div>
 											</div>
 
 										</div>
@@ -63,32 +73,48 @@
 									<div class="tab-pane" id="English">
 										<div class="panel-body">
 											<div class="form-group">
-												<p class="help-block">
-													<label>已认领英文期刊论文:</label><input type="text"
-														class="form-control" id="enPeriodicalThesis-claimed"
-														value="" />
-												</p>
-												<p class="help-block">
-													<label>英文期刊论文总数:</label><input type="text"
-														class="form-control" id="enPeriodicalThesis-total"
-														value="" />
-												</p>
+												<div class="panel-body">
+													<table class="table table-hover">
+														<thead>
+															<tr>
+																<th>#</th>
+																<th>类型</th>
+																<th>名称</th>
+																<th>第一作者</th>
+																<th>其他作者</th>
+																<th>操作1</th>
+																<th>操作2</th>
+															</tr>
+														</thead>
+														<tbody id="tbody">
+														</tbody>
+														<div id="Modal"></div>
+													</table>
+												</div>
 											</div>
 										</div>
 									</div>
 									<div class="tab-pane" id="Chinese">
 										<div class="panel-body">
 											<div class="form-group">
-												<p class="help-block">
-													<label>已认领中文期刊论文:</label><input type="text"
-														class="form-control" id="chPeriodicalThesis-claimed"
-														value="" />
-												</p>
-												<p class="help-block">
-													<label>中文期刊论文总数:</label><input type="text"
-														class="form-control" id="chPeriodicalThesis-total"
-														value="" />
-												</p>
+												<div class="panel-body">
+													<table class="table table-hover">
+														<thead>
+															<tr>
+																<th>#</th>
+																<th>类型</th>
+																<th>名称</th>
+																<th>第一作者</th>
+																<th>其他作者</th>
+																<th>操作1</th>
+																<th>操作2</th>
+															</tr>
+														</thead>
+														<tbody id="tbody">
+														</tbody>
+														<div id="Modal"></div>
+													</table>
+												</div>
 											</div>
 										</div>
 									</div>

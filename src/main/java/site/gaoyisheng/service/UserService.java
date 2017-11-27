@@ -16,13 +16,16 @@
  */
 package site.gaoyisheng.service;
 
+import java.io.InputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import site.gaoyisheng.dao.UserMapper;
+import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.User;
+import site.gaoyisheng.utils.FileUtil;
 
 @Service
 public class UserService {
@@ -70,4 +73,18 @@ public class UserService {
 	public int insertList(List<User> userList) throws Exception {
 		return userDao.insertList(userList);
 	}
+	
+	/**
+	 * .
+	 * TODO 将数据流读取并批量插入
+	 * @param in
+	 * @return
+	 * @throws Exception
+	 */
+	public int readStreamAndInsertList(InputStream in) throws Exception {
+		FileUtil fileUtil = new FileUtil();
+		List<User> userList = fileUtil.importFileOfUser(in);
+		return userDao.insertList(userList);
+	}
+	
 }
