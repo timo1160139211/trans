@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 
 import site.gaoyisheng.dao.ChPeriodicalThesisMapper;
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
+import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.utils.FileUtil;
 
 @Service
@@ -51,6 +52,18 @@ public class ChPeriodicalThesisService {
 	 */
 	public List<ChPeriodicalThesis> selectByStatus(String status) {
 		return thesisDao.selectByStatus(status);
+	}
+	
+	/**
+	 * .
+	 * TODO  通过认领状态查询,+分页参数:重载
+	 * @param status
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	public List<ChPeriodicalThesis> selectByStatus(String claimStatus,int pageNum,int pageSize) {
+		return thesisDao.selectByStatus(claimStatus,pageNum,pageSize);
 	}
 
 	/**
@@ -88,7 +101,17 @@ public class ChPeriodicalThesisService {
 	public List<ChPeriodicalThesis> selectByMultiConditions(Map<String, String> map) {
 		return thesisDao.selectByMultiConditions(map);
 	}
-
+	
+	/**
+	 * .
+	 * TODO 多条件查询 +分页参数:重载
+	 * @param map
+	 * @return
+	 */
+	public List<ChPeriodicalThesis> selectByMultiConditions(Map<String, String> map,int pageNum,int pageSize) {
+		return thesisDao.selectByMultiConditions(map,pageNum,pageSize);
+	}
+	
 	/**
 	 * .
 	 * TODO 通过主键更新.(值为  null , '' 的字段将不被更新)

@@ -49,8 +49,20 @@ public class EnPeriodicalThesisService {
 	 * @param status
 	 * @return
 	 */	
-	public List<EnPeriodicalThesis> selectByStatus(String status) {
-		return thesisDao.selectByStatus(status);
+	public List<EnPeriodicalThesis> selectByStatus(String claimStatus) {
+		return thesisDao.selectByStatus(claimStatus);
+	}
+	
+	/**
+	 * .
+	 * TODO  通过认领状态查询,+分页参数:重载
+	 * @param status
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	public List<EnPeriodicalThesis> selectByStatus(String claimStatus,int pageNum,int pageSize) {
+		return thesisDao.selectByStatus(claimStatus,pageNum,pageSize);
 	}
 
 	/**
@@ -87,6 +99,16 @@ public class EnPeriodicalThesisService {
 	 */
 	public List<EnPeriodicalThesis> selectByMultiConditions(Map<String, String> map) {
 		return thesisDao.selectByMultiConditions(map);
+	}
+	
+	/**
+	 * .
+	 * TODO 多条件查询 +分页参数:重载
+	 * @param map
+	 * @return
+	 */
+	public List<EnPeriodicalThesis> selectByMultiConditions(Map<String, String> map,int pageNum,int pageSize) {
+		return thesisDao.selectByMultiConditions(map,pageNum,pageSize);
 	}
 
 	/**

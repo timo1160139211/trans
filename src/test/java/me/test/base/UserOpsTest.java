@@ -24,10 +24,12 @@ import java.util.Map;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.pojo.Thesis;
 import site.gaoyisheng.pojo.User;
+import site.gaoyisheng.service.ChPeriodicalThesisService;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
 import site.gaoyisheng.service.PatentService;
 import site.gaoyisheng.service.ThesisService;
@@ -36,7 +38,7 @@ import site.gaoyisheng.service.UserService;
 public class UserOpsTest extends BaseTest {
 
 	@Autowired
-	private EnPeriodicalThesisService ts;
+	private EnPeriodicalThesisService es;
 	
 	@Autowired
 	private PatentService ps;
@@ -74,8 +76,16 @@ public class UserOpsTest extends BaseTest {
 		ts.updateByPrimaryKeySelective(thesis);
 	}
 */
+	
 	@Test
 	public void selectTest() {
+		
+//		List<EnPeriodicalThesis> enList = es.selectByStatus("未认领",1,2);
+//		
+//		for (EnPeriodicalThesis e : enList) {
+//			System.out.println("---" + e.toString());
+//		}
+		
 //		User u = new User();
 //		u.setName("e");
 //		List<User> userList = us.searchUserFuzzyQuery(u);
@@ -114,20 +124,49 @@ public class UserOpsTest extends BaseTest {
 	
 	@Test
 	public void insertListTest() {
-//		List<EnPeriodicalThesis> thesisList = new ArrayList<EnPeriodicalThesis>();
+//		List<Patent> thesisList = new ArrayList<Patent>();
 //		List<User> thesisList = new ArrayList<User>();
 //		
 //		User t1 = new User();
 //		User t2 = new User();
 //		
+//		Patent e1 =new Patent();
+//		Patent e2 =new Patent();
+//		Patent e3 =new Patent();
+//		
+//		e1.setName("Patent1");
+//		e2.setName("Patent2");
+//		e3.setName("Patent3");
+//		
+//		e1.setKeyId("11");
+//		e2.setKeyId("12");
+//		e3.setKeyId("13");
+//		
+//		e1.setClaimStatus("未认领");
+//		e2.setClaimStatus("未认领");
+//		e3.setClaimStatus("未认领");
+//	    
+//		e1.setAllAutherName("zhao si");
+//		e2.setAllAutherName("Li .x");
+//		e3.setAllAutherName("Wang. y");
+//		
+//		e1.setType("发明专利");
+//		e2.setType("发明专利");
+//		e3.setType("创新专利");
+//		
+//		e1.setVolume("11");
+//		e2.setVolume("12");
+//		e3.setVolume("13");
+//		
 //		t1.setName("qq1");
 //		t2.setName("ww2");
 //		
-//		thesisList.add(t1);
-//		thesisList.add(t2);
-//		
+//		thesisList.add(e1);
+//		thesisList.add(e2);
+//		thesisList.add(e3);
+
 //		try {
-//			System.out.println(us.insertList(thesisList));
+//			System.out.println(ps.insertList(thesisList));
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}

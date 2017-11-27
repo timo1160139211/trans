@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import site.gaoyisheng.dao.PatentMapper;
+import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.utils.FileUtil;
 
@@ -53,6 +54,18 @@ public class PatentService {
 		return patentDao.selectByStatus(status);
 	}
 
+	/**
+	 * .
+	 * TODO  通过认领状态查询,+分页参数:重载
+	 * @param status
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	public List<Patent> selectByStatus(String claimStatus,int pageNum,int pageSize) {
+		return patentDao.selectByStatus(claimStatus,pageNum,pageSize);
+	}
+	
 	/**
 	 * . 
 	 * TODO 统计: "已认领"="claimed"  ,"notClaimed"="未认领"  ,总数="total"
@@ -86,7 +99,7 @@ public class PatentService {
 	 * @param patentId
 	 * @return
 	 */
-	public Patent selectByuniqueKey(Integer patentId) {
+	public Patent selectByUniqueKey(Integer patentId) {
 		return patentDao.selectByPrimaryKey(patentId);
 	}
 
@@ -99,6 +112,16 @@ public class PatentService {
 	 */
 	public List<Patent> selectByMultiConditions(Map<String, String> map) {
 		return patentDao.selectByMultiConditions(map);
+	}
+	
+	/**
+	 * .
+	 * TODO 多条件查询 +分页参数:重载
+	 * @param map
+	 * @return
+	 */
+	public List<Patent> selectByMultiConditions(Map<String, String> map,int pageNum,int pageSize) {
+		return patentDao.selectByMultiConditions(map,pageNum,pageSize);
 	}
 
 	/**
