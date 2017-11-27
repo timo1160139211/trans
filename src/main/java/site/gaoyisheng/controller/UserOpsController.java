@@ -30,6 +30,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -64,21 +65,31 @@ public class UserOpsController {
      * @param request
      * @return
      */
-//	@RequestMapping("/thesis-list")
-//	@ResponseBody
-//	public Object thesisList(HttpServletRequest request) {
-//		HttpSession session = request.getSession(false);
-//		User currentUser = (User) session.getAttribute("currentUser");
-//		return thesisService.selectAllThesisLikeUserNameAndNumber(currentUser);
-//	}
-	
-    /**
+	@RequestMapping("/thesis-list")
+	@ResponseBody
+	public Object thesisList(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		User currentUser = (User) session.getAttribute("currentUser");
+		return thesisService.selectAllThesisLikeUserNameAndNumber(currentUser);
+	}
+    
+    @RequestMapping(value = "/awards-list" ,method = RequestMethod.GET)
+    public String toAwardsList(){
+        return "/home";
+    }
+    
+    @RequestMapping(value = "/search" ,method = RequestMethod.GET)
+    public String searchUser(){
+        return "/user/like_search";
+    }
+        
+    /** 
      * .
      * TODO 返回 成果 列表.  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
      * @param request
      * @return
      */
-    @RequestMapping("/awards-list")
+    @RequestMapping(value = "/awards-list" ,method = RequestMethod.POST)
     @ResponseBody
     public Object awardsList(HttpServletRequest request) {
         Map<String,String> map = new HashMap<String,String>();
@@ -221,16 +232,12 @@ public class UserOpsController {
      * TODO 模糊查找一个用户.
      * @return
      */
-    @RequestMapping(value = "/fuzzySearch", method = RequestMethod.GET)
-    public List<User> fuzzySearchUser(HttpServletRequest request){
-    	
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    @ResponseBody
+    public Object fuzzySearchUser(@RequestParam("name")String name){
     	User u = new User();
-
     	//非空判断 => 设值 用于查询.
-    	if(request.getParameter("name")!=null) {u.setName(request.getParameter("name"));}
-    	if(request.getParameter("college")!=null) {u.setCollege(request.getParameter("college"));}
-    	if(request.getParameter("status")!=null) {u.setStatus(request.getParameter("status"));}
-    	
+    	u.setName(name);
     	return userService.searchUserFuzzyQuery(u);
     } 
 	
