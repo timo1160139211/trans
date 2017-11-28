@@ -50,11 +50,13 @@
 											<div class="form-group">
 												<p class="help-block">
 													<label>已认领专利:</label> <input type="text"
-														class="form-control" id="patent-claimed" value="" />
+														class="form-control" id="patent-claimed" value=""
+														readonly="true" />
 												</p>
 												<p class="help-block">
 													<label>专利总数:</label> <input type="text"
-														class="form-control" id="patent-total" value="" />
+														class="form-control" id="patent-total" value=""
+														readonly="true" />
 												</p>
 											</div>
 
@@ -66,12 +68,12 @@
 												<p class="help-block">
 													<label>已认领英文期刊论文:</label><input type="text"
 														class="form-control" id="enPeriodicalThesis-claimed"
-														value="" />
+														value="" readonly="true" />
 												</p>
 												<p class="help-block">
 													<label>英文期刊论文总数:</label><input type="text"
 														class="form-control" id="enPeriodicalThesis-total"
-														value="" />
+														value="" readonly="true" />
 												</p>
 											</div>
 										</div>
@@ -82,12 +84,12 @@
 												<p class="help-block">
 													<label>已认领中文期刊论文:</label><input type="text"
 														class="form-control" id="chPeriodicalThesis-claimed"
-														value="" />
+														value="" readonly="true" />
 												</p>
 												<p class="help-block">
 													<label>中文期刊论文总数:</label><input type="text"
 														class="form-control" id="chPeriodicalThesis-total"
-														value="" />
+														value="" readonly="true" />
 												</p>
 											</div>
 										</div>
@@ -115,16 +117,43 @@
 	<jsp:include page="/views/resources/footer.jsp" flush="true" />
 	<script type="text/javascript">
 		$('#patent-tab').on('click', function() {
-			$post();
-			$(this).button('complete'); // button text will be "finished!"
+			$.ajax({
+				type : 'post',
+				url : '${ctx}/admin/claim-statistic',
+				data : {
+					awardsType : 'patent'
+				},
+				success : function(data) {
+					$("#patent-claimed").val(data.claimed);
+					$("#patent-total").val(data.total);
+				}
+			});
 		})
 		$('#enPeriodicalThesis-tab').on('click', function() {
-			$post();
-			$(this).button('complete') // button text will be "finished!"
+			$.ajax({
+				type : 'post',
+				url : '${ctx}/admin/claim-statistic',
+				data : {
+					awardsType : 'chPeriodicalThesis'
+				},
+				success : function(data) {
+					$("#enPeriodicalThesis-claimed").val(data.claimed);
+					$("#enPeriodicalThesis-total").val(data.total);
+				}
+			});
 		})
 		$('#chPeriodicalThesis-tab').on('click', function() {
-			$post();
-			$(this).button('complete') // button text will be "finished!"
+			$.ajax({
+				type : 'post',
+				url : '${ctx}/admin/claim-statistic',
+				data : {
+					awardsType : 'chPeriodicalThesis'
+				},
+				success : function(data) {
+					$("#chPeriodicalThesis-claimed").val(data.claimed);
+					$("#chPeriodicalThesis-total").val(data.total);
+				}
+			});
 		})
 	</script>
 </body>

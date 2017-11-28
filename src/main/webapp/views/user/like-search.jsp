@@ -89,6 +89,7 @@
         <script type="text/javascript">
             $('#name').bind('keyup focus', function () {
                 setTimeout(function () {
+                	  $('#tbody').empty();
                     $.ajax({
                         type: 'post',
                         url: '${ctx}/user/search',

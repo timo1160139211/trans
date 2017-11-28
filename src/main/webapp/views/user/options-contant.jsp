@@ -11,7 +11,7 @@
                 </div>
                 <div class="modal-body">
                     <h4>名称:${thesis.name}</h4><br>
-                    <h4>认领人:${currentUser.name}</h4><br>
+                    <h4>所有作者:${thesis.allAutherName}</h4><br>
                     <div class="form-group ">
                         <label>第一作者：</label>    
                         <input type="text" name="no1AutherName" class="form-control">

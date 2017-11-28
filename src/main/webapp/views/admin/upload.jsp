@@ -40,6 +40,7 @@
 									<li class="active"><a href="#patent" data-toggle="tab">专利</a></li>
 									<li><a href="#English" data-toggle="tab">英文期刊论文</a></li>
 									<li><a href="#Chinese" data-toggle="tab">中文期刊论文</a></li>
+									<li><a href="#User" data-toggle="tab">用户工号</a></li>
 								</ul>
 								<div class="tab-content">
 									<div class="tab-pane active" id="patent">
@@ -77,6 +78,19 @@
 											<div class="form-group">
 												<label for="upload">选择 中文期刊论文.xls 文件</label> <input
 													type="file" id="upload-file-chPeriodicalThesis"
+													name="filename">
+												<p class="help-block"></p>
+											</div>
+											<button type="submit" class="btn btn-default">上传</button>
+										</form:form>
+									</div>
+									<div class="tab-pane" id="User">
+										<form:form class="form-inline" id="upload-user"
+											action="${ctx}/admin/upload/user"
+											enctype="multipart/form-data" method="post">
+											<div class="form-group">
+												<label for="upload">选择 人事工号.xls 文件</label> <input
+													type="file" id="upload-file-user"
 													name="filename">
 												<p class="help-block"></p>
 											</div>

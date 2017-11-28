@@ -58,16 +58,14 @@
 																<th>第一作者</th>
 																<th>其他作者</th>
 																<th>操作1</th>
-																<th>操作2</th>
 															</tr>
 														</thead>
-														<tbody id="tbody">
+														<tbody id="tbody-patent">
 														</tbody>
 														<div id="Modal"></div>
 													</table>
 												</div>
 											</div>
-
 										</div>
 									</div>
 									<div class="tab-pane" id="English">
@@ -83,10 +81,9 @@
 																<th>第一作者</th>
 																<th>其他作者</th>
 																<th>操作1</th>
-																<th>操作2</th>
 															</tr>
 														</thead>
-														<tbody id="tbody">
+														<tbody id="tbody-en">
 														</tbody>
 														<div id="Modal"></div>
 													</table>
@@ -107,10 +104,9 @@
 																<th>第一作者</th>
 																<th>其他作者</th>
 																<th>操作1</th>
-																<th>操作2</th>
 															</tr>
 														</thead>
-														<tbody id="tbody">
+														<tbody id="tbody-ch">
 														</tbody>
 														<div id="Modal"></div>
 													</table>
@@ -118,8 +114,8 @@
 											</div>
 										</div>
 									</div>
-									<iframe id="id_iframe" name="nm_iframe" style="display: none;"></iframe>
 								</div>
+								<iframe id="id_iframe" name="nm_iframe" style="display: none;"></iframe>
 							</div>
 						</div>
 					</div>
@@ -140,18 +136,121 @@
 	<!-- END WRAPPER -->
 	<jsp:include page="/views/resources/footer.jsp" flush="true" />
 	<script type="text/javascript">
-		$('#patent-tab').on('click', function() {
-			$post();
-			$(this).button('complete'); // button text will be "finished!"
-		})
-		$('#enPeriodicalThesis-tab').on('click', function() {
-			$post();
-			$(this).button('complete') // button text will be "finished!"
-		})
-		$('#chPeriodicalThesis-tab').on('click', function() {
-			$post();
-			$(this).button('complete') // button text will be "finished!"
-		})
+	$('#patent-tab').on('click', function() {
+		if($('#tbody-patent').children().length == 0){
+		$.ajax({
+			type : 'post',
+			url : '${ctx}/admin/notClaimed-list',
+			data : {
+				awardsType : 'patent'
+			},
+			success : function(data) {
+				if (data != null) {
+                    for (var i = 0; i < data.length; i++) {
+                        var tr = $("<tr/>");
+                        $("<td class=\"id\"/ display=\"none;\">").html(data[i].id).appendTo(tr);
+                        $("<td/>").html(i + 1).appendTo(tr);
+                        $("<td/>").html(data[i].type).appendTo(tr);
+                        $("<td/>").html(data[i].name).appendTo(tr);
+                        $("<td/>").html(data[i].no1AutherName).appendTo(tr);
+                        $("<td/>").html(data[i].otherAutherName).appendTo(tr);
+                        $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                        $('#tbody-patent').append(tr);
+                    }
+                } else {
+                    $.confirm({
+                        title: 'Data error',
+                        content: '没有与您相关的数据!',
+                        autoClose: 'cancel|1000',
+                        backgroundDismiss: true,
+                        buttons: {
+                            cancel: {
+                                text: '取消',
+                                btnClass: 'waves-effect waves-button'
+                            }
+                        }
+                    })
+                }
+			}
+		});
+		}})
+	$('#enPeriodicalThesis-tab').on('click', function() {
+		if($('#tbody-en').children().length == 0){
+		$.ajax({
+			type : 'post',
+			url : '${ctx}/admin/notClaimed-list',
+			data : {
+				awardsType : 'enPeriodicalThesis'
+			},
+			success : function(data) {
+				if (data != null) {
+                    for (var i = 0; i < data.length; i++) {
+                        var tr = $("<tr/>");
+                        $("<td class=\"id\"/ display=\"none;\">").html(data[i].id).appendTo(tr);
+                        $("<td/>").html(i + 1).appendTo(tr);
+                        $("<td/>").html(data[i].type).appendTo(tr);
+                        $("<td/>").html(data[i].name).appendTo(tr);
+                        $("<td/>").html(data[i].no1AutherName).appendTo(tr);
+                        $("<td/>").html(data[i].otherAutherName).appendTo(tr);
+                        $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                        $('#tbody-en').append(tr);
+                    }
+                } else {
+                    $.confirm({
+                        title: 'Data error',
+                        content: '没有与您相关的数据!',
+                        autoClose: 'cancel|1000',
+                        backgroundDismiss: true,
+                        buttons: {
+                            cancel: {
+                                text: '取消',
+                                btnClass: 'waves-effect waves-button'
+                            }
+                        }
+                    })
+                }
+			}
+		});
+	}})
+	$('#chPeriodicalThesis-tab').on('click', function() {
+		if($('#tbody-ch').children().length == 0){
+		$.ajax({
+			type : 'post',
+			url : '${ctx}/admin/notClaimed-list',
+			data : {
+				awardsType : 'chPeriodicalThesis'
+			},
+			success : function(data) {
+				if (data != null) {
+                    for (var i = 0; i < data.length; i++) {
+                        var tr = $("<tr/>");
+                        $("<td class=\"id\"/ display=\"none;\">").html(data[i].id).appendTo(tr);
+                        $("<td/>").html(i + 1).appendTo(tr);
+                        $("<td/>").html(data[i].type).appendTo(tr);
+                        $("<td/>").html(data[i].name).appendTo(tr);
+                        $("<td/>").html(data[i].no1AutherName).appendTo(tr);
+                        $("<td/>").html(data[i].otherAutherName).appendTo(tr);
+                        $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                        $('#tbody-ch').append(tr);
+                    }
+                } else {
+                    $.confirm({
+                        title: 'Data error',
+                        content: '没有与您相关的数据!',
+                        autoClose: 'cancel|1000',
+                        backgroundDismiss: true,
+                        buttons: {
+                            cancel: {
+                                text: '取消',
+                                btnClass: 'waves-effect waves-button'
+                            }
+                        }
+                    })
+                }
+			}
+		});
+	}})
+
 	</script>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <html lang="en">
 
     <head>
-        <title>Home</title>
+        <title>认领</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -70,7 +70,7 @@
                                                             <option value="已认领">已认领</option>
                                                         </select>
                                                     </div>
-                                                    <button type="submit" class="btn btn-default">Send invitation</button>
+                                                    <button type="submit" class="btn btn-default">查询</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -110,7 +110,7 @@
                                                         <option value="已认领">已认领</option>
                                                     </select>
                                                 </div>
-                                                <button type="submit" class="btn btn-default">Send invitation</button>
+                                                <button type="submit" class="btn btn-default">查询</button>
                                             </form>
                                         </div>
                                         <div class="tab-pane" id="Chinese">
@@ -145,7 +145,7 @@
                                                         <option value="已认领">已认领</option>
                                                     </select>
                                                 </div>
-                                                <button type="submit" class="btn btn-default">Send invitation</button>
+                                                <button type="submit" class="btn btn-default">查询</button>
                                             </form>
                                         </div>
                                         <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
@@ -258,7 +258,7 @@
                     $.ajax({
                         url: '${ctx}/user/options-contant',
                         type: 'POST',
-                        data: {id: id},
+                        data: {id: id,awardsType:'chPeriodicalThesis'},
                         success: function (data) {
                             contant.html(data);
                             $.confirm({

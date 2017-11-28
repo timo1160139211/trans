@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -160,7 +161,8 @@ public class AdminOpsController {
 	 * @return
 	 */
 	@RequestMapping(value = "/claim-statistic", method = RequestMethod.POST)
-	public String claimStatistic(HttpServletRequest request,ModelAndView mv) {
+	@ResponseBody
+	public Object claimStatistic(HttpServletRequest request) {
 		String type = request.getParameter("awardsType");
 		Map<String,Integer> statisticalMap = new HashMap<String,Integer>();
 		
@@ -173,9 +175,7 @@ public class AdminOpsController {
 		//退出,并返回"无该类型文档"
 		statisticalMap.isEmpty();
 		
-		mv.addObject(statisticalMap);
-		
-		return "/admin/claim-statistic";
+		return statisticalMap;
 	}
 	
 	/**
@@ -198,20 +198,17 @@ public class AdminOpsController {
 	 * @return
 	 */
 	@RequestMapping(value = "/notClaimed-list", method = RequestMethod.POST)
-	public String notClaimedList(HttpServletRequest request,ModelAndView mv) {
+	@ResponseBody
+	public Object notClaimedList(HttpServletRequest request,ModelAndView mv) {
 
 		String type = request.getParameter("awardsType");
 		
 		switch(type) {
-		    case "patent":mv.addObject("notClaimedAwardsList", patentService.selectByStatus("未认领")) ;break;
-		    case "enPeriodicalThesis":mv.addObject("notClaimedAwardsList", enPeriodicalThesisService.selectByStatus("未认领"));break;
-		    case "chPeriodicalThesis": mv.addObject("notClaimedAwardsList", chPeriodicalThesisService.selectByStatus("未认领"));break;
+		    case "patent": return patentService.selectByStatus("未认领") ;
+		    case "enPeriodicalThesis": return enPeriodicalThesisService.selectByStatus("未认领");
+		    case "chPeriodicalThesis": return chPeriodicalThesisService.selectByStatus("未认领");
+		    default : return "";
 		}
-		
-		//如果mv为空
-		if(mv.isEmpty());
-		
-		return null;
 	}
 	
 

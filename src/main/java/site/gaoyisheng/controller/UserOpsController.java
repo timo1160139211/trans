@@ -170,9 +170,15 @@ public class UserOpsController {
     @RequestMapping(value = "/options-contant", method = RequestMethod.POST)
     public ModelAndView optionsContant(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
-        Thesis thesis = thesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
-        mv.addObject("thesis", thesis)
-          .setViewName("/user/options-contant");
+        
+        switch(request.getParameter("awardsType")) {
+            case "patent": mv.addObject("thesis", patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));break;
+            case "enPeriodicalThesis":  mv.addObject("thesis",enPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));break;
+            case "chPeriodicalThesis": mv.addObject("thesis", chPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));break;
+        default : break;
+         }
+        
+        mv.setViewName("user/options-contant");
         return mv;
     }
 	

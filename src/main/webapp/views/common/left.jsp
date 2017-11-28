@@ -8,8 +8,8 @@
 				<!-- 用户 -->
 				<ul class="nav">
 				    <!-- 用户: 主页 -->
-					<li><a href="${ctx}/home" class=""><i class="lnr lnr-file-empty"></i>
-							<span>认领</span></a></li>
+					<li><a href="${ctx}/user/home" class=""><i class="lnr lnr-file-empty"></i>
+							<span>主页</span></a></li>
 					<!-- 用户: 查找 操作 -->
 					<li><a href="${ctx}/user/search" class=""><i
 							class="fa fa-search"></i> <span>查找</span></a></li>
@@ -34,12 +34,11 @@
 							class="fa fa-search"></i> <span>查看进度</span></a></li>
 					
 					<!-- admin: 查看数据 操作 -->
-					<li><a href="${ctx}/admin/claim-statistic" class=""><i
-							class="fa fa-search"></i> <span>查看进度</span></a></li>
+					<li><a href="${ctx}/admin/notClaimed-list" class=""><i
+							class="fa fa-search"></i> <span>未认领数据</span></a></li>
 							
 					<!-- admin: 上传 操作 -->
-					<li><a href="${ctx}/admin/upload" data-toggle="collapse"
-						class="collapsed"><i class="fa fa-upload"></i> <span>上传数据</span></a>
+					<li><a href="${ctx}/admin/upload" class=""><i class="fa fa-upload"></i> <span>上传数据</span></a>
 					</li>
 					
 					<!-- admin: 下载 操作 -->

@@ -231,8 +231,10 @@ public class FileUtil {
                   //循环赋值
                 for (int i = 0; i < hssfRow.getLastCellNum(); i++) {  
                     HSSFCell thesisIdHSSFCell = hssfRow.getCell(i); 
-                    String value = thesisIdHSSFCell.getStringCellValue();
+                    
+                    String value = getStringCellValue(thesisIdHSSFCell);
                     if (value==null) {value="";}
+                    
                     switch(i) {
                         case 1:thesis.setKeyId(value);break;
                         case 2:thesis.setProvenance(value);break;
@@ -714,4 +716,23 @@ public class FileUtil {
 		}
 
 	}
+	
+	/**
+	 * .
+	 * 获取单元格数据内容为字符串类型的数据
+	 * TODO
+	 * @param cell Excel单元格
+	 * @returnString 单元格数据内容
+	 */
+    private String getStringCellValue(HSSFCell cell) {
+        String cellValue = "";  
+        
+        if(cell.getCellType()==cell.CELL_TYPE_STRING) {cellValue = cell.getRichStringCellValue().getString(); }
+        if(cell.getCellType()==cell.CELL_TYPE_NUMERIC) {
+        	cell.setCellType(cell.CELL_TYPE_STRING);  
+        	cellValue = String.valueOf(cell.getRichStringCellValue().getString());
+         }
+        
+        return cellValue;
+    }
 }
