@@ -178,8 +178,8 @@ public class FileUtil {
             if (hssfSheet == null) {  
                 continue;  
               }  
-              // 循环行Row  ,从第2 行开始.  0 1 2 
-            for (int rowNum = 2; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {  
+              // 循环行Row  ,从第1 行开始.  0 1 2 
+            for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {  
             	  thesis = new EnPeriodicalThesis();  //有默认值 全为 ""
                 HSSFRow hssfRow = hssfSheet.getRow(rowNum);  
                   //循环赋值
@@ -224,8 +224,8 @@ public class FileUtil {
             if (hssfSheet == null) {  
                 continue;  
               }  
-              // 循环行Row  ,从第2 行开始.  0 1 2 
-            for (int rowNum = 2; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {  
+              // 循环行Row  ,从第1 行开始.  0 1 2 
+            for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {  
             	  thesis = new ChPeriodicalThesis();  //有默认值 全为 ""
                 HSSFRow hssfRow = hssfSheet.getRow(rowNum);  
                   //循环赋值
@@ -272,8 +272,8 @@ public class FileUtil {
             if (hssfSheet == null) {  
                 continue;  
               }  
-              // 循环行Row  ,从第2 行开始.  0 1 2 
-            for (int rowNum = 2; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {  
+              // 循环行Row  ,从第1 行开始.  0 1 2 
+            for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {  
             	patent = new Patent();  //有默认值 全为 ""
                 HSSFRow hssfRow = hssfSheet.getRow(rowNum);  
                   //循环赋值

@@ -85,10 +85,6 @@ public class UserService {
 		FileUtil fileUtil = new FileUtil();
 		List<User> userList = fileUtil.importFileOfUser(in);
 		
-		//递归分割list
-		if(userList.size()>2500) {
-			userList.subList(0, 2500);
-		}
 		return userDao.insertList(userList);
 	}
 	
