@@ -206,7 +206,7 @@ public class AdminOpsController {
 		switch(type) {
 		    case "patent": return patentService.selectByStatus("未认领") ;
 		    case "enPeriodicalThesis": return enPeriodicalThesisService.selectByStatus("未认领");
-		    case "chPeriodicalThesis": return chPeriodicalThesisService.selectByStatus("未认领");
+		    case "chPeriodicalThesis": return chPeriodicalThesisService.selectByStatus("未认领",1,30);
 		    default : return "";
 		}
 	}

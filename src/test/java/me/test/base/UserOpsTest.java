@@ -21,9 +21,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
+import site.gaoyisheng.dao.ChPeriodicalThesisMapper;
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
@@ -38,13 +43,29 @@ import site.gaoyisheng.service.UserService;
 public class UserOpsTest extends BaseTest {
 
 	@Autowired
-	private EnPeriodicalThesisService es;
+	private ChPeriodicalThesisService chService;
 	
 	@Autowired
 	private PatentService ps;
 	
 	@Autowired
 	private UserService us;
+	
+    @Test
+    public void test(){
+        ChPeriodicalThesis ch = new ChPeriodicalThesis();
+
+        PageHelper.startPage(2,10);
+        List<ChPeriodicalThesis> ls = chService.selectAll();
+        
+        PageInfo<ChPeriodicalThesis> pageInfo = new PageInfo<ChPeriodicalThesis>(ls);
+        
+        System.out.println("当前页面第一个元素在数据库中的行号: "+pageInfo.getStartRow()); 
+        System.out.println("当前页面最后一个元素在数据库中的行号: "+pageInfo.getEndRow());
+        System.out.println("总记录数: "+pageInfo.getTotal());
+        System.out.println("总页数: "+pageInfo.getPages());
+
+    }
 
 /*	@Test
 	public void loginTest() {

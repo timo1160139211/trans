@@ -187,7 +187,7 @@ public class FileUtil {
                     HSSFCell thesisIdHSSFCell = hssfRow.getCell(i); 
                     String value = thesisIdHSSFCell.getStringCellValue();
                     if (value==null) {value="";}
-                    switch(i) {
+                    switch(i+1) {
                         case 1:thesis.setKeyId(value);break;
                         case 2:thesis.setName(value);break;
                         case 3:thesis.setAllAutherName(value);break;
@@ -236,15 +236,15 @@ public class FileUtil {
                     if (value==null) {value="";}
                     
                     switch(i) {
-                        case 1:thesis.setKeyId(value);break;
-                        case 2:thesis.setProvenance(value);break;
-                        case 3:thesis.setYear(value);break;
-                        case 4:thesis.setMinistry(value);break;
-                        case 5:thesis.setPeriod(value);break;
-                        case 6:thesis.setName(value);break;
-                        case 7:thesis.setKeyWords(value);break;
-                        case 8:thesis.setAllAutherName(value);break;
-                        case 9:thesis.setMechanism(value);break;
+                        case 0:thesis.setKeyId(value);break;
+                        case 1:thesis.setProvenance(value);break;
+                        case 2:thesis.setYear(value);break;
+                        case 3:thesis.setMinistry(value);break;
+                        case 4:thesis.setPeriod(value);break;
+                        case 5:thesis.setName(value);break;
+                        case 6:thesis.setKeyWords(value);break;
+                        case 7:thesis.setAllAutherName(value);break;
+                        case 8:thesis.setMechanism(value);break;
                        }
                 }  
                 chPeriodicalThesisList.add(thesis);  
@@ -281,7 +281,7 @@ public class FileUtil {
                     HSSFCell thesisIdHSSFCell = hssfRow.getCell(i); 
                     String value = thesisIdHSSFCell.getStringCellValue();
                     if (value==null) {value="";}
-                    switch(i) {
+                    switch(i+1) {
                         case 1:patent.setKeyId(value);break;
                         case 2:patent.setName(value);break;
                         case 3:patent.setType(value);break;

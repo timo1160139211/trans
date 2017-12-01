@@ -134,7 +134,7 @@
 				type : 'post',
 				url : '${ctx}/admin/claim-statistic',
 				data : {
-					awardsType : 'chPeriodicalThesis'
+					awardsType : 'enPeriodicalThesis'
 				},
 				success : function(data) {
 					$("#enPeriodicalThesis-claimed").val(data.claimed);
