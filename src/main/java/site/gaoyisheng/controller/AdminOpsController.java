@@ -202,11 +202,13 @@ public class AdminOpsController {
 	public Object notClaimedList(HttpServletRequest request,ModelAndView mv) {
 
 		String type = request.getParameter("awardsType");
+		int pageNum = Integer.valueOf(request.getParameter("pageNum"));
+		int pageSize = Integer.valueOf(request.getParameter("pageSize"));
 		
 		switch(type) {
-		    case "patent": return patentService.selectByStatus("未认领") ;
-		    case "enPeriodicalThesis": return enPeriodicalThesisService.selectByStatus("未认领");
-		    case "chPeriodicalThesis": return chPeriodicalThesisService.selectByStatus("未认领",1,30);
+		    case "patent": return patentService.selectByStatus("未认领",pageNum,pageSize) ;
+		    case "enPeriodicalThesis": return enPeriodicalThesisService.selectByStatus("未认领",pageNum,pageSize);
+		    case "chPeriodicalThesis": return chPeriodicalThesisService.selectByStatus("未认领",pageNum,pageSize);
 		    default : return "";
 		}
 	}

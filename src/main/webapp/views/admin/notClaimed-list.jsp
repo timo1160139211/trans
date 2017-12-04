@@ -65,6 +65,7 @@
 														<div id="Modal"></div>
 													</table>
 												</div>
+												<div id="patent-page-div" align="center"></div>
 											</div>
 										</div>
 									</div>
@@ -88,6 +89,7 @@
 														<div id="Modal"></div>
 													</table>
 												</div>
+												<div id="en-page-div" align="center"></div>
 											</div>
 										</div>
 									</div>
@@ -111,6 +113,7 @@
 														<div id="Modal"></div>
 													</table>
 												</div>
+												<div id="ch-page-div" align="center"></div>
 											</div>
 										</div>
 									</div>
@@ -157,6 +160,13 @@
                         $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
                         $('#tbody-patent').append(tr);
                     }
+                    
+                    var ul = $("<ul class=\"pagination pagination-lg\"/>");
+                    $("<li/>").html("<a href=\"#\">&laquo;上一页</a>").appendTo(ul);
+                    $("<li/>").html("<a class=\"disabled\">第5 /215页(共x条)</a>").appendTo(ul);
+                    $("<li/>").html("<a href=\"#\">下一页&raquo;</a>").appendTo(ul);
+                    $('#patent-page-div').append(ul);
+                    
                 } else {
                     $.confirm({
                         title: 'Data error',
@@ -195,6 +205,13 @@
                         $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
                         $('#tbody-en').append(tr);
                     }
+                    
+                    var ul = $("<ul class=\"pagination pagination-lg\"/>");
+                    $("<li/>").html("<a href=\"#\">&laquo;上一页</a>").appendTo(ul);
+                    $("<li/>").html("<a class=\"disabled\">第5 /215页(共x条)</a>").appendTo(ul);
+                    $("<li/>").html("<a href=\"#\">下一页&raquo;</a>").appendTo(ul);
+                    $('#en-page-div').append(ul);
+                    
                 } else {
                     $.confirm({
                         title: 'Data error',
@@ -218,7 +235,9 @@
 			type : 'post',
 			url : '${ctx}/admin/notClaimed-list',
 			data : {
-				awardsType : 'chPeriodicalThesis'
+				awardsType : 'chPeriodicalThesis',
+				pageSize : '30',
+				pageNum : '1'
 			},
 			success : function(data) {
 				if (data != null) {
@@ -233,6 +252,13 @@
                         $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
                         $('#tbody-ch').append(tr);
                     }
+                        
+                        var ul = $("<ul class=\"pagination pagination-lg\"/>");
+                        $("<li/>").html("<a href=\"#\" id=\"ch-prePage\">&laquo;上一页</a>").appendTo(ul);
+                        $("<li/>").html("<a class=\"disabled\">第5 /215页(共x条)</a>").appendTo(ul);
+                        $("<li/>").html("<a href=\"#\">下一页&raquo;</a>").appendTo(ul);
+                        $('#ch-page-div').append(ul);
+
                 } else {
                     $.confirm({
                         title: 'Data error',
@@ -250,6 +276,33 @@
 			}
 		});
 	}})
+	
+	$('body').on('click', '#ch-prePage', function () {
+                var id = $(this).parent().siblings()[0].innerHTML;
+                var contant = $(this).parent().next();
+                if (contant.html() == '') {
+                    $.ajax({
+                        url: '${ctx}/user/options-contant',
+                        type: 'POST',
+                        data: {id: id,awardsType:'chPeriodicalThesis'},
+                        success: function (data) {
+                            contant.html(data);
+                            $.confirm({
+                                title: 'Data error',
+                                content: '数据记载完毕!请再次点击认领.',
+                                autoClose: 'cancel|1000',
+                                backgroundDismiss: true,
+                                buttons: {
+                                    cancel: {
+                                        text: '取消',
+                                        btnClass: 'waves-effect waves-button'
+                                    }
+                                }
+                            })
+                        }
+                    })
+                }
+            })
 
 	</script>
 </body>

@@ -53,18 +53,80 @@ public class UserOpsTest extends BaseTest {
 	
     @Test
     public void test(){
-        ChPeriodicalThesis ch = new ChPeriodicalThesis();
 
+        
+
+
+    }
+    
+    @Test
+    public void pageHelperTest() {
+
+//   /*
         PageHelper.startPage(2,10);
         List<ChPeriodicalThesis> ls = chService.selectAll();
         
         PageInfo<ChPeriodicalThesis> pageInfo = new PageInfo<ChPeriodicalThesis>(ls);
+        
+        System.out.println("当前页:" + pageInfo.getPageNum());
+        System.out.println("每页的数量:"+pageInfo.getPageSize());
+        System.out.println("当前页的数量:"+pageInfo.getSize());
+
+        //由于startRow和endRow不常用，这里说个具体的用法
+        //可以在页面中"显示startRow到endRow 共size条数据"
+
+        //当前页面第一个元素在数据库中的行号
+        //当前页面最后一个元素在数据库中的行号
+        System.out.println("显示"+pageInfo.getStartRow()+"到"+pageInfo.getEndRow() +"共"+pageInfo.getSize()+"条数据");
         
         System.out.println("当前页面第一个元素在数据库中的行号: "+pageInfo.getStartRow()); 
         System.out.println("当前页面最后一个元素在数据库中的行号: "+pageInfo.getEndRow());
         System.out.println("总记录数: "+pageInfo.getTotal());
         System.out.println("总页数: "+pageInfo.getPages());
 
+        System.out.println("前一页："+pageInfo.getPrePage());
+        System.out.println("下一页:"+pageInfo.getNextPage());
+        System.out.println("是否为第一页:"+pageInfo.isIsFirstPage());
+        System.out.println("是否为最后一页:"+pageInfo.isIsLastPage());
+        System.out.println("是否有前一页:"+pageInfo.isHasPreviousPage());
+        System.out.println("是否有下一页:"+pageInfo.isHasNextPage());
+
+        System.out.println("导航页码数:"+pageInfo.getNavigatePages());
+
+        System.out.println("所有导航页码数:");
+        for(int i :  pageInfo.getNavigatepageNums()) {
+        	System.out.println(" "+i+",");
+        }
+        
+//        */
+    	/*
+当前页:2
+每页的数量:10
+当前页的数量:10
+显示11到20共10条数据
+当前页面第一个元素在数据库中的行号: 11
+当前页面最后一个元素在数据库中的行号: 20
+总记录数: 21582
+总页数: 2159
+前一页：1
+下一页:3
+是否为第一页:false
+是否为最后一页:false
+是否有前一页:true
+是否有下一页:true
+导航页码数:8
+所有导航页码数:
+ 1,
+ 2,
+ 3,
+ 4,
+ 5,
+ 6,
+ 7,
+ 8,
+        
+        */
+    	
     }
 
 /*	@Test
