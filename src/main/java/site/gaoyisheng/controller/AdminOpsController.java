@@ -34,6 +34,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
+import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.ChPeriodicalThesisService;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
@@ -205,10 +209,11 @@ public class AdminOpsController {
 		int pageNum = Integer.valueOf(request.getParameter("pageNum"));
 		int pageSize = Integer.valueOf(request.getParameter("pageSize"));
 		
+	    PageHelper.startPage(pageNum,pageSize);
 		switch(type) {
 		    case "patent": return patentService.selectByStatus("未认领",pageNum,pageSize) ;
 		    case "enPeriodicalThesis": return enPeriodicalThesisService.selectByStatus("未认领",pageNum,pageSize);
-		    case "chPeriodicalThesis": return chPeriodicalThesisService.selectByStatus("未认领",pageNum,pageSize);
+		    case "chPeriodicalThesis": return new PageInfo<ChPeriodicalThesis>(chPeriodicalThesisService.selectByStatus("未认领"));
 		    default : return "";
 		}
 	}
