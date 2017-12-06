@@ -53,19 +53,19 @@
 														<thead>
 															<tr>
 																<th>#</th>
-																<th>类型</th>
+																<th>唯一标识</th>
 																<th>名称</th>
-																<th>第一作者</th>
-																<th>其他作者</th>
-																<th>操作1</th>
+																<th>作者</th>
+																<th>出处</th>
+																<th>操作</th>
 															</tr>
 														</thead>
-														<tbody id="tbody-patent">
+														<tbody class="datatable">
 														</tbody>
 														<div id="Modal"></div>
 													</table>
 												</div>
-												<div id="patent-page-div" align="center"></div>
+												<div class="page-div" align="center"></div>
 											</div>
 										</div>
 									</div>
@@ -77,19 +77,19 @@
 														<thead>
 															<tr>
 																<th>#</th>
-																<th>类型</th>
+																<th>唯一标识</th>
 																<th>名称</th>
-																<th>第一作者</th>
-																<th>其他作者</th>
-																<th>操作1</th>
+																<th>作者</th>
+																<th>出处</th>
+																<th>操作</th>
 															</tr>
 														</thead>
-														<tbody id="tbody-en">
+														<tbody class="datatable">
 														</tbody>
 														<div id="Modal"></div>
 													</table>
 												</div>
-												<div id="en-page-div" align="center"></div>
+												<div class="page-div" align="center"></div>
 											</div>
 										</div>
 									</div>
@@ -101,19 +101,19 @@
 														<thead>
 															<tr>
 																<th>#</th>
-																<th>类型</th>
+																<th>唯一标识</th>
 																<th>名称</th>
-																<th>第一作者</th>
-																<th>其他作者</th>
-																<th>操作1</th>
+																<th>作者</th>
+																<th>出处</th>
+																<th>操作</th>
 															</tr>
 														</thead>
-														<tbody id="tbody-ch">
+														<tbody class="datatable">
 														</tbody>
 														<div id="Modal"></div>
 													</table>
 												</div>
-												<div id="ch-page-div" align="center"></div>
+												<div class="page-div" align="center"></div>
 											</div>
 										</div>
 									</div>
@@ -140,38 +140,47 @@
 	<jsp:include page="/views/resources/footer.jsp" flush="true" />
 	<script type="text/javascript">
 
-      var currentPageNum=4;
+      var currentPageNum=1;
       var currentPageSize=30;
-      var currentAwardsType='chPeriodicalThesis';
+      var currentAwardsType='patent';
+
 
 
 	$('#patent-tab').on('click', function() {
-		if($('#tbody-patent').children().length == 0){
+             currentAwardsType='patent';
+             currentPageNum=1;
+
+		$('.datatable').empty();
+             $('.page-div').empty();
+		if($('.datatable').children().length == 0){
 		$.ajax({
 			type : 'post',
 			url : '${ctx}/admin/notClaimed-list',
 			data : {
-				awardsType : 'patent'
+				awardsType : currentAwardsType,
+				pageSize : currentPageSize,
+				pageNum : currentPageNum
 			},
-			success : function(data) {
-				if (data != null) {
-                    for (var i = 0; i < data.length; i++) {
+			success : function(page) {
+				if (page != null) {
+                    for (var i = 0; i < page.list.length; i++) {
                         var tr = $("<tr/>");
-                        $("<td class=\"id\"/ display=\"none;\">").html(data[i].id).appendTo(tr);
+                        $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                         $("<td/>").html(i + 1).appendTo(tr);
+                        $("<td/>").html(page.list[i].keyId).appendTo(tr);
                         $("<td/>").html(page.list[i].name).appendTo(tr);
-                        $("<td/>").html(page.list[i].keyWords).appendTo(tr);
                         $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                         $("<td/>").html(page.list[i].provenance).appendTo(tr);
                         $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
-                        $('#tbody-patent').append(tr);
+                        $('.datatable').append(tr);
                     }
+                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
                     
-                    var ul = $("<ul class=\"pagination pagination-lg\"/>");
-                    $("<li/>").html("<a href=\"#\">&laquo;上一页</a>").appendTo(ul);
-                    $("<li/>").html("<a class=\"disabled\">第5 /215页(共x条)</a>").appendTo(ul);
-                    $("<li/>").html("<a href=\"#\">下一页&raquo;</a>").appendTo(ul);
-                    $('#patent-page-div').append(ul);
+                        var ul = $("<ul class=\"pagination pagination-lg\"/>");
+                        $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
+                        $("<li/>").html(pageNumAndTotal).appendTo(ul);
+                        $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
+                        $('.page-div').append(ul);
                     
                 } else {
                     $.confirm({
@@ -191,32 +200,40 @@
 		});
 		}})
 	$('#enPeriodicalThesis-tab').on('click', function() {
-		if($('#tbody-en').children().length == 0){
+             currentAwardsType='enPeriodicalThesis';
+             currentPageNum=1;
+
+             $('.datatable').empty();
+             $('.page-div').empty();
+		if($('.datatable').children().length == 0){
 		$.ajax({
 			type : 'post',
 			url : '${ctx}/admin/notClaimed-list',
 			data : {
-				awardsType : 'enPeriodicalThesis'
+				awardsType : currentAwardsType,
+				pageSize : currentPageSize,
+				pageNum : currentPageNum
 			},
-			success : function(data) {
-				if (data != null) {
-                    for (var i = 0; i < data.length; i++) {
+			success : function(page) {
+				if (page != null) {
+                    for (var i = 0; i < page.list.length; i++) {
                         var tr = $("<tr/>");
-                        $("<td class=\"id\"/ display=\"none;\">").html(data[i].id).appendTo(tr);
+                        $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                         $("<td/>").html(i + 1).appendTo(tr);
+                        $("<td/>").html(page.list[i].keyId).appendTo(tr);
                         $("<td/>").html(page.list[i].name).appendTo(tr);
-                        $("<td/>").html(page.list[i].keyWords).appendTo(tr);
                         $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                         $("<td/>").html(page.list[i].provenance).appendTo(tr);
                         $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
-                        $('#tbody-en').append(tr);
+                        $('.datatable').append(tr);
                     }
+                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
                     
-                    var ul = $("<ul class=\"pagination pagination-lg\"/>");
-                    $("<li/>").html("<a href=\"#\">&laquo;上一页</a>").appendTo(ul);
-                    $("<li/>").html("<a class=\"disabled\">第5 /215页(共x条)</a>").appendTo(ul);
-                    $("<li/>").html("<a href=\"#\">下一页&raquo;</a>").appendTo(ul);
-                    $('#en-page-div').append(ul);
+                        var ul = $("<ul class=\"pagination pagination-lg\"/>");
+                        $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
+                        $("<li/>").html(pageNumAndTotal).appendTo(ul);
+                        $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
+                        $('.page-div').append(ul);
                     
                 } else {
                     $.confirm({
@@ -236,13 +253,18 @@
 		});
 	}})
 	$('#chPeriodicalThesis-tab').on('click', function() {
-		if($('#tbody-ch').children().length == 0){
+             currentAwardsType='chPeriodicalThesis';
+             currentPageNum=1;
+
+             $('.datatable').empty();
+             $('.page-div').empty();
+		if($('.datatable').children().length == 0){
 		$.ajax({
 			type : 'post',
 			url : '${ctx}/admin/notClaimed-list',
 			data : {
-				awardsType : 'chPeriodicalThesis',
-				pageSize : '30',
+				awardsType : currentAwardsType,
+				pageSize : currentPageSize,
 				pageNum : currentPageNum
 			},
 			success : function(page) {
@@ -251,20 +273,20 @@
                         var tr = $("<tr/>");
                         $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                         $("<td/>").html(i + 1).appendTo(tr);
+                        $("<td/>").html(page.list[i].keyId).appendTo(tr);
                         $("<td/>").html(page.list[i].name).appendTo(tr);
-                        $("<td/>").html(page.list[i].keyWords).appendTo(tr);
                         $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                         $("<td/>").html(page.list[i].provenance).appendTo(tr);
                         $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
-                        $('#tbody-ch').append(tr);
+                        $('.datatable').append(tr);
                     }
-                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "(共" + page.total + "条)</a>" 
+                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
                     
                         var ul = $("<ul class=\"pagination pagination-lg\"/>");
-                        $("<li/>").html("<a href=\"#\" id=\"ch-prePage\">&laquo;上一页</a>").appendTo(ul);
+                        $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
                         $("<li/>").html(pageNumAndTotal).appendTo(ul);
-                        $("<li/>").html("<a href=\"#\" id=\"ch-nextPage\">下一页&raquo;</a>").appendTo(ul);
-                        $('#ch-page-div').append(ul);
+                        $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
+                        $('.page-div').append(ul);
 
                 } else {
                     $.confirm({
@@ -284,42 +306,41 @@
 		});
 	}})
 	
-	$('body').on('click', '#ch-prePage', function () {
-                      currentPageNum = currentPageNum - 1 ;
-                 // alert(currentPageNum);
-
+	$('body').on('click', '.prePage', function () {
+       currentPageNum = currentPageNum - 1 ;
 		$.ajax({
 			type : 'post',
 			url : '${ctx}/admin/notClaimed-list',
 			data : {
-				awardsType : 'chPeriodicalThesis',
+				awardsType : currentAwardsType,
 				pageSize : currentPageSize,
 				pageNum : currentPageNum
 			},
 			success : function(page) {
-                        $('#tbody-ch').empty();//清空-------------------------------------------------
-                        $('#ch-page-div').empty();//清空-------------------------------------------------
+                        $('.datatable').empty();//清空-------------------------------------------------
+                        $('.page-div').empty();//清空-------------------------------------------------
+
 				if (page != null) {
                     for (var i = 0; i < page.list.length; i++) {
                         var tr = $("<tr/>");
                         $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                         $("<td/>").html(i + 1).appendTo(tr);
+                        $("<td/>").html(page.list[i].keyId).appendTo(tr);
                         $("<td/>").html(page.list[i].name).appendTo(tr);
-                        $("<td/>").html(page.list[i].keyWords).appendTo(tr);
                         $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                         $("<td/>").html(page.list[i].provenance).appendTo(tr);
                         $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
-                        $('#tbody-ch').append(tr);
+                        $('.datatable').append(tr);
                     }
-                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "(共" + page.total + "条)</a>" 
+                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
                     
                         currentPageNum = page.pageNum;
 
                         var ul = $("<ul class=\"pagination pagination-lg\"/>");
-                        $("<li/>").html("<a href=\"#\" id=\"ch-prePage\">&laquo;上一页</a>").appendTo(ul);
+                        $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
                         $("<li/>").html(pageNumAndTotal).appendTo(ul);
-                        $("<li/>").html("<a href=\"#\" id=\"ch-prePage\">下一页&raquo;</a>").appendTo(ul);
-                        $('#ch-page-div').append(ul);
+                        $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
+                        $('.page-div').append(ul);
 
                 } else {
                     $.confirm({
@@ -339,42 +360,44 @@
 		});
             })
 
-	$('body').on('click', '#ch-nextPage', function () {
-             currentPageNum = currentPageNum + 1 ; 
+	$('body').on('click', '.nextPage', function () {
 
+             currentPageNum = currentPageNum + 1 ; 
 		$.ajax({
 			type : 'post',
 			url : '${ctx}/admin/notClaimed-list',
 			data : {
-				awardsType : 'chPeriodicalThesis',
+				awardsType : currentAwardsType,
 				pageSize : currentPageSize,
 				pageNum : currentPageNum
 			},
 			success : function(page) {
-                        $('#tbody-ch').empty();//清空-------------------------------------------------
-                        $('#ch-page-div').empty();//清空-------------------------------------------------
+                        $('.datatable').empty();//清空-------------------------------------------------
+                        $('.page-div').empty();//清空-------------------------------------------------
+
+console.log("------------------------a");
 
 				if (page != null) {
                     for (var i = 0; i < page.list.length; i++) {
                         var tr = $("<tr/>");
                         $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                         $("<td/>").html(i + 1).appendTo(tr);
+                        $("<td/>").html(page.list[i].keyId).appendTo(tr);
                         $("<td/>").html(page.list[i].name).appendTo(tr);
-                        $("<td/>").html(page.list[i].keyWords).appendTo(tr);
                         $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                         $("<td/>").html(page.list[i].provenance).appendTo(tr);
                         $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
-                        $('#tbody-ch').append(tr);
+                        $('.datatable').append(tr);
                     }
-                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "(共" + page.total + "条)</a>" 
+                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
                     
                         currentPageNum = page.pageNum; //重新赋当前值
 
                         var ul = $("<ul class=\"pagination pagination-lg\"/>");
-                        $("<li/>").html("<a href=\"#\" id=\"ch-prePage\">&laquo;上一页</a>").appendTo(ul);
+                        $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
                         $("<li/>").html(pageNumAndTotal).appendTo(ul);
-                        $("<li/>").html("<a href=\"#\" id=\"ch-nextPage\">下一页&raquo;</a>").appendTo(ul);
-                        $('#ch-page-div').append(ul);
+                        $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
+                        $('.page-div').append(ul);
 
                 } else {
                     $.confirm({

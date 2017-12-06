@@ -38,6 +38,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
+import site.gaoyisheng.pojo.EnPeriodicalThesis;
+import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.ChPeriodicalThesisService;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
@@ -110,6 +112,7 @@ public class AdminOpsController {
         }
        
        request.getSession().setAttribute("msg", strAlertMsg);
+       
        return new ModelAndView("redirect:/admin/upload");
     } 
 	
@@ -203,7 +206,7 @@ public class AdminOpsController {
 	 */
 	@RequestMapping(value = "/notClaimed-list", method = RequestMethod.POST)
 	@ResponseBody
-	public Object notClaimedList(HttpServletRequest request,ModelAndView mv) {
+	public Object notClaimedList(HttpServletRequest request) {
 
 		String type = request.getParameter("awardsType");
 		int pageNum = Integer.valueOf(request.getParameter("pageNum"));
@@ -211,8 +214,8 @@ public class AdminOpsController {
 		
 	    PageHelper.startPage(pageNum,pageSize);
 		switch(type) {
-		    case "patent": return patentService.selectByStatus("未认领",pageNum,pageSize) ;
-		    case "enPeriodicalThesis": return enPeriodicalThesisService.selectByStatus("未认领",pageNum,pageSize);
+		    case "patent": return new PageInfo<Patent>(patentService.selectByStatus("未认领"));
+		    case "enPeriodicalThesis": return new PageInfo<EnPeriodicalThesis>(enPeriodicalThesisService.selectByStatus("未认领"));
 		    case "chPeriodicalThesis": return new PageInfo<ChPeriodicalThesis>(chPeriodicalThesisService.selectByStatus("未认领"));
 		    default : return "";
 		}
