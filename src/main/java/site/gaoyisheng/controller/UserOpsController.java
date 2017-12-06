@@ -217,12 +217,14 @@ public class UserOpsController {
      * @return
      */
     @RequestMapping(value = "/user-update", method = RequestMethod.POST)
-    public void updateUser(User userForm, HttpServletRequest request) {
+    public void updateUser(@RequestParam("password")String password, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         User selectedUser = (User) session.getAttribute("currentUser");
+        
+        User userForm=new User();
         userForm.setId(selectedUser.getId());
+        userForm.setPassword(password);
         userService.updateByPrimaryKeySelective(userForm);
-        session.setAttribute("currentUser", userForm);
     }
 	
     /**

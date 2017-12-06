@@ -132,19 +132,19 @@
 	<update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.User">
 		update public.user
 		<set>
-			<if test="name != null">
+			<if test="name != '' and name != null">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="number != null">
+			<if test="number != '' and number != null">
 				number = #{number,jdbcType=VARCHAR},
 			</if>
-			<if test="password != null">
+			<if test="password != '' and password != null">
 				password = #{password,jdbcType=VARCHAR},
 			</if>
-			<if test="college != null">
+			<if test="college != '' and college != null">
 				college = #{college,jdbcType=VARCHAR},
 			</if>
-			<if test="status != null">
+			<if test="status != '' and status != null">
 				status = #{status,jdbcType=VARCHAR},
 			</if>
 		</set>
