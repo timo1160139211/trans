@@ -28,11 +28,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import site.gaoyisheng.pojo.*;
 import site.gaoyisheng.service.*;
@@ -226,13 +230,15 @@ public class UserOpsController {
      * TODO 模糊查找一个用户.
      * @return
      */
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    @RequestMapping(value = "/search/{pageNum}", method = RequestMethod.POST)
     @ResponseBody
-    public Object fuzzySearchUser(@RequestParam("name")String name){
+    public Object fuzzySearchUser(@RequestParam("name")String name,@PathVariable("pageNum")int pageNum){
     	User u = new User();
     	//非空判断 => 设值 用于查询.
     	u.setName(name);
-    	return userService.searchUserFuzzyQuery(u);
+    	
+    	 PageHelper.startPage(pageNum,30);
+    	return new PageInfo<User>(userService.searchUserFuzzyQuery(u));
     } 
 	
 	/**

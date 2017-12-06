@@ -48,7 +48,7 @@
                                     <!-- TABLE HOVER -->
                                     <div class="panel">
                                         <div class="panel-heading">
-                                            <h3 class="panel-title">${manager.title}</h3>
+                                            <h3 class="panel-title" align="center">动态模糊匹配结果</h3>
                                         </div>
                                         <div class="panel-body">
                                             <table class="table table-hover">
@@ -57,7 +57,7 @@
                                                         <th>#</th>
                                                         <th>姓名</th>
                                                         <th>工号</th>
-                                                        <th>学院</th>
+                                                        <th>学院/机构</th>
                                                         <th>状态</th>
                                                     </tr>
                                                 </thead>
@@ -66,6 +66,7 @@
                                                 <div id="Modal"></div>
                                             </table>
                                         </div>
+                                       <div class="page-div" align="center"></div>>
                                     </div>
                                     <!-- END TABLE HOVER -->
                                 </div>
@@ -87,33 +88,148 @@
         <!-- END WRAPPER -->
         <jsp:include page="/views/resources/footer.jsp" flush="true"/>
         <script type="text/javascript">
+       var currentPageNum=1;
+	    var currentPageSize=30;
+        
             $('#name').bind('keyup focus', function () {
+                var currentPageNum=1;	
                 setTimeout(function () {
-                	  $('#tbody').empty();
+                    $('#tbody').empty();//清空-------------------------------------------------
+                    $('.page-div').empty();//清空-------------------------------------------------
                     $.ajax({
                         type: 'post',
-                        url: '${ctx}/user/search',
+                        url: '${ctx}/user/search/'+currentPageNum,
                         data: $('#search_form').serialize(),
-                        success: function (data) {
-                            if (data != null) {
-                            for (var i = 0; i < data.length; i++) {
+                        success: function (page) {
+                            if (page != null) {
+                            for (var i = 0; i < page.list.length; i++) {
                                 var tr = $("<tr/>");
-                                $("<td class=\"id\"/ display=\"none;\">").html(data[i].id).appendTo(tr);
+                                $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                 $("<td/>").html(i + 1).appendTo(tr);
-                                $("<td/>").html(data[i].name).appendTo(tr);
-                                $("<td/>").html(data[i].number).appendTo(tr);
-                                $("<td/>").html(data[i].college).appendTo(tr);
-                                $("<td/>").html(data[i].status).appendTo(tr);
+                                $("<td/>").html(page.list[i].name).appendTo(tr);
+                                $("<td/>").html(page.list[i].number).appendTo(tr);
+                                $("<td/>").html(page.list[i].college).appendTo(tr);
+                                $("<td/>").html(page.list[i].status).appendTo(tr);
                                 $('#tbody').append(tr); 
                             }
+	                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
+    	                    
+	                        currentPageNum = page.pageNum;
+
+	                        var ul = $("<ul class=\"pagination pagination-lg\"/>");
+	                        $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
+	                        $("<li/>").html(pageNumAndTotal).appendTo(ul);
+	                        $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
+	                        $('.page-div').append(ul);
+                            
                         }     
                         }
                     })
-                }, 500);
+                }, 1000);
             });
-            function logout() {
-
+            
+           function logout() {
             }
+            
+        	$('body').on('click', '.prePage', function () {
+        	       currentPageNum = currentPageNum - 1 ;
+        			$.ajax({
+        				type : 'post',
+                     url: '${ctx}/user/search/'+currentPageNum,
+                     data: $('#search_form').serialize(),
+        				success : function(page) {
+        	                        $('#tbody').empty();//清空-------------------------------------------------
+        	                        $('.page-div').empty();//清空-------------------------------------------------
+
+        					if (page != null) {
+        	                    for (var i = 0; i < page.list.length; i++) {
+                                    var tr = $("<tr/>");
+                                    $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
+                                    $("<td/>").html(i + 1).appendTo(tr);
+                                    $("<td/>").html(page.list[i].name).appendTo(tr);
+                                    $("<td/>").html(page.list[i].number).appendTo(tr);
+                                    $("<td/>").html(page.list[i].college).appendTo(tr);
+                                    $("<td/>").html(page.list[i].status).appendTo(tr);
+                                    $('#tbody').append(tr); 
+        	                    }
+        	                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
+        	                    
+        	                        currentPageNum = page.pageNum;
+
+        	                        var ul = $("<ul class=\"pagination pagination-lg\"/>");
+        	                        $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
+        	                        $("<li/>").html(pageNumAndTotal).appendTo(ul);
+        	                        $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
+        	                        $('.page-div').append(ul);
+
+        	                } else {
+        	                    $.confirm({
+        	                        title: 'Data error',
+        	                        content: '没有与您相关的数据!',
+        	                        autoClose: 'cancel|1000',
+        	                        backgroundDismiss: true,
+        	                        buttons: {
+        	                            cancel: {
+        	                                text: '取消',
+        	                                btnClass: 'waves-effect waves-button'
+        	                            }
+        	                        }
+        	                    })
+        	                }
+        				}
+        			});
+        	            })
+
+        		$('body').on('click', '.nextPage', function () {
+
+        	       currentPageNum = currentPageNum + 1 ; 
+        			$.ajax({
+        				type : 'post',
+                        url: '${ctx}/user/search/'+currentPageNum,
+                        data: $('#search_form').serialize(),
+        				success : function(page) {
+        	                        $('#tbody').empty();//清空-------------------------------------------------
+        	                        $('.page-div').empty();//清空-------------------------------------------------
+
+
+        					if (page != null) {
+        	                    for (var i = 0; i < page.list.length; i++) {
+                                    var tr = $("<tr/>");
+                                    $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
+                                    $("<td/>").html(i + 1).appendTo(tr);
+                                    $("<td/>").html(page.list[i].name).appendTo(tr);
+                                    $("<td/>").html(page.list[i].number).appendTo(tr);
+                                    $("<td/>").html(page.list[i].college).appendTo(tr);
+                                    $("<td/>").html(page.list[i].status).appendTo(tr);
+                                    $('#tbody').append(tr); 
+        	                    }
+        	                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
+        	                    
+        	                        currentPageNum = page.pageNum; //重新赋当前值
+
+        	                        var ul = $("<ul class=\"pagination pagination-lg\"/>");
+        	                        $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
+        	                        $("<li/>").html(pageNumAndTotal).appendTo(ul);
+        	                        $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
+        	                        $('.page-div').append(ul);
+
+        	                } else {
+        	                    $.confirm({
+        	                        title: 'Data error',
+        	                        content: '没有与您相关的数据!',
+        	                        autoClose: 'cancel|1000',
+        	                        backgroundDismiss: true,
+        	                        buttons: {
+        	                            cancel: {
+        	                                text: '取消',
+        	                                btnClass: 'waves-effect waves-button'
+        	                            }
+        	                        }
+        	                    })
+        	                }
+        				}
+        			});
+        	            })
         </script>
     </body>
 
