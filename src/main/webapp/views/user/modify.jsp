@@ -60,7 +60,7 @@
 
             <!-- END MAIN -->
             <div class="clearfix"></div>
-            <jsp:include page="/views/resources/footer.jsp" flush="true" />
+            <jsp:include page="/views/common/copyright.jsp" flush="true" />
         </div>
 	<!-- END WRAPPER -->
 
