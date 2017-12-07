@@ -35,7 +35,6 @@ import site.gaoyisheng.service.LoginService;
 
 @Controller
 @RequestMapping("/")
-@SessionAttributes(types = { User.class })
 public class LoginController {
 
 	@Autowired
@@ -61,7 +60,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/login",method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam(value = "number", required = true) String number,
-			@RequestParam(value = "password", required = true) String password) {
+			@RequestParam(value = "password", required = true) String password,HttpServletRequest request) {
                 ModelAndView mv = new ModelAndView();
 		if (!(number.equals("") && password.equals(""))) {// not null
 			Map<String, Object> parameterMap = new HashMap<String, Object>();
@@ -74,7 +73,8 @@ public class LoginController {
 			String type = "/user";
 			if (currentUser != null) {// 如果不为空,则置入
 				mv.addObject("currentUser", currentUser);
-
+				request.getSession().setAttribute("currentUser", currentUser);
+				
 				// 如果是admin则 到/admin/home
 				if (currentUser.getName().equals("admin")) {
 					type = "/admin";
@@ -96,8 +96,8 @@ public class LoginController {
 	 * @param session
 	 * @return
 	 */
-	public boolean isLoggedIn(HttpSession session) {
-		User currentUser =(User) session.getAttribute("currentUser");
+	public boolean isLoggedIn(HttpServletRequest request) {
+		User currentUser =(User) request.getSession().getAttribute("currentUser");
 		
 		return currentUser!=null; 
 	}
@@ -110,8 +110,10 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "logout", method = RequestMethod.GET)
-    public String Logout( HttpSession session) {
-		 session.invalidate();
+    public String Logout(HttpServletRequest request) {
+    	if(request.getSession().getAttribute("currentUser")!=null) {
+    		request.getSession().removeAttribute("currentUser"); 
+		 }
         return "/login";
     }
 
