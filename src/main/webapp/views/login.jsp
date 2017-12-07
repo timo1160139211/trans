@@ -27,8 +27,8 @@
 						<div class="content">
 							<div class="header">
 								<div class="logo text-center">
-									<img src="${ctx}/views/assets/img/logo-dark.png"
-										alt="SDUT logo">
+									<img src="${ctx}/views/assets/img/sdut-lg.png"
+										alt="SDUT logo"/>
 								</div>
 								<p class="lead">Login to your account</p>
 							</div>
@@ -73,9 +73,6 @@
 		<jsp:include page="/views/common/copyright.jsp" flush="true" />
 	</div>
 	<!-- END WRAPPER -->
-
-
-
 
 	<script src="${ctx}/views/assets/vendor/jquery/jquery.js"></script>
 
