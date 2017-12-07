@@ -25,7 +25,7 @@
                         <div class="left">
                             <div class="content">
                                 <div class="header">
-                                    <div class="logo text-center"><img src="${ctx}/views/assets/img/logo-dark.png" alt="Klorofil Logo"></div>
+                                    <div class="logo text-center"><img src="${ctx}/views/assets/img/logo-dark.png" alt="SDUT logo"></div>
                                     <p class="lead">Login to your account</p>
                                 </div>
                                 <form:form class="form-auth-small" action="${ctx}/login" method="post">
@@ -43,7 +43,7 @@
                                             <span>Remember me</span>
                                         </label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">登陆</button>
                                     <div class="bottom">
                                         <span class="helper-text"><i class="fa fa-lock"></i> <a href="#">Forgot password?</a></span>
                                     </div>
@@ -53,8 +53,8 @@
                         <div class="right">
                             <div class="overlay"></div>
                             <div class="content text">
-                                <h1 class="heading">SDUT Task Scheduling System OF TD</h1>
-                                <p>by GaoYisheng＆Huanlu </p>
+                                <h1 class="heading">山东理工大学－成果认领系统</h1>
+                                <p>By GaoYisheng＆HuAnlu </p>
                             </div>
                         </div>
                         <div class="clearfix"></div>

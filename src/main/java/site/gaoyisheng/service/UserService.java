@@ -39,8 +39,8 @@ public class UserService {
 	 * @param user
 	 * @return
 	 */
-	public void updateByPrimaryKeySelective(User user) {
-		this.userDao.updateByPrimaryKeySelective(user);
+	public int updateByPrimaryKeySelective(User user) {
+		return this.userDao.updateByPrimaryKeySelective(user);
 	}
 
 	/**

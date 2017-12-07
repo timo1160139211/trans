@@ -15,7 +15,7 @@
 							class="fa fa-search"></i> <span>查找</span></a></li>
 					<!-- 用户: 修改个人 操作 -->
 					<li><a href="${ctx}/user/user-update" class=""><i
-							class="lnr lnr-pencil"></i> <span>修改个人信息</span></a></li>
+							class="lnr lnr-pencil"></i> <span>修改密码</span></a></li>
 					<!-- 用户: 认领 操作 -->
 					<li><a href="${ctx}/user/awards-list" class=""><i class="lnr lnr-file-empty"></i>
 							<span>认领</span></a></li>
