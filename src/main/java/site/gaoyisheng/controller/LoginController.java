@@ -70,14 +70,18 @@ public class LoginController {
 			// ajax + jQuery find User in DB or not?
 			User currentUser = loginService.selectByNumberAndPassword(parameterMap);
 			
-			String type = "";
-			if(currentUser.getName().equals("admin")) {
-				type = "/admin";
-			}else {
-				type = "/user";
+
+			String type = "/user";
+			if (currentUser != null) {// 如果不为空,则置入
+				mv.addObject("currentUser", currentUser);
+
+				// 如果是admin则 到/admin/home
+				if (currentUser.getName().equals("admin")) {
+					type = "/admin";
+				}
 			}
-			mv.addObject("currentUser", currentUser)
-			  .setViewName("redirect:" + type + "/home");
+			
+			mv.setViewName("redirect:" + type + "/home");
 
 		} else {
 			return new ModelAndView("error");
