@@ -25,7 +25,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import site.gaoyisheng.dao.PatentMapper;
-import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.utils.FileUtil;
 
@@ -144,7 +143,9 @@ public class PatentService {
 	public int readStreamAndInsertList(InputStream in) throws Exception {
 		FileUtil fileUtil = new FileUtil();
 		List<Patent> patentList = fileUtil.importFileOfPatent(in);
-		return patentDao.insertList(patentList);
+		
+		//每1000为一段 插入
+		return recurSub(patentList,1000);
 	}
 
 	/**
@@ -156,5 +157,35 @@ public class PatentService {
 	 */
 	public int insertList(List<Patent> patentList) throws Exception {
 		return patentDao.insertList(patentList);
+	}
+	
+	/**
+	 * .
+	 * TODO 递归:分割长List为 subNum/段。
+	 * @param thesisList 论文list(总)
+	 * @param subNum 每段长度 (最小1)
+	 * @return
+	 * @throws Exception
+	 */
+	private int recurSub(List<Patent> thesisList,int subNum) throws Exception{
+		//参数合法性判断:
+		if(thesisList.isEmpty()) return 0;
+		if(subNum<1) return 0;
+				
+		//大于subNum，进入分割
+		if(thesisList.size() > subNum) {// && !(thesisList.isEmpty())
+			//将前subNum分出来，直接插入到数据库。
+			List<Patent> toInsert = thesisList.subList(0, subNum);
+			//将subNum至最后 (剩余部分) 继续进行递归分割
+			List<Patent> toRecurSub = thesisList.subList(subNum, thesisList.size());
+			
+			//将前subNum分出来，直接插入到数据库 && 将subNum+1至最后 (剩余部分) 继续进行递归分割 。统计数量
+			return insertList(toInsert) + recurSub(toRecurSub,subNum);
+			
+		//少于subNum，直接插入数据库 (递归出口)
+		}else {
+			//插入到数据库。统计数量
+		    return insertList(thesisList);
+		}
 	}
 }

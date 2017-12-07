@@ -70,16 +70,7 @@
 				</div>
 			</div>
 		</div>
-		<footer>
-			<div class="container-fluid" align="center">
-				<p class="copyright">&copy; 2017 &nbsp;&nbsp;PoweredBy
-					&nbsp;Softlab&nbsp;1#314</p>
-			</div>
-			<div class="container-fluid" align="center">
-				<p class="copyright">&copy; 联系我们: &nbsp;&nbsp;QQ
-					&nbsp; 1160139211</p>
-			</div>
-		</footer>
+		<jsp:include page="/views/resources/footer.jsp" flush="true" />
 	</div>
 	<!-- END WRAPPER -->
 
@@ -95,36 +86,34 @@
 		src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
 
 	<script type="text/javascript">
+		$.validator.setDefaults({
+			submitHandler : function(form) {
+				form.submit();
+			}
+		});
 
-$.validator.setDefaults({
-    submitHandler: function(form) {
-          form.submit();
-    }
-});
+		$().ready(function() {
 
+			$("#login").validate({
+				event : 'keyup',
+				rules : {
+					number : {
+						required : true,
+						minlength : 4,
+						maxlength : 16
+					},
+					password : {
+						required : true,
+						minlength : 4,
+						maxlength : 16
+					}
 
-$().ready(function() {	
+				}
+			//rules.
 
-$("#login").validate({
-                    event:'keyup',
-                rules : {
-                	  number : {
-                          required : true,
-                          minlength : 4,
-                          maxlength : 16
-                         },
-                	  password : {
-                         required : true,
-                          minlength : 4,
-                          maxlength : 16
-                         }
-                    
-                  }//rules.
-
-            });//validate
-});//ready
-
-		</script>
+			});//validate
+		});//ready
+	</script>
 
 
 

@@ -43,11 +43,11 @@
                                 <form id="user-modify" >
                                     <p>
                                         <label for="pwd_fir">密码:</label>
-                                        <input type="password" name="pwd_fir" class="form-pwd" id="pwd_fir" placeholder="Password">
+                                        <input type="password" name="pwd_fir" class="form-control" id="pwd_fir" placeholder="Password">
                                     </p>
                                     <p>
                                         <label for="pwd_sec">重复一遍:</label>
-                                        <input type="password" name="pwd_sec" class="form-pwd" id="pwd_sec" placeholder="Re-Password">
+                                        <input type="password" name="pwd_sec" class="form-control" id="pwd_sec" placeholder="Re-Password">
                                     </p>
                                     <button id="modify-submit" class="btn btn-default">确定修改</button>
                                 </form>
@@ -60,14 +60,9 @@
 
             <!-- END MAIN -->
             <div class="clearfix"></div>
-            <footer>
-                <div class="container-fluid">
-                    <p class="copyright">&copy; 2017 &nbsp;&nbsp;PoweredBy &nbsp;Softlab&nbsp;1#314</p>
-                </div>
-            </footer>
+            <jsp:include page="/views/resources/footer.jsp" flush="true" />
         </div>
 	<!-- END WRAPPER -->
-        <jsp:include page="/views/resources/footer.jsp" flush="true"/>
 
 <script src="${ctx}/views/assets/vendor/jquery/jquery.js"></script>
 <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>

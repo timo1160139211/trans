@@ -131,7 +131,9 @@ public class EnPeriodicalThesisService {
 	public int readStreamAndInsertList(InputStream in) throws Exception {
 		FileUtil fileUtil = new FileUtil();
 		List<EnPeriodicalThesis> thesisList = fileUtil.importFileOfEnPeriodicalThesis(in);
-		return thesisDao.insertList(thesisList);
+		
+		//每1500为一段 插入
+		return recurSub(thesisList,1000);
 	}
 
 	/**
@@ -143,5 +145,35 @@ public class EnPeriodicalThesisService {
 	 */
 	public int insertList(List<EnPeriodicalThesis> thesisList) throws Exception {
 		return thesisDao.insertList(thesisList);
+	}
+	
+	/**
+	 * .
+	 * TODO 递归:分割长List为 subNum/段。
+	 * @param thesisList 论文list(总)
+	 * @param subNum 每段长度 (最小1)
+	 * @return
+	 * @throws Exception
+	 */
+	private int recurSub(List<EnPeriodicalThesis> thesisList,int subNum) throws Exception{
+		//参数合法性判断:
+		if(thesisList.isEmpty()) return 0;
+		if(subNum<1) return 0;
+				
+		//大于subNum，进入分割
+		if(thesisList.size() > subNum) {// && !(thesisList.isEmpty())
+			//将前subNum分出来，直接插入到数据库。
+			List<EnPeriodicalThesis> toInsert = thesisList.subList(0, subNum);
+			//将subNum至最后 (剩余部分) 继续进行递归分割
+			List<EnPeriodicalThesis> toRecurSub = thesisList.subList(subNum, thesisList.size());
+			
+			//将前subNum分出来，直接插入到数据库 && 将subNum+1至最后 (剩余部分) 继续进行递归分割 。统计数量
+			return insertList(toInsert) + recurSub(toRecurSub,subNum);
+			
+		//少于subNum，直接插入数据库 (递归出口)
+		}else {
+			//插入到数据库。统计数量
+		    return insertList(thesisList);
+		}
 	}
 }
