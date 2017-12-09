@@ -103,6 +103,9 @@
 			<if test="name != '' and name != null">
 				name like concat('%','${name}','%')
 			</if>
+			<if test="keyId != '' and keyId != null">
+				AND key_id = #{keyId}
+			</if>
 			<if test="autherName != '' and autherName != null">
 				AND all_auther_name like concat('%','${autherName}','%')
 			</if>

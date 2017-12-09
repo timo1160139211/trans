@@ -124,6 +124,9 @@
 			<if test="type != '' and type != null">
 				AND type like concat('%','${type}','%')
 			</if>
+			<if test="keyId != '' and keyId != null">
+				AND key_id = #{keyId}
+			</if>
 			<if test="authorizationNumber != '' and authorizationNumber != null">
 				AND authorization_number like concat('%','${authorizationNumber}','%')
 			</if>

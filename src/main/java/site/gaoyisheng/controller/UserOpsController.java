@@ -18,7 +18,6 @@ package site.gaoyisheng.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -97,6 +96,7 @@ public class UserOpsController {
     @ResponseBody
     public Object awardsList(HttpServletRequest request) {
         Map<String,String> map = new HashMap<String,String>();
+        map.put("keyId", request.getParameter("keyId"));
     	 map.put("name", request.getParameter("name"));
     	 map.put("provenance", request.getParameter("provenance"));
     	 map.put("period", request.getParameter("period"));
@@ -116,11 +116,14 @@ public class UserOpsController {
     	 map.put("autherName", request.getParameter("autherName"));
     	 map.put("claimStatus", request.getParameter("claimStatus"));
         
+    	 //分页参数
+    	 int pageNum = Integer.valueOf(request.getParameter("pageNum"));
+    	 int pageSize = 30;
+    	 
     	 switch(request.getParameter("awardsType")) {
-              //插入并返回 提示
-            case "patent": return patentService.selectByMultiConditions(map);
-            case "enPeriodicalThesis": return chPeriodicalThesisService.selectByMultiConditions(map);
-            case "chPeriodicalThesis": return enPeriodicalThesisService.selectByMultiConditions(map);
+            case "patent": PageHelper.startPage(pageNum,pageSize);return new PageInfo<Patent>(patentService.selectByMultiConditions(map));
+            case "chPeriodicalThesis": PageHelper.startPage(pageNum,pageSize);return new PageInfo<ChPeriodicalThesis>(chPeriodicalThesisService.selectByMultiConditions(map));
+            case "enPeriodicalThesis": PageHelper.startPage(pageNum,pageSize);return new PageInfo<EnPeriodicalThesis>(enPeriodicalThesisService.selectByMultiConditions(map));
             default : return null;
          }
     }
@@ -246,50 +249,4 @@ public class UserOpsController {
     	return new PageInfo<User>(userService.searchUserFuzzyQuery(u));
     } 
 	
-	/**
-	 * .
-	 * 设置认领属性.(无路径映射)
-	 * TODO
-	 * @param thesis
-	 * @param user
-	 * @param no
-	 * @return
-	 */
-	 private Thesis setProperties(Thesis thesis,User user,Integer no,Integer sdutNumber) {
-		
-		System.out.println("我是被认领的 论文:"+thesis.getName());
-		System.out.println("--<<认领前:" + thesis.toString());
-		
-		//修改 thesis 的四个值  1:理工大学职工参与人数: 
-		thesis.setSdutAutherNumber(sdutNumber);
-		
-		//修改 thesis 的四个值  2:认领人的信息: 
-		//设置对应字段:
-		switch(no){
-			case 1:thesis.setNo1AutherName(user.getName());thesis.setNo1AutherNumber(user.getNumber());break;
-			case 2:thesis.setNo2AutherName(user.getName());thesis.setNo2AutherNumber(user.getNumber());break;
-			case 3:thesis.setNo3AutherName(user.getName());thesis.setNo3AutherNumber(user.getNumber());break;
-			case 4:thesis.setNo4AutherName(user.getName());thesis.setNo4AutherNumber(user.getNumber());break;
-			case 5:thesis.setNo5AutherName(user.getName());thesis.setNo5AutherNumber(user.getNumber());break;
-			case 6:thesis.setNo6AutherName(user.getName());thesis.setNo6AutherNumber(user.getNumber());break;
-			case 7:thesis.setNo7AutherName(user.getName());thesis.setNo7AutherNumber(user.getNumber());break;
-			case 8:thesis.setNo8AutherName(user.getName());thesis.setNo8AutherNumber(user.getNumber());break;
-			case 9:thesis.setNo9AutherName(user.getName());thesis.setNo9AutherNumber(user.getNumber());break;
-			case 10:thesis.setNo10AutherName(user.getName());thesis.setNo10AutherNumber(user.getNumber());break;
-		}
-		
-		//修改 thesis 的四个值  3:标志位自增1: 
-		//每修改一次自增 1
-		thesis.setAutherNumber(thesis.getAutherNumber()+1);
-		
-		//修改 thesis 的四个值  1:认领进度 : (false:认领完成)  
-		//如果值相等，则置不可见:false
-		if (thesis.getSdutAutherNumber()==thesis.getAutherNumber()) {
-			thesis.setStatus("false");
-		}
-		
-		System.out.println("-->>认领后:" + thesis.toString());
-		
-		return thesis;
-	}
 }

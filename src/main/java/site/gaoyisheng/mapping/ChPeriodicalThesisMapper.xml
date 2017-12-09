@@ -105,6 +105,9 @@
 			<if test="autherName != '' and autherName != null">
 				AND all_auther_name like concat('%','${autherName}','%')
 			</if>
+			<if test="keyId != '' and keyId != null">
+				AND key_id = #{keyId}
+			</if>
 			<if test="provenance != '' and provenance != null">
 				AND provenance like concat('%','${provenance}','%')
 			</if>
