@@ -62,6 +62,15 @@ public class UserService {
 		return this.userDao.selectBySelectiveParam(u);
 	}
 	
+	/**
+	 * .
+	 * TODO 模糊查询-name.
+	 * @param u
+	 * @return
+	 */
+	public List<User> searchUserFuzzyName(String name){
+		return this.userDao.selectByFuzzyName(name);
+	}
 	
 	/**
 	 * .

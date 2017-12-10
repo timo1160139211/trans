@@ -35,6 +35,17 @@
 		from public."user"
 	</select>
 	
+	<select id="selectByFuzzyName"	resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from public."user"
+		<where>
+			<if test="name != '' and name != null">
+				name like concat('%','${name}','%')
+			</if>
+		</where>
+	</select>	
+	
 	<select id="selectBySelectiveParam" parameterType="site.gaoyisheng.pojo.User"
 		resultMap="BaseResultMap">
 		select

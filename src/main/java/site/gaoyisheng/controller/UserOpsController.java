@@ -17,7 +17,9 @@
 package site.gaoyisheng.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -173,21 +175,90 @@ public class UserOpsController {
      * 根据表单后面的认领按钮提交对应的id返回相应的表单填写页面
      * @param request
      * @return 
+     * @throws SecurityException 
+     * @throws NoSuchFieldException 
+     * @throws IllegalAccessException 
+     * @throws IllegalArgumentException 
      */
     @RequestMapping(value = "/options-contant", method = RequestMethod.POST)
-    public ModelAndView optionsContant(HttpServletRequest request) {
-        ModelAndView mv = new ModelAndView();
-        
-        switch(request.getParameter("awardsType")) {
-            case "patent": mv.addObject("thesis", patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));break;
-            case "enPeriodicalThesis":  mv.addObject("thesis",enPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));break;
-            case "chPeriodicalThesis": mv.addObject("thesis", chPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));break;
-        default : break;
-         }
-        
-        mv.setViewName("user/options-contant");
-        return mv;
-    }
+	public ModelAndView optionsContant(HttpServletRequest request)
+			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		ModelAndView mv = new ModelAndView();
+
+		switch (request.getParameter("awardsType")) {
+		case "patent":
+			Patent p = patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));// 查
+			String allAutherName = p.getAllAutherName();
+			System.out.println("\n\nallAutherName: " + allAutherName + "\n");
+			String[] nameGrp = allAutherName.split("");
+			int i = 1;
+			for (String s : nameGrp) {
+				System.out.println("name" + i + ": " + s + "\n");
+				i++;
+			}
+
+			@SuppressWarnings("rawtypes")
+			Class c = (Class) p.getClass();
+
+			Field f = c.getDeclaredField("no" + i + "AutherName");
+			f.setAccessible(true);
+
+			f.set(p, nameGrp[0]);
+
+			mv.addObject("thesis", p);
+			break;
+		case "enPeriodicalThesis":
+			mv.addObject("thesis",
+					enPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));
+			break;
+		case "chPeriodicalThesis":
+			ChPeriodicalThesis ch = chPeriodicalThesisService
+					.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
+			String chAllAutherName = ch.getAllAutherName();
+			System.out.println("\n\nallAutherName: " + chAllAutherName + "\n");
+			String[] chNameGrp = chAllAutherName.split(";");
+			int chClassi = 1;
+
+			@SuppressWarnings("rawtypes")
+			Class chClass = (Class) ch.getClass();
+
+			for (String chStr : chNameGrp) {
+				// chStr=chStr.substring(0, s.indexOf('['));
+				chStr = chStr.replaceAll("\\[(.+?)\\]", "");
+
+				Field chFieldName = chClass
+						.getDeclaredField("no" + chClassi + "AutherName");
+				chFieldName.setAccessible(true);
+				chFieldName.set(ch, chStr);
+
+				Field chFieldNumber = chClass
+						.getDeclaredField("no" + chClassi + "AutherNumber");
+				chFieldNumber.setAccessible(true);
+
+				String number = "";
+				List<User> userList = userService.searchUserFuzzyName(chStr);
+				if (userList.size() == 1) {
+					number = userList.get(0).getNumber();
+				} else if (userList.size() > 1) {
+					StringBuilder sb = new StringBuilder();
+					for (int ijk = 0; ijk < userList.size(); ijk++) {
+						sb.append(userList.get(ijk).getNumber()).append("/");
+					}
+					number = sb.toString();
+				}
+
+				chFieldNumber.set(ch, number);
+				chClassi++;
+			}
+			mv.addObject("thesis", ch);
+			break;
+		default:
+			break;
+		}
+
+		mv.setViewName("user/options-contant");
+		return mv;
+	}
 	
     /**
      * .
@@ -248,5 +319,8 @@ public class UserOpsController {
     	 PageHelper.startPage(pageNum,30);
     	return new PageInfo<User>(userService.searchUserFuzzyQuery(u));
     } 
+    
+    
+    
 	
 }

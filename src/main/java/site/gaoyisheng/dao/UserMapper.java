@@ -3,6 +3,8 @@ package site.gaoyisheng.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import site.gaoyisheng.pojo.User;
 
 public interface UserMapper {
@@ -25,4 +27,6 @@ public interface UserMapper {
     List<User> selectBySelectiveParam(User u);
     
     int insertList(List<User> userList);
+    
+    List<User> selectByFuzzyName(@Param("name")String name);
 }

@@ -16,6 +16,7 @@
  */
 package me.test.base;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,7 +63,7 @@ public class UserOpsTest extends BaseTest {
     @Test
     public void pageHelperTest() {
 
-//   /*
+   /*
         PageHelper.startPage(2,10);
         List<ChPeriodicalThesis> ls = chService.selectAll();
         
@@ -98,7 +99,7 @@ public class UserOpsTest extends BaseTest {
         	System.out.println(" "+i+",");
         }
         
-//        */
+        */
     	/*
 当前页:2
 每页的数量:10
@@ -162,6 +163,13 @@ public class UserOpsTest extends BaseTest {
 	
 	@Test
 	public void selectTest() {
+		
+//		List<User> userList = us.searchUserFuzzyName("张静");
+//		for (User user : userList) {
+//			System.out.println(user.toString());
+//
+//		}	
+		
 		
 //		List<EnPeriodicalThesis> enList = es.selectByStatus("未认领",1,2);
 //		
@@ -253,6 +261,52 @@ public class UserOpsTest extends BaseTest {
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
+	}
+	
+	@Test
+	public void reflectTest() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		
+		ChPeriodicalThesis chPeriodicalThesis = chService.selectByPrimaryKey(6854);
+		
+		String chPeriodicalThesisAllAutherName = chPeriodicalThesis.getAllAutherName();System.out.println("\n\nallAutherName: "+chPeriodicalThesisAllAutherName+"\n");
+		String[] chPeriodicalThesisNameGrp = chPeriodicalThesisAllAutherName.split(";");
+		int chPeriodicalThesisClassi=1;
+		
+		@SuppressWarnings("rawtypes")
+		Class chPeriodicalThesisClass =(Class) chPeriodicalThesis.getClass();
+		
+		
+		for (String s : chPeriodicalThesisNameGrp) {
+			// s=s.substring(0, s.indexOf('['));
+			s = s.replaceAll("\\[(.+?)\\]", "");
+
+			Field chPeriodicalThesisFieldName = chPeriodicalThesisClass
+					.getDeclaredField("no" + chPeriodicalThesisClassi + "AutherName");
+			chPeriodicalThesisFieldName.setAccessible(true);
+			chPeriodicalThesisFieldName.set(chPeriodicalThesis, s);
+
+			Field chPeriodicalThesisFieldNumber = chPeriodicalThesisClass
+					.getDeclaredField("no" + chPeriodicalThesisClassi + "AutherNumber");
+			chPeriodicalThesisFieldNumber.setAccessible(true);
+
+			String number = "";User userQuery = new User();userQuery.setName(s);
+			List<User> userList = us.searchUserFuzzyQuery(userQuery);
+			if (userList.size() == 1) {
+				number = userList.get(0).getNumber();
+			} else if (userList.size() > 1) {
+				StringBuilder sb = new StringBuilder();
+				for (int i = 0; i < userList.size(); i++) {
+					sb.append(userList.get(i).getNumber()).append("/");
+				}
+				number = sb.toString();
+			}
+
+			chPeriodicalThesisFieldNumber.set(chPeriodicalThesis, number);
+			chPeriodicalThesisClassi++;
+		}
+
+		
+		System.out.println(chPeriodicalThesis);  
 	}
 
 }
