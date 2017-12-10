@@ -49,10 +49,6 @@
 													<input type="text" name="awardsType" value="enPeriodicalThesis"
 														class="type-control">
 												</div>
-												<div class="form-group" style="display: none;">
-													<input type="text" name="pageNum" value="1"
-														class="pageNum-control">
-												</div>
 												<div class="form-group">
 													<label>名称:</label> <input type="text" name="name"
 														class="form-control">
@@ -87,10 +83,6 @@
 											<div class="form-group" style="display: none;">
 												<input type="text" name="awardsType"
 													value="enPeriodicalThesis" class="type-control">
-											</div>
-											<div class="form-group" style="display: none;">
-												<input type="text" name="pageNum" value="1"
-													class="pageNum-control">
 											</div>
 											<div class="form-group">
 												<label>标题:</label> <input type="text" name="name"
@@ -133,10 +125,6 @@
 											<div class="form-group" style="display: none;">
 												<input type="text" name="awardsType"
 													value="chPeriodicalThesis" class="type-control">
-											</div>
-											<div class="form-group" style="display: none;">
-												<input type="text" name="pageNum" value="1"
-													class="pageNum-control">
 											</div>
 											<div class="form-group">
 												<label>标题:</label> <input type="text" name="name"
@@ -232,13 +220,13 @@ $(document).ready(function () {
            });
 
             
-		$('#ch-tag').click(function(){initical('chPeriodicalThesis');console.log(" currentAwardsType"+" 是 " + currentAwardsType+"  \n currentPageNum"+" 是" + currentPageNum);});
-		$('#en-tag').click(function(){initical('enPeriodicalThesis');console.log(" currentAwardsType"+" 是 " + currentAwardsType+"  \n currentPageNum"+" 是" + currentPageNum);});
-		$('#patent-tag').click(function(){initical('patent');console.log(" currentAwardsType"+" 是 " + currentAwardsType+"  \n currentPageNum"+" 是" + currentPageNum);});
+		$('#ch-tag').click(function(){initical('chPeriodicalThesis');});
+		$('#en-tag').click(function(){initical('enPeriodicalThesis');});
+		$('#patent-tag').click(function(){initical('patent');});
 
 
             $('#ch-btn,#en-btn,#patent-btn').bind('click', function(){
-
+				currentPageNum=1;    ////维护一个 当前页参数,换页时+ - ,在每次切换标签/查询时初始化.
                         $('#tbody').empty();//清空-------------------------------------------------
                         $('.page-div').empty();//清空-------------------------------------------------
 
@@ -252,14 +240,11 @@ $(document).ready(function () {
 			//变换当前类型
  			$('.type-control').attr('value',currentAwardsType);
 			paramMap = $(this).parent().serialize();
-			console.log("paramMap: "+paramMap);
-
 
             	$(this).parent().attr('target','nm_iframe');
-			
             	$.ajax({
                     type: 'post',
-                    url: '${ctx}/user/awards-list',
+                    url: '${ctx}/user/awards-list'+'?pageNum='+currentPageNum+'&',
                     data: paramMap,
                     success: function (page) {
                         if (page != null) {
@@ -312,7 +297,7 @@ $(document).ready(function () {
                         success: function (data) {
                             contant.html(data);
                             $.confirm({
-                                title: 'Data error',
+                                title: '加载完成',
                                 content: '数据记载完毕!请再次点击认领.',
                                 autoClose: 'cancel|1000',
                                 backgroundDismiss: true,
@@ -347,12 +332,9 @@ $(document).ready(function () {
 $('body').on('click', '.prePage', function () {
        currentPageNum = currentPageNum - 1 ;
        
-       $('.pageNum-control').val(currentPageNum);
-
-console.log("prePage>>> paramMap: "+paramMap);
 		$.ajax({
 			type : 'post',
-			url : '${ctx}/user/awards-list',
+			url : '${ctx}/user/awards-list'+'?pageNum='+currentPageNum+'&',
 			data : paramMap,
 			success : function(page) {
                         $('#tbody').empty();//清空-------------------------------------------------
@@ -406,13 +388,9 @@ console.log("prePage>>> paramMap: "+paramMap);
 $('body').on('click', '.nextPage', function () {
 
        currentPageNum = currentPageNum + 1 ;
-
-       $('.pageNum-control').val(currentPageNum);
-
-console.log("nextPage>>> paramMap: "+paramMap);
 		$.ajax({
 			type : 'post',
-			url : '${ctx}/user/awards-list',
+			url : '${ctx}/user/awards-list'+'?pageNum='+currentPageNum+'&',
 			data : paramMap,
 			success : function(page) {
                         $('#tbody').empty();//清空-------------------------------------------------
