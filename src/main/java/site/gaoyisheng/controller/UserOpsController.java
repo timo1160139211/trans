@@ -205,10 +205,10 @@ public class UserOpsController {
 
 			f.set(p, nameGrp[0]);
 
-			mv.addObject("thesis", p);
+			mv.addObject("awards", p);
 			break;
 		case "enPeriodicalThesis":
-			mv.addObject("thesis",
+			mv.addObject("awards",
 					enPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));
 			break;
 		case "chPeriodicalThesis":
@@ -250,7 +250,7 @@ public class UserOpsController {
 				chFieldNumber.set(ch, number);
 				chClassi++;
 			}
-			mv.addObject("thesis", ch);
+			mv.addObject("awards", ch);
 			break;
 		default:
 			break;
