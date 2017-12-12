@@ -1,10 +1,14 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>   
 <div class="modal fade" id="myModal${awards.id}" tabindex="-1" role="dialog" data-backdrop="true" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form class="form-inline" action="${ctx}/user/claim" method="post">
+            <form:form commandName="awards" class="form-inline" action="${ctx}/user/claim" method="post">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">任务认领</h4>
@@ -14,8 +18,10 @@
                     <p>${awards.name}</p><br>
                     <h4>所有作者:</h4>
                     <p>${awards.allAutherName}</p><br>
+                    <c:if test="${awardsType == 'chPeriodicalThesis'}">
                     <h4>作者单位:</h4>
-                    <p>${awards.mechanism}</p><br>
+                    <p>${awards.mechanism == '' ? '':awards.mechanism}</p><br>
+                    </c:if>
                     <div class="form-group ">
                         <label>第一作者：</label>    
                         <input type="text" name="no1AutherName" value="${awards.no1AutherName}" class="form-control">
@@ -78,10 +84,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+						<label>你知道吗?Ctrl+Z可撤销前n次输入</label> 
                     <button type="button" class="btn btn-default" data-dismiss="modal">再检查检查</button>
                     <button type="submit" class="btn btn-primary" id="Claim${awards.id}">确定认领</button>
                 </div>
-            </form>
+            </form:form>
         </div>
     </div>
 </div>

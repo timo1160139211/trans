@@ -159,7 +159,7 @@ public class UserOpsController {
     		@ModelAttribute EnPeriodicalThesis enPeriodicalThesis,
     		@ModelAttribute ChPeriodicalThesis chPeriodicalThesis)  {
         
-        switch(request.getParameter("awardsType")) {
+        switch("") {
             case "patent": patentService.updateByPrimaryKeySelective(patent);break;
             case "enPeriodicalThesis":  enPeriodicalThesisService.updateByPrimaryKeySelective(enPeriodicalThesis);break;
             case "chPeriodicalThesis":  chPeriodicalThesisService.updateByPrimaryKeySelective(chPeriodicalThesis);break;
@@ -187,29 +187,54 @@ public class UserOpsController {
 
 		switch (request.getParameter("awardsType")) {
 		case "patent":
-			Patent p = patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));// 查
-			String allAutherName = p.getAllAutherName();
-			System.out.println("\n\nallAutherName: " + allAutherName + "\n");
-			String[] nameGrp = allAutherName.split("");
-			int i = 1;
-			for (String s : nameGrp) {
-				System.out.println("name" + i + ": " + s + "\n");
-				i++;
-			}
+			Patent pa = patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));// 查
+
+			String paAllAutherName = pa.getAllAutherName();
+			System.out.println("\n\nallAutherName: " + paAllAutherName + "\n");
+			String[] paNameGrp = paAllAutherName.split(";");
+			int paClassi = 1;
 
 			@SuppressWarnings("rawtypes")
-			Class c = (Class) p.getClass();
+			Class paClass = (Class) pa.getClass();
 
-			Field f = c.getDeclaredField("no" + i + "AutherName");
-			f.setAccessible(true);
+			for (String paStr : paNameGrp) {
+				// paStr=paStr.substring(0, s.indexOf('['));// 张三[1,2]
+				paStr = paStr.replaceAll("\\[(.+?)\\]", "");// 张三
 
-			f.set(p, nameGrp[0]);
+				Field paFieldName = paClass.getDeclaredField("no" + paClassi + "AutherName");
+				paFieldName.setAccessible(true);
+				paFieldName.set(pa, paStr);
 
-			mv.addObject("awards", p);
+				Field paFieldNumber = paClass.getDeclaredField("no" + paClassi + "AutherNumber");
+				paFieldNumber.setAccessible(true);
+
+				String number = "";
+				List<User> userList = userService.searchUserFuzzyName(paStr);
+				if (userList.isEmpty()) {// 如果档案库没有，则是说明是校外/学生
+					number = "学生/校外人员";
+				} else if (userList.size() == 1) {// 只有一个则正确
+					number = userList.get(0).getNumber();
+				} else if (userList.size() > 1) {// 否则 全部显示以供选择
+					StringBuilder sb = new StringBuilder();
+					for (int ijk = 0; ijk < userList.size(); ijk++) {
+						sb.append(userList.get(ijk).getNumber()).append("-").append(userList.get(ijk).getCollege())
+								.append("/");
+					}
+					number = sb.toString();
+				}
+
+				paFieldNumber.set(pa, number);
+				paClassi++;
+			}
+			mv.addObject("awards", pa);
+			mv.addObject("awardsType", "patent");
+
 			break;
 		case "enPeriodicalThesis":
+
 			mv.addObject("awards",
 					enPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));
+			mv.addObject("awardsType", "chPeriodicalThesis");
 			break;
 		case "chPeriodicalThesis":
 			ChPeriodicalThesis ch = chPeriodicalThesisService
@@ -223,26 +248,27 @@ public class UserOpsController {
 			Class chClass = (Class) ch.getClass();
 
 			for (String chStr : chNameGrp) {
-				// chStr=chStr.substring(0, s.indexOf('['));
-				chStr = chStr.replaceAll("\\[(.+?)\\]", "");
+				// chStr=chStr.substring(0, s.indexOf('['));// 张三[1,2]
+				chStr = chStr.replaceAll("\\[(.+?)\\]", "");// 张三
 
-				Field chFieldName = chClass
-						.getDeclaredField("no" + chClassi + "AutherName");
+				Field chFieldName = chClass.getDeclaredField("no" + chClassi + "AutherName");
 				chFieldName.setAccessible(true);
 				chFieldName.set(ch, chStr);
 
-				Field chFieldNumber = chClass
-						.getDeclaredField("no" + chClassi + "AutherNumber");
+				Field chFieldNumber = chClass.getDeclaredField("no" + chClassi + "AutherNumber");
 				chFieldNumber.setAccessible(true);
 
 				String number = "";
 				List<User> userList = userService.searchUserFuzzyName(chStr);
-				if (userList.size() == 1) {
+				if (userList.isEmpty()) {// 如果档案库没有，则是说明是校外/学生
+					number = "学生/校外人员";
+				} else if (userList.size() == 1) {// 只有一个则正确
 					number = userList.get(0).getNumber();
-				} else if (userList.size() > 1) {
+				} else if (userList.size() > 1) {// 否则 全部显示以供选择
 					StringBuilder sb = new StringBuilder();
 					for (int ijk = 0; ijk < userList.size(); ijk++) {
-						sb.append(userList.get(ijk).getNumber()).append("/");
+						sb.append(userList.get(ijk).getNumber()).append("-").append(userList.get(ijk).getCollege())
+								.append("/");
 					}
 					number = sb.toString();
 				}
@@ -251,6 +277,7 @@ public class UserOpsController {
 				chClassi++;
 			}
 			mv.addObject("awards", ch);
+			mv.addObject("awardsType", "chPeriodicalThesis");
 			break;
 		default:
 			break;
@@ -280,6 +307,38 @@ public class UserOpsController {
     @RequestMapping(value = "/user-update", method = RequestMethod.GET)
     public String updateUser() {
         return "/user/modify";
+    }
+    
+    @RequestMapping(value = "/awards-create", method = RequestMethod.GET)
+    public String toAwardsCreate() {
+        return "/user/awards-create";
+    }
+    
+    @RequestMapping(value = "/awards-create/{awardsType}", method = RequestMethod.POST)
+    public String awardsCreate(HttpServletRequest request,@PathVariable("awardsType")String awardsType) {
+    	
+		switch (request.getParameter("awardsType")) {
+		case "patent":
+			Patent pa = new Patent();
+			
+			
+			patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));// 查
+
+			break;
+		case "enPeriodicalThesis":
+
+					enPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
+			break;
+		case "chPeriodicalThesis":
+			
+			ChPeriodicalThesis ch = chPeriodicalThesisService
+					.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
+			break;
+		default:
+			break;
+		}
+    	
+        return "/user/awards-create";
     }
 	
     /**
