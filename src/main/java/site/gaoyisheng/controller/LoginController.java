@@ -73,10 +73,11 @@ public class LoginController {
 			String type = "/user";
 			if (currentUser != null) {// 如果不为空,则置入
 				mv.addObject("currentUser", currentUser);
+				request.getSession().setMaxInactiveInterval(600);//设置10分钟超时
 				request.getSession().setAttribute("currentUser", currentUser);
 				
 				// 如果是admin则 到/admin/home
-				if (currentUser.getName().equals("admin")) {
+				if (currentUser.getNumber().equals("admin")) {
 					type = "/admin";
 				}
 			}

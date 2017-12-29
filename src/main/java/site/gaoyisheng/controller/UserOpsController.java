@@ -16,6 +16,8 @@
  */ 
 package site.gaoyisheng.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -23,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,27 +150,51 @@ public class UserOpsController {
         
     /**
      * .
-     * TODO 认领      request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+     * TODO 认领      ("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
      * @param request
      * @return
+     * @throws IOException 
      * @throws UnsupportedEncodingException
      */
     @RequestMapping(value = "/claim", method = RequestMethod.POST)
-    public ModelAndView claim(HttpServletRequest request,
+    public void claim( ModelAndView mv,
+    		HttpServletRequest request,
+    		HttpServletResponse response,
     		@ModelAttribute Patent patent,
     		@ModelAttribute EnPeriodicalThesis enPeriodicalThesis,
-    		@ModelAttribute ChPeriodicalThesis chPeriodicalThesis)  {
+    		@ModelAttribute ChPeriodicalThesis chPeriodicalThesis,
+    		@RequestParam String awardsType) throws IOException  {
         
-        switch("") {
-            case "patent": patentService.updateByPrimaryKeySelective(patent);break;
-            case "enPeriodicalThesis":  enPeriodicalThesisService.updateByPrimaryKeySelective(enPeriodicalThesis);break;
-            case "chPeriodicalThesis":  chPeriodicalThesisService.updateByPrimaryKeySelective(chPeriodicalThesis);break;
+    	StringBuilder msg=new StringBuilder();
+        switch(awardsType) {
+            case "patent": patent.setClaimStatus("已认领");
+            	if(patentService.updateByPrimaryKeySelective(patent)==1) {
+            		msg.append("成功:认领[").append(patent.getName()).append("]");
+            	}else {
+            		msg.append("失败:认领[").append(patent.getName()).append("]失败");
+            	}
+            	break;
+            case "enPeriodicalThesis":  
+            	enPeriodicalThesis.setClaimStatus("已认领");
+            	if(enPeriodicalThesisService.updateByPrimaryKeySelective(enPeriodicalThesis)==1) {
+            		msg.append("成功:认领[").append(patent.getName()).append("]");
+            	}else {
+            		msg.append("失败:认领[").append(patent.getName()).append("]失败");
+            	}
+            	break;
+            case "chPeriodicalThesis":  
+            	chPeriodicalThesis.setClaimStatus("已认领");
+            	if(chPeriodicalThesisService.updateByPrimaryKeySelective(chPeriodicalThesis)==1) {
+            		msg.append("成功:认领[").append(patent.getName()).append("]");
+            	}else {
+            		msg.append("失败:认领[").append(patent.getName()).append("]失败");
+            	}
             default : break;
          }
         
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("redirect:/awards-list");
-        return mv;
+//        response.setContentType("application/json;charset=UTF-8");//防止数据传递乱码
+        response.sendRedirect("awards-list");
+        
     }
     
     /**

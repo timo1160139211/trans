@@ -29,7 +29,26 @@
 		<!-- MAIN -->
 		<!-- MAIN -->
 		<div class="main">
-			<h1>welcome:${currentUser.name}</h1>
+			<div class="main-content">
+				<div class="container-fluid">
+					<h3 class="page-title">欢迎您: ${currentUser.name}</h3>
+					<div class="panel panel-headline">
+						<div class="panel-body">
+							<h1>使用指导:</h1>
+							<h3>1.密码</h3>
+							<p class="text-danger">初始密码为默认密码,请尽快修改密码并牢记.</p>
+							<hr>
+							<h3>2.查找</h3>
+							<p class="text-primary">按名字:动态模糊查找用户.</p>
+							<hr>
+							<h3>3.认领</h3>
+							<p class="text-primary">工号请只保留数字工号('学生/校外人员'除外).</p>
+							<hr>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 
 		<!-- END MAIN -->
@@ -38,6 +57,6 @@
 	</div>
 	<!-- END WRAPPER -->
 	<jsp:include page="/views/resources/footer.jsp" flush="true" />
-	
+
 </body>
 </html>

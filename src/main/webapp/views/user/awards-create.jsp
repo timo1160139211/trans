@@ -9,13 +9,12 @@
 <html lang="en">
 
 <head>
-<title>认领</title>
+<title>未认领列表</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <jsp:include page="/views/resources/head.jsp" flush="true" />
-
 </head>
 
 <body>
@@ -28,168 +27,361 @@
 		<jsp:include page="/views/common/left.jsp" flush="true" />
 		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
+		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">认领</h3>
+					<h3 class="page-title">截至当前,未认领数据如下:</h3>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="panel">
 								<ul class="nav nav-tabs" id="myTab">
-									<li class="active" id="ch-tag"><a href="#Chinese" data-toggle="tab">中文期刊论文</a></li>
-									<li id="en-tag"><a href="#English" data-toggle="tab">英文期刊论文</a></li>
-									<li id="patent-tag"><a href="#Patent" data-toggle="tab">专利</a></li>
+									<li class="active"><a id="patent-tab" href="#Patent"
+										data-toggle="tab">专利</a></li>
+									<li><a id="enPeriodicalThesis-tab" href="#English"
+										data-toggle="tab">英文期刊论文</a></li>
+									<li><a id="chPeriodicalThesis-tab" href="#Chinese"
+										data-toggle="tab">中文期刊论文</a></li>
 								</ul>
 								<div class="tab-content">
-									<div class="tab-pane" id="Patent">
+									<div class="tab-pane active" id="Patent">
 										<div class="panel-body">
-											<form class="form-inline" id="PatentForm">
-												<div class="form-group" style="display: none;">
-													<input type="text" name="awardsType" value="enPeriodicalThesis"
-														class="type-control">
-												</div>
-												<div class="form-group">
-													<label>名称:</label> <input type="text" name="name"
-														class="form-control">
-												</div>
-												<div class="form-group">
-													<label>发明(设计)人:</label> <input type="text"
-														name="autherName" class="form-control">
-												</div>
-												<div class="form-group">
-													<label>授权号:</label> <input type="text"
-														name="authorizationNumber" class="form-control"
-														placeholder="ZL2010">
-												</div>
-												<div class="form-group">
-													<label>是否为PCT专利:</label> <input type="checkbox"
-														name="pctPatentOrNot" class="form-control">
-												</div>
-												<div class="form-group">
-													<label>状态</label> <select name="claimStatus"
-														class="form-control">
-														<option value="未认领">未认领</option>
-														<option value="已认领">已认领</option>
-													</select>
-												</div>
-												<button id='patent-btn' type="submit" class="btn btn-default">查询</button>
-											</form>
+											<div class="form-group">
+												<form:form class="form-inline"
+													action="${ctx}/user/awards-create/Patent" method="post">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+														<h4 class="modal-title" id="myModalLabel">补录:专利</h4>
+													</div>
+
+													<input type="hidden" name="id" value="${awards.id}">
+
+													<div class="modal-body">
+														<label>名称：</label> <input type="text"
+																name="name"
+																class="form-control">
+
+														<label>名称：</label> <input type="text"
+																name="name"
+																class="form-control">
+
+														<br>
+														<div class="form-group ">
+															<label>第一作者：</label> <input type="text"
+																name="no1AutherName" value="${awards.no1AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no1AutherNumber"
+																value="${awards.no1AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第二作者：</label> <input type="text"
+																name="no2AutherName" value="${awards.no2AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no2AutherNumber"
+																value="${awards.no2AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第三作者：</label> <input type="text"
+																name="no3AutherName" value="${awards.no3AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no3AutherNumber"
+																value="${awards.no3AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第四作者：</label> <input type="text"
+																name="no4AutherName" value="${awards.no4AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no4AutherNumber"
+																value="${awards.no4AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第五作者：</label> <input type="text"
+																name="no5AutherName" value="${awards.no5AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no5AutherNumber"
+																value="${awards.no5AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第六作者：</label> <input type="text"
+																name="no6AutherName" value="${awards.no6AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no6AutherNumber"
+																value="${awards.no6AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第七作者：</label> <input type="text"
+																name="no7AutherName" value="${awards.no7AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no7AutherNumber"
+																value="${awards.no7AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第八作者：</label> <input type="text"
+																name="no8AutherName" value="${awards.no8AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no8AutherNumber"
+																value="${awards.no8AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第九作者：</label> <input type="text"
+																name="no9AutherName" value="${awards.no9AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no9AutherNumber"
+																value="${awards.no9AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第十作者：</label> <input type="text"
+																name="no10AutherName" value="${awards.no10AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no10AutherNumber"
+																value="${awards.no10AutherNumber}" class="form-control">
+														</div>
+													</div>
+													<div class="modal-footer">
+														<label>你知道吗?Ctrl+Z可撤销前n次输入</label>
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">再检查检查</button>
+														<button type="submit" class="btn btn-primary"
+															id="Claim${awards.id}">确定认领</button>
+													</div>
+												</form:form>
+												<div class="page-div" align="center"></div>
+											</div>
 										</div>
 									</div>
 									<div class="tab-pane" id="English">
 										<div class="panel-body">
-										<form class="form-inline" id="EnglishForm">
-											<div class="form-group" style="display: none;">
-												<input type="text" name="awardsType"
-													value="enPeriodicalThesis" class="type-control">
-											</div>
 											<div class="form-group">
-												<label>标题:</label> <input type="text" name="name"
-													class="form-control">
+												<form:form commandName="awards" class="form-inline"
+													action="${ctx}/user/claim" method="post">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+														<h4 class="modal-title" id="myModalLabel">任务认领</h4>
+													</div>
+
+													<input type="hidden" name="id" value="${awards.id}">
+													<input type="hidden" name="name" value="${awards.name}">
+													<input type="hidden" name="awardsType"
+														value="${awardsType}">
+
+													<div class="modal-body">
+														<h3>名称:</h3>
+														<p>${awards.name}</p>
+														<br>
+														<h4>所有作者:</h4>
+														<p>${awards.allAutherName}</p>
+														<br>
+														<c:if test="${awardsType == 'chPeriodicalThesis'}">
+															<h4>作者单位:</h4>
+															<p>${awards.mechanism == '' ? '':awards.mechanism}</p>
+															<br>
+														</c:if>
+														<div class="form-group ">
+															<label>第一作者：</label> <input type="text"
+																name="no1AutherName" value="${awards.no1AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no1AutherNumber"
+																value="${awards.no1AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第二作者：</label> <input type="text"
+																name="no2AutherName" value="${awards.no2AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no2AutherNumber"
+																value="${awards.no2AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第三作者：</label> <input type="text"
+																name="no3AutherName" value="${awards.no3AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no3AutherNumber"
+																value="${awards.no3AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第四作者：</label> <input type="text"
+																name="no4AutherName" value="${awards.no4AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no4AutherNumber"
+																value="${awards.no4AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第五作者：</label> <input type="text"
+																name="no5AutherName" value="${awards.no5AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no5AutherNumber"
+																value="${awards.no5AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第六作者：</label> <input type="text"
+																name="no6AutherName" value="${awards.no6AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no6AutherNumber"
+																value="${awards.no6AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第七作者：</label> <input type="text"
+																name="no7AutherName" value="${awards.no7AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no7AutherNumber"
+																value="${awards.no7AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第八作者：</label> <input type="text"
+																name="no8AutherName" value="${awards.no8AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no8AutherNumber"
+																value="${awards.no8AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第九作者：</label> <input type="text"
+																name="no9AutherName" value="${awards.no9AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no9AutherNumber"
+																value="${awards.no9AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第十作者：</label> <input type="text"
+																name="no10AutherName" value="${awards.no10AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no10AutherNumber"
+																value="${awards.no10AutherNumber}" class="form-control">
+														</div>
+													</div>
+													<div class="modal-footer">
+														<label>你知道吗?Ctrl+Z可撤销前n次输入</label>
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">再检查检查</button>
+														<button type="submit" class="btn btn-primary"
+															id="Claim${awards.id}">确定认领</button>
+													</div>
+												</form:form>
+												<div class="page-div" align="center"></div>
 											</div>
-											<div class="form-group">
-												<label>作者:</label> <input type="text" name="autherName"
-													class="form-control">
-											</div>
-											<div class="form-group">
-												<label>来源/期刊:</label> <input type="text" name="provenance"
-													class="form-control" placeholder="ZL2010">
-											</div>
-											<div class="form-group">
-												<label>学科领域:</label> <input type="text" name="subject"
-													class="form-control">
-											</div>
-											<div class="form-group">
-												<label>卷:</label> <input type="text" name="volume"
-													class="form-control">
-											</div>
-											<div class="form-group">
-												<label>年:</label> <input type="text" name="year"
-													class="form-control">
-											</div>
-											<div class="form-group">
-												<label>状态</label> <select name="claimStatus"
-													class="form-control">
-													<option value="未认领">未认领</option>
-													<option value="已认领">已认领</option>
-												</select>
-											</div>
-											<button id='en-btn' type="submit" class="btn btn-default">查询</button>
-										</form>
 										</div>
 									</div>
-									<div class="tab-pane active" id="Chinese">
+									<div class="tab-pane" id="Chinese">
 										<div class="panel-body">
-										<form class="form-inline" id="ChineseForm">
-											<div class="form-group" style="display: none;">
-												<input type="text" name="awardsType"
-													value="chPeriodicalThesis" class="type-control">
-											</div>
 											<div class="form-group">
-												<label>标题:</label> <input type="text" name="name"
-													class="form-control">
+												<form:form commandName="awards" class="form-inline"
+													action="${ctx}/user/claim" method="post">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+														<h4 class="modal-title" id="myModalLabel">任务认领</h4>
+													</div>
+
+													<input type="hidden" name="id" value="${awards.id}">
+													<input type="hidden" name="name" value="${awards.name}">
+													<input type="hidden" name="awardsType"
+														value="${awardsType}">
+
+													<div class="modal-body">
+														<h3>名称:</h3>
+														<p>${awards.name}</p>
+														<br>
+														<h4>所有作者:</h4>
+														<p>${awards.allAutherName}</p>
+														<br>
+														<c:if test="${awardsType == 'chPeriodicalThesis'}">
+															<h4>作者单位:</h4>
+															<p>${awards.mechanism == '' ? '':awards.mechanism}</p>
+															<br>
+														</c:if>
+														<div class="form-group ">
+															<label>第一作者：</label> <input type="text"
+																name="no1AutherName" value="${awards.no1AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no1AutherNumber"
+																value="${awards.no1AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第二作者：</label> <input type="text"
+																name="no2AutherName" value="${awards.no2AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no2AutherNumber"
+																value="${awards.no2AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第三作者：</label> <input type="text"
+																name="no3AutherName" value="${awards.no3AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no3AutherNumber"
+																value="${awards.no3AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第四作者：</label> <input type="text"
+																name="no4AutherName" value="${awards.no4AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no4AutherNumber"
+																value="${awards.no4AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第五作者：</label> <input type="text"
+																name="no5AutherName" value="${awards.no5AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no5AutherNumber"
+																value="${awards.no5AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第六作者：</label> <input type="text"
+																name="no6AutherName" value="${awards.no6AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no6AutherNumber"
+																value="${awards.no6AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第七作者：</label> <input type="text"
+																name="no7AutherName" value="${awards.no7AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no7AutherNumber"
+																value="${awards.no7AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第八作者：</label> <input type="text"
+																name="no8AutherName" value="${awards.no8AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no8AutherNumber"
+																value="${awards.no8AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第九作者：</label> <input type="text"
+																name="no9AutherName" value="${awards.no9AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no9AutherNumber"
+																value="${awards.no9AutherNumber}" class="form-control">
+														</div>
+														<div class="form-group ">
+															<label>第十作者：</label> <input type="text"
+																name="no10AutherName" value="${awards.no10AutherName}"
+																class="form-control"> <label>工号：</label> <input
+																type="text" name="no10AutherNumber"
+																value="${awards.no10AutherNumber}" class="form-control">
+														</div>
+													</div>
+													<div class="modal-footer">
+														<label>你知道吗?Ctrl+Z可撤销前n次输入</label>
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">再检查检查</button>
+														<button type="submit" class="btn btn-primary"
+															id="Claim${awards.id}">确定认领</button>
+													</div>
+												</form:form>
+												<div class="page-div" align="center"></div>
 											</div>
-											<div class="form-group">
-												<label>作者:</label> <input type="text" name="autherName"
-													class="form-control">
-											</div>
-											<div class="form-group">
-												<label>出处/期刊:</label> <input type="text" name="provenance"
-													class="form-control" placeholder="ZL2010">
-											</div>
-											<div class="form-group">
-												<label>卷:</label> <input type="text" name="volume"
-													class="form-control">
-											</div>
-											<div class="form-group">
-												<label>年:</label> <input type="text" name="year"
-													class="form-control">
-											</div>
-											<div class="form-group">
-												<label>状态</label> <select name="claimStatus"
-													class="form-control">
-													<option value="未认领">未认领</option>
-													<option value="已认领">已认领</option>
-												</select>
-											</div>
-											<button id='ch-btn' type="submit" class="btn btn-default">查询</button>
-										</form>
 										</div>
 									</div>
-									<iframe id="id_iframe" name="nm_iframe" style="display: none;"></iframe>
 								</div>
+								<iframe id="id_iframe" name="nm_iframe" style="display: none;"></iframe>
 							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<!-- TABLE HOVER -->
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title">${manager.title}</h3>
-								</div>
-								<div class="panel-body">
-									<table class="table table-hover">
-										<thead>
-											<tr>
-												<th>#</th>
-												<th>唯一标识</th>
-												<th>名称</th>
-												<th>作者</th>
-												<th>出处/期刊</th>
-												<th>操作</th>
-												<th>操作2</th>
-											</tr>
-										</thead>
-										<tbody id="tbody">
-										</tbody>
-										<div id="Modal"></div>
-									</table>
-								</div>
-								<div class="page-div" align="center"></div>
-							</div>
-							<!-- END TABLE HOVER -->
 						</div>
 					</div>
 				</div>
@@ -203,42 +395,8 @@
 	</div>
 	<!-- END WRAPPER -->
 	<jsp:include page="/views/resources/footer.jsp" flush="true" />
-	<!-- options-contant -->
 	<script type="text/javascript">
-$(document).ready(function () {
-	
-	var currentAwardsType='chPeriodicalThesis';//维护一个 类型参数字符串,仅在每次切换标签时变化.
-	
 
-       function initical(type){currentAwardsType=type;currentPageNum=1;$('#tbody').empty();$('.page-div').empty();}
-
-            $(function () {
-                $('#myTab li:eq(0) a').tab('show');
-           });
-
-            
-		$('#ch-tag').click(function(){currentAwardsType='chPeriodicalThesis';});
-		$('#en-tag').click(function(){currentAwardsType='enPeriodicalThesis';});
-		$('#patent-tag').click(function(){currentAwardsType='patent';});
-
-
-            $('#ch-btn,#en-btn,#patent-btn').bind('click', function(){
-				currentPageNum=1;    ////维护一个 当前页参数,换页时+ - ,在每次切换标签/查询时初始化.
-                        $('#tbody').empty();//清空-------------------------------------------------
-                        $('.page-div').empty();//清空-------------------------------------------------
-			
-            	$.ajax({
-                    type: 'post',
-                    url: '${ctx}/user/awards-list',
-                    data: paramMap,
-                    success: function (page) {
-                    }
-                }, 'json');
-            });
-
-
-});
-        </script>
+	</script>
 </body>
-
 </html>

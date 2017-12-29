@@ -4,7 +4,7 @@
 <div id="sidebar-nav" class="sidebar">
 	<div class="sidebar-scroll">
 		<nav>
-			<c:if test="${currentUser.name != 'admin'}">
+			<c:if test="${currentUser.number != 'admin'}">
 				<!-- 用户 -->
 				<ul class="nav">
 				    <!-- 用户: 主页 -->
@@ -25,7 +25,7 @@
 				</ul>
 			</c:if>
 
-			<c:if test="${currentUser.name == 'admin'}">
+			<c:if test="${currentUser.number == 'admin'}">
 				<!-- admin -->
 				<ul class="nav">
 				    <!-- 用户: 主页 -->
@@ -39,6 +39,10 @@
 					<!-- admin: 查看数据 操作 -->
 					<li><a href="${ctx}/admin/notClaimed-list" class=""><i
 							class="fa fa-search"></i> <span>未认领数据</span></a></li>
+							
+					<!-- admin: 审核数据 操作 -->
+					<li><a href="${ctx}/user/awards-list" class=""><i class="lnr lnr-file-empty"></i>
+							<span>认领</span></a></li>
 							
 					<!-- admin: 上传 操作 -->
 					<li><a href="${ctx}/admin/upload" class=""><i class="fa fa-upload"></i> <span>上传数据</span></a>

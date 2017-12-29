@@ -491,13 +491,13 @@
 	<update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.Patent">
 		update patent
 		<set>
-			<if test="keyId != null and KeyId != ''">
+			<if test="keyId != null and keyId != ''">
 				key_id = #{keyId,jdbcType=VARCHAR},
 			</if>
-			<if test="name != null and KeyId != ''">
+			<if test="name != null and name != ''">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="type != null and  != ''">
+			<if test="type != null and type != ''">
 				type = #{type,jdbcType=VARCHAR},
 			</if>
 			<if test="authorizationNumber != null and authorizationNumber != ''">
