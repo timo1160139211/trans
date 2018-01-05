@@ -36,13 +36,19 @@
 						<div class="panel-body">
 							<h1>使用指导:</h1>
 							<h3>1.密码</h3>
-							<p class="text-danger">初始密码为默认密码,请尽快修改密码并牢记.</p>
+							<p class="text-danger">初始密码为默认密码(工号),请尽快修改密码并牢记.</p>
 							<hr>
-							<h3>2.查找</h3>
+							<h3>2.人员查找</h3>
 							<p class="text-primary">按名字:动态模糊查找用户.</p>
 							<hr>
 							<h3>3.认领</h3>
-							<p class="text-primary">工号请只保留数字工号('学生/校外人员'除外).</p>
+							<p class="text-primary">认领按钮第一次点击为载入数据.<br/>仅中文论文表单完成动态填充(请核对工号自动检索是否正确).<br/>认领时,工号请只保留数字工号('学生/校外人员'除外).</p>
+							<hr>
+							<h3>4.退出登陆</h3>
+							<p class="text-primary">右上角(头像)->退出.</p>
+							<hr>
+							<h3>5.登陆超时</h3>
+							<p class="text-primary">超过5分钟无操作,将会自动退出.(重新登陆即可)</p>
 							<hr>
 						</div>
 					</div>

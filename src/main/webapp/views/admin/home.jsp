@@ -27,7 +27,6 @@
 		<jsp:include page="/views/common/left.jsp" flush="true" />
 		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
-		<!-- MAIN -->
 		<div class="main">
 			<div class="main-content">
 				<div class="container-fluid">
@@ -36,51 +35,25 @@
 						<div class="panel-body">
 							<h1>使用指导:</h1>
 							<h3>1.密码</h3>
-							<h4></h4>
+							<p class="text-danger">初始密码为默认密码,请尽快修改密码并牢记.</p>
 							<hr>
-							<p class="text-warning">初始密码为默认密码,请尽快修改密码并牢记.</p>
+							<h3>2.查找</h3>
+							<p class="text-primary">按名字:动态模糊查找用户.</p>
 							<hr>
-
-
-
-<h3>1.密码</h3>
-<hr>
-							<p>初始密码为默认密码,请尽快修改密码并牢记.</p>
+							<h3>3.认领</h3>
+							<p class="text-primary">工号请只保留数字工号('学生/校外人员'除外).</p>
 							<hr>
-
-<h3>1.密码</h3>
-<hr>
-							<p>初始密码为默认密码,请尽快修改密码并牢记.</p>
+							<h3>4.退出登陆</h3>
+							<p class="text-primary">右上角(头像)->退出.</p>
 							<hr>
-
-<h3>1.密码</h3>
-<hr>
-							<p>初始密码为默认密码,请尽快修改密码并牢记.</p>
+							<h3>5.登陆超时</h3>
+							<p class="text-primary">超过5分钟无操作,将会自动退出.(重新登陆即可)</p>
 							<hr>
-
-
-							<p class="text-muted"><code>.text-muted</code> Convey meaning through color with a handful of emphasis utility classes.</p>
-							<p class="text-primary"><code>.text-primary</code> Convey meaning through color with a handful of emphasis utility classes.</p>
-							<p class="text-success"><code>.text-success</code> Convey meaning through color with a handful of emphasis utility classes.</p>
-							<p class="text-info"><code>.text-info</code> Convey meaning through color with a handful of emphasis utility classes.</p>
-							<p class="text-warning"><code>.text-warning</code> Convey meaning through color with a handful of emphasis utility classes.</p>
-							<p class="text-danger"><code>.text-danger</code> Convey meaning through color with a handful of emphasis utility classes.</p>
-							<hr>
-							<p>Make a paragraph stand out by adding <code>.lead</code></p>
-							<p class="lead">Objectively re-engineer maintainable total linkage after proactive intellectual capital. Dynamically evolve best-of-breed e-services for user-centric customer.</p>
-							<hr>
-							<div class="well">
-								<p class="text-left"><code>.text-left</code> Left aligned text.</p>
-								<p class="text-center"><code>.text-center</code> Center aligned text.</p>
-								<p class="text-right"><code>.text-right</code> Right aligned text.</p>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
-
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
       <jsp:include page="/views/common/copyright.jsp" flush="true" />
