@@ -16,10 +16,6 @@
 					<!-- 用户: 修改个人 操作 -->
 					<li><a href="${ctx}/user/user-update" class=""><i
 							class="lnr lnr-pencil"></i> <span>修改密码</span></a></li>
-					<!-- 用户: 补录数据 操作 
-					<li><a href="${ctx}/user/awards-create" class=""><i
-							class="lnr lnr-pencil"></i> <span>补录数据</span></a></li>
-							-->
 					<!-- 用户: 认领 操作 -->
 					<li><a href="${ctx}/user/awards-list" class=""><i class="lnr lnr-file-empty"></i>
 							<span>认领</span></a></li>
@@ -40,10 +36,6 @@
 					<!-- admin: 查看数据 操作 -->
 					<li><a href="${ctx}/admin/notClaimed-list" class=""><i
 							class="fa fa-search"></i> <span>未认领数据</span></a></li>
-							
-					<!-- admin: 审核数据 操作 -->
-					<li><a href="${ctx}/user/awards-list" class=""><i class="lnr lnr-file-empty"></i>
-							<span>认领</span></a></li>
 							
 					<!-- admin: 上传 操作 -->
 					<li><a href="${ctx}/admin/upload" class=""><i class="fa fa-upload"></i> <span>上传数据</span></a>

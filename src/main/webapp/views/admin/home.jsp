@@ -34,14 +34,13 @@
 					<div class="panel panel-headline">
 						<div class="panel-body">
 							<h1>使用指导:</h1>
-							<h3>1.密码</h3>
-							<p class="text-danger">初始密码为默认密码,请尽快修改密码并牢记.</p>
+							<h3>1.统计</h3>
+							<p class="text-danger">请点击查看进度.</p>
 							<hr>
-							<h3>2.查找</h3>
-							<p class="text-primary">按名字:动态模糊查找用户.</p>
-							<hr>
-							<h3>3.认领</h3>
-							<p class="text-primary">工号请只保留数字工号('学生/校外人员'除外).</p>
+							<h3>2.上传</h3>
+							<p class="text-primary">请严格按照格式上传(字段顺序必须一致).
+							<br/>上传为:追加数据.
+							</p>
 							<hr>
 							<h3>4.退出登陆</h3>
 							<p class="text-primary">右上角(头像)->退出.</p>
