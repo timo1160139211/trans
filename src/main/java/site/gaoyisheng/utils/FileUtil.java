@@ -185,7 +185,7 @@ public class FileUtil {
                   //循环赋值
                 for (int i = 0; i < hssfRow.getLastCellNum(); i++) {  
                     HSSFCell thesisIdHSSFCell = hssfRow.getCell(i); 
-                    String value = thesisIdHSSFCell.getStringCellValue();
+                    String value = getStringCellValue(thesisIdHSSFCell);
                     if (value==null) {value="";}
                     switch(i+1) {
                         case 1:thesis.setKeyId(value);break;
@@ -279,7 +279,7 @@ public class FileUtil {
                   //循环赋值
                 for (int i = 0; i < hssfRow.getLastCellNum(); i++) {  
                     HSSFCell thesisIdHSSFCell = hssfRow.getCell(i); 
-                    String value = thesisIdHSSFCell.getStringCellValue();
+                    String value = getStringCellValue(thesisIdHSSFCell);
                     if (value==null) {value="";}
                     switch(i+1) {
                         case 1:patent.setKeyId(value);break;
