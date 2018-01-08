@@ -30,17 +30,17 @@
                     <c:if test="${autherNum >= 1}">
                     <div class="form-group ">
                         <label>第一作者：</label>    
-                        <input type="text" name="no1AutherName" value="${awards.no1AutherName}" class="form-control">
+                        <input id="no1AutherName" type="text" name="no1AutherName" value="${awards.no1AutherName}" class="form-control">
                         <label>工号：</label>
-                        <input type="text" name="no1AutherNumber" value="${awards.no1AutherNumber}" class="form-control">
+                        <input id="no1AutherNumber"type="text" name="no1AutherNumber" value="${awards.no1AutherNumber}" class="form-control">
                     </div>
                     </c:if>
                     <c:if test="${autherNum >= 2}">
                     <div class="form-group ">
                         <label>第二作者：</label>    
-                        <input type="text" name="no2AutherName" value="${awards.no2AutherName}" class="form-control">
+                        <input id="no2AutherName" type="text" name="no2AutherName" value="${awards.no2AutherName}" class="form-control">
                         <label>工号：</label>
-                        <input type="text" name="no2AutherNumber" value="${awards.no2AutherNumber}" class="form-control">
+                        <input id="no2AutherNumber" type="text" name="no2AutherNumber" value="${awards.no2AutherNumber}" class="form-control">
                     </div>
                     </c:if>
                     <c:if test="${autherNum >= 3}">

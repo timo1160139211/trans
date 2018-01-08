@@ -437,6 +437,48 @@ $('body').on('click', '.nextPage', function () {
 		});
             })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//**************************************************************************************//
+//输入框的失去焦点事件=>改变值
+$('body').on('blur', '#no1AutherName', function () {
+	var no1AutherName = $('#no1AutherName').val();//获取输入的名字
+
+	if( currentAwardsType =='enPeriodicalThesis' && no1AutherName != ''){//是英文,且输入不为空
+
+console.log(no1AutherName+'hahah');
+		$.ajax({
+			type : 'get',
+			url : '${ctx}/user/sereachUser',
+			data : {inputName:no1AutherName},
+			success : function(data) {
+				console.log(data+'hahah....');
+				if (data != null) {
+					$('#no1AutherNumber').val(data);
+				}
+			}
+		});
+
+	}
+});
+
+
+
+
+
 });
         </script>
 </body>

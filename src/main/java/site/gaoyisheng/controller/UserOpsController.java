@@ -17,6 +17,7 @@
 package site.gaoyisheng.controller;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
@@ -198,6 +199,37 @@ public class UserOpsController {
     }
     
     /**
+     * .
+     * TODO 返回查找的数据
+     * @param request
+     * @return
+     * @throws IOException 
+     */
+    @RequestMapping(value = "/sereachUser",method = RequestMethod.GET,produces = "application/json; charset=utf-8")//解决中文??问题
+    @ResponseBody
+    public Object userInfo(HttpServletRequest request,HttpServletResponse response) throws IOException {
+    	
+    	String number = "";
+		List<User> userList = userService.searchUserFuzzyName(request.getParameter("inputName"));
+		if (userList.isEmpty()) {// 如果档案库没有，则是说明是校外/学生
+			number = "学生?校外人员";
+		} else if (userList.size() == 1) {// 只有一个则正确
+			number = userList.get(0).getNumber();
+		} else if (userList.size() > 1 && userList.size() < 6) {// 显示以供选择  <6防止过长
+			StringBuilder sb = new StringBuilder();
+			for (int ijk = 0; ijk < userList.size(); ijk++) {
+				sb.append(userList.get(ijk).getNumber()).append("-").append(userList.get(ijk).getCollege())
+						.append("?");
+			}
+			number = sb.toString();
+		}else {  //太多了没法显示
+			number = "重名太多,请自查";
+		}
+		
+    	return number;
+    }
+    
+    /**
      * 根据表单后面的认领按钮提交对应的id返回相应的表单填写页面
      * @param request
      * @return 
@@ -277,43 +309,43 @@ public class UserOpsController {
 					.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
 			String chAllAutherName = ch.getAllAutherName();
 			String[] chNameGrp = chAllAutherName.split(";");
-//			int chClassi = 1;
+			int chClassi = 1;
 			
 			autherNum = chNameGrp.length;//作者数量
 			
-//			@SuppressWarnings("rawtypes")
-//			Class chClass = (Class) ch.getClass();
-//
-//			for (String chStr : chNameGrp) {
-//				// chStr=chStr.substring(0, s.indexOf('['));// 张三[1,2]
-//				chStr = chStr.replaceAll("\\[(.+?)\\]", "");// 张三
-//				chStr = chStr.replaceAll(" ", "");// 张三
-//				
-//				Field chFieldName = chClass.getDeclaredField("no" + chClassi + "AutherName");
-//				chFieldName.setAccessible(true);
-//				chFieldName.set(ch, chStr);
-//
-//				Field chFieldNumber = chClass.getDeclaredField("no" + chClassi + "AutherNumber");
-//				chFieldNumber.setAccessible(true);
-//
-//				String number = "";
-//				List<User> userList = userService.searchUserFuzzyName(chStr);
-//				if (userList.isEmpty()) {// 如果档案库没有，则是说明是校外/学生
-//					number = "学生?校外人员";
-//				} else if (userList.size() == 1) {// 只有一个则正确
-//					number = userList.get(0).getNumber();
-//				} else if (userList.size() > 1) {// 否则 全部显示以供选择
-//					StringBuilder sb = new StringBuilder();
-//					for (int ijk = 0; ijk < userList.size(); ijk++) {
-//						sb.append(userList.get(ijk).getNumber()).append("-").append(userList.get(ijk).getCollege())
-//								.append("?");
-//					}
-//					number = sb.toString();
-//				}
-//
-//				chFieldNumber.set(ch, number);
-//				chClassi++;
-//			}
+			@SuppressWarnings("rawtypes")
+			Class chClass = (Class) ch.getClass();
+
+			for (String chStr : chNameGrp) {
+				// chStr=chStr.substring(0, s.indexOf('['));// 张三[1,2]
+				chStr = chStr.replaceAll("\\[(.+?)\\]", "");// 张三
+				chStr = chStr.replaceAll(" ", "");// 张三
+				
+				Field chFieldName = chClass.getDeclaredField("no" + chClassi + "AutherName");
+				chFieldName.setAccessible(true);
+				chFieldName.set(ch, chStr);
+
+				Field chFieldNumber = chClass.getDeclaredField("no" + chClassi + "AutherNumber");
+				chFieldNumber.setAccessible(true);
+
+				String number = "";
+				List<User> userList = userService.searchUserFuzzyName(chStr);
+				if (userList.isEmpty()) {// 如果档案库没有，则是说明是校外/学生
+					number = "学生?校外人员";
+				} else if (userList.size() == 1) {// 只有一个则正确
+					number = userList.get(0).getNumber();
+				} else if (userList.size() > 1) {// 否则 全部显示以供选择
+					StringBuilder sb = new StringBuilder();
+					for (int ijk = 0; ijk < userList.size(); ijk++) {
+						sb.append(userList.get(ijk).getNumber()).append("-").append(userList.get(ijk).getCollege())
+								.append("?");
+					}
+					number = sb.toString();
+				}
+
+				chFieldNumber.set(ch, number);
+				chClassi++;
+			}
 			mv.addObject("awards", ch);
 			mv.addObject("awardsType", "chPeriodicalThesis");
 			mv.addObject("autherNum", autherNum);
