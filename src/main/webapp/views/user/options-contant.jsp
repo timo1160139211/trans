@@ -27,70 +27,90 @@
                     <h4>作者单位:</h4>
                     <p>${awards.mechanism == '' ? '':awards.mechanism}</p><br>
                     </c:if>
+                    <c:if test="${autherNum >= 1}">
                     <div class="form-group ">
                         <label>第一作者：</label>    
                         <input type="text" name="no1AutherName" value="${awards.no1AutherName}" class="form-control">
                         <label>工号：</label>
                         <input type="text" name="no1AutherNumber" value="${awards.no1AutherNumber}" class="form-control">
                     </div>
+                    </c:if>
+                    <c:if test="${autherNum >= 2}">
                     <div class="form-group ">
                         <label>第二作者：</label>    
                         <input type="text" name="no2AutherName" value="${awards.no2AutherName}" class="form-control">
                         <label>工号：</label>
                         <input type="text" name="no2AutherNumber" value="${awards.no2AutherNumber}" class="form-control">
                     </div>
+                    </c:if>
+                    <c:if test="${autherNum >= 3}">
                     <div class="form-group ">
                         <label>第三作者：</label>    
                         <input type="text" name="no3AutherName" value="${awards.no3AutherName}" class="form-control">
                         <label>工号：</label>
                         <input type="text" name="no3AutherNumber" value="${awards.no3AutherNumber}" class="form-control">
                     </div>
+                    </c:if>
+                    <c:if test="${autherNum >= 4}">
                     <div class="form-group ">
                         <label>第四作者：</label>    
                         <input type="text" name="no4AutherName" value="${awards.no4AutherName}" class="form-control">
                         <label>工号：</label>
                         <input type="text" name="no4AutherNumber" value="${awards.no4AutherNumber}" class="form-control">
                     </div>
+                    </c:if>
+                    <c:if test="${autherNum >= 5}">
                     <div class="form-group ">
                         <label>第五作者：</label>    
                         <input type="text" name="no5AutherName" value="${awards.no5AutherName}" class="form-control">
                         <label>工号：</label>
                         <input type="text" name="no5AutherNumber" value="${awards.no5AutherNumber}" class="form-control">
                     </div>
+                    </c:if>
+                    <c:if test="${autherNum >= 6}">
                     <div class="form-group ">
                         <label>第六作者：</label>    
                         <input type="text" name="no6AutherName" value="${awards.no6AutherName}" class="form-control">
                         <label>工号：</label>
                         <input type="text" name="no6AutherNumber" value="${awards.no6AutherNumber}" class="form-control">
                     </div>
+                    </c:if>
+                    <c:if test="${autherNum >= 7}">
                     <div class="form-group ">
                         <label>第七作者：</label>    
                         <input type="text" name="no7AutherName" value="${awards.no7AutherName}" class="form-control">
                         <label>工号：</label>
                         <input type="text" name="no7AutherNumber" value="${awards.no7AutherNumber}" class="form-control">
                     </div>
+                    </c:if>
+                    <c:if test="${autherNum >= 8}">
                     <div class="form-group ">
                         <label>第八作者：</label>    
                         <input type="text" name="no8AutherName" value="${awards.no8AutherName}" class="form-control">
                         <label>工号：</label>
                         <input type="text" name="no8AutherNumber" value="${awards.no8AutherNumber}" class="form-control">
                     </div>
+                    </c:if>
+                    <c:if test="${autherNum >= 9}">
                     <div class="form-group ">
                         <label>第九作者：</label>    
                         <input type="text" name="no9AutherName" value="${awards.no9AutherName}" class="form-control">
                         <label>工号：</label>
                         <input type="text" name="no9AutherNumber" value="${awards.no9AutherNumber}" class="form-control">
                     </div>
+                    </c:if>
+                    <c:if test="${autherNum >= 10}">
                     <div class="form-group ">
                         <label>第十作者：</label>    
                         <input type="text" name="no10AutherName" value="${awards.no10AutherName}" class="form-control">
                         <label>工号：</label>
                         <input type="text" name="no10AutherNumber" value="${awards.no10AutherNumber}" class="form-control">
                     </div>
+                    </c:if>
                 </div>
                 <div class="modal-footer">
-						<label>你知道吗?Ctrl+Z可撤销前n次输入</label> 
-                    <button type="button" class="btn btn-default" data-dismiss="modal">再检查检查</button>
+					  <label>姓名为中文,工号请只保留'数字''学生'或'校外人员'.</label> 
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-primary" id="Claim${awards.id}">确定认领</button>
                 </div>
             </form:form>

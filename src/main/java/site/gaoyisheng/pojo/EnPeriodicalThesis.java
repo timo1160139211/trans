@@ -63,7 +63,7 @@ public class EnPeriodicalThesis {
 
     private String claimStatus;
 
-    public EnPeriodicalThesis() {
+	public EnPeriodicalThesis() {
 		super();
 		this.keyId = "";
 		this.name = "";

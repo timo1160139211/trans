@@ -17,8 +17,11 @@
 package site.gaoyisheng.utils;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +30,7 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
 
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
@@ -34,8 +38,12 @@ import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.pojo.Thesis;
 import site.gaoyisheng.pojo.User;
+import site.gaoyisheng.service.UserService;
 
 public class FileUtil {
+	
+	@Autowired
+	private UserService userService;
 
 	/**
 	 * .
@@ -198,7 +206,8 @@ public class FileUtil {
                         case 8:thesis.setPage(value);break;
                         case 9:thesis.setYear(value);break;
                        }
-                }  
+                } 
+                
                 enPeriodicalThesisList.add(thesis);  
             }  
         }  
@@ -211,8 +220,12 @@ public class FileUtil {
 	 * @param InputStream
 	 * @return
 	 * @throws IOException
+	 * @throws SecurityException 
+	 * @throws NoSuchFieldException 
+	 * @throws IllegalAccessException 
+	 * @throws IllegalArgumentException 
 	 */
-	public List<ChPeriodicalThesis> importFileOfChPeriodicalThesis(InputStream is) throws IOException{  
+	public List<ChPeriodicalThesis> importFileOfChPeriodicalThesis(InputStream is) throws IOException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException{  
         @SuppressWarnings("resource")
 		 HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);  
         List<ChPeriodicalThesis> chPeriodicalThesisList = new ArrayList<ChPeriodicalThesis>();  
@@ -247,6 +260,47 @@ public class FileUtil {
                         case 8:thesis.setMechanism(value);break;
                        }
                 }  
+                
+              /***********************hold不住******************************************
+              String chAllAutherName = thesis.getAllAutherName();
+    			String[] chNameGrp = chAllAutherName.split(";");
+    			int chClassi = 1;
+    			
+    			@SuppressWarnings("rawtypes")
+    			Class chClass = (Class) thesis.getClass();
+
+    			for (String chStr : chNameGrp) {
+    				// chStr=chStr.substring(0, s.indexOf('['));// 张三[1,2]
+    				chStr = chStr.replaceAll("\\[(.+?)\\]", "");// 张三
+    				chStr = chStr.replaceAll(" ", "");// 张三
+    				
+    				Field chFieldName = chClass.getDeclaredField("no" + chClassi + "AutherName");
+    				chFieldName.setAccessible(true);
+    				chFieldName.set(thesis, chStr);
+
+    				Field chFieldNumber = chClass.getDeclaredField("no" + chClassi + "AutherNumber");
+    				chFieldNumber.setAccessible(true);
+
+    				String number = "";
+    				List<User> userList = userService.searchUserFuzzyName(chStr);
+    				if (userList == null || userList.isEmpty()) {// 如果档案库没有，则是说明是校外/学生
+    					number = "学生?校外人员";
+    				} else if (userList.size() == 1) {// 只有一个则正确
+    					number = userList.get(0).getNumber();
+    				} else if (userList.size() > 1) {// 否则 全部显示以供选择
+    					StringBuilder sb = new StringBuilder();
+    					for (int ijk = 0; ijk < userList.size(); ijk++) {
+    						sb.append(userList.get(ijk).getNumber()).append("-").append(userList.get(ijk).getCollege())
+    								.append("?");
+    					}
+    					number = sb.toString();
+    				}
+
+    				chFieldNumber.set(thesis, number);
+    				chClassi++;
+    			}
+    			***********************************************************************/
+                
                 chPeriodicalThesisList.add(thesis);  
             }  
         }  
@@ -734,5 +788,30 @@ public class FileUtil {
          }
         
         return cellValue;
+    }
+    
+    /**
+     * .
+     * TODO 文件转化为字节数组
+     * @param f
+     * @return
+     */
+    public byte[] getBytesFromFile(File f) {
+        if (f == null) {
+            return null;
+        }
+        try {
+            FileInputStream stream = new FileInputStream(f);
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] b = new byte[1000];
+            int n;
+            while ((n = stream.read(b)) != -1)
+                out.write(b, 0, n);
+            stream.close();
+            out.close();
+            return out.toByteArray();
+        } catch (IOException e) {
+        }
+        return null;
     }
 }

@@ -211,21 +211,24 @@ public class UserOpsController {
 			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		ModelAndView mv = new ModelAndView();
 
+		int autherNum = 0;//作者数量
 		switch (request.getParameter("awardsType")) {
 		case "patent":
 			Patent pa = patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));// 查
 
 			String paAllAutherName = pa.getAllAutherName();
-			System.out.println("\n\nallAutherName: " + paAllAutherName + "\n");
 			String[] paNameGrp = paAllAutherName.split(";");
 			int paClassi = 1;
 
+			autherNum = paNameGrp.length;
+			
 			@SuppressWarnings("rawtypes")
 			Class paClass = (Class) pa.getClass();
 
 			for (String paStr : paNameGrp) {
 				// paStr=paStr.substring(0, s.indexOf('['));// 张三[1,2]
 				paStr = paStr.replaceAll("\\[(.+?)\\]", "");// 张三
+				paStr = paStr.replaceAll(" ", "");// 张三
 
 				Field paFieldName = paClass.getDeclaredField("no" + paClassi + "AutherName");
 				paFieldName.setAccessible(true);
@@ -237,14 +240,14 @@ public class UserOpsController {
 				String number = "";
 				List<User> userList = userService.searchUserFuzzyName(paStr);
 				if (userList.isEmpty()) {// 如果档案库没有，则是说明是校外/学生
-					number = "学生/校外人员";
+					number = "学生?校外人员";
 				} else if (userList.size() == 1) {// 只有一个则正确
 					number = userList.get(0).getNumber();
 				} else if (userList.size() > 1) {// 否则 全部显示以供选择
 					StringBuilder sb = new StringBuilder();
 					for (int ijk = 0; ijk < userList.size(); ijk++) {
 						sb.append(userList.get(ijk).getNumber()).append("-").append(userList.get(ijk).getCollege())
-								.append("/");
+								.append("?");
 					}
 					number = sb.toString();
 				}
@@ -254,56 +257,67 @@ public class UserOpsController {
 			}
 			mv.addObject("awards", pa);
 			mv.addObject("awardsType", "patent");
+			mv.addObject("autherNum", autherNum);
 
 			break;
 		case "enPeriodicalThesis":
-
-			mv.addObject("awards",
-					enPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));
-			mv.addObject("awardsType", "chPeriodicalThesis");
+			EnPeriodicalThesis en = enPeriodicalThesisService
+					.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
+			
+			String enAllAutherName = en.getAllAutherName();
+			String[] enNameGrp = enAllAutherName.split(";");
+			autherNum = enNameGrp.length;
+			
+			mv.addObject("awards",en);
+			mv.addObject("awardsType", "enPeriodicalThesis");
+			mv.addObject("autherNum", autherNum);
 			break;
 		case "chPeriodicalThesis":
 			ChPeriodicalThesis ch = chPeriodicalThesisService
 					.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
 			String chAllAutherName = ch.getAllAutherName();
-			System.out.println("\n\nallAutherName: " + chAllAutherName + "\n");
 			String[] chNameGrp = chAllAutherName.split(";");
-			int chClassi = 1;
-
-			@SuppressWarnings("rawtypes")
-			Class chClass = (Class) ch.getClass();
-
-			for (String chStr : chNameGrp) {
-				// chStr=chStr.substring(0, s.indexOf('['));// 张三[1,2]
-				chStr = chStr.replaceAll("\\[(.+?)\\]", "");// 张三
-
-				Field chFieldName = chClass.getDeclaredField("no" + chClassi + "AutherName");
-				chFieldName.setAccessible(true);
-				chFieldName.set(ch, chStr);
-
-				Field chFieldNumber = chClass.getDeclaredField("no" + chClassi + "AutherNumber");
-				chFieldNumber.setAccessible(true);
-
-				String number = "";
-				List<User> userList = userService.searchUserFuzzyName(chStr);
-				if (userList.isEmpty()) {// 如果档案库没有，则是说明是校外/学生
-					number = "学生/校外人员";
-				} else if (userList.size() == 1) {// 只有一个则正确
-					number = userList.get(0).getNumber();
-				} else if (userList.size() > 1) {// 否则 全部显示以供选择
-					StringBuilder sb = new StringBuilder();
-					for (int ijk = 0; ijk < userList.size(); ijk++) {
-						sb.append(userList.get(ijk).getNumber()).append("-").append(userList.get(ijk).getCollege())
-								.append("/");
-					}
-					number = sb.toString();
-				}
-
-				chFieldNumber.set(ch, number);
-				chClassi++;
-			}
+//			int chClassi = 1;
+			
+			autherNum = chNameGrp.length;//作者数量
+			
+//			@SuppressWarnings("rawtypes")
+//			Class chClass = (Class) ch.getClass();
+//
+//			for (String chStr : chNameGrp) {
+//				// chStr=chStr.substring(0, s.indexOf('['));// 张三[1,2]
+//				chStr = chStr.replaceAll("\\[(.+?)\\]", "");// 张三
+//				chStr = chStr.replaceAll(" ", "");// 张三
+//				
+//				Field chFieldName = chClass.getDeclaredField("no" + chClassi + "AutherName");
+//				chFieldName.setAccessible(true);
+//				chFieldName.set(ch, chStr);
+//
+//				Field chFieldNumber = chClass.getDeclaredField("no" + chClassi + "AutherNumber");
+//				chFieldNumber.setAccessible(true);
+//
+//				String number = "";
+//				List<User> userList = userService.searchUserFuzzyName(chStr);
+//				if (userList.isEmpty()) {// 如果档案库没有，则是说明是校外/学生
+//					number = "学生?校外人员";
+//				} else if (userList.size() == 1) {// 只有一个则正确
+//					number = userList.get(0).getNumber();
+//				} else if (userList.size() > 1) {// 否则 全部显示以供选择
+//					StringBuilder sb = new StringBuilder();
+//					for (int ijk = 0; ijk < userList.size(); ijk++) {
+//						sb.append(userList.get(ijk).getNumber()).append("-").append(userList.get(ijk).getCollege())
+//								.append("?");
+//					}
+//					number = sb.toString();
+//				}
+//
+//				chFieldNumber.set(ch, number);
+//				chClassi++;
+//			}
 			mv.addObject("awards", ch);
 			mv.addObject("awardsType", "chPeriodicalThesis");
+			mv.addObject("autherNum", autherNum);
+			
 			break;
 		default:
 			break;
@@ -335,38 +349,6 @@ public class UserOpsController {
         return "/user/modify";
     }
     
-    @RequestMapping(value = "/awards-create", method = RequestMethod.GET)
-    public String toAwardsCreate() {
-        return "/user/awards-create";
-    }
-    
-    @RequestMapping(value = "/awards-create/{awardsType}", method = RequestMethod.POST)
-    public String awardsCreate(HttpServletRequest request,@PathVariable("awardsType")String awardsType) {
-    	
-		switch (request.getParameter("awardsType")) {
-		case "patent":
-			Patent pa = new Patent();
-			
-			
-			patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));// 查
-
-			break;
-		case "enPeriodicalThesis":
-
-					enPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
-			break;
-		case "chPeriodicalThesis":
-			
-			ChPeriodicalThesis ch = chPeriodicalThesisService
-					.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
-			break;
-		default:
-			break;
-		}
-    	
-        return "/user/awards-create";
-    }
-	
     /**
      * .
      * 提交表单,更新数据库,更改session用户. TODO

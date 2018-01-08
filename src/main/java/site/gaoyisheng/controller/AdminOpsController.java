@@ -17,8 +17,10 @@
 package site.gaoyisheng.controller;
 
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -118,7 +120,7 @@ public class AdminOpsController {
 	
 	/**
 	 * .
-	 * TODO 生成Xls文件,并下载  : request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+	 * TODO 生成Xls文件,并下载 或者下载(模版)  : request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis,patent_model,enPeriodicalThesis_model,chPeriodicalThesis_model}
 	 * @param request
 	 * @param response
 	 * @throws Exception
@@ -126,20 +128,52 @@ public class AdminOpsController {
 	@RequestMapping(value = "/download/{awardsType}", method = RequestMethod.GET)
 	public void exportExcel(HttpServletRequest request, HttpServletResponse response,@PathVariable("awardsType") String awardsType) throws Exception {
 
-		
 		try {
 //			String type = request.getParameter("awardsType");
 			FileUtil fileUtil = new FileUtil();
 			byte[] bytes = null;
+			Path file = null;
+			
+			String fileNameBefore = "";
 			
 			switch(awardsType) {
-			    case "patent": bytes = fileUtil.exportFileOfPatent(patentService.selectAll());break;
-			    case "enPeriodicalThesis": bytes = fileUtil.exportFileOfEnPeriodicalThesis(enPeriodicalThesisService.selectAll());break;
-			    case "chPeriodicalThesis": bytes = fileUtil.exportFileOfChPeriodicalThesis(chPeriodicalThesisService.selectAll());break;
+			    case "patent": 
+			    		bytes = fileUtil.exportFileOfPatent(patentService.selectAll());
+			    		fileNameBefore = "专利.xls";
+			    		break;
+			    case "enPeriodicalThesis": 
+			    		bytes = fileUtil.exportFileOfEnPeriodicalThesis(enPeriodicalThesisService.selectAll());
+			    		fileNameBefore = "英文期刊论文.xls";
+			    		break;
+			    case "chPeriodicalThesis":
+			    		bytes = fileUtil.exportFileOfChPeriodicalThesis(chPeriodicalThesisService.selectAll());
+			    		fileNameBefore = "中文期刊论文.xls";
+			    		break;
+			    case "patent_model":
+			    		fileNameBefore = "专利_模板.xls";
+		    			file = Paths.get(request.getServletContext().getRealPath("/views/data"), fileNameBefore);
+		    			if(Files.exists(file)) {
+		    				bytes = fileUtil.getBytesFromFile(file.toFile());
+		    			}
+		    			break;
+			    case "enPeriodicalThesis_model":
+			    		fileNameBefore = "英文期刊论文_模板.xls";
+		    			file = Paths.get(request.getServletContext().getRealPath("/views/data"), fileNameBefore);
+		    			if(Files.exists(file)) {
+		    				bytes = fileUtil.getBytesFromFile(file.toFile());
+		    			}
+			    		break;
+			    case "chPeriodicalThesis_model":
+		    			fileNameBefore = "中文期刊论文_模板.xls";
+		    			file = Paths.get(request.getServletContext().getRealPath("/views/data"), fileNameBefore);
+		    			if(Files.exists(file)) {
+		    				bytes = fileUtil.getBytesFromFile(file.toFile());
+		    			}
+		    			break;
 			    default : return ; //退出,并返回"无该类型文档"
 			}
 			
-			byte[] fileNameByte = ("下载.xls").getBytes("GBK");
+			byte[] fileNameByte = (fileNameBefore).getBytes("GBK");
 			String filename = new String(fileNameByte, "ISO8859-1");
 
 			response.setContentType("application/x-msdownload");
@@ -149,7 +183,7 @@ public class AdminOpsController {
 		} catch (Exception ex) {
 		}
 	}
-
+	
 	/**
 	 * .
 	 * TODO 查看认领进度. 
