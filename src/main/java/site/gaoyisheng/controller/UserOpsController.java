@@ -210,7 +210,13 @@ public class UserOpsController {
     public Object userInfo(HttpServletRequest request,HttpServletResponse response) throws IOException {
     	
     	String number = "";
-		List<User> userList = userService.searchUserFuzzyName(request.getParameter("inputName"));
+    	request.setCharacterEncoding("utf-8");
+    	String srcChar = "ISO8859-1";  
+    	String dstChar = "UTF-8";  
+    	//title = new String(title.getBytes(srcChar),dstChar);  
+		//List<User> userList = userService.searchUserFuzzyName(request.getParameter("inputName"));//乱码
+    	List<User> userList = userService.searchUserFuzzyName(new String(request.getParameter("inputName").getBytes(srcChar),dstChar));
+		
 		if (userList.isEmpty()) {// 如果档案库没有，则是说明是校外/学生
 			number = "学生?校外人员";
 		} else if (userList.size() == 1) {// 只有一个则正确
@@ -226,7 +232,7 @@ public class UserOpsController {
 			number = "重名太多,请自查";
 		}
 		
-    	return number;
+    	return "{\"number\":\""+number+"\"}";
     }
     
     /**

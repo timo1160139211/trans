@@ -59,8 +59,7 @@
 												</div>
 												<div class="form-group">
 													<label>授权号:</label> <input type="text"
-														name="authorizationNumber" class="form-control"
-														placeholder="ZL2010">
+														name="authorizationNumber" class="form-control">
 												</div>
 												<div class="form-group">
 													<label>是否为PCT专利:</label> <input type="checkbox"
@@ -94,7 +93,7 @@
 											</div>
 											<div class="form-group">
 												<label>来源/期刊:</label> <input type="text" name="provenance"
-													class="form-control" placeholder="ZL2010">
+													class="form-control" >
 											</div>
 											<div class="form-group">
 												<label>学科领域:</label> <input type="text" name="subject"
@@ -136,7 +135,7 @@
 											</div>
 											<div class="form-group">
 												<label>出处/期刊:</label> <input type="text" name="provenance"
-													class="form-control" placeholder="ZL2010">
+													class="form-control" >
 											</div>
 											<div class="form-group">
 												<label>卷:</label> <input type="text" name="volume"
@@ -452,23 +451,233 @@ $('body').on('click', '.nextPage', function () {
 
 
 
-//**************************************************************************************//
+//*************************************1*************************************************//
 //输入框的失去焦点事件=>改变值
 $('body').on('blur', '#no1AutherName', function () {
 	var no1AutherName = $('#no1AutherName').val();//获取输入的名字
-
-	if( currentAwardsType =='enPeriodicalThesis' && no1AutherName != ''){//是英文,且输入不为空
-
-console.log(no1AutherName+'hahah');
+	if(currentAwardsType == 'enPeriodicalThesis' && no1AutherName != ''){//是英文,且输入不为空
 		$.ajax({
 			type : 'get',
 			url : '${ctx}/user/sereachUser',
 			data : {inputName:no1AutherName},
+			dataType : 'json',
 			success : function(data) {
-				console.log(data+'hahah....');
 				if (data != null) {
-					$('#no1AutherNumber').val(data);
+					$('#no1AutherNumber').val(data.number);
 				}
+			},
+		});
+	}
+});
+
+//*************************************2***********************************************//
+          //输入框的失去焦点事件=>改变值
+          $('body').on('blur', '#no2AutherName', function () {
+          	var no2AutherName = $('#no2AutherName').val();//获取输入的名字
+
+          	if( currentAwardsType =='enPeriodicalThesis' && no2AutherName != ''){//是英文,且输入不为空
+
+          		$.ajax({
+          			type : 'get',
+          			url : '${ctx}/user/sereachUser',
+          			data : {inputName:no2AutherName},
+          			dataType : 'json',
+          			success : function(data) {
+          				if (data != null) {
+          					$('#no2AutherNumber').val(data.number);
+          				}
+          			},
+          			error : function(){
+          			}
+          		});
+
+          	}
+          });
+          
+        //*************************************3********************************************//
+        //输入框的失去焦点事件=>改变值
+        $('body').on('blur', '#no3AutherName', function () {
+        	var no3AutherName = $('#no3AutherName').val();//获取输入的名字
+
+        	if( currentAwardsType =='enPeriodicalThesis' && no3AutherName != ''){//是英文,且输入不为空
+
+        		$.ajax({
+        			type : 'get',
+        			url : '${ctx}/user/sereachUser',
+        			data : {inputName:no3AutherName},
+        			dataType : 'json',
+        			success : function(data) {
+        				if (data != null) {
+        					$('#no3AutherNumber').val(data.number);
+        				}
+        			},
+        			error : function(){
+        			}
+        		});
+
+        	}
+        });
+        
+      //**************************************4***********************************************//
+      //输入框的失去焦点事件=>改变值
+      $('body').on('blur', '#no4AutherName', function () {
+      	var no4AutherName = $('#no4AutherName').val();//获取输入的名字
+
+      	if( currentAwardsType =='enPeriodicalThesis' && no4AutherName != ''){//是英文,且输入不为空
+
+      		$.ajax({
+      			type : 'get',
+      			url : '${ctx}/user/sereachUser',
+      			data : {inputName:no4AutherName},
+      			dataType : 'json',
+      			success : function(data) {
+      				if (data != null) {
+      					$('#no4AutherNumber').val(data.number);
+      				}
+      			},
+      			error : function(){
+      			}
+      		});
+
+      	}
+      });
+      
+    //**************************************5***********************************************//
+    //输入框的失去焦点事件=>改变值
+    $('body').on('blur', '#no5AutherName', function () {
+    	var no5AutherName = $('#no5AutherName').val();//获取输入的名字
+
+    	if( currentAwardsType =='enPeriodicalThesis' && no5AutherName != ''){//是英文,且输入不为空
+
+    		$.ajax({
+    			type : 'get',
+    			url : '${ctx}/user/sereachUser',
+    			data : {inputName:no5AutherName},
+    			dataType : 'json',
+    			success : function(data) {
+    				if (data != null) {
+    					$('#no5AutherNumber').val(data.number);
+    				}
+    			},
+    			error : function(){
+    			}
+    		});
+
+    	}
+    });
+    
+  //**************************************6***********************************************//
+  //输入框的失去焦点事件=>改变值
+  $('body').on('blur', '#no6AutherName', function () {
+  	var no6AutherName = $('#no6AutherName').val();//获取输入的名字
+
+  	if( currentAwardsType =='enPeriodicalThesis' && no6AutherName != ''){//是英文,且输入不为空
+
+  		$.ajax({
+  			type : 'get',
+  			url : '${ctx}/user/sereachUser',
+  			data : {inputName:no6AutherName},
+  			dataType : 'json',
+  			success : function(data) {
+  				if (data != null) {
+  					$('#no6AutherNumber').val(data.number);
+  				}
+  			},
+  			error : function(){
+  			}
+  		});
+
+  	}
+  });
+  
+//*************************************7***********************************************//
+//输入框的失去焦点事件=>改变值
+$('body').on('blur', '#no7AutherName', function () {
+	var no7AutherName = $('#no7AutherName').val();//获取输入的名字
+
+	if( currentAwardsType =='enPeriodicalThesis' && no7AutherName != ''){//是英文,且输入不为空
+
+		$.ajax({
+			type : 'get',
+			url : '${ctx}/user/sereachUser',
+			data : {inputName:no7AutherName},
+			dataType : 'json',
+			success : function(data) {
+				if (data != null) {
+					$('#no7AutherNumber').val(data.number);
+				}
+			},
+			error : function(){
+			}
+		});
+
+	}
+});
+
+//**************************************8**********************************************//
+//输入框的失去焦点事件=>改变值
+$('body').on('blur', '#no8AutherName', function () {
+	var no8AutherName = $('#no8AutherName').val();//获取输入的名字
+
+	if( currentAwardsType =='enPeriodicalThesis' && no8AutherName != ''){//是英文,且输入不为空
+
+		$.ajax({
+			type : 'get',
+			url : '${ctx}/user/sereachUser',
+			data : {inputName:no8AutherName},
+			dataType : 'json',
+			success : function(data) {
+				if (data != null) {
+					$('#no8AutherNumber').val(data.number);
+				}
+			},
+			error : function(){
+			}
+		});
+
+	}
+});
+
+//**************************************9**********************************************//
+//输入框的失去焦点事件=>改变值
+$('body').on('blur', '#no9AutherName', function () {
+	var no9AutherName = $('#no9AutherName').val();//获取输入的名字
+
+	if( currentAwardsType =='enPeriodicalThesis' && no9AutherName != ''){//是英文,且输入不为空
+
+		$.ajax({
+			type : 'get',
+			url : '${ctx}/user/sereachUser',
+			data : {inputName:no9AutherName},
+			dataType : 'json',
+			success : function(data) {
+				if (data != null) {
+					$('#no9AutherNumber').val(data.number);
+				}
+			},
+			error : function(){
+			}
+		});
+
+	}
+});
+
+//***************************************10***********************************************//
+//输入框的失去焦点事件=>改变值
+$('body').on('blur', '#no10AutherName', function () {
+	var no10AutherName = $('#no10AutherName').val();//获取输入的名字
+	if( currentAwardsType =='enPeriodicalThesis' && no10AutherName != ''){//是英文,且输入不为空
+		$.ajax({
+			type : 'get',
+			url : '${ctx}/user/sereachUser',
+			data : {inputName:no10AutherName},
+			dataType : 'json',
+			success : function(data) {
+				if (data != null) {
+					$('#no10AutherNumber').val(data.number);
+				}
+			},
+			error : function(){
 			}
 		});
 
@@ -477,9 +686,7 @@ console.log(no1AutherName+'hahah');
 
 
 
-
-
-});
+});//ready
         </script>
 </body>
 
