@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +29,6 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
 
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
@@ -38,13 +36,9 @@ import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.pojo.Thesis;
 import site.gaoyisheng.pojo.User;
-import site.gaoyisheng.service.UserService;
 
 public class FileUtil {
 	
-	@Autowired
-	private UserService userService;
-
 	/**
 	 * .
 	 * TODO 文件导入: 把数据解析成list.  --Thesis
@@ -748,8 +742,8 @@ public class FileUtil {
 		excelHead.add("第八作者工号");
 		excelHead.add("第九作者");
 		excelHead.add("第九作者工号");
-		excelHead.add("第十作者");
-		excelHead.add("第十作者工号");
+		excelHead.add("归属学院");//excelHead.add("第十作者");替换
+		excelHead.add("审核状态");
 		excelHead.add("状态(已认领，未认领)");
 		return excelHead;
 	}

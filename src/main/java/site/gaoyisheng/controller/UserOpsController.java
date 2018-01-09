@@ -17,8 +17,6 @@
 package site.gaoyisheng.controller;
 
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -264,6 +262,8 @@ public class UserOpsController {
 			Class paClass = (Class) pa.getClass();
 
 			for (String paStr : paNameGrp) {
+				if(paClassi<10) {//只处理前9个
+				
 				// paStr=paStr.substring(0, s.indexOf('['));// 张三[1,2]
 				paStr = paStr.replaceAll("\\[(.+?)\\]", "");// 张三
 				paStr = paStr.replaceAll(" ", "");// 张三
@@ -283,7 +283,7 @@ public class UserOpsController {
 					number = userList.get(0).getNumber();
 				} else if (userList.size() > 1) {// 否则 全部显示以供选择
 					StringBuilder sb = new StringBuilder();
-					for (int ijk = 0; ijk < userList.size(); ijk++) {
+					for (int ijk = 0; ijk < userList.size() && ijk < 10; ijk++) {
 						sb.append(userList.get(ijk).getNumber()).append("-").append(userList.get(ijk).getCollege())
 								.append("?");
 					}
@@ -292,6 +292,7 @@ public class UserOpsController {
 
 				paFieldNumber.set(pa, number);
 				paClassi++;
+				}//if <10
 			}
 			mv.addObject("awards", pa);
 			mv.addObject("awardsType", "patent");
@@ -323,6 +324,7 @@ public class UserOpsController {
 			Class chClass = (Class) ch.getClass();
 
 			for (String chStr : chNameGrp) {
+				if(chClassi<10) {//只处理前9个
 				// chStr=chStr.substring(0, s.indexOf('['));// 张三[1,2]
 				chStr = chStr.replaceAll("\\[(.+?)\\]", "");// 张三
 				chStr = chStr.replaceAll(" ", "");// 张三
@@ -342,7 +344,7 @@ public class UserOpsController {
 					number = userList.get(0).getNumber();
 				} else if (userList.size() > 1) {// 否则 全部显示以供选择
 					StringBuilder sb = new StringBuilder();
-					for (int ijk = 0; ijk < userList.size(); ijk++) {
+					for (int ijk = 0; ijk < userList.size() && ijk < 10; ijk++) {
 						sb.append(userList.get(ijk).getNumber()).append("-").append(userList.get(ijk).getCollege())
 								.append("?");
 					}
@@ -351,6 +353,7 @@ public class UserOpsController {
 
 				chFieldNumber.set(ch, number);
 				chClassi++;
+				}//if <10
 			}
 			mv.addObject("awards", ch);
 			mv.addObject("awardsType", "chPeriodicalThesis");
