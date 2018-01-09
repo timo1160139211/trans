@@ -93,7 +93,7 @@ public class ChPeriodicalThesis {
 		this.no9AutherName = "";
 		this.no9AutherNumber = "";
 		this.no10AutherName = "";
-		this.no10AutherNumber = "";
+		this.no10AutherNumber = "未审核";
 		this.claimStatus = "未认领";
 	}
 
