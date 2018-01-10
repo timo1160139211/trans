@@ -118,6 +118,7 @@ public class UserOpsController {
     	 map.put("inCountry", request.getParameter("inCountry"));
     	 map.put("autherName", request.getParameter("autherName"));
     	 map.put("claimStatus", request.getParameter("claimStatus"));
+    	 map.put("no10AutherNumber", request.getParameter("no10AutherNumber"));
         
     	 //分页参数
     	 int pageNum = Integer.valueOf(request.getParameter("pageNum"));
@@ -166,7 +167,7 @@ public class UserOpsController {
         
     	StringBuilder msg=new StringBuilder();
         switch(awardsType) {
-            case "patent": patent.setClaimStatus("已认领");
+            case "patent": patent.setClaimStatus("已认领");patent.setNo10AutherNumber("未审核");
             	if(patentService.updateByPrimaryKeySelective(patent)==1) {
             		msg.append("成功:认领[").append(patent.getName()).append("]");
             	}else {
@@ -174,19 +175,19 @@ public class UserOpsController {
             	}
             	break;
             case "enPeriodicalThesis":  
-            	enPeriodicalThesis.setClaimStatus("已认领");
+            	enPeriodicalThesis.setClaimStatus("已认领");enPeriodicalThesis.setNo10AutherNumber("未审核");
             	if(enPeriodicalThesisService.updateByPrimaryKeySelective(enPeriodicalThesis)==1) {
-            		msg.append("成功:认领[").append(patent.getName()).append("]");
+            		msg.append("成功:认领[").append(enPeriodicalThesis.getName()).append("]");
             	}else {
-            		msg.append("失败:认领[").append(patent.getName()).append("]失败");
+            		msg.append("失败:认领[").append(enPeriodicalThesis.getName()).append("]失败");
             	}
             	break;
             case "chPeriodicalThesis":  
-            	chPeriodicalThesis.setClaimStatus("已认领");
+            	chPeriodicalThesis.setClaimStatus("已认领");chPeriodicalThesis.setNo10AutherNumber("未审核");
             	if(chPeriodicalThesisService.updateByPrimaryKeySelective(chPeriodicalThesis)==1) {
-            		msg.append("成功:认领[").append(patent.getName()).append("]");
+            		msg.append("成功:认领[").append(chPeriodicalThesis.getName()).append("]");
             	}else {
-            		msg.append("失败:认领[").append(patent.getName()).append("]失败");
+            		msg.append("失败:认领[").append(chPeriodicalThesis.getName()).append("]失败");
             	}
             default : break;
          }
@@ -198,7 +199,7 @@ public class UserOpsController {
     
     /**
      * .
-     * TODO 返回查找的数据
+     * TODO 返回查找的用户数据
      * @param request
      * @return
      * @throws IOException 

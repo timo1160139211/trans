@@ -120,6 +120,12 @@
 			<if test="claimStatus != '' and claimStatus != null">
 				AND claim_status = #{claimStatus}
 			</if>
+			<if test="no10AutherName != '' and no10AutherName != null">
+				AND no10_auther_name = #{no10AutherName}
+			</if>
+			<if test="no10AutherNumber != '' and no10AutherNumber != null">
+				AND no10_auther_number = #{no10AutherNumber}
+			</if>
 		</where>
 	</select>
 	

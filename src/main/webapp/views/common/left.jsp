@@ -19,6 +19,9 @@
 					<!-- 用户: 认领 操作 -->
 					<li><a href="${ctx}/user/awards-list" class=""><i class="lnr lnr-file-empty"></i>
 							<span>认领</span></a></li>
+					<!-- 用户: 补录 操作 -->
+					<li><a href="${ctx}/user/awards-list" class=""><i class="lnr lnr-file-empty"></i>
+							<span>补录</span></a></li>
 				</ul>
 			</c:if>
 

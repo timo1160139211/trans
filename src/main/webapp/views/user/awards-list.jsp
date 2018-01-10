@@ -65,14 +65,22 @@
 													<label>是否为PCT专利:</label> <input type="checkbox"
 														name="pctPatentOrNot" class="form-control">
 												</div>
-												<div class="form-group">
-													<label>状态</label> <select name="claimStatus"
-														class="form-control">
-														<option value="未认领">未认领</option>
-														<option value="已认领">已认领</option>
-													</select>
-												</div>
-												<button id='patent-btn' type="submit" class="btn btn-default">查询</button>
+											<div class="form-group">
+												<label>认领状态:</label> <select name="claimStatus"
+													class="form-control">
+													<option value="未认领">未认领</option>
+													<option value="已认领">已认领</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>审核状态:</label> <select name="no10AutherNumber"
+													class="form-control">
+													<option value="未审核">未审核</option>
+													<!-- <option value="通过审核">通过审核</option> -->
+													<option value="未通过审核">未通过审核</option>
+												</select>
+											</div>
+												<button id='patent-btn' type="submit" class="btn btn-primary">查询</button>
 											</form>
 										</div>
 									</div>
@@ -108,21 +116,21 @@
 													class="form-control">
 											</div>
 											<div class="form-group">
-												<label>认领状态</label> <select name="claimStatus"
+												<label>认领状态:</label> <select name="claimStatus"
 													class="form-control">
 													<option value="未认领">未认领</option>
 													<option value="已认领">已认领</option>
 												</select>
 											</div>
 											<div class="form-group">
-												<label>审核状态</label> <select name="claimStatus"
+												<label>审核状态:</label> <select name="no10AutherNumber"
 													class="form-control">
 													<option value="未审核">未审核</option>
-													<option value="通过审核">通过审核</option>
+													<!-- <option value="通过审核">通过审核</option> -->
 													<option value="未通过审核">未通过审核</option>
 												</select>
 											</div>
-											<button id='en-btn' type="submit" class="btn btn-default">查询</button>
+											<button id='en-btn' type="submit" class="btn btn-primary">查询</button>
 										</form>
 										</div>
 									</div>
@@ -154,13 +162,21 @@
 													class="form-control">
 											</div>
 											<div class="form-group">
-												<label>状态</label> <select name="claimStatus"
+												<label>认领状态:</label> <select name="claimStatus"
 													class="form-control">
 													<option value="未认领">未认领</option>
 													<option value="已认领">已认领</option>
 												</select>
 											</div>
-											<button id='ch-btn' type="submit" class="btn btn-default">查询</button>
+											<div class="form-group">
+												<label>审核状态:</label> <select name="no10AutherNumber"
+													class="form-control">
+													<option value="未审核">未审核</option>
+													<!-- <option value="通过审核">通过审核</option> -->
+													<option value="未通过审核">未通过审核</option>
+												</select>
+											</div>
+											<button id='ch-btn' type="submit" class="btn btn-primary">查询</button>
 										</form>
 										</div>
 									</div>
@@ -672,6 +688,25 @@ $('body').on('blur', '#no9AutherName', function () {
 
 //***************************************10***********************************************//
 //输入框的失去焦点事件=>改变值
+$('body').on('blur', '#no10AutherName', function () {
+	var no10AutherName = $('#no10AutherName').val();//获取输入的名字
+	if( currentAwardsType =='enPeriodicalThesis' && no10AutherName != ''){//是英文,且输入不为空
+		$.ajax({
+			type : 'get',
+			url : '${ctx}/user/sereachUser',
+			data : {inputName:no10AutherName},
+			dataType : 'json',
+			success : function(data) {
+				if (data != null) {
+					$('#no10AutherNumber').val(data.number);
+				}
+			},
+			error : function(){
+			}
+		});
+
+	}
+});
 
 
 
