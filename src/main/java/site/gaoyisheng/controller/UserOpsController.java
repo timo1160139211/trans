@@ -429,7 +429,38 @@ public class UserOpsController {
     	return new PageInfo<User>(userService.searchUserFuzzyQuery(u));
     } 
     
-    
+	      
+    @RequestMapping(value = "/awards-create", method = RequestMethod.GET)		
+    public String toAwardsCreate() {		
+        return "/user/awards-create";		
+    }		
+    		
+    @RequestMapping(value = "/awards-create/{awardsType}", method = RequestMethod.POST)		
+    public String awardsCreate(HttpServletRequest request,@PathVariable("awardsType")String awardsType) {		
+    			
+		switch (request.getParameter("awardsType")) {		
+		case "patent":		
+			Patent pa = new Patent();		
+					
+			patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));// 查		
+		
+			break;		
+		case "enPeriodicalThesis":		
+		
+					enPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));		
+			break;		
+		case "chPeriodicalThesis":		
+					
+			ChPeriodicalThesis ch = chPeriodicalThesisService		
+					.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));		
+			break;		
+		default:		
+			break;		
+		}		
+    			
+        return "/user/awards-create";		
+    }		
+	
     
 	
 }
