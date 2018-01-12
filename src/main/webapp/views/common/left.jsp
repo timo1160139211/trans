@@ -4,7 +4,7 @@
 <div id="sidebar-nav" class="sidebar">
 	<div class="sidebar-scroll">
 		<nav>
-			<c:if test="${currentUser.number != 'admin'}">
+			<c:if test="${currentUser.number != 'admin' and currentUser.number != 'secretary'}">
 				<!-- 用户 -->
 				<ul class="nav">
 				    <!-- 用户: 主页 -->

@@ -499,7 +499,7 @@ $('body').on('blur', '#no1AutherName', function () {
           $('body').on('blur', '#no2AutherName', function () {
           	var no2AutherName = $('#no2AutherName').val();//获取输入的名字
 
-          	if( currentAwardsType =='enPeriodicalThesis' && no2AutherName != ''){//是英文,且输入不为空
+          	if(no2AutherName != ''){//是英文,且输入不为空
 
           		$.ajax({
           			type : 'get',
@@ -523,7 +523,7 @@ $('body').on('blur', '#no1AutherName', function () {
         $('body').on('blur', '#no3AutherName', function () {
         	var no3AutherName = $('#no3AutherName').val();//获取输入的名字
 
-        	if( currentAwardsType =='enPeriodicalThesis' && no3AutherName != ''){//是英文,且输入不为空
+        	if(no3AutherName != ''){//是英文,且输入不为空
 
         		$.ajax({
         			type : 'get',
@@ -547,7 +547,7 @@ $('body').on('blur', '#no1AutherName', function () {
       $('body').on('blur', '#no4AutherName', function () {
       	var no4AutherName = $('#no4AutherName').val();//获取输入的名字
 
-      	if( currentAwardsType =='enPeriodicalThesis' && no4AutherName != ''){//是英文,且输入不为空
+      	if(no4AutherName != ''){//是英文,且输入不为空
 
       		$.ajax({
       			type : 'get',
@@ -571,7 +571,7 @@ $('body').on('blur', '#no1AutherName', function () {
     $('body').on('blur', '#no5AutherName', function () {
     	var no5AutherName = $('#no5AutherName').val();//获取输入的名字
 
-    	if( currentAwardsType =='enPeriodicalThesis' && no5AutherName != ''){//是英文,且输入不为空
+    	if(no5AutherName != ''){//是英文,且输入不为空
 
     		$.ajax({
     			type : 'get',
@@ -595,7 +595,7 @@ $('body').on('blur', '#no1AutherName', function () {
   $('body').on('blur', '#no6AutherName', function () {
   	var no6AutherName = $('#no6AutherName').val();//获取输入的名字
 
-  	if( currentAwardsType =='enPeriodicalThesis' && no6AutherName != ''){//是英文,且输入不为空
+  	if(no6AutherName != ''){//是英文,且输入不为空
 
   		$.ajax({
   			type : 'get',
@@ -619,7 +619,7 @@ $('body').on('blur', '#no1AutherName', function () {
 $('body').on('blur', '#no7AutherName', function () {
 	var no7AutherName = $('#no7AutherName').val();//获取输入的名字
 
-	if( currentAwardsType =='enPeriodicalThesis' && no7AutherName != ''){//是英文,且输入不为空
+	if(no7AutherName != ''){//是英文,且输入不为空
 
 		$.ajax({
 			type : 'get',
@@ -643,7 +643,7 @@ $('body').on('blur', '#no7AutherName', function () {
 $('body').on('blur', '#no8AutherName', function () {
 	var no8AutherName = $('#no8AutherName').val();//获取输入的名字
 
-	if( currentAwardsType =='enPeriodicalThesis' && no8AutherName != ''){//是英文,且输入不为空
+	if(no8AutherName != ''){//是英文,且输入不为空
 
 		$.ajax({
 			type : 'get',
@@ -667,7 +667,7 @@ $('body').on('blur', '#no8AutherName', function () {
 $('body').on('blur', '#no9AutherName', function () {
 	var no9AutherName = $('#no9AutherName').val();//获取输入的名字
 
-	if( currentAwardsType =='enPeriodicalThesis' && no9AutherName != ''){//是英文,且输入不为空
+	if(no9AutherName != ''){//是英文,且输入不为空
 
 		$.ajax({
 			type : 'get',
@@ -687,26 +687,6 @@ $('body').on('blur', '#no9AutherName', function () {
 });
 
 //***************************************10***********************************************//
-//输入框的失去焦点事件=>改变值
-$('body').on('blur', '#no10AutherName', function () {
-	var no10AutherName = $('#no10AutherName').val();//获取输入的名字
-	if( currentAwardsType =='enPeriodicalThesis' && no10AutherName != ''){//是英文,且输入不为空
-		$.ajax({
-			type : 'get',
-			url : '${ctx}/user/sereachUser',
-			data : {inputName:no10AutherName},
-			dataType : 'json',
-			success : function(data) {
-				if (data != null) {
-					$('#no10AutherNumber').val(data.number);
-				}
-			},
-			error : function(){
-			}
-		});
-
-	}
-});
 
 
 

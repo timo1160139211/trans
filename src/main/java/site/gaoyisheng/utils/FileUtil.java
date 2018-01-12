@@ -738,10 +738,10 @@ public class FileUtil {
 		excelHead.add("第六作者工号");
 		excelHead.add("第七作者");
 		excelHead.add("第七作者工号");
-		excelHead.add("第八作者");
-		excelHead.add("第八作者工号");
-		excelHead.add("第九作者");
-		excelHead.add("第九作者工号");
+		excelHead.add("通讯作者1");
+		excelHead.add("通讯作者1工号");
+		excelHead.add("通讯作者2");
+		excelHead.add("通讯作者2工号");
 		excelHead.add("归属学院");//excelHead.add("第十作者");替换
 		excelHead.add("审核状态");
 		excelHead.add("状态(已认领，未认领)");
