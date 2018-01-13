@@ -105,6 +105,16 @@ public class Patent {
 		this.no10AutherNumber = "未审核";
 		this.claimStatus = "未认领";
 	}
+	
+	/**
+	 * 审核用,
+	 * @param id
+	 * @param status
+	 */
+	public Patent(int id,String status) {
+		this.id = id;
+		this.no10AutherNumber = status;
+	}
 
 	public Integer getId() {
 		return id;

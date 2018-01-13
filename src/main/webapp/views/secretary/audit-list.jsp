@@ -61,12 +61,11 @@
 													<label>授权号:</label> <input type="text"
 														name="authorizationNumber" class="form-control">
 												</div>
-												<div class="form-group">
-													<label>是否为PCT专利:</label> <input type="checkbox"
-														name="pctPatentOrNot" class="form-control">
-												</div>
-												<!-- selections -->
-	<jsp:include page="/views/resources/selections.jsp" flush="true" />
+											<div class="form-group">
+												<label>归属学院:</label> <select name="no10AutherName"
+													class="form-control">
+													<option value="${sessionScope.currentUser.college}">${sessionScope.currentUser.college}</option>
+												</select>
 											</div>
 											<div class="form-group">
 												<label>审核状态:</label> <select name="no10AutherNumber"
@@ -100,19 +99,11 @@
 													class="form-control" >
 											</div>
 											<div class="form-group">
-												<label>学科领域:</label> <input type="text" name="subject"
+												<label>归属学院:</label> <select name="no10AutherName"
 													class="form-control">
-											</div>
-											<div class="form-group">
-												<label>卷:</label> <input type="text" name="volume"
-													class="form-control">
-											</div>
-											<div class="form-group">
-												<label>年:</label> <input type="text" name="year"
-													class="form-control">
-											</div>
-											<!-- selections -->
-	<jsp:include page="/views/resources/selections.jsp" flush="true" />
+													<option value="${sessionScope.currentUser.college}">${sessionScope.currentUser.college}</option>
+												</select>
+											</div>				
 											<div class="form-group">
 												<label>审核状态:</label> <select name="no10AutherNumber"
 													class="form-control">
@@ -145,15 +136,11 @@
 													class="form-control" >
 											</div>
 											<div class="form-group">
-												<label>卷:</label> <input type="text" name="volume"
+												<label>归属学院:</label> <select name="no10AutherName"
 													class="form-control">
+													<option value="${sessionScope.currentUser.college}">${sessionScope.currentUser.college}</option>
+												</select>
 											</div>
-											<div class="form-group">
-												<label>年:</label> <input type="text" name="year"
-													class="form-control">
-											</div>
-											<!-- selections -->
-	<jsp:include page="/views/resources/selections.jsp" flush="true" />
 											<div class="form-group">
 												<label>审核状态:</label> <select name="no10AutherNumber"
 													class="form-control">
@@ -184,9 +171,9 @@
 											<tr>
 												<th>#</th>
 												<th>唯一标识</th>
-												<th>名称</th>
 												<th>作者</th>
-												<th>出处/期刊</th>
+												<th>作者信息</th>
+												<th>通讯作者</th>
 												<th>操作</th>
 												<th>操作2</th>
 											</tr>
@@ -244,7 +231,7 @@ $(document).ready(function () {
             	if (temp_form != $(this).parent().attr('id')) {
             		temp_form = $(this).parent().attr('id');
             		$('#tbody').empty();
-            	}
+            		}
 			
 			//变换当前类型
  			$('.type-control').attr('value',currentAwardsType);
@@ -253,21 +240,44 @@ $(document).ready(function () {
             	$(this).parent().attr('target','nm_iframe');
             	$.ajax({
                     type: 'post',
-                    url: '${ctx}/user/awards-list'+'?pageNum='+currentPageNum+'&',
+                    url: '${ctx}/secretary/audit-list'+'?pageNum='+currentPageNum+'&',
                     data: paramMap,
                     success: function (page) {
                         if (page != null) {
                             for (var i = 0; i < page.list.length; i++) {
+
+					var comuAuther = '';
+					if (page.list[i].no8AutherName != null && page.list[i].no8AutherName != '') 
+						{comuAuther = comuAuther + page.list[i].no8AutherName + ':' + page.list[i].no8AutherNumber + ';'}
+
+					if (page.list[i].no9AutherName != null && page.list[i].no9AutherName != '') 
+						{comuAuther = comuAuther + page.list[i].no9AutherName + ':' + page.list[i].no9AutherNumber + ';'}
+
+					var all7Auther = page.list[i].no1AutherNumber + ';';
+					if (page.list[i].no2AutherName != null && page.list[i].no2AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no2AutherNumber + ';'}
+					if (page.list[i].no3AutherName != null && page.list[i].no3AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no3AutherNumber + ';'}
+					if (page.list[i].no4AutherName != null && page.list[i].no4AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no4AutherNumber + ';'}
+					if (page.list[i].no5AutherName != null && page.list[i].no5AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no5AutherNumber + ';'}
+					if (page.list[i].no6AutherName != null && page.list[i].no6AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no6AutherNumber + ';'}
+					if (page.list[i].no7AutherName != null && page.list[i].no7AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no7AutherNumber + ';'}
+
+
                                 var tr = $("<tr/>");
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                 $("<td/>").html(i + 1).appendTo(tr);
                                 $("<td/>").html(page.list[i].keyId).appendTo(tr);
-                                $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
-                                $("<td/>").html(page.list[i].provenance).appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">审核</button>").appendTo(tr);
+                                $("<td/>").html(all7Auther).appendTo(tr);
+					 $("<td/>").html(comuAuther).appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"passBtn\">通过</button>").appendTo(tr);
                                 $("<td class=\"options-contant\"/>").appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"notPassBtn\">不通过</button>").appendTo(tr);
                                 $('#tbody').append(tr);
                                   }
 
@@ -295,6 +305,8 @@ $(document).ready(function () {
                     }
                 }, 'json');
             });
+
+
             $('body').on('click', '#myModalBtn', function () {
                 var id = $(this).parent().siblings()[0].innerHTML;
                 var contant = $(this).parent().next();
@@ -326,8 +338,58 @@ $(document).ready(function () {
 
 
 
+//pass
+            $('body').on('click', '#passBtn', function () {
+                var id = $(this).parent().siblings()[0].innerHTML;
+                if (true) {
+                    $.ajax({
+                        url: '${ctx}/secretary/audit',
+                        type: 'POST',
+                        data: {id: id,awardsType:currentAwardsType,btnType:'pass'},
+                        success: function (data) {
+                            $.confirm({
+                                title: data.status,
+                                content: '该条通过审核',
+                                autoClose: 'cancel|750',
+                                backgroundDismiss: true,
+                                buttons: {
+                                    cancel: {
+                                        text: '确定',
+                                        btnClass: 'waves-effect waves-button'
+                                    }
+                                }
+                            })
+                        }
+                    })
+                }
+            })
 
 
+//notPass
+            $('body').on('click', '#notPassBtn', function () {
+                var id = $(this).parent().siblings()[0].innerHTML;
+                if (true) {
+                    $.ajax({
+                        url: '${ctx}/secretary/audit',
+                        type: 'POST',
+                        data: {id: id,awardsType:currentAwardsType,btnType:'notPass'},
+                        success: function (data) {
+                            $.confirm({
+                                title: data.status,
+                                content: '该条未通过审核',
+                                autoClose: 'cancel|750',
+                                backgroundDismiss: true,
+                                buttons: {
+                                    cancel: {
+                                        text: '确定',
+                                        btnClass: 'waves-effect waves-button'
+                                    }
+                                }
+                            })
+                        }
+                    })
+                }
+            })
 
 
 
@@ -343,49 +405,71 @@ $('body').on('click', '.prePage', function () {
        
 		$.ajax({
 			type : 'post',
-			url : '${ctx}/user/awards-list'+'?pageNum='+currentPageNum+'&',
+			url : '${ctx}/secretary/audit-list'+'?pageNum='+currentPageNum+'&',
 			data : paramMap,
 			success : function(page) {
                         $('#tbody').empty();//清空-------------------------------------------------
                         $('.page-div').empty();//清空-------------------------------------------------
 
-				if (page != null) {
-                    for (var i = 0; i < page.list.length; i++) {
+                        if (page != null) {
+                            for (var i = 0; i < page.list.length; i++) {
+
+					var comuAuther = '';
+					if (page.list[i].no8AutherName != null && page.list[i].no8AutherName != '') 
+						{comuAuther = comuAuther + page.list[i].no8AutherName + ':' + page.list[i].no8AutherNumber + ';'}
+
+					if (page.list[i].no9AutherName != null && page.list[i].no9AutherName != '') 
+						{comuAuther = comuAuther + page.list[i].no9AutherName + ':' + page.list[i].no9AutherNumber + ';'}
+
+					var all7Auther = page.list[i].no1AutherNumber + ';';
+					if (page.list[i].no2AutherName != null && page.list[i].no2AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no2AutherNumber + ';'}
+					if (page.list[i].no3AutherName != null && page.list[i].no3AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no3AutherNumber + ';'}
+					if (page.list[i].no4AutherName != null && page.list[i].no4AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no4AutherNumber + ';'}
+					if (page.list[i].no5AutherName != null && page.list[i].no5AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no5AutherNumber + ';'}
+					if (page.list[i].no6AutherName != null && page.list[i].no6AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no6AutherNumber + ';'}
+					if (page.list[i].no7AutherName != null && page.list[i].no7AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no7AutherNumber + ';'}
+
+
                                 var tr = $("<tr/>");
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                 $("<td/>").html(i + 1).appendTo(tr);
                                 $("<td/>").html(page.list[i].keyId).appendTo(tr);
-                                $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
-                                $("<td/>").html(page.list[i].provenance).appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">审核</button>").appendTo(tr);
+                                $("<td/>").html(all7Auther).appendTo(tr);
+					 $("<td/>").html(comuAuther).appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"passBtn\">通过</button>").appendTo(tr);
                                 $("<td class=\"options-contant\"/>").appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"notPassBtn\">不通过</button>").appendTo(tr);
                                 $('#tbody').append(tr);
                                   }
+
 					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
-                                  currentPageNum = page.pageNum; //重新赋当前值
-          			
+                    
                         			var ul = $("<ul class=\"pagination pagination-lg\"/>");
              		           $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
              		    	       $("<li/>").html(pageNumAndTotal).appendTo(ul);
               	    	   	  $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
                          	 	 $('.page-div').append(ul);
-
-                } else {
-                    $.confirm({
-                        title: 'Data error',
-                        content: '没有与您相关的数据!',
-                        autoClose: 'cancel|1500',
-                        backgroundDismiss: true,
-                        buttons: {
-                            cancel: {
-                                text: '取消',
-                                btnClass: 'waves-effect waves-button'
-                            }
+                        } else {
+                            $.confirm({
+                                title: 'Data error',
+                                content: '没有与您相关的数据!',
+                                autoClose: 'cancel|1500',
+                                backgroundDismiss: true,
+                                buttons: {
+                                    cancel: {
+                                        text: '取消',
+                                        btnClass: 'waves-effect waves-button'
+                                    }
+                                }
+                            })
                         }
-                    })
-                }
 			}
 		});
             })
@@ -399,59 +483,74 @@ $('body').on('click', '.nextPage', function () {
        currentPageNum = currentPageNum + 1 ;
 		$.ajax({
 			type : 'post',
-			url : '${ctx}/user/awards-list'+'?pageNum='+currentPageNum+'&',
+			url : '${ctx}/secretary/audit-list'+'?pageNum='+currentPageNum+'&',
 			data : paramMap,
 			success : function(page) {
                         $('#tbody').empty();//清空-------------------------------------------------
                         $('.page-div').empty();//清空-------------------------------------------------
 
-				if (page != null) {
-                    for (var i = 0; i < page.list.length; i++) {
+                        if (page != null) {
+                            for (var i = 0; i < page.list.length; i++) {
+
+					var comuAuther = '';
+					if (page.list[i].no8AutherName != null && page.list[i].no8AutherName != '') 
+						{comuAuther = comuAuther + page.list[i].no8AutherName + ':' + page.list[i].no8AutherNumber + ';'}
+
+					if (page.list[i].no9AutherName != null && page.list[i].no9AutherName != '') 
+						{comuAuther = comuAuther + page.list[i].no9AutherName + ':' + page.list[i].no9AutherNumber + ';'}
+
+					var all7Auther = page.list[i].no1AutherNumber + ';';
+					if (page.list[i].no2AutherName != null && page.list[i].no2AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no2AutherNumber + ';'}
+					if (page.list[i].no3AutherName != null && page.list[i].no3AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no3AutherNumber + ';'}
+					if (page.list[i].no4AutherName != null && page.list[i].no4AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no4AutherNumber + ';'}
+					if (page.list[i].no5AutherName != null && page.list[i].no5AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no5AutherNumber + ';'}
+					if (page.list[i].no6AutherName != null && page.list[i].no6AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no6AutherNumber + ';'}
+					if (page.list[i].no7AutherName != null && page.list[i].no7AutherName != '') 
+						{all7Auther = all7Auther + page.list[i].no7AutherNumber + ';'}
+
+
                                 var tr = $("<tr/>");
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                 $("<td/>").html(i + 1).appendTo(tr);
                                 $("<td/>").html(page.list[i].keyId).appendTo(tr);
-                                $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
-                                $("<td/>").html(page.list[i].provenance).appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">审核</button>").appendTo(tr);
+                                $("<td/>").html(all7Auther).appendTo(tr);
+					 $("<td/>").html(comuAuther).appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"passBtn\">通过</button>").appendTo(tr);
                                 $("<td class=\"options-contant\"/>").appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"notPassBtn\">不通过</button>").appendTo(tr);
                                 $('#tbody').append(tr);
                                   }
-					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
-                                 currentPageNum = page.pageNum; //重新赋当前值
 
+					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
+                    
                         			var ul = $("<ul class=\"pagination pagination-lg\"/>");
              		           $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
              		    	       $("<li/>").html(pageNumAndTotal).appendTo(ul);
               	    	   	  $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
                          	 	 $('.page-div').append(ul);
-
-                } else {
-                    $.confirm({
-                        title: 'Data error',
-                        content: '没有与您相关的数据!',
-                        autoClose: 'cancel|1500',
-                        backgroundDismiss: true,
-                        buttons: {
-                            cancel: {
-                                text: '取消',
-                                btnClass: 'waves-effect waves-button'
-                            }
+                        } else {
+                            $.confirm({
+                                title: 'Data error',
+                                content: '没有与您相关的数据!',
+                                autoClose: 'cancel|1500',
+                                backgroundDismiss: true,
+                                buttons: {
+                                    cancel: {
+                                        text: '取消',
+                                        btnClass: 'waves-effect waves-button'
+                                    }
+                                }
+                            })
                         }
-                    })
-                }
 			}
 		});
             })
-
-
-
-
-
-
-
 
 
 

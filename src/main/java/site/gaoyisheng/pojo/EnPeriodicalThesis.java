@@ -97,6 +97,16 @@ public class EnPeriodicalThesis {
 		this.claimStatus = "未认领";
 	}
 
+	/**
+	 * 审核用,
+	 * @param id
+	 * @param status
+	 */
+	public EnPeriodicalThesis(int id,String status) {
+		this.id = id;
+		this.no10AutherNumber = status;
+	}
+	
 	public Integer getId() {
         return id;
     }

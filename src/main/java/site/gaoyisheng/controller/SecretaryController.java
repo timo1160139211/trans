@@ -64,13 +64,6 @@ public class SecretaryController {
 		return "/secretary/audit-list";
 	}
 	
-	@RequestMapping(value="/audit",method = RequestMethod.GET)
-	public String audit(){
-		return "/secretary/audit";
-	}
-	
-	
-	
     /** 
      * .
      * TODO 返回 成果 列表.  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
@@ -114,6 +107,38 @@ public class SecretaryController {
             default : return null;
          }
     }
+    
+    
+    
+	@RequestMapping(value="/audit",method = RequestMethod.GET)
+	public String auditPage(){
+		return "/secretary/audit";
+	}
+	
+	@RequestMapping(value="/audit",method = RequestMethod.POST,produces = "application/json; charset=utf-8")//解决中文??问题
+   @ResponseBody
+	public Object audit(HttpServletRequest request){
+		
+		int id = Integer.valueOf(request.getParameter("id"));
+		String btnType = request.getParameter("btnType");
+		
+		String update = "";
+		if(btnType.equals("pass")) {update="通过审核";}
+		if(btnType.equals("notPass")) {update="未通过审核";}
+		
+		int status = 0;
+		switch(request.getParameter("awardsType")) {
+        case "patent": status = patentService.updateByPrimaryKeySelective(new Patent(id,update));break;
+        case "chPeriodicalThesis":status = chPeriodicalThesisService.updateByPrimaryKeySelective(new ChPeriodicalThesis(id,update));break;
+        case "enPeriodicalThesis":status = enPeriodicalThesisService.updateByPrimaryKeySelective(new EnPeriodicalThesis(id,update));break;
+		}	
+		
+		if(status == 1) {
+			return "{\"status\":" + "\"审核成功\"}";
+		}else {
+			return "{\"status\":" + "\"审核失败\"}";
+		}
+	}
 }
 
 
