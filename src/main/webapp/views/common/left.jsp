@@ -4,12 +4,13 @@
 <div id="sidebar-nav" class="sidebar">
 	<div class="sidebar-scroll">
 		<nav>
-			<c:if test="${currentUser.number != 'admin' and currentUser.number != 'secretary'}">
-				<!-- 用户 -->
+			<!-- 用户 -->
+			<c:if
+				test="${currentUser.number != 'admin' and currentUser.number != 'secretary'}">
 				<ul class="nav">
-				    <!-- 用户: 主页 -->
-					<li><a href="${ctx}/user/home" class=""><i class="lnr lnr-file-empty"></i>
-							<span>主页</span></a></li>
+					<!-- 用户: 主页 -->
+					<li><a href="${ctx}/user/home" class=""><i
+							class="lnr lnr-file-empty"></i> <span>主页</span></a></li>
 					<!-- 用户: 查找用户 操作 -->
 					<li><a href="${ctx}/user/search" target="_blank" class=""><i
 							class="fa fa-search"></i> <span>查找用户</span></a></li>
@@ -17,33 +18,48 @@
 					<li><a href="${ctx}/user/user-update" class=""><i
 							class="lnr lnr-pencil"></i> <span>修改密码</span></a></li>
 					<!-- 用户: 认领 操作 -->
-					<li><a href="${ctx}/user/awards-list" class=""><i class="lnr lnr-file-empty"></i>
-							<span>认领</span></a></li>
+					<li><a href="${ctx}/user/awards-list" class=""><i
+							class="lnr lnr-file-empty"></i> <span>认领</span></a></li>
 					<!-- 用户: 补录数据 操作 -->
-					<li><a href="${ctx}/user/awards-create" class=""><i
+					<!-- <li><a href="${ctx}/user/awards-create" class=""><i
 							class="lnr lnr-pencil"></i> <span>补录数据</span></a></li>
+					-->
 				</ul>
 			</c:if>
 
+
+			<!-- 秘书 -->
+			<c:if test="${currentUser.number == 'secretary'}">
+				<ul class="nav">
+					<!-- 秘书: 主页 -->
+					<li><a href="${ctx}/secretary/home" class=""><i
+							class="lnr lnr-file-empty"></i> <span>主页</span></a></li>
+					<!-- 秘书: 审核 操作 -->
+					<li><a href="${ctx}/secretary/audit-list" class=""><i
+							class="fa fa-search"></i> <span>审核</span></a></li>
+				</ul>
+			</c:if>
+
+			<!-- 管理员 -->
 			<c:if test="${currentUser.number == 'admin'}">
 				<!-- admin -->
 				<ul class="nav">
-				    <!-- 用户: 主页 -->
-					<li><a href="${ctx}/admin/home" class=""><i class="lnr lnr-file-empty"></i>
-							<span>主页</span></a></li>
-							
+					<!-- 用户: 主页 -->
+					<li><a href="${ctx}/admin/home" class=""><i
+							class="lnr lnr-file-empty"></i> <span>主页</span></a></li>
+
 					<!-- admin: 统计 操作 -->
 					<li><a href="${ctx}/admin/claim-statistic" class=""><i
 							class="fa fa-search"></i> <span>查看进度</span></a></li>
-					
+
 					<!-- admin: 查看数据 操作 -->
 					<li><a href="${ctx}/admin/notClaimed-list" class=""><i
 							class="fa fa-search"></i> <span>未认领数据</span></a></li>
-							
+
 					<!-- admin: 上传 操作 -->
-					<li><a href="${ctx}/admin/upload" class=""><i class="fa fa-upload"></i> <span>上传数据</span></a>
-					</li>
-					
+					<li><a href="${ctx}/admin/upload" class=""><i
+							class="fa fa-upload"></i> <span>上传数据</span></a></li>
+
 					<!-- admin: 下载 操作 -->
 					<li><a href="#subPagesDownload" data-toggle="collapse"
 						class="collapsed"><i class="fa fa-download"></i> <span>下载数据</span>
@@ -56,13 +72,12 @@
 								<li><a href="${ctx}/admin/download/enPeriodicalThesis"
 									class="">英文期刊论文</a></li>
 								<li><a href="${ctx}/admin/download/patent_model" class="">专利－模版</a></li>
-								<li><a href="${ctx}/admin/download/chPeriodicalThesis_model"
-									class="">中文论文－模版</a></li>
-								<li><a href="${ctx}/admin/download/enPeriodicalThesis_model"
-									class="">英文论文－模版</a></li>
+								<li><a
+									href="${ctx}/admin/download/chPeriodicalThesis_model" class="">中文论文－模版</a></li>
+								<li><a
+									href="${ctx}/admin/download/enPeriodicalThesis_model" class="">英文论文－模版</a></li>
 							</ul>
-						</div>
-					</li>
+						</div></li>
 				</ul>
 			</c:if>
 		</nav>

@@ -27,6 +27,7 @@
 		<jsp:include page="/views/common/left.jsp" flush="true" />
 		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
+		<!-- MAIN -->
 		<div class="main">
 			<div class="main-content">
 				<div class="container-fluid">
@@ -34,31 +35,41 @@
 					<div class="panel panel-headline">
 						<div class="panel-body">
 							<h1>使用指导:</h1>
-							<h3>1.统计</h3>
-							<p class="text-danger">请点击查看进度.</p>
+							<h3>1.密码</h3>
+							<p class="text-danger">初始密码为默认密码(工号),请尽快修改密码并牢记.</p>
 							<hr>
-							<h3>2.上传</h3>
-							<p class="text-primary">请严格按照格式上传(字段顺序必须一致).
-							<br/>上传为:追加数据.
-							</p>
-							<hr>
+
 							<h3>4.退出登陆</h3>
 							<p class="text-primary">右上角(头像)->退出.</p>
 							<hr>
 							<h3>5.登陆超时</h3>
 							<p class="text-primary">超过30分钟无操作,将会自动退出.(重新登陆即可)</p>
 							<hr>
+
+							<h1>提示:</h1>
+							<h3>1.复制</h3>
+							<p class="text-primary">Ctrl+C 可复制光标选定的内容</p>
+							<hr>
+							<h3>2.粘贴</h3>
+							<p class="text-primary">Ctrl+V 可粘贴上次复制的内容,粘贴到光标的位置.实现快速无误内容搬移</p>
+							<hr>
+							<h3>3.撤消</h3>
+							<p class="text-primary">Ctrl+Z 可撤销前n次输入</p>
+							<hr>
+							
 						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
+
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
-      <jsp:include page="/views/common/copyright.jsp" flush="true" />
+		<jsp:include page="/views/common/copyright.jsp" flush="true" />
 	</div>
 	<!-- END WRAPPER -->
 	<jsp:include page="/views/resources/footer.jsp" flush="true" />
-	
+
 </body>
 </html>

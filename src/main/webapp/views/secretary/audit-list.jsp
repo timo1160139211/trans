@@ -9,7 +9,7 @@
 <html lang="en">
 
 <head>
-<title>认领</title>
+<title>审核</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -32,7 +32,7 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">认领</h3>
+					<h3 class="page-title">审核</h3>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="panel">
@@ -65,12 +65,8 @@
 													<label>是否为PCT专利:</label> <input type="checkbox"
 														name="pctPatentOrNot" class="form-control">
 												</div>
-											<div class="form-group">
-												<label>认领状态:</label> <select name="claimStatus"
-													class="form-control">
-													<option value="未认领">未认领</option>
-													<option value="已认领">已认领</option>
-												</select>
+												<!-- selections -->
+	<jsp:include page="/views/resources/selections.jsp" flush="true" />
 											</div>
 											<div class="form-group">
 												<label>审核状态:</label> <select name="no10AutherNumber"
@@ -115,13 +111,8 @@
 												<label>年:</label> <input type="text" name="year"
 													class="form-control">
 											</div>
-											<div class="form-group">
-												<label>认领状态:</label> <select name="claimStatus"
-													class="form-control">
-													<option value="未认领">未认领</option>
-													<option value="已认领">已认领</option>
-												</select>
-											</div>
+											<!-- selections -->
+	<jsp:include page="/views/resources/selections.jsp" flush="true" />
 											<div class="form-group">
 												<label>审核状态:</label> <select name="no10AutherNumber"
 													class="form-control">
@@ -161,13 +152,8 @@
 												<label>年:</label> <input type="text" name="year"
 													class="form-control">
 											</div>
-											<div class="form-group">
-												<label>认领状态:</label> <select name="claimStatus"
-													class="form-control">
-													<option value="未认领">未认领</option>
-													<option value="已认领">已认领</option>
-												</select>
-											</div>
+											<!-- selections -->
+	<jsp:include page="/views/resources/selections.jsp" flush="true" />
 											<div class="form-group">
 												<label>审核状态:</label> <select name="no10AutherNumber"
 													class="form-control">
@@ -279,7 +265,7 @@ $(document).ready(function () {
                                 $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                                 $("<td/>").html(page.list[i].provenance).appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">审核</button>").appendTo(tr);
                                 $("<td class=\"options-contant\"/>").appendTo(tr);
                                 $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
                                 $('#tbody').append(tr);
@@ -321,7 +307,7 @@ $(document).ready(function () {
                             contant.html(data);
                             $.confirm({
                                 title: '加载完成',
-                                content: '数据记载完毕!请再次点击认领.',
+                                content: '数据记载完毕!请再次点击审核.',
                                 autoClose: 'cancel|1000',
                                 backgroundDismiss: true,
                                 buttons: {
@@ -372,7 +358,7 @@ $('body').on('click', '.prePage', function () {
                                 $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                                 $("<td/>").html(page.list[i].provenance).appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">审核</button>").appendTo(tr);
                                 $("<td class=\"options-contant\"/>").appendTo(tr);
                                 $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
                                 $('#tbody').append(tr);
@@ -428,7 +414,7 @@ $('body').on('click', '.nextPage', function () {
                                 $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                                 $("<td/>").html(page.list[i].provenance).appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">审核</button>").appendTo(tr);
                                 $("<td class=\"options-contant\"/>").appendTo(tr);
                                 $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
                                 $('#tbody').append(tr);
@@ -473,240 +459,6 @@ $('body').on('click', '.nextPage', function () {
 
 
 
-
-
-//*************************************1*************************************************//
-//输入框的失去焦点事件=>改变值
-$('body').on('blur', '#no1AutherName', function () {
-	var no1AutherName = $('#no1AutherName').val();//获取输入的名字
-	if(currentAwardsType == 'enPeriodicalThesis' && no1AutherName != ''){//是英文,且输入不为空
-		$.ajax({
-			type : 'get',
-			url : '${ctx}/user/sereachUser',
-			data : {inputName:no1AutherName},
-			dataType : 'json',
-			success : function(data) {
-				if (data != null) {
-					$('#no1AutherNumber').val(data.number);
-				}
-			},
-		});
-	}
-});
-
-//*************************************2***********************************************//
-          //输入框的失去焦点事件=>改变值
-          $('body').on('blur', '#no2AutherName', function () {
-          	var no2AutherName = $('#no2AutherName').val();//获取输入的名字
-
-          	if( currentAwardsType =='enPeriodicalThesis' && no2AutherName != ''){//是英文,且输入不为空
-
-          		$.ajax({
-          			type : 'get',
-          			url : '${ctx}/user/sereachUser',
-          			data : {inputName:no2AutherName},
-          			dataType : 'json',
-          			success : function(data) {
-          				if (data != null) {
-          					$('#no2AutherNumber').val(data.number);
-          				}
-          			},
-          			error : function(){
-          			}
-          		});
-
-          	}
-          });
-          
-        //*************************************3********************************************//
-        //输入框的失去焦点事件=>改变值
-        $('body').on('blur', '#no3AutherName', function () {
-        	var no3AutherName = $('#no3AutherName').val();//获取输入的名字
-
-        	if( currentAwardsType =='enPeriodicalThesis' && no3AutherName != ''){//是英文,且输入不为空
-
-        		$.ajax({
-        			type : 'get',
-        			url : '${ctx}/user/sereachUser',
-        			data : {inputName:no3AutherName},
-        			dataType : 'json',
-        			success : function(data) {
-        				if (data != null) {
-        					$('#no3AutherNumber').val(data.number);
-        				}
-        			},
-        			error : function(){
-        			}
-        		});
-
-        	}
-        });
-        
-      //**************************************4***********************************************//
-      //输入框的失去焦点事件=>改变值
-      $('body').on('blur', '#no4AutherName', function () {
-      	var no4AutherName = $('#no4AutherName').val();//获取输入的名字
-
-      	if( currentAwardsType =='enPeriodicalThesis' && no4AutherName != ''){//是英文,且输入不为空
-
-      		$.ajax({
-      			type : 'get',
-      			url : '${ctx}/user/sereachUser',
-      			data : {inputName:no4AutherName},
-      			dataType : 'json',
-      			success : function(data) {
-      				if (data != null) {
-      					$('#no4AutherNumber').val(data.number);
-      				}
-      			},
-      			error : function(){
-      			}
-      		});
-
-      	}
-      });
-      
-    //**************************************5***********************************************//
-    //输入框的失去焦点事件=>改变值
-    $('body').on('blur', '#no5AutherName', function () {
-    	var no5AutherName = $('#no5AutherName').val();//获取输入的名字
-
-    	if( currentAwardsType =='enPeriodicalThesis' && no5AutherName != ''){//是英文,且输入不为空
-
-    		$.ajax({
-    			type : 'get',
-    			url : '${ctx}/user/sereachUser',
-    			data : {inputName:no5AutherName},
-    			dataType : 'json',
-    			success : function(data) {
-    				if (data != null) {
-    					$('#no5AutherNumber').val(data.number);
-    				}
-    			},
-    			error : function(){
-    			}
-    		});
-
-    	}
-    });
-    
-  //**************************************6***********************************************//
-  //输入框的失去焦点事件=>改变值
-  $('body').on('blur', '#no6AutherName', function () {
-  	var no6AutherName = $('#no6AutherName').val();//获取输入的名字
-
-  	if( currentAwardsType =='enPeriodicalThesis' && no6AutherName != ''){//是英文,且输入不为空
-
-  		$.ajax({
-  			type : 'get',
-  			url : '${ctx}/user/sereachUser',
-  			data : {inputName:no6AutherName},
-  			dataType : 'json',
-  			success : function(data) {
-  				if (data != null) {
-  					$('#no6AutherNumber').val(data.number);
-  				}
-  			},
-  			error : function(){
-  			}
-  		});
-
-  	}
-  });
-  
-//*************************************7***********************************************//
-//输入框的失去焦点事件=>改变值
-$('body').on('blur', '#no7AutherName', function () {
-	var no7AutherName = $('#no7AutherName').val();//获取输入的名字
-
-	if( currentAwardsType =='enPeriodicalThesis' && no7AutherName != ''){//是英文,且输入不为空
-
-		$.ajax({
-			type : 'get',
-			url : '${ctx}/user/sereachUser',
-			data : {inputName:no7AutherName},
-			dataType : 'json',
-			success : function(data) {
-				if (data != null) {
-					$('#no7AutherNumber').val(data.number);
-				}
-			},
-			error : function(){
-			}
-		});
-
-	}
-});
-
-//**************************************8**********************************************//
-//输入框的失去焦点事件=>改变值
-$('body').on('blur', '#no8AutherName', function () {
-	var no8AutherName = $('#no8AutherName').val();//获取输入的名字
-
-	if( currentAwardsType =='enPeriodicalThesis' && no8AutherName != ''){//是英文,且输入不为空
-
-		$.ajax({
-			type : 'get',
-			url : '${ctx}/user/sereachUser',
-			data : {inputName:no8AutherName},
-			dataType : 'json',
-			success : function(data) {
-				if (data != null) {
-					$('#no8AutherNumber').val(data.number);
-				}
-			},
-			error : function(){
-			}
-		});
-
-	}
-});
-
-//**************************************9**********************************************//
-//输入框的失去焦点事件=>改变值
-$('body').on('blur', '#no9AutherName', function () {
-	var no9AutherName = $('#no9AutherName').val();//获取输入的名字
-
-	if( currentAwardsType =='enPeriodicalThesis' && no9AutherName != ''){//是英文,且输入不为空
-
-		$.ajax({
-			type : 'get',
-			url : '${ctx}/user/sereachUser',
-			data : {inputName:no9AutherName},
-			dataType : 'json',
-			success : function(data) {
-				if (data != null) {
-					$('#no9AutherNumber').val(data.number);
-				}
-			},
-			error : function(){
-			}
-		});
-
-	}
-});
-
-//***************************************10***********************************************//
-//输入框的失去焦点事件=>改变值
-$('body').on('blur', '#no10AutherName', function () {
-	var no10AutherName = $('#no10AutherName').val();//获取输入的名字
-	if( currentAwardsType =='enPeriodicalThesis' && no10AutherName != ''){//是英文,且输入不为空
-		$.ajax({
-			type : 'get',
-			url : '${ctx}/user/sereachUser',
-			data : {inputName:no10AutherName},
-			dataType : 'json',
-			success : function(data) {
-				if (data != null) {
-					$('#no10AutherNumber').val(data.number);
-				}
-			},
-			error : function(){
-			}
-		});
-
-	}
-});
 
 
 
