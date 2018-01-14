@@ -307,37 +307,6 @@ $(document).ready(function () {
             });
 
 
-            $('body').on('click', '#myModalBtn', function () {
-                var id = $(this).parent().siblings()[0].innerHTML;
-                var contant = $(this).parent().next();
-                if (contant.html() == '') {
-                    $.ajax({
-                        url: '${ctx}/user/options-contant',
-                        type: 'POST',
-                        data: {id: id,awardsType:currentAwardsType},
-                        success: function (data) {
-                            contant.html(data);
-                            $.confirm({
-                                title: '加载完成',
-                                content: '数据记载完毕!请再次点击审核.',
-                                autoClose: 'cancel|1000',
-                                backgroundDismiss: true,
-                                buttons: {
-                                    cancel: {
-                                        text: '取消',
-                                        btnClass: 'waves-effect waves-button'
-                                    }
-                                }
-                            })
-                        }
-                    })
-                }
-            })
-
-
-
-
-
 //pass
             $('body').on('click', '#passBtn', function () {
                 var id = $(this).parent().siblings()[0].innerHTML;
@@ -350,7 +319,7 @@ $(document).ready(function () {
                             $.confirm({
                                 title: data.status,
                                 content: '该条通过审核',
-                                autoClose: 'cancel|750',
+                                autoClose: 'cancel|1000',
                                 backgroundDismiss: true,
                                 buttons: {
                                     cancel: {
@@ -361,7 +330,9 @@ $(document).ready(function () {
                             })
                         }
                     })
-                }
+                }//if
+                  $(this).parent().parent().remove();
+                
             })
 
 
@@ -377,7 +348,7 @@ $(document).ready(function () {
                             $.confirm({
                                 title: data.status,
                                 content: '该条未通过审核',
-                                autoClose: 'cancel|750',
+                                autoClose: 'cancel|1000',
                                 backgroundDismiss: true,
                                 buttons: {
                                     cancel: {
@@ -388,7 +359,8 @@ $(document).ready(function () {
                             })
                         }
                     })
-                }
+                }//if
+                  $(this).parent().parent().remove();
             })
 
 
