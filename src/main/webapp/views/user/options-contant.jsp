@@ -5,11 +5,12 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+
 <div class="modal fade" id="myModal${awards.id}" tabindex="-1"
 	role="dialog" data-backdrop="true" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<form:form commandName="awards" class="form-inline"
+			<form:form id="optionForm" commandName="awards" class="form-inline"
 				action="${ctx}/user/claim" method="post">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"

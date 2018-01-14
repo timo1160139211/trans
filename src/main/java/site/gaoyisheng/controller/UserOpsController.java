@@ -156,6 +156,8 @@ public class UserOpsController {
      * @throws IOException 
      * @throws UnsupportedEncodingException
      */
+    //@RequestMapping(value = "/claim", method = RequestMethod.POST,produces = "application/json; charset=utf-8")
+   // @ResponseBody
     @RequestMapping(value = "/claim", method = RequestMethod.POST)
     public void claim( ModelAndView mv,
     		HttpServletRequest request,
@@ -193,8 +195,8 @@ public class UserOpsController {
          }
         
 //        response.setContentType("application/json;charset=UTF-8");//防止数据传递乱码
-        response.sendRedirect("awards-list");
-        
+        //response.sendRedirect("awards-list");
+        	//return "{'msg':'" + msg + "'}";
     }
     
     /**

@@ -79,7 +79,7 @@ public class LoginController {
 				}
 				
 				// 如果是secretary则 到/secretary/home
-				if (currentUser.getNumber().equals("secretary")) {
+				if (currentUser.getNumber().startsWith("secretary")) {
 					type = "/secretary";
 				}
 			}
