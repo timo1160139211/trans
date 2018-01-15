@@ -113,5 +113,25 @@
 	</div>
 	<!-- END WRAPPER -->
 	<jsp:include page="/views/resources/footer.jsp" flush="true" />
+
+	<script type="text/javascript">
+$(document).ready(function () {
+
+console.log("hahshas");
+$('body').on('click', ':enabled', function () {
+
+console.log("123213");
+$(":enabled").attr("disabled","disabled");
+})
+
+$('body').on('click', ':button', function () {
+console.log("0000000");
+$(":button").attr("disabled","disabled");
+})
+
+
+});//ready
+
 </body>
+
 </html>
