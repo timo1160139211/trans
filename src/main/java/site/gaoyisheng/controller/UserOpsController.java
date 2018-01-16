@@ -119,6 +119,7 @@ public class UserOpsController {
     	 map.put("autherName", request.getParameter("autherName"));
     	 map.put("claimStatus", request.getParameter("claimStatus"));
     	 map.put("no10AutherNumber", request.getParameter("no10AutherNumber"));
+    	 map.put("no10AutherName", request.getParameter("no10AutherName"));
         
     	 //分页参数
     	 int pageNum = Integer.valueOf(request.getParameter("pageNum"));
@@ -195,7 +196,7 @@ public class UserOpsController {
          }
         
 //        response.setContentType("application/json;charset=UTF-8");//防止数据传递乱码
-        //response.sendRedirect("awards-list");
+        response.sendRedirect("awards-list");
         	//return "{'msg':'" + msg + "'}";
     }
     

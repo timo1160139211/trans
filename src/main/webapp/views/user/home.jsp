@@ -53,7 +53,7 @@
 							<p class="text-primary">右上角(头像)->退出.</p>
 							<hr>
 							<h3>5.登陆超时</h3>
-							<p class="text-primary">超过30分钟无操作,将会自动退出.(重新登陆即可)</p>
+							<p class="text-primary">超过15分钟无操作,将会自动退出.(重新登陆即可)</p>
 							<hr>
 							<h1>FAQ:</h1>
 							<h3>1.认领不小心填错了怎么办?</h3>

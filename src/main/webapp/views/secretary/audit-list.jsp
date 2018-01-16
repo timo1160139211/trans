@@ -170,7 +170,7 @@
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>唯一标识</th>
+												<th>标题</th>
 												<th>作者</th>
 												<th>作者信息</th>
 												<th>通讯作者</th>
@@ -271,7 +271,7 @@ $(document).ready(function () {
                                 var tr = $("<tr/>");
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                 $("<td/>").html(i + 1).appendTo(tr);
-                                $("<td/>").html(page.list[i].keyId).appendTo(tr);
+                                $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                                 $("<td/>").html(all7Auther).appendTo(tr);
 					 $("<td/>").html(comuAuther).appendTo(tr);
@@ -411,7 +411,7 @@ $('body').on('click', '.prePage', function () {
                                 var tr = $("<tr/>");
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                 $("<td/>").html(i + 1).appendTo(tr);
-                                $("<td/>").html(page.list[i].keyId).appendTo(tr);
+                                $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                                 $("<td/>").html(all7Auther).appendTo(tr);
 					 $("<td/>").html(comuAuther).appendTo(tr);
@@ -489,7 +489,7 @@ $('body').on('click', '.nextPage', function () {
                                 var tr = $("<tr/>");
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                 $("<td/>").html(i + 1).appendTo(tr);
-                                $("<td/>").html(page.list[i].keyId).appendTo(tr);
+                                $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                                 $("<td/>").html(all7Auther).appendTo(tr);
 					 $("<td/>").html(comuAuther).appendTo(tr);

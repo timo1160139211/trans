@@ -65,8 +65,12 @@
 													<label>是否为PCT专利:</label> <input type="checkbox"
 														name="pctPatentOrNot" class="form-control">
 												</div>
+												<div class="form-group">
+												<label>归属学院:</label> <input type="text" name="no10AutherName"
+													class="form-control" placeholder="未认领,无学院">
+											    </div>
 											<div class="form-group">
-												<label>认领状态:</label> <select name="claimStatus"
+												<label>认领状态:</label> <select id="paClaimStatus" name="claimStatus"
 													class="form-control">
 													<option value="未认领">未认领</option>
 													<option value="已认领">已认领</option>
@@ -107,16 +111,16 @@
 												<label>学科领域:</label> <input type="text" name="subject"
 													class="form-control">
 											</div>
-											<div class="form-group">
-												<label>卷:</label> <input type="text" name="volume"
-													class="form-control">
-											</div>
+												<div class="form-group">
+												<label>归属学院:</label> <input type="text" name="no10AutherName"
+													class="form-control" placeholder="未认领,无学院">
+											    </div>
 											<div class="form-group">
 												<label>年:</label> <input type="text" name="year"
 													class="form-control">
 											</div>
 											<div class="form-group">
-												<label>认领状态:</label> <select name="claimStatus"
+												<label>认领状态:</label> <select id="enClaimStatus" name="claimStatus"
 													class="form-control">
 													<option value="未认领">未认领</option>
 													<option value="已认领">已认领</option>
@@ -154,15 +158,15 @@
 													class="form-control" >
 											</div>
 											<div class="form-group">
-												<label>卷:</label> <input type="text" name="volume"
-													class="form-control">
-											</div>
+												<label>归属学院:</label> <input type="text" name="no10AutherName"
+													class="form-control" placeholder="未认领,无学院">
+											    </div>
 											<div class="form-group">
 												<label>年:</label> <input type="text" name="year"
 													class="form-control">
 											</div>
 											<div class="form-group">
-												<label>认领状态:</label> <select name="claimStatus"
+												<label>认领状态:</label> <select id="chClaimStatus" name="claimStatus"
 													class="form-control">
 													<option value="未认领">未认领</option>
 													<option value="已认领">已认领</option>
@@ -200,7 +204,7 @@
 												<th>唯一标识</th>
 												<th>名称</th>
 												<th>作者</th>
-												<th>出处/期刊</th>
+												<th>期刊 | 作者情况</th>
 												<th>操作</th>
 												<th>操作2</th>
 											</tr>
@@ -248,7 +252,7 @@ $(document).ready(function () {
 		$('#patent-tag').click(function(){initical('patent');});
 
 
-            $('#ch-btn,#en-btn,#patent-btn').bind('click', function(){
+$('#ch-btn,#en-btn,#patent-btn').bind('click', function(){
 				currentPageNum=1;    ////维护一个 当前页参数,换页时+ - ,在每次切换标签/查询时初始化.
                         $('#tbody').empty();//清空-------------------------------------------------
                         $('.page-div').empty();//清空-------------------------------------------------
@@ -264,12 +268,29 @@ $(document).ready(function () {
  			$('.type-control').attr('value',currentAwardsType);
 			paramMap = $(this).parent().serialize();
 
+
+var selectedText = '';
+if(currentAwardsType=='chPeriodicalThesis'){
+    selectedText = $("#chClaimStatus").find("option:selected").text();
+}
+if(currentAwardsType=='enPeriodicalThesis'){
+    selectedText = $("#enClaimStatus option:selected").text();
+}
+if(currentAwardsType=='patent'){
+    selectedText = $("#paClaimStatus option:selected").text();
+}
+
+
+
             	$(this).parent().attr('target','nm_iframe');
             	$.ajax({
                     type: 'post',
                     url: '${ctx}/user/awards-list'+'?pageNum='+currentPageNum+'&',
                     data: paramMap,
                     success: function (page) {
+
+			    if(selectedText=='未认领'){
+
                         if (page != null) {
                             for (var i = 0; i < page.list.length; i++) {
                                 var tr = $("<tr/>");
@@ -292,6 +313,7 @@ $(document).ready(function () {
              		    	       $("<li/>").html(pageNumAndTotal).appendTo(ul);
               	    	   	  $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
                          	 	 $('.page-div').append(ul);
+
                         } else {
                             $.confirm({
                                 title: 'Data error',
@@ -306,9 +328,79 @@ $(document).ready(function () {
                                 }
                             })
                         }
-                    }
-                }, 'json');
-            });
+                    }//if 未认领
+                    
+			   
+
+			    if(selectedText=='已认领'){
+
+                        if (page != null) {
+                            for (var i = 0; i < page.list.length; i++) {
+                            	
+                            	
+            					var comuAuther = '';
+            					if (page.list[i].no8AutherName != null && page.list[i].no8AutherName != '') 
+            						{comuAuther = comuAuther + page.list[i].no8AutherName + ':' + page.list[i].no8AutherNumber + ';'}
+
+            					if (page.list[i].no9AutherName != null && page.list[i].no9AutherName != '') 
+            						{comuAuther = comuAuther + page.list[i].no9AutherName + ':' + page.list[i].no9AutherNumber + ';'}
+
+            					var all7Auther = page.list[i].no1AutherNumber + ';';
+            					if (page.list[i].no2AutherName != null && page.list[i].no2AutherName != '') 
+            						{all7Auther = all7Auther + page.list[i].no2AutherNumber + ';'}
+            					if (page.list[i].no3AutherName != null && page.list[i].no3AutherName != '') 
+            						{all7Auther = all7Auther + page.list[i].no3AutherNumber + ';'}
+            					if (page.list[i].no4AutherName != null && page.list[i].no4AutherName != '') 
+            						{all7Auther = all7Auther + page.list[i].no4AutherNumber + ';'}
+            					if (page.list[i].no5AutherName != null && page.list[i].no5AutherName != '') 
+            						{all7Auther = all7Auther + page.list[i].no5AutherNumber + ';'}
+            					if (page.list[i].no6AutherName != null && page.list[i].no6AutherName != '') 
+            						{all7Auther = all7Auther + page.list[i].no6AutherNumber + ';'}
+            					if (page.list[i].no7AutherName != null && page.list[i].no7AutherName != '') 
+            						{all7Auther = all7Auther + page.list[i].no7AutherNumber + ';'}
+            					
+            					
+                                var tr = $("<tr/>");
+                                $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
+                                $("<td/>").html(i + 1).appendTo(tr);
+                                $("<td/>").html(page.list[i].keyId).appendTo(tr);
+                                $("<td/>").html(page.list[i].name).appendTo(tr);
+                                $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
+                                $("<td/>").html(all7Auther+comuAuther).appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
+                                $("<td class=\"options-contant\"/>").appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                                $('#tbody').append(tr);
+                                  }
+
+					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
+                    
+                        			var ul = $("<ul class=\"pagination pagination-lg\"/>");
+             		           $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
+             		    	       $("<li/>").html(pageNumAndTotal).appendTo(ul);
+              	    	   	  $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
+                         	 	 $('.page-div').append(ul);
+
+                        } else {
+                            $.confirm({
+                                title: 'Data error',
+                                content: '没有与您相关的数据!',
+                                autoClose: 'cancel|1500',
+                                backgroundDismiss: true,
+                                buttons: {
+                                    cancel: {
+                                        text: '取消',
+                                        btnClass: 'waves-effect waves-button'
+                                    }
+                                }
+                            })
+                        }
+                    }//if 已认领
+			   
+			   
+			   }
+                }, 'json');//success
+            });//ajax
 
 
 
@@ -341,6 +433,8 @@ $(document).ready(function () {
             })
 
 
+
+/*
 $("#optionForm").submit(function(){
 	
 	console.log('hahhaa');
@@ -359,7 +453,7 @@ $(this).attr('target','nm_iframe_modal');
       }
   })
 });
-
+*/
 
 
 
@@ -371,6 +465,18 @@ $(this).attr('target','nm_iframe_modal');
 $('body').on('click', '.prePage', function () {
        currentPageNum = currentPageNum - 1 ;
        
+
+var selectedText = '';
+if(currentAwardsType=='chPeriodicalThesis'){
+    selectedText = $("#chClaimStatus").find("option:selected").text();
+}
+if(currentAwardsType=='enPeriodicalThesis'){
+    selectedText = $("#enClaimStatus option:selected").text();
+}
+if(currentAwardsType=='patent'){
+    selectedText = $("#paClaimStatus option:selected").text();
+}
+
 		$.ajax({
 			type : 'post',
 			url : '${ctx}/user/awards-list'+'?pageNum='+currentPageNum+'&',
@@ -379,43 +485,116 @@ $('body').on('click', '.prePage', function () {
                         $('#tbody').empty();//清空-------------------------------------------------
                         $('.page-div').empty();//清空-------------------------------------------------
 
-				if (page != null) {
-                    for (var i = 0; i < page.list.length; i++) {
-                                var tr = $("<tr/>");
-                                $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
-                                $("<td/>").html(i + 1).appendTo(tr);
-                                $("<td/>").html(page.list[i].keyId).appendTo(tr);
-                                $("<td/>").html(page.list[i].name).appendTo(tr);
-                                $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
-                                $("<td/>").html(page.list[i].provenance).appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
-                                $("<td class=\"options-contant\"/>").appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
-                                $('#tbody').append(tr);
-                                  }
-					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
-                                  currentPageNum = page.pageNum; //重新赋当前值
-          			
-                        			var ul = $("<ul class=\"pagination pagination-lg\"/>");
-             		           $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
-             		    	       $("<li/>").html(pageNumAndTotal).appendTo(ul);
-              	    	   	  $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
-                         	 	 $('.page-div').append(ul);
 
-                } else {
-                    $.confirm({
-                        title: 'Data error',
-                        content: '没有与您相关的数据!',
-                        autoClose: 'cancel|1500',
-                        backgroundDismiss: true,
-                        buttons: {
-                            cancel: {
-                                text: '取消',
-                                btnClass: 'waves-effect waves-button'
+        			    if(selectedText=='未认领'){
+
+                            if (page != null) {
+                                for (var i = 0; i < page.list.length; i++) {
+                                    var tr = $("<tr/>");
+                                    $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
+                                    $("<td/>").html(i + 1).appendTo(tr);
+                                    $("<td/>").html(page.list[i].keyId).appendTo(tr);
+                                    $("<td/>").html(page.list[i].name).appendTo(tr);
+                                    $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
+                                    $("<td/>").html(page.list[i].provenance).appendTo(tr);
+                                    $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
+                                    $("<td class=\"options-contant\"/>").appendTo(tr);
+                                    $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                                    $('#tbody').append(tr);
+                                      }
+
+          					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
+                              currentPageNum = page.pageNum; //重新赋当前值
+      			
+                    			var ul = $("<ul class=\"pagination pagination-lg\"/>");
+         		           $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
+         		    	       $("<li/>").html(pageNumAndTotal).appendTo(ul);
+          	    	   	  $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
+                     	 	 $('.page-div').append(ul);
+
+                            } else {
+                                $.confirm({
+                                    title: 'Data error',
+                                    content: '没有与您相关的数据!',
+                                    autoClose: 'cancel|1500',
+                                    backgroundDismiss: true,
+                                    buttons: {
+                                        cancel: {
+                                            text: '取消',
+                                            btnClass: 'waves-effect waves-button'
+                                        }
+                                    }
+                                })
                             }
-                        }
-                    })
-                }
+                        }//if 未认领
+       
+                        
+			    if(selectedText=='已认领'){
+
+                    if (page != null) {
+                        for (var i = 0; i < page.list.length; i++) {
+                        	
+                        	
+        					var comuAuther = '';
+        					if (page.list[i].no8AutherName != null && page.list[i].no8AutherName != '') 
+        						{comuAuther = comuAuther + page.list[i].no8AutherName + ':' + page.list[i].no8AutherNumber + ';'}
+
+        					if (page.list[i].no9AutherName != null && page.list[i].no9AutherName != '') 
+        						{comuAuther = comuAuther + page.list[i].no9AutherName + ':' + page.list[i].no9AutherNumber + ';'}
+
+        					var all7Auther = page.list[i].no1AutherNumber + ';';
+        					if (page.list[i].no2AutherName != null && page.list[i].no2AutherName != '') 
+        						{all7Auther = all7Auther + page.list[i].no2AutherNumber + ';'}
+        					if (page.list[i].no3AutherName != null && page.list[i].no3AutherName != '') 
+        						{all7Auther = all7Auther + page.list[i].no3AutherNumber + ';'}
+        					if (page.list[i].no4AutherName != null && page.list[i].no4AutherName != '') 
+        						{all7Auther = all7Auther + page.list[i].no4AutherNumber + ';'}
+        					if (page.list[i].no5AutherName != null && page.list[i].no5AutherName != '') 
+        						{all7Auther = all7Auther + page.list[i].no5AutherNumber + ';'}
+        					if (page.list[i].no6AutherName != null && page.list[i].no6AutherName != '') 
+        						{all7Auther = all7Auther + page.list[i].no6AutherNumber + ';'}
+        					if (page.list[i].no7AutherName != null && page.list[i].no7AutherName != '') 
+        						{all7Auther = all7Auther + page.list[i].no7AutherNumber + ';'}
+        					
+        					
+                            var tr = $("<tr/>");
+                            $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
+                            $("<td/>").html(i + 1).appendTo(tr);
+                            $("<td/>").html(page.list[i].keyId).appendTo(tr);
+                            $("<td/>").html(page.list[i].name).appendTo(tr);
+                            $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
+                            $("<td/>").html(all7Auther+comuAuther).appendTo(tr);
+                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
+                            $("<td class=\"options-contant\"/>").appendTo(tr);
+                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                            $('#tbody').append(tr);
+                              }
+  					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
+                      currentPageNum = page.pageNum; //重新赋当前值
+			
+            			var ul = $("<ul class=\"pagination pagination-lg\"/>");
+ 		           $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
+ 		    	       $("<li/>").html(pageNumAndTotal).appendTo(ul);
+  	    	   	  $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
+             	 	 $('.page-div').append(ul);
+
+                    } else {
+                        $.confirm({
+                            title: 'Data error',
+                            content: '没有与您相关的数据!',
+                            autoClose: 'cancel|1500',
+                            backgroundDismiss: true,
+                            buttons: {
+                                cancel: {
+                                    text: '取消',
+                                    btnClass: 'waves-effect waves-button'
+                                }
+                            }
+                        })
+                    }
+                }//if 已认领     
+                        
+                        
 			}
 		});
             })
@@ -425,8 +604,21 @@ $('body').on('click', '.prePage', function () {
 
 ///////////////////////////////   nextPage   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 $('body').on('click', '.nextPage', function () {
-
        currentPageNum = currentPageNum + 1 ;
+
+
+
+var selectedText = '';
+if(currentAwardsType=='chPeriodicalThesis'){
+    selectedText = $("#chClaimStatus").find("option:selected").text();
+}
+if(currentAwardsType=='enPeriodicalThesis'){
+    selectedText = $("#enClaimStatus option:selected").text();
+}
+if(currentAwardsType=='patent'){
+    selectedText = $("#paClaimStatus option:selected").text();
+}
+
 		$.ajax({
 			type : 'post',
 			url : '${ctx}/user/awards-list'+'?pageNum='+currentPageNum+'&',
@@ -435,51 +627,119 @@ $('body').on('click', '.nextPage', function () {
                         $('#tbody').empty();//清空-------------------------------------------------
                         $('.page-div').empty();//清空-------------------------------------------------
 
-				if (page != null) {
-                    for (var i = 0; i < page.list.length; i++) {
-                                var tr = $("<tr/>");
-                                $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
-                                $("<td/>").html(i + 1).appendTo(tr);
-                                $("<td/>").html(page.list[i].keyId).appendTo(tr);
-                                $("<td/>").html(page.list[i].name).appendTo(tr);
-                                $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
-                                $("<td/>").html(page.list[i].provenance).appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
-                                $("<td class=\"options-contant\"/>").appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
-                                $('#tbody').append(tr);
-                                  }
-					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
-                                 currentPageNum = page.pageNum; //重新赋当前值
 
-                        			var ul = $("<ul class=\"pagination pagination-lg\"/>");
-             		           $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
-             		    	       $("<li/>").html(pageNumAndTotal).appendTo(ul);
-              	    	   	  $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
-                         	 	 $('.page-div').append(ul);
+        			    if(selectedText=='未认领'){
 
-                } else {
-                    $.confirm({
-                        title: 'Data error',
-                        content: '没有与您相关的数据!',
-                        autoClose: 'cancel|1500',
-                        backgroundDismiss: true,
-                        buttons: {
-                            cancel: {
-                                text: '取消',
-                                btnClass: 'waves-effect waves-button'
+                            if (page != null) {
+                                for (var i = 0; i < page.list.length; i++) {
+                                    var tr = $("<tr/>");
+                                    $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
+                                    $("<td/>").html(i + 1).appendTo(tr);
+                                    $("<td/>").html(page.list[i].keyId).appendTo(tr);
+                                    $("<td/>").html(page.list[i].name).appendTo(tr);
+                                    $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
+                                    $("<td/>").html(page.list[i].provenance).appendTo(tr);
+                                    $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
+                                    $("<td class=\"options-contant\"/>").appendTo(tr);
+                                    $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                                    $('#tbody').append(tr);
+                                      }
+
+          					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
+                              currentPageNum = page.pageNum; //重新赋当前值
+      			
+                    			var ul = $("<ul class=\"pagination pagination-lg\"/>");
+         		           $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
+         		    	       $("<li/>").html(pageNumAndTotal).appendTo(ul);
+          	    	   	  $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
+                     	 	 $('.page-div').append(ul);
+
+                            } else {
+                                $.confirm({
+                                    title: 'Data error',
+                                    content: '没有与您相关的数据!',
+                                    autoClose: 'cancel|1500',
+                                    backgroundDismiss: true,
+                                    buttons: {
+                                        cancel: {
+                                            text: '取消',
+                                            btnClass: 'waves-effect waves-button'
+                                        }
+                                    }
+                                })
                             }
-                        }
-                    })
-                }
+                        }//if 未认领
+       
+                        
+			    if(selectedText=='已认领'){
+
+                    if (page != null) {
+                        for (var i = 0; i < page.list.length; i++) {
+                        	
+                        	
+        					var comuAuther = '';
+        					if (page.list[i].no8AutherName != null && page.list[i].no8AutherName != '') 
+        						{comuAuther = comuAuther + page.list[i].no8AutherName + ':' + page.list[i].no8AutherNumber + ';'}
+
+        					if (page.list[i].no9AutherName != null && page.list[i].no9AutherName != '') 
+        						{comuAuther = comuAuther + page.list[i].no9AutherName + ':' + page.list[i].no9AutherNumber + ';'}
+
+        					var all7Auther = page.list[i].no1AutherNumber + ';';
+        					if (page.list[i].no2AutherName != null && page.list[i].no2AutherName != '') 
+        						{all7Auther = all7Auther + page.list[i].no2AutherNumber + ';'}
+        					if (page.list[i].no3AutherName != null && page.list[i].no3AutherName != '') 
+        						{all7Auther = all7Auther + page.list[i].no3AutherNumber + ';'}
+        					if (page.list[i].no4AutherName != null && page.list[i].no4AutherName != '') 
+        						{all7Auther = all7Auther + page.list[i].no4AutherNumber + ';'}
+        					if (page.list[i].no5AutherName != null && page.list[i].no5AutherName != '') 
+        						{all7Auther = all7Auther + page.list[i].no5AutherNumber + ';'}
+        					if (page.list[i].no6AutherName != null && page.list[i].no6AutherName != '') 
+        						{all7Auther = all7Auther + page.list[i].no6AutherNumber + ';'}
+        					if (page.list[i].no7AutherName != null && page.list[i].no7AutherName != '') 
+        						{all7Auther = all7Auther + page.list[i].no7AutherNumber + ';'}
+        					
+        					
+                            var tr = $("<tr/>");
+                            $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
+                            $("<td/>").html(i + 1).appendTo(tr);
+                            $("<td/>").html(page.list[i].keyId).appendTo(tr);
+                            $("<td/>").html(page.list[i].name).appendTo(tr);
+                            $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
+                            $("<td/>").html(all7Auther+comuAuther).appendTo(tr);
+                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
+                            $("<td class=\"options-contant\"/>").appendTo(tr);
+                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                            $('#tbody').append(tr);
+                              }
+  					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
+                      currentPageNum = page.pageNum; //重新赋当前值
+			
+            			var ul = $("<ul class=\"pagination pagination-lg\"/>");
+ 		           $("<li/>").html("<a href=\"#\" class=\"prePage\">&laquo;上一页</a>").appendTo(ul);
+ 		    	       $("<li/>").html(pageNumAndTotal).appendTo(ul);
+  	    	   	  $("<li/>").html("<a href=\"#\" class=\"nextPage\">下一页&raquo;</a>").appendTo(ul);
+             	 	 $('.page-div').append(ul);
+
+                    } else {
+                        $.confirm({
+                            title: 'Data error',
+                            content: '没有与您相关的数据!',
+                            autoClose: 'cancel|1500',
+                            backgroundDismiss: true,
+                            buttons: {
+                                cancel: {
+                                    text: '取消',
+                                    btnClass: 'waves-effect waves-button'
+                                }
+                            }
+                        })
+                    }
+                }//if 已认领     
+                        
+                        
 			}
 		});
             })
-
-
-
-
-
 
 
 
