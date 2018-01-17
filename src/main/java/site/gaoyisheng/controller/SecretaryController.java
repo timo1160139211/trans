@@ -20,11 +20,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
@@ -33,6 +35,7 @@ import com.github.pagehelper.PageInfo;
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
+import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.ChPeriodicalThesisService;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
 import site.gaoyisheng.service.PatentService;
@@ -139,6 +142,35 @@ public class SecretaryController {
 			return "{\"status\":" + "\"审核失败\"}";
 		}
 	}
+	
+	
+    @RequestMapping(value = "/secretary-update", method = RequestMethod.GET)
+    public String updateUser() {
+        return "/secretary/modify";
+    }
+    
+    /**
+     * .
+     * 提交表单,更新数据库,更改session用户. TODO
+     *
+     * @param userForm
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/secretary-update", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateUser(@RequestParam("password")String password, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        User selectedUser = (User) session.getAttribute("currentUser");
+        
+        User userForm=new User();
+        userForm.setId(selectedUser.getId());
+        userForm.setPassword(password);
+        int flag = userService.updateByPrimaryKeySelective(userForm);
+      
+		return flag;
+    }
+    
 }
 
 

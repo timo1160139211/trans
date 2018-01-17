@@ -74,12 +74,12 @@ public class LoginController {
 				request.getSession().setAttribute("currentUser", currentUser);
 				
 				// 如果是admin则 到/admin/home
-				if (currentUser.getNumber().equals("admin")) {
+				if (currentUser.getName().equals("admin")) {
 					type = "/admin";
 				}
 				
 				// 如果是secretary则 到/secretary/home
-				if (currentUser.getNumber().equals("secretary")) {
+				if (currentUser.getName().equals("secretary")) {
 					type = "/secretary";
 				}
 			}

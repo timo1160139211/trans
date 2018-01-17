@@ -31,7 +31,7 @@
 		<div class="main">
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">欢迎您: ${currentUser.name}</h3>
+					<h3 class="page-title">欢迎您: ${currentUser.college}秘书</h3>
 					<div class="panel panel-headline">
 						<div class="panel-body">
 							<h1>使用指导:</h1>

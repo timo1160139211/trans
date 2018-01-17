@@ -6,7 +6,7 @@
 		<nav>
 			<!-- 用户 -->
 			<c:if
-				test="${currentUser.number != 'admin' and currentUser.number != 'secretary'}">
+				test="${currentUser.name != 'admin' and currentUser.name != 'secretary'}">
 				<ul class="nav">
 					<!-- 用户: 主页 -->
 					<li><a href="${ctx}/user/home" class=""><i
@@ -29,7 +29,7 @@
 
 
 			<!-- 秘书 -->
-			<c:if test="${currentUser.number == 'secretary'}">
+			<c:if test="${currentUser.name != 'admin' and currentUser.name == 'secretary'}">
 				<ul class="nav">
 					<!-- 秘书: 主页 -->
 					<li><a href="${ctx}/secretary/home" class=""><i
@@ -37,11 +37,14 @@
 					<!-- 秘书: 审核 操作 -->
 					<li><a href="${ctx}/secretary/audit-list" class=""><i
 							class="fa fa-search"></i> <span>审核</span></a></li>
+					<!-- 用户: 修改个人 操作 -->
+					<li><a href="${ctx}/secretary/secretary-update" class=""><i
+							class="lnr lnr-pencil"></i> <span>修改密码</span></a></li>
 				</ul>
 			</c:if>
 
 			<!-- 管理员 -->
-			<c:if test="${currentUser.number == 'admin'}">
+			<c:if test="${currentUser.name == 'admin' and currentUser.name != 'secretary'}">
 				<!-- admin -->
 				<ul class="nav">
 					<!-- 用户: 主页 -->
