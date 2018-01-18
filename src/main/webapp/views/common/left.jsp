@@ -74,11 +74,13 @@
 									class="">中文期刊论文</a></li>
 								<li><a href="${ctx}/admin/download/enPeriodicalThesis"
 									class="">英文期刊论文</a></li>
-								<li><a href="${ctx}/admin/download/patent_model" class="">专利－模版</a></li>
+								<li><a href="${ctx}/admin/download/patent-model" class="">专利－模版</a></li>
 								<li><a
-									href="${ctx}/admin/download/chPeriodicalThesis_model" class="">中文论文－模版</a></li>
+									href="${ctx}/admin/download/chPeriodicalThesis-model" class="">中文论文－模版</a></li>
 								<li><a
-									href="${ctx}/admin/download/enPeriodicalThesis_model" class="">英文论文－模版</a></li>
+									href="${ctx}/admin/download/enPeriodicalThesis-model" class="">英文论文－模版</a></li>
+								<li><a href="${ctx}/admin/download/user-model"
+									class="">用户信息－模板</a></li>
 							</ul>
 						</div></li>
 				</ul>

@@ -62,10 +62,6 @@
 														name="authorizationNumber" class="form-control">
 												</div>
 												<div class="form-group">
-													<label>是否为PCT专利:</label> <input type="checkbox"
-														name="pctPatentOrNot" class="form-control">
-												</div>
-												<div class="form-group">
 												<label>归属学院:</label> <input type="text" name="no10AutherName"
 													class="form-control" placeholder="未认领,无学院">
 											    </div>
@@ -106,10 +102,6 @@
 											<div class="form-group">
 												<label>来源/期刊:</label> <input type="text" name="provenance"
 													class="form-control" >
-											</div>
-											<div class="form-group">
-												<label>学科领域:</label> <input type="text" name="subject"
-													class="form-control">
 											</div>
 												<div class="form-group">
 												<label>归属学院:</label> <input type="text" name="no10AutherName"

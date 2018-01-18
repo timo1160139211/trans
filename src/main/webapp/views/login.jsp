@@ -62,7 +62,7 @@
 					<div class="right">
 						<div class="overlay"></div>
 						<div class="content text">
-							<h1 class="heading">山东理工大学－成果认领系统</h1>
+							<h1 class="heading">山东理工大学－科技成果认领系统</h1>
 							<p>By GaoYisheng＆HuAnlu</p>
 						</div>
 					</div>

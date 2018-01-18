@@ -29,6 +29,7 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellType;
 import org.springframework.expression.ParseException;
 
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
@@ -774,11 +775,13 @@ public class FileUtil {
 	 */
     private String getStringCellValue(HSSFCell cell) {
         String cellValue = "";  
-        
-        if(cell.getCellType()==cell.CELL_TYPE_STRING) {cellValue = cell.getRichStringCellValue().getString(); }
-        if(cell.getCellType()==cell.CELL_TYPE_NUMERIC) {
-        	cell.setCellType(cell.CELL_TYPE_STRING);  
-        	cellValue = String.valueOf(cell.getRichStringCellValue().getString());
+
+        if(cell != null) {//不为空，避免NPE
+          if(cell.getCellType()==cell.CELL_TYPE_STRING) {cellValue = cell.getRichStringCellValue().getString(); }
+          if(cell.getCellType()==cell.CELL_TYPE_NUMERIC) {
+        	  cell.setCellType(cell.CELL_TYPE_STRING);  
+        	  cellValue = String.valueOf(cell.getRichStringCellValue().getString());
+           }
          }
         
         return cellValue;

@@ -149,27 +149,34 @@ public class AdminOpsController {
 			    		bytes = fileUtil.exportFileOfChPeriodicalThesis(chPeriodicalThesisService.selectAll());
 			    		fileNameBefore = "中文期刊论文.xls";
 			    		break;
-			    case "patent_model":
-			    		fileNameBefore = "专利_模板.xls";
+			    case "patent-model":
+			    		fileNameBefore = "专利-模板.xls";
 		    			file = Paths.get(request.getServletContext().getRealPath("/views/data"), fileNameBefore);
 		    			if(Files.exists(file)) {
 		    				bytes = fileUtil.getBytesFromFile(file.toFile());
 		    			}
 		    			break;
-			    case "enPeriodicalThesis_model":
-			    		fileNameBefore = "英文期刊论文_模板.xls";
+			    case "enPeriodicalThesis-model":
+			    		fileNameBefore = "英文期刊论文-模板.xls";
 		    			file = Paths.get(request.getServletContext().getRealPath("/views/data"), fileNameBefore);
 		    			if(Files.exists(file)) {
 		    				bytes = fileUtil.getBytesFromFile(file.toFile());
 		    			}
 			    		break;
-			    case "chPeriodicalThesis_model":
-		    			fileNameBefore = "中文期刊论文_模板.xls";
+			    case "chPeriodicalThesis-model":
+		    			fileNameBefore = "中文期刊论文-模板.xls";
 		    			file = Paths.get(request.getServletContext().getRealPath("/views/data"), fileNameBefore);
 		    			if(Files.exists(file)) {
 		    				bytes = fileUtil.getBytesFromFile(file.toFile());
 		    			}
 		    			break;
+			    case "user-model":
+	    				fileNameBefore = "人事工号-模板.xls";
+	    				file = Paths.get(request.getServletContext().getRealPath("/views/data"), fileNameBefore);
+	    				if(Files.exists(file)) {
+	    					bytes = fileUtil.getBytesFromFile(file.toFile());
+	    				}
+	    				break;
 			    default : return ; //退出,并返回"无该类型文档"
 			}
 			

@@ -145,7 +145,7 @@ public class PatentService {
 		List<Patent> patentList = fileUtil.importFileOfPatent(in);
 		
 		//每1000为一段 插入
-		return recurSub(patentList,1000);
+		return recurSub(patentList,500);
 	}
 
 	/**
