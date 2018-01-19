@@ -36,6 +36,14 @@
 						<p>${awards.mechanism == '' ? '':awards.mechanism}</p>
 						<br>
 					</c:if>
+					<c:if test="${awardsType == 'enPeriodicalThesis'}">
+						<h4>作者地址:</h4>
+						<p>${awards.period == '' ? '':awards.period}</p>
+						<br>
+						<h4>通讯作者地址:</h4>
+						<p>${awards.page == '' ? '':awards.page}</p>
+						<br>
+					</c:if>
 					<c:if test="${autherNum >= 1}">
 						<div class="form-group ">
 							<label>第一作者：</label> <input id="no1AutherName" type="text"

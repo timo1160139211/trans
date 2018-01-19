@@ -32,7 +32,7 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">选择文件上传到数据库，请按标准数据格式xls上传.</h3>
+					<h3 class="page-title">选择文件上传到数据库，请按模板数据格式xls上传.</h3>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="panel">
@@ -99,6 +99,9 @@
 									</div>
 									<iframe id="id_iframe" name="nm_iframe" style="display: none;"></iframe>
 								</div>
+								<c:if test="${msg != ''}">
+								     <h3>${msg}</h3>
+								</c:if>
 							</div>
 						</div>
 					</div>

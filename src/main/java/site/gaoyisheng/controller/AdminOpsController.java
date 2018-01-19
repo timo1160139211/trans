@@ -85,7 +85,7 @@ public class AdminOpsController {
      */
     @RequestMapping(value = "/upload/{awardsType}", method = RequestMethod.POST)
     public ModelAndView importXlsFile(@RequestParam("filename") MultipartFile file, 
-                                    HttpServletRequest request,
+                                    HttpServletRequest request,ModelAndView mav,
                                     @PathVariable("awardsType") String awardsType) throws Exception {
     	String strAlertMsg = null;
        if (file.isEmpty()) {
@@ -106,16 +106,18 @@ public class AdminOpsController {
        InputStream in = file.getInputStream();
        switch(awardsType) {
              //插入并返回 提示
-           case "user":strAlertMsg = "成功插入" + userService.readStreamAndInsertList(in) + "条！";break;
-           case "patent":strAlertMsg = "成功插入" + patentService.readStreamAndInsertList(in) + "条！";break;
-           case "enPeriodicalThesis":strAlertMsg = "成功插入" + enPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
-           case "chPeriodicalThesis":strAlertMsg = "成功插入" + chPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
-           default:strAlertMsg = "数据插入失败: 请检查log输出或开发人员";
+           case "user":strAlertMsg = "成功追加新用户:" + userService.readStreamAndInsertList(in) + "条！";break;
+           case "patent":strAlertMsg = "成功追加新专利:" + patentService.readStreamAndInsertList(in) + "条！";break;
+           case "enPeriodicalThesis":strAlertMsg = "成功追加新英文论文:" + enPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
+           case "chPeriodicalThesis":strAlertMsg = "成功追加新中文论文:" + chPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
+           default:strAlertMsg = "数据追加失败: 请联系开发人员";
         }
        
-       request.getSession().setAttribute("msg", strAlertMsg);
-       
-       return new ModelAndView("redirect:/admin/upload");
+       //request.getSession().setAttribute("msg", strAlertMsg);
+       //return "{'msg':'"+strAlertMsg+"'}";
+       mav.addObject("msg", strAlertMsg);
+       mav.setViewName("/admin/upload");
+       return mav;
     } 
 	
 	/**
