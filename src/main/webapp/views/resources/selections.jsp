@@ -27,46 +27,11 @@
 							<option value="创新创业学院">创新创业学院</option>
 							<option value="军队驻校选培办">军队驻校选培办</option>
 
-							<option value="校领导">校领导</option>
-							<option value="党委(校长)办公室">党委(校长)办公室</option>
-							<option value="监察处">监察处</option>
-							<option value="纪委">纪委</option>
-							<option value="党委组织部">党委组织部</option>
-							<option value="党委宣传部">党委宣传部</option>
-							<option value="党委统战部">党委统战部</option>
-							<option value="港澳台事务办公室">港澳台事务办公室</option>
-							<option value="学生工作部(处)武装部">学生工作部(处)武装部</option>
-							<option value="工会">工会</option>
-							<option value="妇女委员会">妇女委员会</option>
-							<option value="团委">团委</option>
-							<option value="发展规划处">发展规划处</option>
-							<option value="人力资源处">人力资源处</option>
-							<option value="教务处">教务处</option>
 							<option value="科学技术处">科学技术处</option>
 							<option value="社会科学处">社会科学处</option>
-							<option value="研究生工作部研究生院">研究生工作部研究生院</option>
-							<option value="招生就业处">招生就业处</option>
-							<option value="国际合作与交流处国际教育学院">国际合作与交流处国际教育学院</option>
-							<option value="资产管理处">资产管理处</option>
-							<option value="计划财务处">计划财务处</option>
-							<option value="审计处">审计处</option>
-							<option value="基建处">基建处</option>
-							<option value="安全管理处">安全管理处</option>
 							<option value="后勤管理处">后勤管理处</option>
-							<option value="离退休工作处">离退休工作处</option>
-							<option value="省职教师资培训中心(基地管理办公室)">省职教师资培训中心(基地管理办公室)</option>
-							<option value="继续教育学院">继续教育学院</option>
-							<option value="图书馆">图书馆</option>
-							<option value="网络信息中心">网络信息中心</option>
-							<option value="校友联谊办公室">校友联谊办公室</option>
-							<option value="奥星科技发展有限公司">奥星科技发展有限公司</option>
 							<option value="工程实训中心">工程实训中心</option>
-							<option value="校医院">校医院</option>
 							<option value="实验管理中心">实验管理中心</option>
-							<option value="学报(自然科学版)编辑部">学报(自然科学版)编辑部</option>
-							<option value="学报(社会科学版)编辑部">学报(社会科学版)编辑部</option>
-							<option value="齐文化研究院">齐文化研究院</option>
-							<option value="淄博发展研究院">淄博发展研究院</option>
-							<option value="高等教育研究院">高等教育研究院</option>
+							<option value="校医院">校医院</option>
 						</select>
 					</div>

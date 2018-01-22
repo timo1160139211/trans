@@ -266,7 +266,7 @@ public class UserOpsController {
 			Class paClass = (Class) pa.getClass();
 
 			for (String paStr : paNameGrp) {
-				if(paClassi<10) {//只处理前9个
+				if(paClassi<8) {//只处理前7个
 				
 				// paStr=paStr.substring(0, s.indexOf('['));// 张三[1,2]
 				paStr = paStr.replaceAll("\\[(.+?)\\]", "");// 张三
@@ -296,7 +296,7 @@ public class UserOpsController {
 
 				paFieldNumber.set(pa, number);
 				paClassi++;
-				}//if <10
+				}//if <8
 			}
 			mv.addObject("awards", pa);
 			mv.addObject("awardsType", "patent");
@@ -328,7 +328,7 @@ public class UserOpsController {
 			Class chClass = (Class) ch.getClass();
 
 			for (String chStr : chNameGrp) {
-				if(chClassi<10) {//只处理前9个
+				if(chClassi<8) {//只处理前7个
 				// chStr=chStr.substring(0, s.indexOf('['));// 张三[1,2]
 				chStr = chStr.replaceAll("\\[(.+?)\\]", "");// 张三
 				chStr = chStr.replaceAll(" ", "");// 张三
@@ -357,7 +357,7 @@ public class UserOpsController {
 
 				chFieldNumber.set(ch, number);
 				chClassi++;
-				}//if <10
+				}//if <8
 			}
 			mv.addObject("awards", ch);
 			mv.addObject("awardsType", "chPeriodicalThesis");
