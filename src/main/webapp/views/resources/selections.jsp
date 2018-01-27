@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 					<div class="form-group">
-						<label>成果归属单位:</label> <select name="no10AutherName"
+						<label>成果归属单位:</label> <select name="no10AutherName" 
 							class="form-control">
+							<option value="">---</option>
 							<option value="机械工程学院">机械工程学院</option>
 							<option value="交通与车辆工程学院">交通与车辆工程学院</option>
 							<option value="农业工程与食品科学学院">农业工程与食品科学学院</option>
@@ -24,13 +25,11 @@
 							<option value="音乐学院">音乐学院</option>
 							<option value="体育学院">体育学院</option>
 							<option value="鲁泰纺织服装学院">鲁泰纺织服装学院</option>
-							<option value="创新创业学院">创新创业学院</option>
-							<option value="军队驻校选培办">军队驻校选培办</option>
-
-							<option value="科学技术处">科学技术处</option>
-							<option value="社会科学处">社会科学处</option>
+							<option value="齐文化研究院">齐文化研究院</option>
+							
+							<option value="图书馆">图书馆</option>
 							<option value="后勤管理处">后勤管理处</option>
-							<option value="工程实训中心">工程实训中心</option>
+							<option value="学生工作处">学生工作处</option>
 							<option value="实验管理中心">实验管理中心</option>
 							<option value="校医院">校医院</option>
 						</select>

@@ -10,7 +10,7 @@
 	role="dialog" data-backdrop="true" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<form:form id="optionForm" commandName="awards" class="form-inline"
+			<form id="optionForm" commandName="awards" class="form-inline"
 				action="${ctx}/user/claim" method="post">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -127,10 +127,10 @@
 				<div class="modal-footer">
 					<label>姓名为中文,工号请只保留'数字''学生'或'校外人员'.</label>
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-					<button type="submit" class="btn btn-primary"
+					<button type="button" class="btn btn-primary"
 						id="Claim${awards.id}">确定认领</button>
 				</div>
-			</form:form>
+			</form>
 		</div>
 	</div>
 </div>

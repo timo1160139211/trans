@@ -223,8 +223,13 @@
 	<!-- END WRAPPER -->
 	<jsp:include page="/views/resources/footer.jsp" flush="true" />
 	<!-- options-contant -->
+
+
+
+
 	<script type="text/javascript">
 $(document).ready(function () {
+
 
 	var currentAwardsType='chPeriodicalThesis';//维护一个 类型参数字符串,仅在每次切换标签时变化.
 	var currentPageNum=1;//维护一个 当前页参数,换页时+ - ,在每次切换标签/查询时初始化.
@@ -236,7 +241,7 @@ $(document).ready(function () {
 
             $(function () {
                 $('#myTab li:eq(0) a').tab('show');
-           });
+           	});
 
             
 		$('#ch-tag').click(function(){initical('chPeriodicalThesis');});
@@ -423,29 +428,6 @@ if(currentAwardsType=='patent'){
                     })
                 }
             })
-
-
-
-/*
-$("#optionForm").submit(function(){
-	
-	console.log('hahhaa');
-  alert("Submitted");
-$(this).attr('target','nm_iframe_modal');
-  $.confirm({
-      title: 'Data error',
-      content: '没asa有与您相关的数据!',
-      autoClose: 'cancel|1500',
-      backgroundDismiss: true,
-      buttons: {
-          cancel: {
-              text: '取消',
-              btnClass: 'waves-effect waves-button'
-          }
-      }
-  })
-});
-*/
 
 
 
@@ -957,6 +939,17 @@ $('body').on('blur', '#no9AutherName', function () {
 //***************************************10***********************************************//
 
 
+
+$('body').on('click', 'button[id^=Claim]', function () {
+
+	var selectVal = $(this).parent().parent().find("select[name='no10AutherName'] option:selected").val();//获取selected的名字
+
+	if(selectVal != ''){//不为空
+		$(this).parent().parent().submit();
+	}else{
+		alert("'成果归属单位'未选择,不能认领");
+	}
+});
 
 });//ready
         </script>
