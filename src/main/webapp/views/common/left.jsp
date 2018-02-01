@@ -58,6 +58,10 @@
 					<!-- admin: 查看数据 操作 -->
 					<li><a href="${ctx}/admin/notClaimed-list" class=""><i
 							class="fa fa-search"></i> <span>未认领数据</span></a></li>
+							
+					<!-- admin: 初始化密码 操作 -->
+					<li><a href="${ctx}/admin/user-manage" class=""><i
+							class="fa fa-search"></i> <span>管理用户</span></a></li>
 
 					<!-- admin: 上传 操作 -->
 					<li><a href="${ctx}/admin/upload" class=""><i

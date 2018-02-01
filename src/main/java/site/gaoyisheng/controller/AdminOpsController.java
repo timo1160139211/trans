@@ -264,17 +264,37 @@ public class AdminOpsController {
 		}
 	}
 	
+	/**
+	 * .
+	 * TODO  查看所有未认领的awards
+	 * @param request
+	 * @param mv 包含对象:{notClaimedAwardsList} :未认领awards对象的list
+	 * @return
+	 */
+	@RequestMapping(value = "/user-manage", method = RequestMethod.GET)
+	public String toManageUser(HttpServletRequest request,ModelAndView mv) {
+		return "/admin/user-manage";
+	}
 
 	/**
 	 * . 
-	 * TODO 更改用户
+	 * TODO 重置用户密码
 	 * @return
 	 */
-	public String updateUser() {
-		User user = new User();
-		
-		userService.updateByPrimaryKeySelective(user);
-		return null;
+	@RequestMapping(value = "/reset-password", method = RequestMethod.POST,produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Object resetUserPassword(HttpServletRequest request) {
+		String msg = "";
+		int id = Integer.valueOf(request.getParameter("id"));
+		User user = userService.selectUserByPrimaryKey(id);
+		user.setPassword(user.getNumber());
+		int i = userService.updateByPrimaryKeySelective(user);
+		if  (i == 1) {
+			msg = user.getName()+" 初始化密码成功";
+		}else {
+			msg = user.getName()+" 初始化密码失败";
+		}
+		return "{'msg':'" + msg + "'}";
 	}
 
 

@@ -42,6 +42,16 @@ public class UserService {
 	public int updateByPrimaryKeySelective(User user) {
 		return this.userDao.updateByPrimaryKeySelective(user);
 	}
+	
+	/**
+	 * .
+	 * TODO 查询用户by PK
+	 * @param user
+	 * @return
+	 */
+	public User selectUserByPrimaryKey(int id) {
+		return this.userDao.selectByPrimaryKey(id);
+	}
 
 	/**
 	 * .
