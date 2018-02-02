@@ -39,10 +39,11 @@
                                     <div class="form-group">
                                         <label for="name">姓名:</label>
                                         <input type="text" class="form-control" name="name" id="name">
-                                    </div>
-                                        <div class="form-group">
-                                        <label for="name">工号:</label>
+                                        <label for="number">工号:</label>
                                         <input type="text" class="form-control" name="number" id="number">
+                                        <label for="college">学院:</label>
+                                        <input type="text" class="form-control" name="college" id="college">
+                                        <button id='search_button' type="button" class="btn btn-primary">查询</button>
                                     </div>
                                 </form>
                             </div>
@@ -62,6 +63,8 @@
                                                         <th>工号</th>
                                                         <th>学院/机构</th>
                                                         <th>状态</th>
+                                                        <th>操作1</th>
+                                                        <th>操作2</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tbody">  
@@ -87,17 +90,19 @@
         <!-- END WRAPPER -->
         <jsp:include page="/views/resources/footer.jsp" flush="true"/>
         <script type="text/javascript">
-       var currentPageNum=1;
+
+
+          var currentPageNum=1;
 	    var currentPageSize=30;
         
-            $('#name').bind('keyup focus', function () {
+            $('#search_button').bind('click', function () {
                 var currentPageNum=1;	
                 setTimeout(function () {
                     $('#tbody').empty();//清空-------------------------------------------------
                     $('.page-div').empty();//清空-------------------------------------------------
                     $.ajax({
                         type: 'post',
-                        url: '${ctx}/user/search/'+currentPageNum,
+                        url: '${ctx}/admin/user-search/'+currentPageNum,
                         data: $('#search_form').serialize(),
                         success: function (page) {
                             if (page != null) {
@@ -109,6 +114,8 @@
                                 $("<td/>").html(page.list[i].number).appendTo(tr);
                                 $("<td/>").html(page.list[i].college).appendTo(tr);
                                 $("<td/>").html(page.list[i].status).appendTo(tr);
+					$("<td/>").html("<button type='button' class='btn btn-success' id='reset_password'>重置密码</button>").appendTo(tr);
+					$("<td/>").html("<button type='button' class='btn btn-danger' id='delete'>删除用户</button>").appendTo(tr);
                                 $('#tbody').append(tr); 
                             }
 	                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
@@ -127,14 +134,45 @@
                 }, 1000);
             });
             
-           function logout() {
-            }
-            
-        	$('body').on('click', '.prePage', function () {
+           
+
+	 ///////////////////////////////////////   重置   //////////////////////////////////////////////// var id = $(this).parent().siblings()[0].innerHTML;
+
+		$('body').on('click', '#reset_password', function () {
+			
+
+			if(confirm("确定重置\"\+\+\"密码?")){
+				alert("密码已重置");
+
+				$(this).attr("class","btn btn-default");
+				//$(this).innerHTML = '已重置';
+				$(this).text(' 已重置 ');
+			}//if
+		});
+
+
+	 ///////////////////////////////////////   删除   ////////////////////////////////////////////////
+
+		$('body').on('click', '#delete', function () {
+			
+			
+
+			if(confirm("确定删除\"\+\+\"用户?")){
+				alert("用户已删除");
+				$(this).parent().parent().remove();
+			}//if
+
+			
+		});
+
+
+
+            ///////////////////////////////////////   上一页   ////////////////////////////////////////////////
+       	$('body').on('click', '.prePage', function () {
         	       currentPageNum = currentPageNum - 1 ;
         			$.ajax({
         				type : 'post',
-                     url: '${ctx}/user/search/'+currentPageNum,
+                     url: '${ctx}/admin/user-search/'+currentPageNum,
                      data: $('#search_form').serialize(),
         				success : function(page) {
         	                        $('#tbody').empty();//清空-------------------------------------------------
@@ -149,6 +187,8 @@
                                     $("<td/>").html(page.list[i].number).appendTo(tr);
                                     $("<td/>").html(page.list[i].college).appendTo(tr);
                                     $("<td/>").html(page.list[i].status).appendTo(tr);
+						$("<td/>").html("<button type='button' class='btn btn-success' id='reset_password'>重置密码</button>").appendTo(tr);
+						$("<td/>").html("<button type='button' class='btn btn-danger' id='delete'>删除用户</button>").appendTo(tr);
                                     $('#tbody').append(tr); 
         	                    }
         	                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
@@ -179,12 +219,14 @@
         			});
         	            })
 
+
+            ///////////////////////////////////////   下一页   ////////////////////////////////////////////////
         		$('body').on('click', '.nextPage', function () {
 
         	       currentPageNum = currentPageNum + 1 ; 
         			$.ajax({
         				type : 'post',
-                        url: '${ctx}/user/search/'+currentPageNum,
+                        url: '${ctx}/admin/user-search/'+currentPageNum,
                         data: $('#search_form').serialize(),
         				success : function(page) {
         	                        $('#tbody').empty();//清空-------------------------------------------------
@@ -200,6 +242,8 @@
                                     $("<td/>").html(page.list[i].number).appendTo(tr);
                                     $("<td/>").html(page.list[i].college).appendTo(tr);
                                     $("<td/>").html(page.list[i].status).appendTo(tr);
+						$("<td/>").html("<button type='button' class='btn btn-success' id='reset_password'>重置密码</button>").appendTo(tr);
+						$("<td/>").html("<button type='button' class='btn btn-danger' id='delete'>删除用户</button>").appendTo(tr);
                                     $('#tbody').append(tr); 
         	                    }
         	                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 

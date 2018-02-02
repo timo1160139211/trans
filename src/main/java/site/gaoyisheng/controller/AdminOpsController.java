@@ -297,5 +297,34 @@ public class AdminOpsController {
 		return "{'msg':'" + msg + "'}";
 	}
 
+	
+    /**
+     * .
+     * TODO 模糊查找一个用户.
+     * @return
+     */
+    @RequestMapping(value = "/user-search/{pageNum}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object fuzzySearchUser(
+    		@RequestParam("name")String name,
+    		@RequestParam("number")String number,
+    		@RequestParam("college")String college,
+    		@PathVariable("pageNum")int pageNum){
+    	User u = new User();
+    	//非空判断 => 设值 用于查询.
+    	
+    	if(!"".equals(name) && name != null) {
+    		u.setName(name);
+    	}
+    	if(!"".equals(number) && number != null) {
+    		u.setNumber(number);
+    	}
+    	if(!"".equals(college) && college != null) {
+    		u.setNumber(college);
+    	}
+    	
+    	 PageHelper.startPage(pageNum,30);
+    	return new PageInfo<User>(userService.searchUserFuzzyQuery(u));
+    } 
 
 }
