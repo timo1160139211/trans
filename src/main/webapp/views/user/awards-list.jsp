@@ -303,7 +303,7 @@ if(currentAwardsType=='patent'){
                                 $("<td/>").html(page.list[i].provenance).appendTo(tr);
                                 $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
                                 $("<td class=\"options-contant\"/>").appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"detaile\">详情</button>").appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
                                 $('#tbody').append(tr);
                                   }
 
@@ -372,7 +372,7 @@ if(auditSelectedText!='通过审核'){
                             $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
                             $("<td class=\"options-contant\"/>").appendTo(tr);
 }
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"detaile\">详情</button>").appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
                                 $('#tbody').append(tr);
                                   }
 
@@ -483,7 +483,7 @@ if(currentAwardsType=='patent'){
                                     $("<td/>").html(page.list[i].provenance).appendTo(tr);
                                     $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
                                     $("<td class=\"options-contant\"/>").appendTo(tr);
-                                    $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"detaile\">详情</button>").appendTo(tr);
+                                    $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
                                     $('#tbody').append(tr);
                                       }
 
@@ -552,7 +552,7 @@ if(auditSelectedText!='通过审核'){
                             $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
                             $("<td class=\"options-contant\"/>").appendTo(tr);
 }
-                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"detaile\">详情</button>").appendTo(tr);
+                            $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
                             $('#tbody').append(tr);
                               }
   					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
@@ -631,7 +631,7 @@ if(currentAwardsType=='patent'){
                                     $("<td/>").html(page.list[i].provenance).appendTo(tr);
                                     $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
                                     $("<td class=\"options-contant\"/>").appendTo(tr);
-                                    $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"detaile\">详情</button>").appendTo(tr);
+                                    $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
                                     $('#tbody').append(tr);
                                       }
 
@@ -700,7 +700,7 @@ if(auditSelectedText!='通过审核'){
                             $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
                             $("<td class=\"options-contant\"/>").appendTo(tr);
 }
-                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"detaile\">详情</button>").appendTo(tr);
+                            $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
                             $('#tbody').append(tr);
                               }
   					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 

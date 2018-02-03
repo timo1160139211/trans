@@ -69,6 +69,25 @@ public class SecretaryController {
 	
     /** 
      * .
+     * TODO 返回 成果 详细.  
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/detaile" ,method = RequestMethod.GET,produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public Object awardsDetaile(HttpServletRequest request){
+    	int id = Integer.valueOf(request.getParameter("id"));
+    	
+       switch(request.getParameter("awardsType")) {
+           case "patent": return patentService.selectByPrimaryKey(id);
+           case "chPeriodicalThesis": return chPeriodicalThesisService.selectByPrimaryKey(id);
+           case "enPeriodicalThesis": return enPeriodicalThesisService.selectByPrimaryKey(id);
+           default : return "{\"msg\":\"数据错误,再试一次\"}";
+        }
+    }
+	
+    /** 
+     * .
      * TODO 返回 成果 列表.  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
      * @param request
      * @return
