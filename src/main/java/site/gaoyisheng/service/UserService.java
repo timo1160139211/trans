@@ -46,11 +46,21 @@ public class UserService {
 	/**
 	 * .
 	 * TODO 查询用户by PK
-	 * @param user
+	 * @param id
 	 * @return
 	 */
-	public User selectUserByPrimaryKey(int id) {
+	public User selectUserByPrimaryKey(Integer id) {
 		return this.userDao.selectByPrimaryKey(id);
+	}
+	
+	/**
+	 * .
+	 * TODO 删除用户by PK
+	 * @param id
+	 * @return
+	 */
+	public int deleteUserByPrimaryKey(Integer id) {
+		return this.userDao.deleteByPrimaryKey(id);
 	}
 
 	/**

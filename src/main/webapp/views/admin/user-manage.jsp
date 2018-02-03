@@ -114,8 +114,12 @@
                                 $("<td/>").html(page.list[i].number).appendTo(tr);
                                 $("<td/>").html(page.list[i].college).appendTo(tr);
                                 $("<td/>").html(page.list[i].status).appendTo(tr);
-					$("<td/>").html("<button type='button' class='btn btn-success' id='reset_password'>重置密码</button>").appendTo(tr);
-					$("<td/>").html("<button type='button' class='btn btn-danger' id='delete'>删除用户</button>").appendTo(tr);
+									if(page.list[i].number != page.list[i].password){
+										$("<td/>").html("<button type='button' class='btn btn-success' id='reset_password"+page.list[i].id+"'>重置密码</button>").appendTo(tr);
+									}else{
+										$("<td/>").html("<button type='button' class='btn btn-default' disabled='disabled'>已重置</button>").appendTo(tr);
+									}
+					$("<td/>").html("<button type='button' class='btn btn-danger' id='delete"+page.list[i].id+"'>删除用户</button>").appendTo(tr);
                                 $('#tbody').append(tr); 
                             }
 	                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
@@ -138,30 +142,53 @@
 
 	 ///////////////////////////////////////   重置   //////////////////////////////////////////////// var id = $(this).parent().siblings()[0].innerHTML;
 
-		$('body').on('click', '#reset_password', function () {
+		$('body').on('click', "button[id^='reset_password']", function () {
 			
+			var id = $(this).parent().siblings()[0].innerHTML;
+			var btn_id = 'reset_password' + id;
+			var username = $(this).parent().siblings()[2].innerHTML;
+			
+			if(confirm("确定重置'" + username + "'的密码?")){
+				$.ajax({
+					type:'post',				
+					url:'${ctx}/admin/reset-user-password',
+					data:{id:id},
+					success:function(data){
+						if(data !=null){
+							alert(data.msg);
+							$('#'+btn_id).attr("class","btn btn-default");
+							$('#'+btn_id).attr("disabled","disabled");
+							$('#'+btn_id).text(' 已重置 ');
+						}//if(data !=null)
+					}//success
+				});//ajax
 
-			if(confirm("确定重置\"\+\+\"密码?")){
-				alert("密码已重置");
+			}//if(confirm
 
-				$(this).attr("class","btn btn-default");
-				//$(this).innerHTML = '已重置';
-				$(this).text(' 已重置 ');
-			}//if
 		});
 
 
 	 ///////////////////////////////////////   删除   ////////////////////////////////////////////////
 
-		$('body').on('click', '#delete', function () {
+		$('body').on('click', "button[id^='delete']", function () {
+			var id = $(this).parent().siblings()[0].innerHTML;
+			var btn_id = 'delete' + id;
+			var username = $(this).parent().siblings()[2].innerHTML;
 			
-			
+			if(confirm("确定删除用户'" + username + "'?")){
+				$.ajax({
+					type:'post',				
+					url:'${ctx}/admin/delete-user',
+					data:{id:id},
+					success:function(data){
+						if(data !=null){
+							alert(data.msg);
+							$('#'+btn_id).parent().parent().remove();
+						}//if(data !=null)
+					}//success
+				});//ajax
 
-			if(confirm("确定删除\"\+\+\"用户?")){
-				alert("用户已删除");
-				$(this).parent().parent().remove();
-			}//if
-
+			}//if(confirm
 			
 		});
 
@@ -187,9 +214,13 @@
                                     $("<td/>").html(page.list[i].number).appendTo(tr);
                                     $("<td/>").html(page.list[i].college).appendTo(tr);
                                     $("<td/>").html(page.list[i].status).appendTo(tr);
-						$("<td/>").html("<button type='button' class='btn btn-success' id='reset_password'>重置密码</button>").appendTo(tr);
-						$("<td/>").html("<button type='button' class='btn btn-danger' id='delete'>删除用户</button>").appendTo(tr);
-                                    $('#tbody').append(tr); 
+										if(page.list[i].number != page.list[i].password){
+											$("<td/>").html("<button type='button' class='btn btn-success' id='reset_password"+page.list[i].id+"'>重置密码</button>").appendTo(tr);
+										}else{
+											$("<td/>").html("<button type='button' class='btn btn-default' disabled='disabled'>已重置</button>").appendTo(tr);
+										}
+										$("<td/>").html("<button type='button' class='btn btn-danger' id='delete"+page.list[i].id+"'>删除用户</button>").appendTo(tr);
+                  	              $('#tbody').append(tr);  
         	                    }
         	                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
         	                    
@@ -242,9 +273,13 @@
                                     $("<td/>").html(page.list[i].number).appendTo(tr);
                                     $("<td/>").html(page.list[i].college).appendTo(tr);
                                     $("<td/>").html(page.list[i].status).appendTo(tr);
-						$("<td/>").html("<button type='button' class='btn btn-success' id='reset_password'>重置密码</button>").appendTo(tr);
-						$("<td/>").html("<button type='button' class='btn btn-danger' id='delete'>删除用户</button>").appendTo(tr);
-                                    $('#tbody').append(tr); 
+										if(page.list[i].number != page.list[i].password){
+											$("<td/>").html("<button type='button' class='btn btn-success' id='reset_password"+page.list[i].id+"'>重置密码</button>").appendTo(tr);
+										}else{
+											$("<td/>").html("<button type='button' class='btn btn-default' disabled='disabled'>已重置</button>").appendTo(tr);
+										}
+										$("<td/>").html("<button type='button' class='btn btn-danger' id='delete"+page.list[i].id+"'>删除用户</button>").appendTo(tr);
+                              	  $('#tbody').append(tr); 
         	                    }
         	                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
         	                    

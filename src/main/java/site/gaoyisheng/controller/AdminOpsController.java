@@ -281,20 +281,41 @@ public class AdminOpsController {
 	 * TODO 重置用户密码
 	 * @return
 	 */
-	@RequestMapping(value = "/reset-password", method = RequestMethod.POST,produces = "application/json; charset=utf-8")
+	@RequestMapping(value = "/reset-user-password", method = RequestMethod.POST,produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public Object resetUserPassword(HttpServletRequest request) {
 		String msg = "";
-		int id = Integer.valueOf(request.getParameter("id"));
+		Integer id = Integer.valueOf(request.getParameter("id"));
 		User user = userService.selectUserByPrimaryKey(id);
 		user.setPassword(user.getNumber());
 		int i = userService.updateByPrimaryKeySelective(user);
 		if  (i == 1) {
-			msg = user.getName()+" 初始化密码成功";
+			msg = user.getName()+"初始化密码成功";
 		}else {
-			msg = user.getName()+" 初始化密码失败";
+			msg = user.getName()+"初始化密码失败";
 		}
-		return "{'msg':'" + msg + "'}";
+		return "{\"msg\":\"" + msg + "\"}";
+	}
+	
+	/**
+	 * . 
+	 * TODO 删除用户
+	 * @return
+	 */
+	@RequestMapping(value = "/delete-user", method = RequestMethod.POST,produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Object deleteUser(HttpServletRequest request) {
+		String msg = "";
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		User user = userService.selectUserByPrimaryKey(id);
+		msg = user.getName();
+		int i = userService.deleteUserByPrimaryKey(id);
+		if  (i == 1) {
+			msg = "已删除用户:"+ msg;
+		}else {
+			msg = "删除用户失败" + msg;
+		}
+		return "{\"msg\":\"" + msg + "\"}";
 	}
 
 	
