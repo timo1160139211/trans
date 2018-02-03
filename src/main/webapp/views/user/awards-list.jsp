@@ -198,7 +198,7 @@
 												<th>作者</th>
 												<th>期刊 | 作者情况</th>
 												<th>操作</th>
-												<th>操作2</th>
+												<th>2</th>
 											</tr>
 										</thead>
 										<tbody id="tbody">
@@ -407,7 +407,7 @@ if(auditSelectedText!='通过审核'){
 
 
 
-
+/***************************************************************************************************/
             $('body').on('click', '#myModalBtn', function () {
                 var id = $(this).parent().siblings()[0].innerHTML;
                 var contant = $(this).parent().next();
@@ -418,23 +418,11 @@ if(auditSelectedText!='通过审核'){
                         data: {id: id,awardsType:currentAwardsType},
                         success: function (data) {
                             contant.html(data);
-                            $.confirm({
-                                title: '加载完成',
-                                content: '数据记载完毕!请再次点击认领.',
-                                autoClose: 'cancel|1000',
-                                backgroundDismiss: true,
-                                buttons: {
-                                    cancel: {
-                                        text: '取消',
-                                        btnClass: 'waves-effect waves-button'
-                                    }
-                                }
-                            })
-                        }
-                    })
-                }
-            })
-
+				   $('body').find(".modal[id$="+id+"]").modal("show");
+                               }
+                    })//ajax
+                }//if
+                 });
 
 
 
@@ -1030,12 +1018,23 @@ $('body').on('blur', '#no9AutherName', function () {
 $('body').on('click', 'button[id^=Claim]', function () {
 
 	var selectVal = $(this).parent().parent().find("select[name='no10AutherName'] option:selected").val();//获取selected的名字
+	var id = $(this).parent().parent().parent().parent().parent().parent().siblings()[0].innerHTML;//当前page.data.id
 
 	if(selectVal != ''){//不为空
+
+		$(this).parent().parent().attr("target","nm_iframe");
+		$("#myModal"+id).modal('hide');
+		$("#myModal"+id).parent().parent().find("button[id^=myModalBtn]").attr({"class":"btn btn-default","disabled":"disabled"});
+		$("#myModal"+id).parent().parent().find("button[id^=myModalBtn]").text(' 已认领 ');
+
 		$(this).parent().parent().submit();
 	}else{
 		alert("'成果归属单位'未选择,不能认领");
 	}
+
+
+	
+
 });
 
 });//ready
