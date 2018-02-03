@@ -108,7 +108,7 @@
 												<label>审核状态:</label> <select name="no10AutherNumber"
 													class="form-control">
 													<option value="未审核">未审核</option>
-													<!-- <option value="通过审核">通过审核</option> -->
+													<option value="通过审核">通过审核</option>
 													<option value="未通过审核">未通过审核</option>
 												</select>
 											</div>

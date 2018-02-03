@@ -45,6 +45,16 @@
 						<br>
 					</c:if>
 					<c:if test="${autherNum >= 1}">
+						<c:if test="${awardsType != 'enPeriodicalThesis'}">
+						<div class="form-group ">
+							<label>第一作者：</label> <input id="no1AutherName" type="text"
+								name="no1AutherName" value="${awards.no1AutherName}" readonly="true"
+								class="form-control"> <label>工号：</label> <input
+								id="no1AutherNumber" type="text" name="no1AutherNumber"
+								value="${awards.no1AutherNumber}" class="form-control">
+						</div>
+						</c:if>
+						<c:if test="${awardsType == 'enPeriodicalThesis'}">
 						<div class="form-group ">
 							<label>第一作者：</label> <input id="no1AutherName" type="text"
 								name="no1AutherName" value="${awards.no1AutherName}"
@@ -52,6 +62,7 @@
 								id="no1AutherNumber" type="text" name="no1AutherNumber"
 								value="${awards.no1AutherNumber}" class="form-control">
 						</div>
+						</c:if>
 					</c:if>
 					<c:if test="${autherNum >= 2}">
 						<div class="form-group ">

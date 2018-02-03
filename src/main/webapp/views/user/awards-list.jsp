@@ -73,10 +73,10 @@
 												</select>
 											</div>
 											<div class="form-group">
-												<label>审核状态:</label> <select name="no10AutherNumber"
+												<label>审核状态:</label> <select id="paAuditStatus" name="no10AutherNumber"
 													class="form-control">
 													<option value="未审核">未审核</option>
-													<!-- <option value="通过审核">通过审核</option> -->
+													<option value="通过审核">通过审核</option>
 													<option value="未通过审核">未通过审核</option>
 												</select>
 											</div>
@@ -119,10 +119,10 @@
 												</select>
 											</div>
 											<div class="form-group">
-												<label>审核状态:</label> <select name="no10AutherNumber"
+												<label>审核状态:</label> <select id="enAuditStatus" name="no10AutherNumber"
 													class="form-control">
 													<option value="未审核">未审核</option>
-													<!-- <option value="通过审核">通过审核</option> -->
+													<option value="通过审核">通过审核</option>
 													<option value="未通过审核">未通过审核</option>
 												</select>
 											</div>
@@ -165,10 +165,10 @@
 												</select>
 											</div>
 											<div class="form-group">
-												<label>审核状态:</label> <select name="no10AutherNumber"
+												<label>审核状态:</label> <select id="chAuditStatus" name="no10AutherNumber"
 													class="form-control">
 													<option value="未审核">未审核</option>
-													<!-- <option value="通过审核">通过审核</option> -->
+													<option value="通过审核">通过审核</option>
 													<option value="未通过审核">未通过审核</option>
 												</select>
 											</div>
@@ -267,14 +267,18 @@ $('#ch-btn,#en-btn,#patent-btn').bind('click', function(){
 
 
 var selectedText = '';
+var auditSelectedText = '';
 if(currentAwardsType=='chPeriodicalThesis'){
     selectedText = $("#chClaimStatus").find("option:selected").text();
+    auditSelectedText = $("#chAuditStatus").find("option:selected").text();
 }
 if(currentAwardsType=='enPeriodicalThesis'){
     selectedText = $("#enClaimStatus option:selected").text();
+    auditSelectedText = $("#enAuditStatus").find("option:selected").text();
 }
 if(currentAwardsType=='patent'){
     selectedText = $("#paClaimStatus option:selected").text();
+    auditSelectedText = $("#paAuditStatus").find("option:selected").text();
 }
 
 
@@ -299,7 +303,7 @@ if(currentAwardsType=='patent'){
                                 $("<td/>").html(page.list[i].provenance).appendTo(tr);
                                 $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
                                 $("<td class=\"options-contant\"/>").appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"detaile\">详情</button>").appendTo(tr);
                                 $('#tbody').append(tr);
                                   }
 
@@ -364,9 +368,11 @@ if(currentAwardsType=='patent'){
                                 $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                                 $("<td/>").html(all7Auther+comuAuther).appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
-                                $("<td class=\"options-contant\"/>").appendTo(tr);
-                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+if(auditSelectedText!='通过审核'){
+                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
+                            $("<td class=\"options-contant\"/>").appendTo(tr);
+}
+                                $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"detaile\">详情</button>").appendTo(tr);
                                 $('#tbody').append(tr);
                                   }
 
@@ -441,14 +447,18 @@ $('body').on('click', '.prePage', function () {
        
 
 var selectedText = '';
+var auditSelectedText = '';
 if(currentAwardsType=='chPeriodicalThesis'){
     selectedText = $("#chClaimStatus").find("option:selected").text();
+    auditSelectedText = $("#chAuditStatus").find("option:selected").text();
 }
 if(currentAwardsType=='enPeriodicalThesis'){
     selectedText = $("#enClaimStatus option:selected").text();
+    auditSelectedText = $("#enAuditStatus").find("option:selected").text();
 }
 if(currentAwardsType=='patent'){
     selectedText = $("#paClaimStatus option:selected").text();
+    auditSelectedText = $("#paAuditStatus").find("option:selected").text();
 }
 
 		$.ajax({
@@ -473,7 +483,7 @@ if(currentAwardsType=='patent'){
                                     $("<td/>").html(page.list[i].provenance).appendTo(tr);
                                     $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
                                     $("<td class=\"options-contant\"/>").appendTo(tr);
-                                    $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                                    $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"detaile\">详情</button>").appendTo(tr);
                                     $('#tbody').append(tr);
                                       }
 
@@ -538,9 +548,11 @@ if(currentAwardsType=='patent'){
                             $("<td/>").html(page.list[i].name).appendTo(tr);
                             $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                             $("<td/>").html(all7Auther+comuAuther).appendTo(tr);
+if(auditSelectedText!='通过审核'){
                             $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
                             $("<td class=\"options-contant\"/>").appendTo(tr);
-                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+}
+                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"detaile\">详情</button>").appendTo(tr);
                             $('#tbody').append(tr);
                               }
   					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
@@ -583,14 +595,18 @@ $('body').on('click', '.nextPage', function () {
 
 
 var selectedText = '';
+var auditSelectedText = '';
 if(currentAwardsType=='chPeriodicalThesis'){
     selectedText = $("#chClaimStatus").find("option:selected").text();
+    auditSelectedText = $("#chAuditStatus").find("option:selected").text();
 }
 if(currentAwardsType=='enPeriodicalThesis'){
     selectedText = $("#enClaimStatus option:selected").text();
+    auditSelectedText = $("#enAuditStatus").find("option:selected").text();
 }
 if(currentAwardsType=='patent'){
     selectedText = $("#paClaimStatus option:selected").text();
+    auditSelectedText = $("#paAuditStatus").find("option:selected").text();
 }
 
 		$.ajax({
@@ -615,7 +631,7 @@ if(currentAwardsType=='patent'){
                                     $("<td/>").html(page.list[i].provenance).appendTo(tr);
                                     $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
                                     $("<td class=\"options-contant\"/>").appendTo(tr);
-                                    $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+                                    $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"detaile\">详情</button>").appendTo(tr);
                                     $('#tbody').append(tr);
                                       }
 
@@ -680,9 +696,11 @@ if(currentAwardsType=='patent'){
                             $("<td/>").html(page.list[i].name).appendTo(tr);
                             $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                             $("<td/>").html(all7Auther+comuAuther).appendTo(tr);
+if(auditSelectedText!='通过审核'){
                             $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
                             $("<td class=\"options-contant\"/>").appendTo(tr);
-                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\">详情</button>").appendTo(tr);
+}
+                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"detaile\">详情</button>").appendTo(tr);
                             $('#tbody').append(tr);
                               }
   					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
@@ -719,9 +737,78 @@ if(currentAwardsType=='patent'){
 
 
 
+//************************************详细detaile*********************************************//
 
+$('body').on('click', '#detaile', function () {
+	var id = $(this).parent().siblings()[0].innerHTML;
+	
+		$.ajax({
+			type : 'get',
+			url : '${ctx}/user/detaile',
+			data : {
+                       id:id,
+                       awardsType:currentAwardsType
+            },
+			dataType : 'json',
+			success : function(data) {
+				if (data != null) {
 
+					var detaileStr = '';
+					
+					detaileStr += "唯一标识符: " + data.keyId + "\n";
+					detaileStr += "标题: " + data.name + "\n";
+					detaileStr += "所有作者: " + data.allAutherName + "\n";
+					
+					if(currentAwardsType=='chPeriodicalThesis'){
+						detaileStr += "期刊: " + data.provenance+ "\n";
+						detaileStr += "年: " + data.year+ "\n";
+						detaileStr += "卷: " + data.ministry+ "\n";
+						detaileStr += "期: " + data.period+ "\n";
+						detaileStr += "关键字: " + data.keyWords+ "\n";
+						detaileStr += "机构: " + data.mechanism+ "\n";
+					}
+					if(currentAwardsType=='enPeriodicalThesis'){
+						detaileStr += "期刊:  " + data.provenance+ "\n";
+						detaileStr += "学科: " + data.subject+ "\n";
+						detaileStr += "年: " + data.year+ "\n";
+						detaileStr += "卷: " + data.volume+ "\n";
+						detaileStr += "期: " + data.period+ "\n";
+						detaileStr += "页: " + data.page+ "\n";
+					}
+					if(currentAwardsType=='patent'){
+						detaileStr += "类型: " + data.type + "\n";
+					}
+					
+					if(data.no1AutherName != ""){detaileStr += "*第一作者姓名: " + data.no1AutherName + "\n";}
+					if(data.no1AutherNumber != ""){detaileStr += "*第一作者工号: " + data.no1AutherNumber + "\n";}
+					if(data.no2AutherName != ""){detaileStr += "*第二作者姓名: " + data.no2AutherName + "\n";}
+					if(data.no2AutherNumber != ""){detaileStr += "*第二作者工号: " + data.no2AutherNumber + "\n";}
+					if(data.no3AutherName != ""){detaileStr += "*第三作者姓名: " + data.no3AutherName + "\n";}
+					if(data.no3AutherNumber != ""){detaileStr += "*第三作者工号: " + data.no3AutherNumber + "\n";}
+					if(data.no4AutherName != ""){detaileStr += "*第四作者姓名: " + data.no4AutherName + "\n";}
+					if(data.no4AutherNumber != ""){detaileStr += "*第四作者工号: " + data.no4AutherNumber + "\n";}
+					if(data.no5AutherName != ""){detaileStr += "*第五作者姓名: " + data.no5AutherName + "\n";}
+					if(data.no5AutherNumber != ""){detaileStr += "*第五作者工号: " + data.no5AutherNumber + "\n";}
+					if(data.no6AutherName != ""){detaileStr += "*第六作者姓名: " + data.no6AutherName + "\n";}
+					if(data.no6AutherNumber != ""){detaileStr += "*第六作者工号: " + data.no6AutherNumber + "\n";}
+					if(data.no7AutherName != ""){detaileStr += "*第七作者姓名: " + data.no7AutherName + "\n";}
+					if(data.no7AutherNumber != ""){detaileStr += "*第七作者工号: " + data.no7AutherNumber + "\n";}
+					if(data.no8AutherName != ""){detaileStr += "*通讯作者1姓名: " + data.no8AutherName + "\n";}
+					if(data.no8AutherNumber != ""){detaileStr += "*通讯作者1工号: " + data.no8AutherNumber + "\n";}
+					if(data.no9AutherName != ""){detaileStr += "*通讯作者2姓名: " + data.no9AutherName + "\n";}
+					if(data.no9AutherNumber != ""){detaileStr += "*通讯作者2工号: " + data.no9AutherNumber + "\n";}
+					detaileStr += "*成果归属单位: " + data.no10AutherName + "\n";
+					
+					detaileStr += "审核状态: " + data.no10AutherNumber + "\n";
+					detaileStr += "认领状态: " + data.claimStatus + "\n";
+		
+					alert(detaileStr);
 
+				}
+			},
+		});
+
+});
 
 
 
