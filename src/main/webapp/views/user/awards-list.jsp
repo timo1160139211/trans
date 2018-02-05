@@ -369,7 +369,7 @@ if(currentAwardsType=='patent'){
                                 $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                                 $("<td/>").html(all7Auther+comuAuther).appendTo(tr);
 if(auditSelectedText!='通过审核'){
-                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
+                            $("<td/>").html("<button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">修正认领</button>").appendTo(tr);
                             $("<td class=\"options-contant\"/>").appendTo(tr);
 }
                                 $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
@@ -537,7 +537,7 @@ if(currentAwardsType=='patent'){
                             $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                             $("<td/>").html(all7Auther+comuAuther).appendTo(tr);
 if(auditSelectedText!='通过审核'){
-                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
+                            $("<td/>").html("<button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">修正认领</button>").appendTo(tr);
                             $("<td class=\"options-contant\"/>").appendTo(tr);
 }
                             $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
@@ -685,7 +685,7 @@ if(currentAwardsType=='patent'){
                             $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                             $("<td/>").html(all7Auther+comuAuther).appendTo(tr);
 if(auditSelectedText!='通过审核'){
-                            $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">认领</button>").appendTo(tr);
+                            $("<td/>").html("<button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" id=\"myModalBtn\" data-target=\"#myModal" + page.list[i].id + "\">修正认领</button>").appendTo(tr);
                             $("<td class=\"options-contant\"/>").appendTo(tr);
 }
                             $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
