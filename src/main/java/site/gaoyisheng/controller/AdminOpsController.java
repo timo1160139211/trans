@@ -341,7 +341,7 @@ public class AdminOpsController {
     		u.setNumber(number);
     	}
     	if(!"".equals(college) && college != null) {
-    		u.setNumber(college);
+    		u.setCollege(college);
     	}
     	
     	 PageHelper.startPage(pageNum,30);
