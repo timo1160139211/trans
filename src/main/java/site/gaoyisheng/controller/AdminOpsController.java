@@ -346,6 +346,6 @@ public class AdminOpsController {
     	
     	 PageHelper.startPage(pageNum,30);
     	return new PageInfo<User>(userService.searchUserFuzzyQuery(u));
-    } 
+    }
 
 }
