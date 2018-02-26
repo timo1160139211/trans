@@ -4,97 +4,105 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!doctype html>
 <html lang="en">
 
-    <head>
-        <title></title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-        <jsp:include page="/views/resources/head.jsp" flush="true"/>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<jsp:include page="/views/resources/head.jsp" flush="true" />
 
-    </head>
+</head>
 
-    <body>
-        <!-- WRAPPER -->
-        <div id="wrapper">
-            <!-- NAVBAR -->
-            <jsp:include page="/views/common/nav.jsp" flush="true"/>
-            <!-- END NAVBAR -->
-            <!-- LEFT SIDEBAR -->
-            <jsp:include page="/views/common/left.jsp" flush="true"/>
-            <!-- END LEFT SIDEBAR -->
-            <!-- MAIN -->
-            <!-- MAIN -->
-            <div class="main">
-                <!-- MAIN CONTENT -->
-                <div class="main-content">
-                    <div class="container-fluid">
-                        <h3 class="page-title">人员查找</h3>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <form id="search_form">
-                                    <div class="form-group">
-                                    <div class="row">
-                                    	<div class="col-md-3"><label for="name">姓名:</label></div>
-                                    	<div class="col-md-3"><label for="number">工号:</label></div>
-                                    	<div class="col-md-3"><label for="college">学院:</label></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3"><input type="text" class="form-control" name="name" id="name"></div>
-                                        <div class="col-md-3"><input type="text" class="form-control" name="number" id="number"></div>
-                                        <div class="col-md-3"><input type="text" class="form-control" name="college" id="college"></div>
-                                    </div>
-                                        <button id='search_button' type="button" class="btn btn-primary">查询</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <!-- TABLE HOVER -->
-                                    <div class="panel">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title" align="center">动态模糊匹配结果</h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            <table class="table table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>姓名</th>
-                                                        <th>工号</th>
-                                                        <th>学院/机构</th>
-                                                        <th>状态</th>
-                                                        <th>操作1</th>
-                                                        <th>操作2</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tbody">  
-                                                </tbody>
-                                                <div id="Modal"></div>
-                                            </table>
-                                        </div>
-                                       <div class="page-div" align="center"></div>>
-                                    </div>
-                                    <!-- END TABLE HOVER -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END MAIN CONTENT -->
-            </div>
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<!-- NAVBAR -->
+		<jsp:include page="/views/common/nav.jsp" flush="true" />
+		<!-- END NAVBAR -->
+		<!-- LEFT SIDEBAR -->
+		<jsp:include page="/views/common/left.jsp" flush="true" />
+		<!-- END LEFT SIDEBAR -->
+		<!-- MAIN -->
+		<!-- MAIN -->
+		<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<h3 class="page-title">学院查找</h3>
+					<div class="row">
+						<div class="col-md-12">
+							<form id="search_form">
+							<div class="row">
+							<div class="col-md-3">
+								<label for="name">名称:</label>
+								</div>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-md-3">
+											<input type="text" class="form-control" name="name" id="name">
+										</div>
+										<div class="col-md-1">
+											<button id="search_button" type="button"
+												class="btn btn-primary">查询</button>
+										</div>
+										<div class="col-md-1">
+										</div>
+										<div class="col-md-1">
+											<button id="add_button" type="button" class="btn btn-success">添加</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<!-- TABLE HOVER -->
+								<div class="panel">
+									<div class="panel-heading">
+										<h3 class="panel-title" align="center">动态模糊匹配结果</h3>
+									</div>
+									<div class="panel-body">
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>#</th>
+													<th>名称</th>
+													<th>操作1</th>
+													<th>操作2</th>
+													<th>操作3</th>
+												</tr>
+											</thead>
+											<tbody id="tbody">
+											</tbody>
+											<div id="Modal"></div>
+										</table>
+									</div>
+									<div class="page-div" align="center"></div>
+									>
+								</div>
+								<!-- END TABLE HOVER -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END MAIN CONTENT -->
+		</div>
 
-            <!-- END MAIN -->
-            <div class="clearfix"></div>
-            <jsp:include page="/views/common/copyright.jsp" flush="true" />
-        </div>
-        <!-- END WRAPPER -->
-        <jsp:include page="/views/resources/footer.jsp" flush="true"/>
-        <script type="text/javascript">
-
+		<!-- END MAIN -->
+		<div class="clearfix"></div>
+		<jsp:include page="/views/common/copyright.jsp" flush="true" />
+	</div>
+	<!-- END WRAPPER -->
+	<jsp:include page="/views/resources/footer.jsp" flush="true" />
+	<script type="text/javascript">
+$(document).ready(function () {
 
           var currentPageNum=1;
 	    var currentPageSize=30;
@@ -106,7 +114,7 @@
                     $('.page-div').empty();//清空-------------------------------------------------
                     $.ajax({
                         type: 'post',
-                        url: '${ctx}/admin/user-search/'+currentPageNum,
+                        url: '${ctx}/admin/college-search/'+currentPageNum,
                         data: $('#search_form').serialize(),
                         success: function (page) {
                             if (page != null) {
@@ -115,15 +123,9 @@
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                 $("<td/>").html(i + 1).appendTo(tr);
                                 $("<td/>").html(page.list[i].name).appendTo(tr);
-                                $("<td/>").html(page.list[i].number).appendTo(tr);
-                                $("<td/>").html(page.list[i].college).appendTo(tr);
-                                $("<td/>").html(page.list[i].status).appendTo(tr);
-									if(page.list[i].number != page.list[i].password){
-										$("<td/>").html("<button type='button' class='btn btn-success' id='reset_password"+page.list[i].id+"'>重置密码</button>").appendTo(tr);
-									}else{
-										$("<td/>").html("<button type='button' class='btn btn-default' disabled='disabled'>已重置</button>").appendTo(tr);
-									}
-					$("<td/>").html("<button type='button' class='btn btn-danger' id='delete"+page.list[i].id+"'>删除用户</button>").appendTo(tr);
+                                $("<td/>").html("<button type='button' class='btn btn-success' id='detail"+page.list[i].id+"'>查看秘书</button>").appendTo(tr);
+									 $("<td/>").html("<button type='button' class='btn btn-success' id='update"+page.list[i].id+"'>修改</button>").appendTo(tr);
+									 $("<td/>").html("<button type='button' class='btn btn-danger' id='delete"+page.list[i].id+"'>删除</button>").appendTo(tr);
                                 $('#tbody').append(tr); 
                             }
 	                        var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
@@ -312,7 +314,9 @@
         				}
         			});
         	            })
+        	            
+});//ready
         </script>
-    </body>
+</body>
 
 </html>

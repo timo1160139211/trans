@@ -10,13 +10,13 @@
 				<ul class="nav">
 					<!-- 用户: 主页 -->
 					<li><a href="${ctx}/user/home" class=""><i
-							class="lnr lnr-file-empty"></i> <span>主页</span></a></li>
+							class="glyphicon glyphicon-home"></i> <span>主页</span></a></li>
 					<!-- 用户: 查找用户 操作 -->
 					<li><a href="${ctx}/user/search" target="_blank" class=""><i
 							class="fa fa-search"></i> <span>查找用户</span></a></li>
 					<!-- 用户: 修改个人 操作 -->
 					<li><a href="${ctx}/user/user-update" class=""><i
-							class="lnr lnr-pencil"></i> <span>修改密码</span></a></li>
+							class="glyphicon glyphicon-cog"></i> <span>修改密码</span></a></li>
 					<!-- 用户: 认领 操作 -->
 					<li><a href="${ctx}/user/awards-list" class=""><i
 							class="lnr lnr-file-empty"></i> <span>认领</span></a></li>
@@ -33,13 +33,13 @@
 				<ul class="nav">
 					<!-- 秘书: 主页 -->
 					<li><a href="${ctx}/secretary/home" class=""><i
-							class="lnr lnr-file-empty"></i> <span>主页</span></a></li>
+							class="glyphicon glyphicon-home"></i> <span>主页</span></a></li>
 					<!-- 秘书: 审核 操作 -->
 					<li><a href="${ctx}/secretary/audit-list" class=""><i
 							class="fa fa-search"></i> <span>审核</span></a></li>
 					<!-- 用户: 修改个人 操作 -->
 					<li><a href="${ctx}/secretary/secretary-update" class=""><i
-							class="lnr lnr-pencil"></i> <span>修改密码</span></a></li>
+							class="glyphicon glyphicon-cog"></i> <span>修改密码</span></a></li>
 				</ul>
 			</c:if>
 
@@ -49,7 +49,7 @@
 				<ul class="nav">
 					<!-- 用户: 主页 -->
 					<li><a href="${ctx}/admin/home" class=""><i
-							class="lnr lnr-file-empty"></i> <span>主页</span></a></li>
+							class="glyphicon glyphicon-home"></i> <span>主页</span></a></li>
 
 					<!-- admin: 统计 操作 -->
 					<li><a href="${ctx}/admin/claim-statistic" class=""><i
@@ -59,9 +59,13 @@
 					<li><a href="${ctx}/admin/notClaimed-list" class=""><i
 							class="fa fa-search"></i> <span>未认领数据</span></a></li>
 							
-					<!-- admin: 初始化密码 操作 -->
+					<!-- admin: 管理用户 操作 -->
 					<li><a href="${ctx}/admin/user-manage" class=""><i
-							class="fa fa-search"></i> <span>管理用户</span></a></li>
+							class="glyphicon glyphicon-th-list"></i> <span>管理用户</span></a></li>
+							
+					<!-- admin: 管理学院 -->
+					<li><a href="${ctx}/admin/college-manage" class=""><i
+							class="glyphicon glyphicon-th-list"></i> <span>管理学院</span></a></li>
 
 					<!-- admin: 上传 操作 -->
 					<li><a href="${ctx}/admin/upload" class=""><i

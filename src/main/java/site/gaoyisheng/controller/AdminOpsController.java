@@ -40,10 +40,12 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
+import site.gaoyisheng.pojo.College;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.ChPeriodicalThesisService;
+import site.gaoyisheng.service.CollegeService;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
 import site.gaoyisheng.service.PatentService;
 import site.gaoyisheng.service.UserService;
@@ -58,6 +60,9 @@ public class AdminOpsController {
 	
 	@Autowired
 	private PatentService patentService;
+	
+	@Autowired
+	private CollegeService collegeService;
 
 	@Autowired
 	private EnPeriodicalThesisService enPeriodicalThesisService;
@@ -75,6 +80,11 @@ public class AdminOpsController {
         return "/admin/home";
     }
 
+    @RequestMapping(value = "/college-manage", method = RequestMethod.GET)
+    public String manageCollege() {
+        return "/admin/college-manage";
+    }
+    
     /**
      * .
      * TODO 上传文件,并解析入库  : request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
@@ -344,8 +354,30 @@ public class AdminOpsController {
     		u.setCollege(college);
     	}
     	
-    	 PageHelper.startPage(pageNum,30);
+    	PageHelper.startPage(pageNum,30);
     	return new PageInfo<User>(userService.searchUserFuzzyQuery(u));
+    }
+    
+    /**
+     * .
+     * TODO 模糊查找一个用户.
+     * @return
+     */
+    @RequestMapping(value = "/college-search/{pageNum}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object fuzzySearchCollege(
+    		@RequestParam("name")String name,
+    		@PathVariable("pageNum")int pageNum){
+    	College college = new College();
+    	//非空判断 => 设值 用于查询.
+    	
+    	if(!"".equals(name) && name != null) {
+    		college.setName(name);
+    	}
+    	
+    	PageHelper.startPage(pageNum,30);
+		//return new PageInfo<College>(collegeService.searchFuzzyQuery(college));
+    	return new PageInfo<College>(collegeService.selectAll());
     }
 
 }

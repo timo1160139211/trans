@@ -1,5 +1,7 @@
 package site.gaoyisheng.dao;
 
+import java.util.List;
+
 import site.gaoyisheng.pojo.College;
 
 public interface CollegeMapper {
@@ -14,4 +16,8 @@ public interface CollegeMapper {
     int updateByPrimaryKeySelective(College record);
 
     int updateByPrimaryKey(College record);
+    
+    List<College> selectAll();
+    
+    List<College> searchCollegeFuzzyQuery(College record);
 }

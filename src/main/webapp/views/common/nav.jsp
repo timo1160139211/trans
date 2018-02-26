@@ -30,7 +30,7 @@
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
  -->
-								<li><a href="${ctx}/logout" ><i class="lnr lnr-exit"></i> <span>退出登陆</span></a></li>
+								<li><a href="${ctx}/logout" ><i class="glyphicon glyphicon-off"></i> <span>退出登陆</span></a></li>
 							</ul>
 						</li>
 					</ul>
