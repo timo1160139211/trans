@@ -18,6 +18,7 @@ package site.gaoyisheng.service;
 
 import java.util.List;
 
+
 /**
  * .
  * 抽象接口类
@@ -74,5 +75,13 @@ public abstract class BasicService<T> {
 	 * @return
 	 */
 	public abstract int deleteByPrimaryKey(Integer id);
+
+	/**
+	 * . 
+	 * TODO 增
+	 * @param c
+	 * @return
+	 */
+	public abstract int create(T c);
 	
 }

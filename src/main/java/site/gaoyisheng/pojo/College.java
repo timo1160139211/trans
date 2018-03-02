@@ -7,6 +7,25 @@ public class College {
 
     private String a;
 
+    public College() {
+    	super();
+    	this.name = "";
+    	this.a = "";
+    }
+    
+    public College(String name) {
+    	super();
+    	this.name = name;
+    	this.a = "";
+    }
+    
+    public College(int id,String name) {
+    	super();
+    	this.id = id;
+    	this.name = name;
+    	this.a = "";
+    }
+    
     public Integer getId() {
         return id;
     }

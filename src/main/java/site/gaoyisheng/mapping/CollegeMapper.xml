@@ -12,16 +12,32 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from college
+    from public.college
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <!-- 查询所有 -->
   	<select id="selectAll" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from public.college
 	</select>
+	
+	<!-- 按条件查询 -->
+	<select id="searchByName" parameterType="String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from public.college
+		<where>
+			<if test="name != '' and name != null">
+				name like concat('%','${name}','%')
+			</if>
+		</where>
+	</select>
+	
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from college
+    delete from public.college
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="site.gaoyisheng.pojo.College">

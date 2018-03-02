@@ -179,13 +179,12 @@ $(document).ready(function () {
 		$('body').on('click', "button[id^='delete']", function () {
 			var id = $(this).parent().siblings()[0].innerHTML;
 			var btn_id = 'delete' + id;
-			var username = $(this).parent().siblings()[2].innerHTML;
+			var name = $(this).parent().siblings()[2].innerHTML;
 			
-			if(confirm("确定删除用户'" + username + "'?")){
+			if(confirm("确定删除学院'" + name + "'?")){
 				$.ajax({
 					type:'post',				
-					url:'${ctx}/admin/delete-user',
-					data:{id:id},
+					url:'${ctx}/admin/college-delete/'+id,
 					success:function(data){
 						if(data !=null){
 							alert(data.msg);

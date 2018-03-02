@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Provider.Service;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,6 +40,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import site.gaoyisheng.enums.CollegeOperationType;
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.College;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
@@ -298,8 +300,7 @@ public class AdminOpsController {
 		Integer id = Integer.valueOf(request.getParameter("id"));
 		User user = userService.selectUserByPrimaryKey(id);
 		user.setPassword(user.getNumber());
-		int i = userService.updateByPrimaryKeySelective(user);
-		if  (i == 1) {
+		if  (userService.updateByPrimaryKeySelective(user) == 1) {
 			msg = user.getName()+"初始化密码成功";
 		}else {
 			msg = user.getName()+"初始化密码失败";
@@ -360,7 +361,7 @@ public class AdminOpsController {
     
     /**
      * .
-     * TODO 模糊查找一个用户.
+     * TODO 模糊查找一个学院.
      * @return
      */
     @RequestMapping(value = "/college-search/{pageNum}", method = RequestMethod.POST)
@@ -368,16 +369,84 @@ public class AdminOpsController {
     public Object fuzzySearchCollege(
     		@RequestParam("name")String name,
     		@PathVariable("pageNum")int pageNum){
-    	College college = new College();
-    	//非空判断 => 设值 用于查询.
-    	
-    	if(!"".equals(name) && name != null) {
-    		college.setName(name);
-    	}
     	
     	PageHelper.startPage(pageNum,30);
-		//return new PageInfo<College>(collegeService.searchFuzzyQuery(college));
-    	return new PageInfo<College>(collegeService.selectAll());
+		return new PageInfo<College>(collegeService.searchByName(name));
+    	//return new PageInfo<College>(collegeService.selectAll());
     }
 
+    /**
+     * .
+     * TODO 删除一个学院.
+     * @return
+     */
+    @RequestMapping(value = "/college-delete/{id}", method = RequestMethod.POST,produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public Object deleteCollege(
+    		@PathVariable("id")int id){
+    	
+    	String msg = "";
+    	if(id >0) {
+    		if(collegeService.deleteByPrimaryKey(id) == 1) {
+    			msg = "删除成功";
+    		}else {
+    			msg = "删除失败";
+    		}
+    	}else {
+    		msg = "选择数据有误，请再试一次";
+    	}
+		return "{\"msg\":\"" + msg + "\"}";
+    }
+    
+    /**
+     * .
+     * TODO
+     * @param type 处理类型{create | update}
+     * @param request
+     * @return
+     */
+	@RequestMapping(value = "/college-operate", method = RequestMethod.POST)
+	@ResponseBody
+	public Object addCollege(@RequestParam("type") String type,HttpServletRequest request) {
+		
+		String msg = "";//兼任非法值检查
+		if ("".equals(type) || type == null) {
+			msg = "类型有误，请再试一次";
+		} 
+		
+		if ("".equals(msg)) {//如果msg没报错
+			String name = request.getParameter("name");
+			if ("".equals(name) || name == null) {
+				msg += "名称有误，请再试一次";
+			}
+
+			//create 添加 
+			if("".equals(msg) && type.equals(CollegeOperationType.CREATE.toString())) {
+				if(collegeService.create(new College(name))==1) {
+					msg = "添加学院:[" + name + "]成功";
+				}else {
+					msg = "添加学院失败";
+				}
+			}
+			
+			//update 更新
+			if("".equals(msg) && type.equals(CollegeOperationType.UPDATE.toString())) {
+				int id = Integer.valueOf(request.getParameter("id"));
+				
+				//利用逻辑与 "短路" 现象
+				if("".equals(msg) && 
+						id > 0 &&
+						collegeService.updateByPrimaryKeySelective(new College(id,name)) == 1) {
+					msg = "添加学院:[" + name + "]成功";
+				}else {
+					msg = "添加学院失败";
+				}
+			}
+			
+		}	
+
+		return "{\"msg\":\"" + msg + "\"}";
+	}
+    
+    
 }

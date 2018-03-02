@@ -40,6 +40,16 @@ public class CollegeService extends BasicService<College> {
 		return dao.selectByPrimaryKey(id);
 	}
 
+	/**
+	 * .
+	 * TODO 通过名称模糊查找
+	 * @param c
+	 * @return
+	 */
+	public List<College> searchByName(String c) {
+		return dao.searchByName(c);
+	}
+	
 	@Override
 	public List<College> searchFuzzyQuery(College c) {
 		return dao.searchCollegeFuzzyQuery(c);
@@ -53,6 +63,11 @@ public class CollegeService extends BasicService<College> {
 	@Override
 	public int deleteByPrimaryKey(Integer id) {
 		return dao.deleteByPrimaryKey(id);
+	}
+	
+	@Override
+	public int create(College c) {
+		return dao.insert(c);
 	}
 
 }

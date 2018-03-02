@@ -2,6 +2,8 @@ package site.gaoyisheng.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import site.gaoyisheng.pojo.College;
 
 public interface CollegeMapper {
@@ -20,4 +22,6 @@ public interface CollegeMapper {
     List<College> selectAll();
     
     List<College> searchCollegeFuzzyQuery(College record);
+    
+    List<College> searchByName(@Param(value="name")String name);
 }
