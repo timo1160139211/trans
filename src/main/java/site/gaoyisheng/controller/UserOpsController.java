@@ -462,7 +462,7 @@ public class UserOpsController {
     			
 		switch (request.getParameter("awardsType")) {		
 		case "patent":		
-			Patent pa = new Patent();		
+			//Patent pa = new Patent();		
 					
 			patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));// 查		
 		
@@ -473,8 +473,7 @@ public class UserOpsController {
 			break;		
 		case "chPeriodicalThesis":		
 					
-			ChPeriodicalThesis ch = chPeriodicalThesisService		
-					.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));		
+			//ChPeriodicalThesis ch = chPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));		
 			break;		
 		default:		
 			break;		

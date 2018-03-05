@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
 
 public interface PatentMapper {
