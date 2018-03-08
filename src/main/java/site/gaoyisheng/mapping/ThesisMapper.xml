@@ -136,8 +136,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="site.gaoyisheng.pojo.Thesis">
-		insert into thesis (id, type, name,
-		insert into thesis (id, type,
+		insert into thesis (type,
 		name,
 		no1_auther_type, no1_auther_name, communicate_auther_name,
 		workunit, other_auther_name, publish_date,
@@ -163,7 +162,7 @@
 		auther_number, sdut_auther_number, status
 		)
 		values
-		(#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR},
+		(#{type,jdbcType=VARCHAR},
 		#{name,jdbcType=VARCHAR},
 		#{no1AutherType,jdbcType=VARCHAR},
 		#{no1AutherName,jdbcType=VARCHAR},
@@ -214,9 +213,6 @@
 	<insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Thesis">
 		insert into public.thesis
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				id,
-			</if>
 			<if test="type != null">
 				type,
 			</if>
@@ -384,9 +380,6 @@
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=INTEGER},
-			</if>
 			<if test="type != null">
 				#{type,jdbcType=VARCHAR},
 			</if>

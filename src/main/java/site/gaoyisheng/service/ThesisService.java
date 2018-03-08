@@ -46,6 +46,10 @@ public class ThesisService {
 	public int insertList(List<Thesis> thesisList) throws Exception {
 		return thesisDao.insertList(thesisList);
 	}
+	
+	public int createSelective(Thesis thesis) {
+		return thesisDao.insertSelective(thesis);
+	}
 
 	public List<Thesis> selectAllThesisLikeUserNameAndNumber(User user) {
 		return thesisDao.selectAllThesisLikeUserNameAndNumber(user);

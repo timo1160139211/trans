@@ -119,7 +119,65 @@ public class Thesis {
 
     private String status;
 
-    public Integer getId() {
+    public Thesis() {
+		this.type = "";
+		this.name = "";
+		this.no1AutherType = "";
+		this.no1AutherName = "";
+		this.communicateAutherName = "";
+		this.workunit = "";
+		this.otherAutherName = "";
+		this.publishDate = "";
+		this.publishMagazineThesisSet = "";
+		this.magazineType = "";
+		this.subjectType = "";
+		this.stairSubject = "";
+		this.projectSources = "";
+		this.publishRange = "";
+		this.thesisSetPublisher = "";
+		this.wordsNumbers = "";
+		this.schoolSign = "";
+		this.keyWords = "";
+		this.theAbstract = "";
+		this.note = "";
+		this.appearance = "";
+		this.cnkiLink = "";
+		this.issn = "";
+		this.cn = "";
+		this.volumeNumberPage = "";
+		this.doi = "";
+		this.conferenceName = "";
+		this.conferenceSite = "";
+		this.conferenceDate = "";
+		this.embodyNumber = "";
+		this.translationOrNot = "";
+		this.referenceFrequency = "";
+		this.supportProject = "";
+		this.no2AutherName = "";
+		this.no2AutherNumber = "";
+		this.no3AutherName = "";
+		this.no3AutherNumber = "";
+		this.no4AutherName = "";
+		this.no4AutherNumber = "";
+		this.no5AutherName = "";
+		this.no5AutherNumber = "";
+		this.no6AutherName = "";
+		this.no6AutherNumber = "";
+		this.no7AutherName = "";
+		this.no7AutherNumber = "";
+		this.no8AutherName = "";
+		this.no8AutherNumber = "";
+		this.no9AutherName = "";
+		this.no9AutherNumber = "";
+		this.no10AutherName = "";
+		this.no10AutherNumber = "";
+		this.no1AutherNumber = "";
+		this.autherNumber = 0;
+		this.sdutAutherNumber = 0;
+		this.status = "未审核";
+	}
+
+	public Integer getId() {
         return id;
     }
 
