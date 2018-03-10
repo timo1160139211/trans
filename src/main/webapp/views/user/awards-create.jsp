@@ -167,69 +167,69 @@
 																<td width="40%"><label class="form-control ">一级学科:</label>
 																	<select class="form-control " name="stairSubject"><option
 																			value="">--请选择--</option>
-																		<option value="110">数学</option>
-																		<option value="120">信息科学与系统科学</option>
-																		<option value="130">力学</option>
-																		<option value="140">物理学</option>
-																		<option value="150">化学</option>
-																		<option value="160">天文学</option>
-																		<option value="170">地球科学</option>
-																		<option value="180">生物学</option>
-																		<option value="190">心理学</option>
-																		<option value="210">农学</option>
-																		<option value="220">林学</option>
-																		<option value="230">畜牧、兽医科学</option>
-																		<option value="240">水产学</option>
-																		<option value="310">基础医学</option>
-																		<option value="320">临床医学</option>
-																		<option value="330">预防医学与公共卫生学</option>
-																		<option value="340">军事医学与特种医学</option>
-																		<option value="350">药学</option>
-																		<option value="360">中医学与中药学</option>
-																		<option value="410">工程与技术科学基础学科</option>
-																		<option value="413">信息与系统科学相关工程与技术</option>
-																		<option value="416">自然科学相关工程与技术</option>
-																		<option value="420">测绘科学技术</option>
-																		<option value="430">材料科学</option>
-																		<option value="440">矿山工程技术</option>
-																		<option value="450">冶金工程技术</option>
-																		<option value="460">机械工程</option>
-																		<option value="470">动力与电气工程</option>
-																		<option value="480">能源科学技术</option>
-																		<option value="490">核科学技术</option>
-																		<option value="510">电子与通信技术</option>
-																		<option value="520">计算机科学技术</option>
-																		<option value="530">化学工程</option>
-																		<option value="535">产品应用相关工程与技术</option>
-																		<option value="540">纺织科学技术</option>
-																		<option value="550">食品科学技术</option>
-																		<option value="560">土木建筑工程</option>
-																		<option value="570">水利工程</option>
-																		<option value="580">交通运输工程</option>
-																		<option value="590">航空、航天科学技术</option>
-																		<option value="610">环境科学技术及资源科学技术</option>
-																		<option value="620">安全科学技术</option>
+																		<option value="数学">数学</option>
+																		<option value="信息科学与系统科学">信息科学与系统科学</option>
+																		<option value="力学">力学</option>
+																		<option value="物理学">物理学</option>
+																		<option value="化学">化学</option>
+																		<option value="天文学">天文学</option>
+																		<option value="地球科学">地球科学</option>
+																		<option value="生物学">生物学</option>
+																		<option value="心理学">心理学</option>
+																		<option value="农学">农学</option>
+																		<option value="林学">林学</option>
+																		<option value="畜牧、兽医科学">畜牧、兽医科学</option>
+																		<option value="水产学">水产学</option>
+																		<option value="基础医学">基础医学</option>
+																		<option value="临床医学">临床医学</option>
+																		<option value="预防医学与公共卫生学">预防医学与公共卫生学</option>
+																		<option value="军事医学与特种医学">军事医学与特种医学</option>
+																		<option value="药学">药学</option>
+																		<option value="中医学与中药学">中医学与中药学</option>
+																		<option value="工程与技术科学基础学科">工程与技术科学基础学科</option>
+																		<option value="信息与系统科学相关工程与技术">信息与系统科学相关工程与技术</option>
+																		<option value="自然科学相关工程与技术">自然科学相关工程与技术</option>
+																		<option value="测绘科学技术">测绘科学技术</option>
+																		<option value="材料科学">材料科学</option>
+																		<option value="矿山工程技术">矿山工程技术</option>
+																		<option value="冶金工程技术">冶金工程技术</option>
+																		<option value="机械工程">机械工程</option>
+																		<option value="动力与电气工程">动力与电气工程</option>
+																		<option value="能源科学技术">能源科学技术</option>
+																		<option value="核科学技术">核科学技术</option>
+																		<option value="电子与通信技术">电子与通信技术</option>
+																		<option value="计算机科学技术">计算机科学技术</option>
+																		<option value="化学工程">化学工程</option>
+																		<option value="产品应用相关工程与技术">产品应用相关工程与技术</option>
+																		<option value="纺织科学技术">纺织科学技术</option>
+																		<option value="食品科学技术">食品科学技术</option>
+																		<option value="土木建筑工程">土木建筑工程</option>
+																		<option value="水利工程">水利工程</option>
+																		<option value="交通运输工程">交通运输工程</option>
+																		<option value="航空、航天科学技术">航空、航天科学技术</option>
+																		<option value="环境科学技术及资源科学技术">环境科学技术及资源科学技术</option>
+																		<option value="安全科学技术">安全科学技术</option>
 																		<option value="">----</option>
-																		<option value="630">管理学</option>
-																		<option value="710">马克思主义</option>
-																		<option value="720">哲学</option>
-																		<option value="730">宗教学</option>
-																		<option value="740">语言学</option>
-																		<option value="750">文学</option>
-																		<option value="760">艺术学</option>
-																		<option value="770">历史学</option>
-																		<option value="780">考古学</option>
-																		<option value="790">经济学</option>
-																		<option value="810">政治学</option>
-																		<option value="820">法学</option>
-																		<option value="830">军事学</option>
-																		<option value="840">社会学</option>
-																		<option value="850">民族学与文化学</option>
-																		<option value="860">新闻学与传播学</option>
-																		<option value="870">图书馆、情报与文献学</option>
-																		<option value="880">教育学</option>
-																		<option value="890">体育科学</option>
-																		<option value="910">统计学</option>
+																		<option value="管理学">管理学</option>
+																		<option value="马克思主义">马克思主义</option>
+																		<option value="哲学">哲学</option>
+																		<option value="宗教学">宗教学</option>
+																		<option value="语言学">语言学</option>
+																		<option value="文学">文学</option>
+																		<option value="艺术学">艺术学</option>
+																		<option value="历史学">历史学</option>
+																		<option value="考古学">考古学</option>
+																		<option value="经济学">经济学</option>
+																		<option value="政治学">政治学</option>
+																		<option value="法学">法学</option>
+																		<option value="军事学">军事学</option>
+																		<option value="社会学">社会学</option>
+																		<option value="民族学与文化学">民族学与文化学</option>
+																		<option value="新闻学与传播学">新闻学与传播学</option>
+																		<option value="图书馆、情报与文献学">图书馆、情报与文献学</option>
+																		<option value="教育学">教育学</option>
+																		<option value="体育科学">体育科学</option>
+																		<option value="统计学">统计学</option>
 																</select> <font style="color: #FF0000;"> *</font></td>
 															</tr>
 
@@ -242,10 +242,10 @@
 																<td width="40%"><label class="form-control ">发表范围:</label>
 																	<select name="publishRange" class="form-control ">
 																		<option value="">--请选择--</option>
-																		<option value="1">国外学术期刊</option>
-																		<option value="2">国内外公开发行</option>
-																		<option value="3">国内公开发行</option>
-																		<option value="4">港澳台刊物</option>
+																		<option value="国外学术期刊">国外学术期刊</option>
+																		<option value="国内外公开发行">国内外公开发行</option>
+																		<option value="国内公开发行">国内公开发行</option>
+																		<option value="港澳台刊物">港澳台刊物</option>
 																</select> <font style="color: #FF0000;"> *</font></td>
 															</tr>
 
@@ -294,38 +294,38 @@
 																<td width="60%"><label class="form-control ">项目来源:</label>
 																	<select name="projectSources" class="form-control "><option
 																			value="">--请选择--</option>
-																		<option value="03">国家社科基金单列学科项目</option>
-																		<option value="04">国家社科基金项目</option>
-																		<option value="05">教育部人文社科研究项目</option>
-																		<option value="051">全国教育科学规划（教育部）项目</option>
-																		<option value="06">国家自然科学基金项目</option>
-																		<option value="07">中央其他部门社科专门项目</option>
-																		<option value="08">高校古籍整理研究项目</option>
-																		<option value="09">省、市、自治区社科基金项目</option>
-																		<option value="10">省教育厅社科项目</option>
-																		<option value="11">地、市、厅、局等政府部门项目</option>
-																		<option value="12">国际合作研究项目</option>
-																		<option value="13">与港、澳、台合作研究项目</option>
-																		<option value="14">企事业单位委托项目</option>
-																		<option value="15">外资项目</option>
-																		<option value="16">学校社科项目</option>
-																		<option value="99">其他研究项目</option>
-																		<option value="999">无依托项目研究成果</option>
+																		<option value="国家社科基金单列学科项目">国家社科基金单列学科项目</option>
+																		<option value="国家社科基金项目">国家社科基金项目</option>
+																		<option value="教育部人文社科研究项目">教育部人文社科研究项目</option>
+																		<option value="全国教育科学规划">全国教育科学规划（教育部）项目</option>
+																		<option value="国家自然科学基金项目">国家自然科学基金项目</option>
+																		<option value="中央其他部门社科专门项目">中央其他部门社科专门项目</option>
+																		<option value="高校古籍整理研究项目">高校古籍整理研究项目</option>
+																		<option value="省、市、自治区社科基金项目">省、市、自治区社科基金项目</option>
+																		<option value="省教育厅社科项目">省教育厅社科项目</option>
+																		<option value="地、市、厅、局等政府部门项目">地、市、厅、局等政府部门项目</option>
+																		<option value="国际合作研究项目">国际合作研究项目</option>
+																		<option value="与港、澳、台合作研究项目">与港、澳、台合作研究项目</option>
+																		<option value="企事业单位委托项目">企事业单位委托项目</option>
+																		<option value="外资项目">外资项目</option>
+																		<option value="学校社科项目">学校社科项目</option>
+																		<option value="其他研究项目">其他研究项目</option>
+																		<option value="无依托项目研究成果">无依托项目研究成果</option>
 																		<option value="">--请选择--</option>
-																		<option value="21">“９７３”计划</option>
-																		<option value="22">国家科技支撑计划</option>
-																		<option value="23">“８６３”计划</option>
-																		<option value="24">国家自然科学基金项目</option>
-																		<option value="25">主管部门科技项目</option>
-																		<option value="26">国家科技部</option>
-																		<option value="27">国家发改委</option>
-																		<option value="28">国务院其他部门</option>
-																		<option value="29">省、市、自治区科技项目</option>
-																		<option value="30">企事业单位委托科技项目</option>
-																		<option value="31">国际合作项目</option>
-																		<option value="32">自选课题</option>
-																		<option value="33">其他课题</option>
-																		<option value="34">科技部重大专项</option></select></td>
+																		<option value="“９７３”计划">“９７３”计划</option>
+																		<option value="国家科技支撑计划">国家科技支撑计划</option>
+																		<option value="“８６３”计划">“８６３”计划</option>
+																		<option value="国家自然科学基金项目">国家自然科学基金项目</option>
+																		<option value="主管部门科技项目">主管部门科技项目</option>
+																		<option value="国家科技部">国家科技部</option>
+																		<option value="国家发改委">国家发改委</option>
+																		<option value="国务院其他部门">国务院其他部门</option>
+																		<option value="省、市、自治区科技项目">省、市、自治区科技项目</option>
+																		<option value="企事业单位委托科技项目">企事业单位委托科技项目</option>
+																		<option value="国际合作项目">国际合作项目</option>
+																		<option value="自选课题">自选课题</option>
+																		<option value="其他课题">其他课题</option>
+																		<option value="科技部重大专项">科技部重大专项</option></select></td>
 																<td width="40%"><label class="form-control ">备注:</label>
 																	<input type="text" class="form-control " name="note"
 																	value=""></td>
@@ -444,12 +444,9 @@
 													</div>
 
 
-
-
-
 													<div align="center">
 
-														<button type="buttton" class="btn btn-primary" id="submit">确定提交</button>
+														<button type="button" class="btn btn-primary" id="submit">确定提交</button>
 														<hr>
 
 													</div>
