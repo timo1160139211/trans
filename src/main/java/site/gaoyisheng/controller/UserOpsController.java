@@ -40,8 +40,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import site.gaoyisheng.pojo.*;
-import site.gaoyisheng.service.*;
+import site.gaoyisheng.domain.ResultModel;
+import site.gaoyisheng.pojo.ChPeriodicalThesis;
+import site.gaoyisheng.pojo.EnPeriodicalThesis;
+import site.gaoyisheng.pojo.Patent;
+import site.gaoyisheng.pojo.Thesis;
+import site.gaoyisheng.pojo.User;
+import site.gaoyisheng.service.ChPeriodicalThesisService;
+import site.gaoyisheng.service.EnPeriodicalThesisService;
+import site.gaoyisheng.service.PatentService;
+import site.gaoyisheng.service.ThesisService;
+import site.gaoyisheng.service.UserService;
+import site.gaoyisheng.utils.ResultUtil;
 
 @Controller
 @RequestMapping("/user")
@@ -437,7 +447,7 @@ public class UserOpsController {
 	
     /**
      * .
-     * TODO 模糊查找一个用户.
+     * 模糊查找一个用户.
      * @return
      */
     @RequestMapping(value = "/search/{pageNum}", method = RequestMethod.POST)
@@ -453,34 +463,50 @@ public class UserOpsController {
     
 	      
     @RequestMapping(value = "/awards-create", method = RequestMethod.GET)		
-    public String toAwardsCreate() {		
-        return "/user/awards-create";		
+    public ModelAndView toAwardsCreate(ModelAndView mv) {	
+    	mv.addObject("thesis", new Thesis());
+    	mv.setViewName("/user/awards-create");
+    	return mv;		
     }		
-    		
-    @RequestMapping(value = "/awards-create/{awardsType}", method = RequestMethod.POST)		
-    public String awardsCreate(HttpServletRequest request,@PathVariable("awardsType")String awardsType) {		
+    
+    @RequestMapping(value = "/awards-create", method = RequestMethod.POST,produces="application/json;charset=utf-8")
+    @ResponseBody
+    public ResultModel<Object> awardsCreate(HttpServletRequest request,Thesis thesis) {		
     			
-		switch (request.getParameter("awardsType")) {		
-		case "patent":		
-			//Patent pa = new Patent();		
-					
-			patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));// 查		
-		
-			break;		
-		case "enPeriodicalThesis":		
-		
-					enPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));		
-			break;		
-		case "chPeriodicalThesis":		
-					
-			//ChPeriodicalThesis ch = chPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));		
-			break;		
-		default:		
-			break;		
-		}		
     			
-        return "/user/awards-create";		
-    }		
+		int i = thesisService.createSelective(thesis);
+		if (i == 1) {
+			return ResultUtil.success(thesis);
+		} else {
+			return ResultUtil.error(thesis);
+		}
+    }
+    
+    
+//    @RequestMapping(value = "/awards-create/{awardsType}", method = RequestMethod.POST)		
+//    public String awardsCreate(HttpServletRequest request,@PathVariable("awardsType")String awardsType) {		
+//    			
+//		switch (request.getParameter("awardsType")) {		
+//		case "patent":		
+//			//Patent pa = new Patent();		
+//					
+//			patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));// 查		
+//		
+//			break;		
+//		case "enPeriodicalThesis":		
+//		
+//					enPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));		
+//			break;		
+//		case "chPeriodicalThesis":		
+//					
+//			//ChPeriodicalThesis ch = chPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));		
+//			break;		
+//		default:		
+//			break;		
+//		}		
+//    			
+//        return "/user/awards-create";		
+//    }		
 	
     
 	

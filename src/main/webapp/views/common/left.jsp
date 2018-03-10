@@ -21,9 +21,9 @@
 					<li><a href="${ctx}/user/awards-list" class=""><i
 							class="lnr lnr-file-empty"></i> <span>认领</span></a></li>
 					<!-- 用户: 补录数据 操作 -->
-					<!-- <li><a href="${ctx}/user/awards-create" class=""><i
+					<li><a href="${ctx}/user/awards-create" class=""><i
 							class="lnr lnr-pencil"></i> <span>补录数据</span></a></li>
-					-->
+					
 				</ul>
 			</c:if>
 
@@ -37,6 +37,9 @@
 					<!-- 秘书: 审核 操作 -->
 					<li><a href="${ctx}/secretary/audit-list" class=""><i
 							class="fa fa-search"></i> <span>审核</span></a></li>
+					<!-- 秘书: 审核补录 操作 -->		
+					<li><a href="${ctx}/secretary/audit-list" class=""><i
+							class="fa fa-search"></i> <span>审核补录</span></a></li>		
 					<!-- 用户: 修改个人 操作 -->
 					<li><a href="${ctx}/secretary/secretary-update" class=""><i
 							class="glyphicon glyphicon-cog"></i> <span>修改密码</span></a></li>
@@ -64,8 +67,9 @@
 							class="glyphicon glyphicon-th-list"></i> <span>管理用户</span></a></li>
 							
 					<!-- admin: 管理学院 -->
-					<li><a href="${ctx}/admin/college-manage" class=""><i
+					<!--<li><a href="${ctx}/admin/college-manage" class=""><i
 							class="glyphicon glyphicon-th-list"></i> <span>管理学院</span></a></li>
+					-->
 
 					<!-- admin: 上传 操作 -->
 					<li><a href="${ctx}/admin/upload" class=""><i
