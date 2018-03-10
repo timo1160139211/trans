@@ -20,63 +20,93 @@ package site.gaoyisheng.utils;
 import site.gaoyisheng.domain.ResultModel;
 import site.gaoyisheng.enums.ResultEnum;
 
-public class ResultUtil<T> {
+public class ResultUtil {
 
 	/**
 	 * .
 	 * 成功
-	 * @param t
 	 * @return
 	 */
-	public ResultModel<T> success(T t) {
-		ResultModel<T> result = new ResultModel<T>();
+	@SuppressWarnings({ "rawtypes"})
+	public static ResultModel success() {
+		ResultModel result = new ResultModel();
 		result.setCode(ResultEnum.SUCCESS.getCode());
 		result.setMsg(ResultEnum.SUCCESS.getName());
-		result.setData(t);
 		return result;
 	}
 	
 	/**
 	 * .
 	 * 成功
-	 * @param t
+	 * @param o
+	 * @return
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static ResultModel success(Object o) {
+		ResultModel result = new ResultModel();
+		result.setCode(ResultEnum.SUCCESS.getCode());
+		result.setMsg(ResultEnum.SUCCESS.getName());
+		result.setData(o);
+		return result;
+	}
+	
+	/**
+	 * .
+	 * 成功
+	 * @param 0
 	 * @param msg
 	 * @return
 	 */
-	public ResultModel<T> success(T t, String msg) {
-		ResultModel<T> result = new ResultModel<T>();
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static ResultModel success(Object o, String msg) {
+		ResultModel result = new ResultModel();
 		result.setCode(ResultEnum.SUCCESS.getCode());
 		result.setMsg(msg);
-		result.setData(t);
+		result.setData(o);
 		return result;
 	}
 	
 	/**
 	 * .
 	 * 失败
-	 * @param t
 	 * @return
 	 */
-	public ResultModel<T> error(T t) {
-		ResultModel<T> result = new ResultModel<T>();
+	@SuppressWarnings({ "rawtypes"})
+	public static ResultModel error() {
+		ResultModel result = new ResultModel();
 		result.setCode(ResultEnum.ERROR.getCode());
 		result.setMsg(ResultEnum.ERROR.getName());
-		result.setData(t);
 		return result;
 	}
 	
 	/**
 	 * .
 	 * 失败
-	 * @param t
+	 * @param o
+	 * @return
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static ResultModel error(Object o) {
+		ResultModel result = new ResultModel();
+		result.setCode(ResultEnum.ERROR.getCode());
+		result.setMsg(ResultEnum.ERROR.getName());
+		result.setData(o);
+		return result;
+	}
+	
+	/**
+	 * .
+	 * 失败
+	 * @param o
 	 * @param msg
 	 * @return
 	 */
-	public ResultModel<T> error(T t, String msg) {
-		ResultModel<T> result = new ResultModel<T>();
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static ResultModel error(Object o, String msg) {
+		ResultModel result = new ResultModel();
 		result.setCode(ResultEnum.ERROR.getCode());
 		result.setMsg(msg);
-		result.setData(t);
+		result.setData(o);
 		return result;
 	}
 }
