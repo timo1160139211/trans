@@ -86,6 +86,27 @@
 									class="">中文期刊论文</a></li>
 								<li><a href="${ctx}/admin/download/enPeriodicalThesis"
 									class="">英文期刊论文</a></li>
+							</ul>
+						</div>
+					</li>
+						
+					<!-- admin: 下载 操作 -->
+					<li><a href="#subPagesDownloadTwo" data-toggle="collapse"
+						class="collapsed"><i class="fa fa-download"></i> <span>下载补录数据</span>
+							<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						<div id="subPagesDownloadTwo" class="collapse ">
+							<ul class="nav">
+								<li><a href="${ctx}/admin/download/thesis" class="">补录-论文</a></li>
+							</ul>
+						</div>
+					</li>
+					
+					<!-- admin: 下载 操作 -->
+					<li><a href="#subPagesDownloadModel" data-toggle="collapse"
+						class="collapsed"><i class="fa fa-download"></i> <span>下载数据模板</span>
+							<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						<div id="subPagesDownloadModel" class="collapse ">
+							<ul class="nav">
 								<li><a href="${ctx}/admin/download/patent-model" class="">专利－模版</a></li>
 								<li><a
 									href="${ctx}/admin/download/chPeriodicalThesis-model" class="">中文论文－模版</a></li>
@@ -94,7 +115,8 @@
 								<li><a href="${ctx}/admin/download/user-model"
 									class="">用户信息－模板</a></li>
 							</ul>
-						</div></li>
+						</div>
+					</li>
 				</ul>
 			</c:if>
 		</nav>

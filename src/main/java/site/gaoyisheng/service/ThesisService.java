@@ -33,7 +33,7 @@ public class ThesisService {
 	@Autowired
 	private ThesisMapper thesisDao;
 
-	public List<Thesis> selectAllThesis() {
+	public List<Thesis> selectAll() {
 		return thesisDao.selectAllThesis();
 	}
 

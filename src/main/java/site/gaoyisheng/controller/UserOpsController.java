@@ -471,43 +471,15 @@ public class UserOpsController {
     
     @RequestMapping(value = "/awards-create", method = RequestMethod.POST,produces="application/json;charset=utf-8")
     @ResponseBody
-    public ResultModel<Object> awardsCreate(HttpServletRequest request,Thesis thesis) {		
+    public String awardsCreate(HttpServletRequest request,Thesis thesis) {		
     			
-    			
-		int i = thesisService.createSelective(thesis);
-		if (i == 1) {
-			return ResultUtil.success(thesis);
+		if (thesisService.createSelective(thesis) == 1) {
+			return "{\"msg\":\"成功\"}";//ResultUtil.success(thesis);
 		} else {
-			return ResultUtil.error(thesis);
+			return "{\"msg\":\"失败\"}";//ResultUtil.error(thesis);
 		}
     }
     
-    
-//    @RequestMapping(value = "/awards-create/{awardsType}", method = RequestMethod.POST)		
-//    public String awardsCreate(HttpServletRequest request,@PathVariable("awardsType")String awardsType) {		
-//    			
-//		switch (request.getParameter("awardsType")) {		
-//		case "patent":		
-//			//Patent pa = new Patent();		
-//					
-//			patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));// 查		
-//		
-//			break;		
-//		case "enPeriodicalThesis":		
-//		
-//					enPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));		
-//			break;		
-//		case "chPeriodicalThesis":		
-//					
-//			//ChPeriodicalThesis ch = chPeriodicalThesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));		
-//			break;		
-//		default:		
-//			break;		
-//		}		
-//    			
-//        return "/user/awards-create";		
-//    }		
-	
     
 	
 }

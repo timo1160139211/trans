@@ -639,11 +639,11 @@ public class FileUtil {
 			insertCell(row, j++, thesis.getNo10AutherNumber());
 			insertCell(row, j++, thesis.getAutherNumber());
 			insertCell(row, j++, thesis.getSdutAutherNumber());
-			if(thesis.getStatus().equals("false")) {
-			    insertCell(row, j++, "已认领");
-			}else {
-				 insertCell(row, j++, "未认领");
-			}
+			//if(thesis.getStatus().equals("false")) {
+			    insertCell(row, j++, thesis.getStatus());
+			//}else {
+			//	 insertCell(row, j++, "未认领");
+			//}
 			
 		}
 		wb.write(out);wb.close();

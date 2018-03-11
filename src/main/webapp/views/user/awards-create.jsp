@@ -15,6 +15,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <jsp:include page="/views/resources/head.jsp" flush="true" />
+<link href="${ctx}/views/assets/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" type="text/css"></link>
 </head>
 
 <body>
@@ -38,28 +39,20 @@
 						<div class="col-md-12">
 							<div class="panel">
 								<ul class="nav nav-tabs" id="myTab">
-									<li><a id="to-patent-tab" href="#patent-tab"
-										data-toggle="tab">专利</a></li>
-									<li class="active"><a id="to-thesis-tab"
+									<li role="presentation" class="active"><a id="to-thesis-tab"
 										href="#thesis-tab" data-toggle="tab">论文</a></li>
+									<li  role="presentation"><a id="to-patent-tab" href="#patent-tab"
+										data-toggle="tab">专利</a></li>
 								</ul>
 								<div class="tab-content">
-									<div class="tab-pane" id="patent-tab">
-										<div class="panel-body">
-											<div class="form-group">
-												<form:form class="form-inline"
-													action="${ctx}/user/awards-create" method="post">
 
-												</form:form>
-											</div>
-										</div>
-									</div>
 									<div class="tab-pane active" id="thesis-tab">
 										<div class="panel-body">
 											<div class="form-group">
 
-												<form:form commandName="thesis" class="form-inline"
-													action="${ctx}/user/awards-create" method="post">
+												<form:form commandName="thesis" id="thesis-form"
+													class="form-inline" action="${ctx}/user/awards-create"
+													method="post">
 
 
 
@@ -76,13 +69,13 @@
 
 															<tr>
 																<td width="60%"><label class="form-control ">发表时间:</label>
-																	<input type="text" class="form-control " name="publishDate"
-																	value=""> <font style="color: #FF0000;">
-																		*</font></td>
+																	<input type="text" id="publishDate"    class="form-control " onclick="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'whyGreen',maxDate:'%y-%M-%d'})"
+																	name="publishDate" value=""> <font
+																	style="color: #FF0000;"> *</font></td>
 																<td width="40%"><label class="form-control ">发表刊物/论文集:</label>
-																	<input type="text" class="form-control " name="publishMagazineThesisSet"
-																	value=""> <font style="color: #FF0000;">
-																		*</font></td>
+																	<input type="text" class="form-control "
+																	name="publishMagazineThesisSet" value=""> <font
+																	style="color: #FF0000;"> *</font></td>
 															</tr>
 
 
@@ -139,7 +132,6 @@
 																		<option value="体育学院">体育学院</option>
 																		<option value="鲁泰纺织服装学院">鲁泰纺织服装学院</option>
 																		<option value="齐文化研究院">齐文化研究院</option>
-
 																		<option value="图书馆">图书馆</option>
 																		<option value="后勤管理处">后勤管理处</option>
 																		<option value="学生工作处">学生工作处</option>
@@ -163,7 +155,7 @@
 																		<option value="科技类">科技类</option>
 																		<option value="社科类">社科类</option>
 																</select> <font style="color: #FF0000;"> *</font></td>
-																
+
 																<td width="40%"><label class="form-control ">一级学科:</label>
 																	<select class="form-control " name="stairSubject"><option
 																			value="">--请选择--</option>
@@ -209,7 +201,6 @@
 																		<option value="航空、航天科学技术">航空、航天科学技术</option>
 																		<option value="环境科学技术及资源科学技术">环境科学技术及资源科学技术</option>
 																		<option value="安全科学技术">安全科学技术</option>
-																		<option value="">----</option>
 																		<option value="管理学">管理学</option>
 																		<option value="马克思主义">马克思主义</option>
 																		<option value="哲学">哲学</option>
@@ -253,8 +244,8 @@
 
 															<tr>
 																<td width="60%"><label class="form-control ">关键词:</label>
-																	<input type="text" class="form-control " name="name"
-																	value=""></td>
+																	<input type="text" class="form-control "
+																	name="keyWords" value=""></td>
 																<td width="40%"></td>
 															</tr>
 
@@ -311,7 +302,6 @@
 																		<option value="学校社科项目">学校社科项目</option>
 																		<option value="其他研究项目">其他研究项目</option>
 																		<option value="无依托项目研究成果">无依托项目研究成果</option>
-																		<option value="">--请选择--</option>
 																		<option value="“９７３”计划">“９７３”计划</option>
 																		<option value="国家科技支撑计划">国家科技支撑计划</option>
 																		<option value="“８６３”计划">“８６３”计划</option>
@@ -343,7 +333,7 @@
 																	name="conferenceSite" value=""></td>
 																<td width="40%"><label class="form-control ">会议日期:</label>
 																	<input type="text" class="form-control "
-																	name="conferenceDate" value=""></td>
+												 onclick="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'whyGreen',maxDate:'%y-%M-%d'})"	 				name="conferenceDate" value=""></td>
 															</tr>
 
 
@@ -446,11 +436,21 @@
 
 													<div align="center">
 
-														<button type="button" class="btn btn-primary" id="submit">确定提交</button>
+														<button type="submit" class="btn btn-primary" id="submit">确定提交</button>
 														<hr>
 
 													</div>
 
+
+												</form:form>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="patent-tab">
+										<div class="panel-body">
+											<div class="form-group">
+												<form:form class="form-inline"
+													action="${ctx}/user/awards-de" method="post">
 
 												</form:form>
 											</div>
@@ -471,9 +471,99 @@
 		<jsp:include page="/views/common/copyright.jsp" flush="true" />
 	</div>
 	<!-- END WRAPPER -->
-	<jsp:include page="/views/resources/footer.jsp" flush="true" />
+
+
+	<script src="${ctx}/views/assets/vendor/jquery/jquery.js"></script>
+
+
+	<script
+		src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+
+	<script
+		src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+
+<script src="${ctx}/views/assets/My97DatePicker/WdatePicker.js"></script>
+
+
 	<script type="text/javascript">
-		
+		$.validator.setDefaults({
+
+ 
+
+			submitHandler : function(form) {
+
+
+            var options  = {         
+                type:'post',
+                dataType: 'json',      
+                success:function(data)      
+                {    //成功执行的方法  
+                     alert(data.msg);   
+                } ,
+            error: function(data)      
+                {    //成功执行的方法  
+                     alert("OKKOK");   
+                }    
+            };  
+
+				$(form).ajaxSubmit(options);
+			}
+		});
+
+		$().ready(function() {
+
+			$("form").validate({
+				event : 'keyup',
+				rules : {
+					name : {
+						required : true,
+						minlength : 1
+					},
+					publishDate : {
+						required : true
+					},
+					publishMagazineThesisSet : {
+						required : true
+					},
+					magazineType : {
+						required : true
+					},
+					workunit : {
+						required : true
+					},
+					communicateAutherName : {
+						required : true
+					},
+					subjectType : {
+						required : true
+					},
+					stairSubject : {
+						required : true
+					},
+					thesisSetPublisher : {
+						required : true
+					},
+					publishRange : {
+						required : true
+					},
+					no1AutherName : {
+						required : true
+					},
+					no1AutherNumber : {
+						required : true
+					}
+
+				}
+			//rules.
+
+			});//validate
+
+
+
+
+		});//ready
 	</script>
+
+
 </body>
 </html>

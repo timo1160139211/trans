@@ -49,6 +49,7 @@ import site.gaoyisheng.service.ChPeriodicalThesisService;
 import site.gaoyisheng.service.CollegeService;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
 import site.gaoyisheng.service.PatentService;
+import site.gaoyisheng.service.ThesisService;
 import site.gaoyisheng.service.UserService;
 import site.gaoyisheng.utils.FileUtil;
 
@@ -61,6 +62,9 @@ public class AdminOpsController {
 	
 	@Autowired
 	private PatentService patentService;
+	
+	@Autowired
+	private ThesisService thesisService;
 	
 	@Autowired
 	private CollegeService collegeService;
@@ -149,7 +153,11 @@ public class AdminOpsController {
 			
 			String fileNameBefore = "";
 			
-			switch(awardsType) {
+			switch (awardsType) {
+			    case "thesis":
+			    		bytes = fileUtil.exportFile(thesisService.selectAll());
+			    		fileNameBefore = "补录-论文.xls";
+                     break;
 			    case "patent": 
 			    		bytes = fileUtil.exportFileOfPatent(patentService.selectAll());
 			    		fileNameBefore = "专利.xls";
