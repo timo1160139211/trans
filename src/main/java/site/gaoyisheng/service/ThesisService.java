@@ -55,6 +55,11 @@ public class ThesisService {
 		return thesisDao.selectAllThesisLikeUserNameAndNumber(user);
 	}
 
+	public List<Thesis> selectByMultiConditions(User user) {
+		return thesisDao.selectAllThesisLikeUserNameAndNumber(user);
+	}
+	
+	
 	public Thesis selectByPrimaryKey(Integer thesisId) {
 		return thesisDao.selectByPrimaryKey(thesisId);
 	}

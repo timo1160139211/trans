@@ -92,7 +92,7 @@ public class AdminOpsController {
     
     /**
      * .
-     * TODO 上传文件,并解析入库  : request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+     * 上传文件,并解析入库  : request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
      *                                                   由于还需上传 User 表,此处再加一个 {user}
      * @param file
      * @param request
@@ -137,7 +137,7 @@ public class AdminOpsController {
 	
 	/**
 	 * .
-	 * TODO 生成Xls文件,并下载 或者下载(模版)  : request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis,patent_model,enPeriodicalThesis_model,chPeriodicalThesis_model}
+	 * 生成Xls文件,并下载 或者下载(模版)  : request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis,patent_model,enPeriodicalThesis_model,chPeriodicalThesis_model}
 	 * @param request
 	 * @param response
 	 * @throws Exception
@@ -214,7 +214,7 @@ public class AdminOpsController {
 	
 	/**
 	 * .
-	 * TODO 查看认领进度. 
+	 * 查看认领进度. 
 	 * @param request
 	 * @return
 	 */
@@ -225,7 +225,7 @@ public class AdminOpsController {
 	
 	/**
 	 * .
-	 * TODO 查看认领进度. (进度统计):  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+	 * 看认领进度. (进度统计):  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
 	 * @param request
 	 * @return
 	 */
@@ -249,7 +249,7 @@ public class AdminOpsController {
 	
 	/**
 	 * .
-	 * TODO  查看所有未认领的awards
+	 * 查看所有未认领的awards
 	 * @param request
 	 * @param mv 包含对象:{notClaimedAwardsList} :未认领awards对象的list
 	 * @return
@@ -261,7 +261,7 @@ public class AdminOpsController {
 	
 	/**
 	 * .
-	 * TODO  查看所有未认领的awards
+	 * 查看所有未认领的awards
 	 * @param request
 	 * @param mv 包含对象:{notClaimedAwardsList} :未认领awards对象的list
 	 * @return
@@ -285,7 +285,7 @@ public class AdminOpsController {
 	
 	/**
 	 * .
-	 * TODO  查看所有未认领的awards
+	 * 查看所有未认领的awards
 	 * @param request
 	 * @param mv 包含对象:{notClaimedAwardsList} :未认领awards对象的list
 	 * @return
@@ -297,7 +297,7 @@ public class AdminOpsController {
 
 	/**
 	 * . 
-	 * TODO 重置用户密码
+	 * 重置用户密码
 	 * @return
 	 */
 	@RequestMapping(value = "/reset-user-password", method = RequestMethod.POST,produces = "application/json; charset=utf-8")
@@ -317,7 +317,7 @@ public class AdminOpsController {
 	
 	/**
 	 * . 
-	 * TODO 删除用户
+	 * 删除用户
 	 * @return
 	 */
 	@RequestMapping(value = "/delete-user", method = RequestMethod.POST,produces = "application/json; charset=utf-8")
@@ -339,7 +339,7 @@ public class AdminOpsController {
 	
     /**
      * .
-     * TODO 模糊查找一个用户.
+     * 模糊查找一个用户.
      * @return
      */
     @RequestMapping(value = "/user-search/{pageNum}", method = RequestMethod.POST)
@@ -368,7 +368,7 @@ public class AdminOpsController {
     
     /**
      * .
-     * TODO 模糊查找一个学院.
+     * 模糊查找一个学院.
      * @return
      */
     @RequestMapping(value = "/college-search/{pageNum}", method = RequestMethod.POST)
@@ -384,7 +384,7 @@ public class AdminOpsController {
 
     /**
      * .
-     * TODO 删除一个学院.
+     * 删除一个学院.
      * @return
      */
     @RequestMapping(value = "/college-delete/{id}", method = RequestMethod.POST,produces = "application/json; charset=utf-8")
@@ -407,7 +407,7 @@ public class AdminOpsController {
     
     /**
      * .
-     * TODO
+     * 
      * @param type 处理类型{create | update}
      * @param request
      * @return

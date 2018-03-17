@@ -21,6 +21,8 @@ public interface ThesisMapper {
 	List<Thesis> selectAllThesisLikeUserNameAndNumber(User user);
 
 	List<Thesis> selectAllThesis();
+	
+	
 
 	int insertList(List<Thesis> thesisList);
 }

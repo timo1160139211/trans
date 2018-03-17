@@ -35,10 +35,12 @@ import com.github.pagehelper.PageInfo;
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
+import site.gaoyisheng.pojo.Thesis;
 import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.ChPeriodicalThesisService;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
 import site.gaoyisheng.service.PatentService;
+import site.gaoyisheng.service.ThesisService;
 import site.gaoyisheng.service.UserService;
 
 @Controller
@@ -50,6 +52,9 @@ public class SecretaryController {
 	
 	@Autowired
 	private PatentService patentService;
+	
+	@Autowired
+	private ThesisService thesisService;
 
 	@Autowired
 	private EnPeriodicalThesisService enPeriodicalThesisService;
@@ -69,7 +74,7 @@ public class SecretaryController {
 	
     /** 
      * .
-     * TODO 返回 成果 详细.  
+     * 返回 成果 详细.  
      * @param request
      * @return
      */
@@ -88,7 +93,7 @@ public class SecretaryController {
 	
     /** 
      * .
-     * TODO 返回 成果 列表.  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+     * 返回 成果 列表.  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
      * @param request
      * @return
      */
@@ -130,8 +135,6 @@ public class SecretaryController {
          }
     }
     
-    
-    
 	@RequestMapping(value="/audit",method = RequestMethod.GET)
 	public String auditPage(){
 		return "/secretary/audit";
@@ -162,6 +165,72 @@ public class SecretaryController {
 		}
 	}
 	
+	/**
+	 * .
+	 * 审核追加数据.
+	 * @return
+	 */
+	@RequestMapping(value="/audit-additional",method = RequestMethod.GET)
+	public String toAuditAdditionalPage(){
+		return "/secretary/audit-additional";
+	}
+	
+    /** 
+     * .
+     * 返回 成果 列表.  
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/audit-additional-list" ,method = RequestMethod.POST)
+    @ResponseBody
+    public Object awardsAdditionalList(HttpServletRequest request) {
+        Map<String,String> map = new HashMap<String,String>();
+
+    	 map.put("name", request.getParameter("name"));
+ 
+    	 map.put("type", request.getParameter("type"));
+
+    	 map.put("autherName", request.getParameter("autherName"));
+    	 map.put("claimStatus", request.getParameter("claimStatus"));
+    	 map.put("no10AutherNumber", request.getParameter("no10AutherNumber"));//审核状态
+    	 map.put("no10AutherName", request.getParameter("no10AutherName"));//学院
+        
+    	 //分页参数
+    	 int pageNum = Integer.valueOf(request.getParameter("pageNum"));
+    	 int pageSize = 30;
+    	 
+        PageHelper.startPage(pageNum,pageSize);
+        return new PageInfo<Patent>(thesisService.selectByMultiConditions(map));
+    }
+    
+	/**
+	 * .
+	 * 审核追加数据. 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/audit-additional", method = RequestMethod.POST, produces = "application/json; charset=utf-8") // 解决中文??问题
+	@ResponseBody
+	public Object auditAdditional(HttpServletRequest request) {
+
+		int id = Integer.valueOf(request.getParameter("id"));
+		String btnType = request.getParameter("btnType");
+
+		String update = "";
+		if (btnType.equals("pass")) {
+			update = "通过审核";
+		}
+		if (btnType.equals("notPass")) {
+			update = "未通过审核";
+		}
+
+		if (1 == thesisService.updateByPrimaryKeySelective(new Thesis(id, update)) ) {
+			return "{\"status\":" + "\"审核成功\"}";
+		} else {
+			return "{\"status\":" + "\"审核失败\"}";
+		}
+	}	
+	
 	
     @RequestMapping(value = "/secretary-update", method = RequestMethod.GET)
     public String updateUser() {
@@ -170,7 +239,7 @@ public class SecretaryController {
     
     /**
      * .
-     * 提交表单,更新数据库,更改session用户. TODO
+     * 提交表单,更新数据库,更改session用户. 
      *
      * @param userForm
      * @param request

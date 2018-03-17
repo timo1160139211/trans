@@ -123,13 +123,15 @@
 		)
 		and t.status = 'true'
 	</select>
-	<select id="selectThesisSelective" parameterType="java.lang.Integer"
+ 
+	<select id="selectByMultiConditions" parameterType="site.gaoyisheng.pojo.Thesis"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from public."thesis"
+		from public."thesis" t
+		where
+		and t.status = 'true'
 	</select>
-
 
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from public.thesis
