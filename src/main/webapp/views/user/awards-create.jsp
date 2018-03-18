@@ -34,7 +34,7 @@
 			<div class="main-content">
 				<div class="container-fluid">
 					<h3 class="page-title">论文追加:</h3>
-					<h4 style="color: red;">英文论文请写英文:</h4>
+					    <h3 style="color: red;">${msg}</h3>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="panel">
@@ -435,13 +435,6 @@
 																type="text" name="no9AutherNumber"
 																value="${awards.no9AutherNumber}" class="form-control">
 														</div>
-														<div class="form-group ">
-															<label>第十作者:</label> <input type="text"
-																name="no10AutherName" value="${awards.no10AutherName}"
-																class="form-control"> <label>工号:</label> <input
-																type="text" name="no10AutherNumber"
-																value="${awards.no10AutherNumber}" class="form-control">
-														</div>
 													</div>
 
 
@@ -533,7 +526,8 @@
 						minlength : 1
 					},
 					publishDate : {
-						required : true
+						required : true,
+						dateISO : true
 					},
 					publishMagazineThesisSet : {
 						required : true

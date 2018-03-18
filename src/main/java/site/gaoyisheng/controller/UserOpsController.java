@@ -40,7 +40,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import site.gaoyisheng.domain.ResultModel;
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
@@ -51,7 +50,6 @@ import site.gaoyisheng.service.EnPeriodicalThesisService;
 import site.gaoyisheng.service.PatentService;
 import site.gaoyisheng.service.ThesisService;
 import site.gaoyisheng.service.UserService;
-import site.gaoyisheng.utils.ResultUtil;
 
 @Controller
 @RequestMapping("/user")
@@ -463,20 +461,25 @@ public class UserOpsController {
     
 	      
     @RequestMapping(value = "/awards-create", method = RequestMethod.GET)		
-    public ModelAndView toAwardsCreate(ModelAndView mv) {	
-    	mv.addObject("thesis", new Thesis());
-    	mv.setViewName("/user/awards-create");
-    	return mv;		
+    public ModelAndView toAwardsCreate(ModelAndView mav) {	
+    	
+    	mav.addObject("msg", "");
+    	mav.addObject("thesis", new Thesis());
+    	mav.setViewName("/user/awards-create");
+    	return mav;		
     }		
     
     @RequestMapping(value = "/awards-create", method = RequestMethod.POST,produces="application/json;charset=utf-8")
-    @ResponseBody
-    public String awardsCreate(HttpServletRequest request,Thesis thesis) {		
-    			
+    public ModelAndView awardsCreate(ModelAndView mav,HttpServletRequest request,Thesis thesis) {		
+    	
 		if (thesisService.createSelective(thesis) == 1) {
-			return "{\"msg\":\"成功\"}";//ResultUtil.success(thesis);
+			mav.setViewName("/user/awards-create");
+			mav.addObject("msg", "成功追加:"+thesis.getName());
+			return mav;//ResultUtil.success(thesis);
 		} else {
-			return "{\"msg\":\"失败\"}";//ResultUtil.error(thesis);
+			mav.setViewName("awards-create");
+			mav.addObject("msg", "追加失败:"+thesis.getName());
+			return mav;//ResultUtil.success(thesis);
 		}
     }
     
