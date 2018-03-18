@@ -124,15 +124,25 @@
 		and t.status = 'true'
 	</select>
  
-	<select id="selectByMultiConditions" parameterType="site.gaoyisheng.pojo.Thesis"
+    <!-- 多条件查询 -->
+	<select id="selectByMultiConditions" parameterType="map"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from public."thesis" t
-		where
-		and t.status = 'true'
+		from public."thesis"
+		<where>
+			<if test="name != '' and name != null">
+				name like concat('%','${name}','%')
+			</if>
+			<if test="workunit != '' and workunit != null">
+				AND workunit = #{workunit}
+			</if>
+			<if test="status != '' and status != null">
+				AND status = #{status}
+			</if>
+		</where>
 	</select>
-
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from public.thesis
 		where id = #{id,jdbcType=INTEGER}
@@ -651,177 +661,177 @@
 	<update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.Thesis">
 		update public.thesis
 		<set>
-			<if test="type != null">
+			<if test="type != null and type != ''">
 				type = #{type,jdbcType=VARCHAR},
 			</if>
-			<if test="name != null">
+			<if test="name != null and name != ''">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="no1AutherType != null">
+			<if test="no1AutherType != null and no1AutherType != ''">
 				no1_auther_type = #{no1AutherType,jdbcType=VARCHAR},
 			</if>
-			<if test="no1AutherName != null">
+			<if test="no1AutherName != null and no1AutherName != ''">
 				no1_auther_name = #{no1AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="communicateAutherName != null">
+			<if test="communicateAutherName != null and communicateAutherName != ''">
 				communicate_auther_name =
 				#{communicateAutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="workunit != null">
+			<if test="workunit != null and workunit != ''">
 				workunit = #{workunit,jdbcType=VARCHAR},
 			</if>
-			<if test="otherAutherName != null">
+			<if test="otherAutherName != null and otherAutherName != ''">
 				other_auther_name = #{otherAutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="publishDate != null">
+			<if test="publishDate != null and publishDate != ''">
 				publish_date = #{publishDate,jdbcType=VARCHAR},
 			</if>
-			<if test="publishMagazineThesisSet != null">
+			<if test="publishMagazineThesisSet != null and publishMagazineThesisSet != ''">
 				publish_magazine_thesis_set =
 				#{publishMagazineThesisSet,jdbcType=VARCHAR},
 			</if>
-			<if test="magazineType != null">
+			<if test="magazineType != null and magazineType != ''">
 				magazine_type = #{magazineType,jdbcType=VARCHAR},
 			</if>
-			<if test="subjectType != null">
+			<if test="subjectType != null and subjectType != ''">
 				subject_type = #{subjectType,jdbcType=VARCHAR},
 			</if>
-			<if test="stairSubject != null">
+			<if test="stairSubject != null and stairSubject != ''">
 				stair_subject = #{stairSubject,jdbcType=VARCHAR},
 			</if>
-			<if test="projectSources != null">
+			<if test="projectSources != null and projectSources != ''">
 				project_sources = #{projectSources,jdbcType=VARCHAR},
 			</if>
-			<if test="publishRange != null">
+			<if test="publishRange != null and publishRange != ''">
 				publish_range = #{publishRange,jdbcType=VARCHAR},
 			</if>
-			<if test="thesisSetPublisher != null">
+			<if test="thesisSetPublisher != null and thesisSetPublisher != ''">
 				thesis_set_publisher =
 				#{thesisSetPublisher,jdbcType=VARCHAR},
 			</if>
-			<if test="wordsNumbers != null">
+			<if test="wordsNumbers != null and wordsNumbers != ''">
 				words_numbers = #{wordsNumbers,jdbcType=VARCHAR},
 			</if>
-			<if test="schoolSign != null">
+			<if test="schoolSign != null and schoolSign != ''">
 				school_sign = #{schoolSign,jdbcType=VARCHAR},
 			</if>
-			<if test="keyWords != null">
+			<if test="keyWords != null and keyWords != ''">
 				key_words = #{keyWords,jdbcType=VARCHAR},
 			</if>
-			<if test="theAbstract != null">
+			<if test="theAbstract != null and theAbstract != ''">
 				the_abstract = #{theAbstract,jdbcType=VARCHAR},
 			</if>
-			<if test="note != null">
+			<if test="note != null and note != ''">
 				note = #{note,jdbcType=VARCHAR},
 			</if>
-			<if test="appearance != null">
+			<if test="appearance != null and appearance != ''">
 				appearance = #{appearance,jdbcType=VARCHAR},
 			</if>
-			<if test="cnkiLink != null">
+			<if test="cnkiLink != null and cnkiLink != ''">
 				cnki_link = #{cnkiLink,jdbcType=VARCHAR},
 			</if>
-			<if test="issn != null">
+			<if test="issn != null and issn != ''">
 				issn = #{issn,jdbcType=VARCHAR},
 			</if>
-			<if test="cn != null">
+			<if test="cn != null and cn != ''">
 				cn = #{cn,jdbcType=VARCHAR},
 			</if>
-			<if test="volumeNumberPage != null">
+			<if test="volumeNumberPage != null and volumeNumberPage != ''">
 				volume_number_page =
 				#{volumeNumberPage,jdbcType=VARCHAR},
 			</if>
-			<if test="doi != null">
+			<if test="doi != null and doi != ''">
 				doi = #{doi,jdbcType=VARCHAR},
 			</if>
-			<if test="conferenceName != null">
+			<if test="conferenceName != null and conferenceName != ''">
 				conference_name = #{conferenceName,jdbcType=VARCHAR},
 			</if>
-			<if test="conferenceSite != null">
+			<if test="conferenceSite != null and conferenceSite != ''">
 				conference_site = #{conferenceSite,jdbcType=VARCHAR},
 			</if>
-			<if test="conferenceDate != null">
+			<if test="conferenceDate != null and conferenceDate != ''">
 				conference_date = #{conferenceDate,jdbcType=VARCHAR},
 			</if>
-			<if test="embodyNumber != null">
+			<if test="embodyNumber != null and embodyNumber != ''">
 				embody_number = #{embodyNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="translationOrNot != null">
+			<if test="translationOrNot != null and translationOrNot != ''">
 				translation_or_not =
 				#{translationOrNot,jdbcType=VARCHAR},
 			</if>
-			<if test="referenceFrequency != null">
+			<if test="referenceFrequency != null and referenceFrequency != ''">
 				reference_frequency =
 				#{referenceFrequency,jdbcType=VARCHAR},
 			</if>
-			<if test="supportProject != null">
+			<if test="supportProject != null and supportProject != ''">
 				support_project = #{supportProject,jdbcType=VARCHAR},
 			</if>
-			<if test="no2AutherName != null">
+			<if test="no2AutherName != null and no2AutherName != ''">
 				no2_auther_name = #{no2AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no2AutherNumber != null">
+			<if test="no2AutherNumber != null and no2AutherNumber != ''">
 				no2_auther_number = #{no2AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no3AutherName != null">
+			<if test="no3AutherName != null and no3AutherName != ''">
 				no3_auther_name = #{no3AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no3AutherNumber != null">
+			<if test="no3AutherNumber != null and no3AutherNumber != ''">
 				no3_auther_number = #{no3AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no4AutherName != null">
+			<if test="no4AutherName != null and no4AutherName != ''">
 				no4_auther_name = #{no4AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no4AutherNumber != null">
+			<if test="no4AutherNumber != null and no4AutherNumber != ''">
 				no4_auther_number = #{no4AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no5AutherName != null">
+			<if test="no5AutherName != null and no5AutherName != ''">
 				no5_auther_name = #{no5AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no5AutherNumber != null">
+			<if test="no5AutherNumber != null and no5AutherNumber != ''">
 				no5_auther_number = #{no5AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no6AutherName != null">
+			<if test="no6AutherName != null and no6AutherName != ''">
 				no6_auther_name = #{no6AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no6AutherNumber != null">
+			<if test="no6AutherNumber != null and no6AutherNumber != ''">
 				no6_auther_number = #{no6AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no7AutherName != null">
+			<if test="no7AutherName != null and no7AutherName != ''">
 				no7_auther_name = #{no7AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no7AutherNumber != null">
+			<if test="no7AutherNumber != null and no7AutherNumber != ''">
 				no7_auther_number = #{no7AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no8AutherName != null">
+			<if test="no8AutherName != null and no8AutherName != ''">
 				no8_auther_name = #{no8AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no8AutherNumber != null">
+			<if test="no8AutherNumber != null and no8AutherNumber != ''">
 				no8_auther_number = #{no8AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no9AutherName != null">
+			<if test="no9AutherName != null and no9AutherName != ''">
 				no9_auther_name = #{no9AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no9AutherNumber != null">
+			<if test="no9AutherNumber != null and no9AutherNumber != ''">
 				no9_auther_number = #{no9AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no10AutherName != null">
+			<if test="no10AutherName != null and no10AutherName != ''">
 				no10_auther_name = #{no10AutherName,jdbcType=VARCHAR},
 			</if>
-			<if test="no10AutherNumber != null">
+			<if test="no10AutherNumber != null and no10AutherNumber != ''">
 				no10_auther_number =
 				#{no10AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="no1AutherNumber != null">
+			<if test="no1AutherNumber != null and no1AutherNumber != ''">
 				no1_auther_number = #{no1AutherNumber,jdbcType=VARCHAR},
 			</if>
-			<if test="autherNumber != null">
+			<if test="autherNumber != null and autherNumber != ''">
 				auther_number = #{autherNumber,jdbcType=INTEGER},
 			</if>
-			<if test="sdutAutherNumber != null">
+			<if test="sdutAutherNumber != null and sdutAutherNumber != ''">
 				sdut_auther_number =
 				#{sdutAutherNumber,jdbcType=INTEGER},
 			</if>
-			<if test="status != null">
+			<if test="status != null and status != ''">
 				status = #{status,jdbcType=VARCHAR},
 			</if>
 		</set>

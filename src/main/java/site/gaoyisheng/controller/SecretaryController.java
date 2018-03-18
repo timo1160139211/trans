@@ -87,6 +87,7 @@ public class SecretaryController {
            case "patent": return patentService.selectByPrimaryKey(id);
            case "chPeriodicalThesis": return chPeriodicalThesisService.selectByPrimaryKey(id);
            case "enPeriodicalThesis": return enPeriodicalThesisService.selectByPrimaryKey(id);
+           case "thesis": return thesisService.selectByPrimaryKey(id);
            default : return "{\"msg\":\"数据错误,再试一次\"}";
         }
     }
@@ -175,34 +176,6 @@ public class SecretaryController {
 		return "/secretary/audit-additional";
 	}
 	
-    /** 
-     * .
-     * 返回 成果 列表.  
-     * @param request
-     * @return
-     */
-    @RequestMapping(value = "/audit-additional-list" ,method = RequestMethod.POST)
-    @ResponseBody
-    public Object awardsAdditionalList(HttpServletRequest request) {
-        Map<String,String> map = new HashMap<String,String>();
-
-    	 map.put("name", request.getParameter("name"));
- 
-    	 map.put("type", request.getParameter("type"));
-
-    	 map.put("autherName", request.getParameter("autherName"));
-    	 map.put("claimStatus", request.getParameter("claimStatus"));
-    	 map.put("no10AutherNumber", request.getParameter("no10AutherNumber"));//审核状态
-    	 map.put("no10AutherName", request.getParameter("no10AutherName"));//学院
-        
-    	 //分页参数
-    	 int pageNum = Integer.valueOf(request.getParameter("pageNum"));
-    	 int pageSize = 30;
-    	 
-        PageHelper.startPage(pageNum,pageSize);
-        return new PageInfo<Patent>(thesisService.selectByMultiConditions(map));
-    }
-    
 	/**
 	 * .
 	 * 审核追加数据. 
@@ -230,6 +203,29 @@ public class SecretaryController {
 			return "{\"status\":" + "\"审核失败\"}";
 		}
 	}	
+	
+	/** 
+	 * .
+	 * 返回 成果 列表.  
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/audit-additional-list" ,method = RequestMethod.POST,produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Object awardsAdditionalList(HttpServletRequest request) {
+		Map<String,String> map = new HashMap<String,String>();
+		
+		map.put("name", request.getParameter("name"));
+		map.put("workunit", request.getParameter("workunit"));
+		map.put("status", request.getParameter("status"));
+		
+		//分页参数
+		int pageNum = Integer.valueOf(request.getParameter("pageNum"));
+		int pageSize = 30;
+		
+		PageHelper.startPage(pageNum,pageSize);
+		return new PageInfo<Thesis>(thesisService.selectByMultiConditions(map));
+	}
 	
 	
     @RequestMapping(value = "/secretary-update", method = RequestMethod.GET)

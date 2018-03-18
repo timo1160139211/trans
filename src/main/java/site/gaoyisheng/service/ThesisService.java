@@ -18,6 +18,7 @@ package site.gaoyisheng.service;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,8 +56,8 @@ public class ThesisService {
 		return thesisDao.selectAllThesisLikeUserNameAndNumber(user);
 	}
 
-	public List<Thesis> selectByMultiConditions(User user) {
-		return thesisDao.selectAllThesisLikeUserNameAndNumber(user);
+	public List<Thesis> selectByMultiConditions(Map<String,String> map) {
+		return thesisDao.selectByMultiConditions(map);
 	}
 	
 	
@@ -66,5 +67,9 @@ public class ThesisService {
 
 	public int updateByPrimaryKeySelective(Thesis thesis) {
 		return thesisDao.updateByPrimaryKeySelective(thesis);
+	}
+	
+	public int deleteByPrimaryKey(int id) {
+		return thesisDao.deleteByPrimaryKey(id);
 	}
 }

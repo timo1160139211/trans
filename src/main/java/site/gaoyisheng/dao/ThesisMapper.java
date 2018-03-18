@@ -1,6 +1,7 @@
 package site.gaoyisheng.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import site.gaoyisheng.pojo.Thesis;
 import site.gaoyisheng.pojo.User;
@@ -22,7 +23,7 @@ public interface ThesisMapper {
 
 	List<Thesis> selectAllThesis();
 	
-	
+	List<Thesis> selectByMultiConditions(Map<String,String> map);
 
 	int insertList(List<Thesis> thesisList);
 }

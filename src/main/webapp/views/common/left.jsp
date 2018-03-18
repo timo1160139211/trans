@@ -38,7 +38,7 @@
 					<li><a href="${ctx}/secretary/audit-list" class=""><i
 							class="fa fa-search"></i> <span>审核</span></a></li>
 					<!-- 秘书: 审核补录 操作 -->		
-					<li><a href="${ctx}/secretary/audit-list" class=""><i
+					<li><a href="${ctx}/secretary/audit-additional" class=""><i
 							class="fa fa-search"></i> <span>审核补录</span></a></li>		
 					<!-- 用户: 修改个人 操作 -->
 					<li><a href="${ctx}/secretary/secretary-update" class=""><i

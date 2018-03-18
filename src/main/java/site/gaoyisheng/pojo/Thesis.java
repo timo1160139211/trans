@@ -103,7 +103,7 @@ public class Thesis {
 
     private String no10AutherName;
 
-    private String no10AutherNumber;
+    private String no10AutherNumber;///
 
     /**
      * 第一作者工号.

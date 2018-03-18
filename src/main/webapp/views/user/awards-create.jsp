@@ -41,8 +41,8 @@
 								<ul class="nav nav-tabs" id="myTab">
 									<li role="presentation" class="active"><a id="to-thesis-tab"
 										href="#thesis-tab" data-toggle="tab">论文</a></li>
-									<li  role="presentation"><a id="to-patent-tab" href="#patent-tab"
-										data-toggle="tab">专利</a></li>
+									<!-- <li  role="presentation"><a id="to-patent-tab" href="#patent-tab"
+										data-toggle="tab">专利</a></li> -->
 								</ul>
 								<div class="tab-content">
 
@@ -138,10 +138,7 @@
 																		<option value="实验管理中心">实验管理中心</option>
 																		<option value="校医院">校医院</option>
 																</select> <font style="color: #FF0000;"> *</font></td>
-																<td width="40%"><label class="form-control ">通讯作者:</label>
-																	<input type="text" class="form-control "
-																	name="communicateAutherName" value=""> <font
-																	style="color: #FF0000;"> *</font></td>
+																<td width="40%"></td>
 															</tr>
 
 
@@ -342,7 +339,9 @@
 																<td width="60%"><label class="form-control ">论文收录号码:</label>
 																	<input type="text" class="form-control "
 																	name="embodyNumber" value=""></td>
-																<td width="40%"></td>
+																<td width="40%"><label class="form-control ">会议名称:</label>
+																	<input type="text" class="form-control "
+																	name="conferenceName" value=""></td>
 															</tr>
 
 
@@ -361,6 +360,18 @@
 
 
 														<br>
+														
+														<div class="form-group ">
+															<label>通讯作者:</label>
+																	<input type="text" class="form-control "
+																	name="communicateAutherName" value="">
+															 <label>工号:</label> <input
+																type="text" name="no10AutherNumber"
+																value="${awards.no10AutherNumber}" class="form-control">
+														</div>
+														
+														
+																	
 														<div class="form-group ">
 															<label>第一作者:</label> <input type="text"
 																name="no1AutherName" value="${awards.no1AutherName}"
@@ -492,7 +503,7 @@
 
 			submitHandler : function(form) {
 
-
+/* 
             var options  = {         
                 type:'post',
                 dataType: 'json',      
@@ -505,8 +516,10 @@
                      alert("OKKOK");   
                 }    
             };  
-
-				$(form).ajaxSubmit(options);
+ */
+				//$(form).ajaxSubmit(options);
+ 
+				$(form).ajaxSubmit();
 			}
 		});
 
@@ -547,6 +560,9 @@
 						required : true
 					},
 					no1AutherName : {
+						required : true
+					},
+					no10AutherName : {//工号
 						required : true
 					},
 					no1AutherNumber : {
