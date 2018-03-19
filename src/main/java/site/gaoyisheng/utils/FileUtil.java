@@ -41,7 +41,7 @@ public class FileUtil {
 	
 	/**
 	 * .
-	 * TODO 文件导入: 把数据解析成list.  --Thesis
+	 *  文件导入: 把数据解析成list.  --Thesis
 	 * @param is
 	 * @return
 	 * @throws IOException
@@ -115,7 +115,7 @@ public class FileUtil {
 	
 	/**
 	 * .
-	 * TODO 文件导入: 把数据解析成list.  --User
+	 *  文件导入: 把数据解析成list.  --User
 	 * @param is
 	 * @return
 	 * @throws IOException
@@ -163,7 +163,7 @@ public class FileUtil {
 	
 	/**
 	 * .
-	 * TODO 文件导入: 把数据解析成list.   --EnPeriodicalThesis 
+	 *  文件导入: 把数据解析成list.   --EnPeriodicalThesis 
 	 * @param InputStream
 	 * @return
 	 * @throws IOException
@@ -210,7 +210,7 @@ public class FileUtil {
 
 	/**
 	 * .
-	 * TODO 文件导入: 把数据解析成list    --ChPeriodicalThesis 
+	 *  文件导入: 把数据解析成list    --ChPeriodicalThesis 
 	 * @param InputStream
 	 * @return
 	 * @throws IOException
@@ -303,7 +303,7 @@ public class FileUtil {
 
 	/**
 	 * .
-	 * TODO 文件导入: 把数据解析成list.   --Patent
+	 *  文件导入: 把数据解析成list.   --Patent
 	 * @param InputStream
 	 * @return
 	 * @throws IOException
@@ -353,7 +353,7 @@ public class FileUtil {
 	
 	/**
 	 * .
-	 * TODO 导出文件: 把数据解析成byte[]  ----EnPeriodicalThesis
+	 *  导出文件: 把数据解析成byte[]  ----EnPeriodicalThesis
 	 * @param list
 	 * @return
 	 * @throws Exception
@@ -418,7 +418,7 @@ public class FileUtil {
 	
 	/**
 	 * .
-	 * TODO 导出文件: 把数据解析成byte[]  ----ChPeriodicalThesis
+	 *  导出文件: 把数据解析成byte[]  ----ChPeriodicalThesis
 	 * @param list
 	 * @return
 	 * @throws Exception
@@ -483,7 +483,7 @@ public class FileUtil {
 	
 	/**
 	 * .
-	 * TODO 导出文件: 把数据解析成byte[]  ----Patent
+	 *  导出文件: 把数据解析成byte[]  ----Patent
 	 * @param list
 	 * @return
 	 * @throws Exception
@@ -548,7 +548,7 @@ public class FileUtil {
 	
 	/**
 	 * .
-	 * TODO 导出文件: 把数据解析成byte[]   -----Thesis
+	 *  导出文件: 把数据解析成byte[]   -----Thesis
 	 * @param list
 	 * @return
 	 * @throws Exception
@@ -653,7 +653,7 @@ public class FileUtil {
 	
 	/**
 	 * .
-	 * TODO 获取excel表头.
+	 *  获取excel表头.
 	 * @return
 	 */
 	private List<String> getExcelHead() {
@@ -708,17 +708,17 @@ public class FileUtil {
 		result.add("第八作者工号");
 		result.add("第九作者");
 		result.add("第九作者工号");
-		result.add("第十作者");
-		result.add("第十作者工号");
-		result.add("参与认领教职工作者数量");
-		result.add("山东理工大学教职工作者数量");
+		result.add("通讯作者工号");
+		result.add("第十作者工号(废弃)");
+		result.add("参与认领教职工作者数量(废弃)");
+		result.add("山东理工大学教职工作者数量(废弃)");
 		result.add("状态(已认领，未认领)");
 		return result;
 	}
 
 	/**
 	 * .
-	 * TODO 通用: 获取excel表头.
+	 *  通用: 获取excel表头.
 	 * @return
 	 */
 	private List<String> combileExcelHead() {
@@ -750,7 +750,7 @@ public class FileUtil {
 
 	/**
 	 * .
-	 * TODO 插入一行数据.
+	 *  插入一行数据.
 	 * @param row
 	 * @param i
 	 * @param object
@@ -768,7 +768,7 @@ public class FileUtil {
 	/**
 	 * .
 	 * 获取单元格数据内容为字符串类型的数据
-	 * TODO
+	 * 
 	 * @param cell Excel单元格
 	 * @returnString 单元格数据内容
 	 */
@@ -788,7 +788,7 @@ public class FileUtil {
     
     /**
      * .
-     * TODO 文件转化为字节数组
+     *  文件转化为字节数组
      * @param f
      * @return
      */

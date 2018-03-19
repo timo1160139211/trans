@@ -455,31 +455,23 @@ public class UserOpsController {
     	//非空判断 => 设值 用于查询.
     	u.setName(name);
     	
-    	 PageHelper.startPage(pageNum,30);
+    	PageHelper.startPage(pageNum,30);
     	return new PageInfo<User>(userService.searchUserFuzzyQuery(u));
     } 
     
-	      
     @RequestMapping(value = "/awards-create", method = RequestMethod.GET)		
-    public ModelAndView toAwardsCreate(ModelAndView mav) {	
-    	
-    	mav.addObject("msg", "");
-    	mav.addObject("thesis", new Thesis());
-    	mav.setViewName("/user/awards-create");
-    	return mav;		
-    }		
+    public String toAwardsCreate() {	
+    	return "user/awards-create";		
+    }
     
-    @RequestMapping(value = "/awards-create", method = RequestMethod.POST,produces="application/json;charset=utf-8")
-    public ModelAndView awardsCreate(ModelAndView mav,HttpServletRequest request,Thesis thesis) {		
+    @RequestMapping(value = "/awards-create", method = RequestMethod.POST)
+    public ModelAndView awardsCreate(HttpServletRequest request,Thesis thesis,ModelAndView mav) {		
     	
+    	mav.setViewName("/user/awards-create");
 		if (thesisService.createSelective(thesis) == 1) {
-			mav.setViewName("/user/awards-create");
-			mav.addObject("msg", "成功追加:"+thesis.getName());
-			return mav;//ResultUtil.success(thesis);
+			return mav.addObject("msg", "成功追加论文:"+thesis.getName());
 		} else {
-			mav.setViewName("awards-create");
-			mav.addObject("msg", "追加失败:"+thesis.getName());
-			return mav;//ResultUtil.success(thesis);
+			return mav.addObject("msg", "追加失败论文:"+thesis.getName());
 		}
     }
     

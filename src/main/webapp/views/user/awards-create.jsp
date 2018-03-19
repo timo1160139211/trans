@@ -363,76 +363,94 @@
 														
 														<div class="form-group ">
 															<label>通讯作者:</label>
-																	<input type="text" class="form-control "
+																	<input type="text" class="form-control "  id="communicateAutherName" 
 																	name="communicateAutherName" value="">
 															 <label>工号:</label> <input
-																type="text" name="no10AutherNumber"
+																type="text" id="no10AutherNumber"   name="no10AutherNumber"
 																value="${awards.no10AutherNumber}" class="form-control">
 														</div>
 														
 														
 																	
 														<div class="form-group ">
-															<label>第一作者:</label> <input type="text"
+															<label>第一作者:</label> <input type="text"   id="no1AutherName" 
 																name="no1AutherName" value="${awards.no1AutherName}"
 																class="form-control"> <label>工号:</label> <input
-																type="text" name="no1AutherNumber"
+																type="text" 
+ id="no1AutherNumber"
+                                                                                                    name="no1AutherNumber"
 																value="${awards.no1AutherNumber}" class="form-control">
 														</div>
 														<div class="form-group ">
 															<label>第二作者:</label> <input type="text"
+  id="no2AutherName" 
 																name="no2AutherName" value="${awards.no2AutherName}"
 																class="form-control"> <label>工号:</label> <input
 																type="text" name="no2AutherNumber"
+ id="no2AutherNumber"
 																value="${awards.no2AutherNumber}" class="form-control">
 														</div>
 														<div class="form-group ">
 															<label>第三作者:</label> <input type="text"
+  id="no3AutherName" 
 																name="no3AutherName" value="${awards.no3AutherName}"
 																class="form-control"> <label>工号:</label> <input
-																type="text" name="no3AutherNumber"
+																type="text" name="no3AutherNumber" 
+ id="no3AutherNumber" 
 																value="${awards.no3AutherNumber}" class="form-control">
 														</div>
 														<div class="form-group ">
 															<label>第四作者:</label> <input type="text"
+  id="no4AutherName" 
 																name="no4AutherName" value="${awards.no4AutherName}"
 																class="form-control"> <label>工号:</label> <input
 																type="text" name="no4AutherNumber"
+ id="no4AutherNumber" 
 																value="${awards.no4AutherNumber}" class="form-control">
 														</div>
 														<div class="form-group ">
 															<label>第五作者:</label> <input type="text"
+  id="no5AutherName" 
 																name="no5AutherName" value="${awards.no5AutherName}"
 																class="form-control"> <label>工号:</label> <input
 																type="text" name="no5AutherNumber"
+ id="no5AutherNumber" 
 																value="${awards.no5AutherNumber}" class="form-control">
 														</div>
 														<div class="form-group ">
 															<label>第六作者:</label> <input type="text"
+  id="no6AutherName" 
 																name="no6AutherName" value="${awards.no6AutherName}"
 																class="form-control"> <label>工号:</label> <input
 																type="text" name="no6AutherNumber"
+ id="no6AutherNumber" 
 																value="${awards.no6AutherNumber}" class="form-control">
 														</div>
 														<div class="form-group ">
 															<label>第七作者:</label> <input type="text"
+  id="no7AutherName" 
 																name="no7AutherName" value="${awards.no7AutherName}"
 																class="form-control"> <label>工号:</label> <input
 																type="text" name="no7AutherNumber"
+ id="no7AutherNumber" 
 																value="${awards.no7AutherNumber}" class="form-control">
 														</div>
 														<div class="form-group ">
 															<label>第八作者:</label> <input type="text"
-																name="no8AutherName" value="${awards.no8AutherName}"
+																name="no8AutherName"
+  id="no8AutherName"                                                                                value="${awards.no8AutherName}"
 																class="form-control"> <label>工号:</label> <input
 																type="text" name="no8AutherNumber"
+ id="no8AutherNumber" 
 																value="${awards.no8AutherNumber}" class="form-control">
 														</div>
 														<div class="form-group ">
 															<label>第九作者:</label> <input type="text"
+  id="no9AutherName" 
 																name="no9AutherName" value="${awards.no9AutherName}"
 																class="form-control"> <label>工号:</label> <input
 																type="text" name="no9AutherNumber"
+ id="no9AutherNumber" 
 																value="${awards.no9AutherNumber}" class="form-control">
 														</div>
 													</div>
@@ -570,6 +588,246 @@
 
 
 
+
+
+
+
+
+
+//*************************************1*************************************************//
+//输入框的失去焦点事件=>改变值
+$('body').on('blur', '#no1AutherName', function () {
+	var no1AutherName = $('#no1AutherName').val();//获取输入的名字
+	if(no1AutherName != ''){//输入不为空
+		$.ajax({
+			type : 'get',
+			url : '${ctx}/user/sereachUser',
+			data : {inputName:no1AutherName},
+			dataType : 'json',
+			success : function(data) {
+				if (data != null) {
+					$('#no1AutherNumber').val(data.number);
+				}
+			},
+		});
+	}
+});
+
+//*************************************2***********************************************//
+          //输入框的失去焦点事件=>改变值
+          $('body').on('blur', '#no2AutherName', function () {
+          	var no2AutherName = $('#no2AutherName').val();//获取输入的名字
+
+          	if(no2AutherName != ''){//是英文,且输入不为空
+
+          		$.ajax({
+          			type : 'get',
+          			url : '${ctx}/user/sereachUser',
+          			data : {inputName:no2AutherName},
+          			dataType : 'json',
+          			success : function(data) {
+          				if (data != null) {
+          					$('#no2AutherNumber').val(data.number);
+          				}
+          			},
+          			error : function(){
+          			}
+          		});
+
+          	}
+          });
+          
+        //*************************************3********************************************//
+        //输入框的失去焦点事件=>改变值
+        $('body').on('blur', '#no3AutherName', function () {
+        	var no3AutherName = $('#no3AutherName').val();//获取输入的名字
+
+        	if(no3AutherName != ''){//是英文,且输入不为空
+
+        		$.ajax({
+        			type : 'get',
+        			url : '${ctx}/user/sereachUser',
+        			data : {inputName:no3AutherName},
+        			dataType : 'json',
+        			success : function(data) {
+        				if (data != null) {
+        					$('#no3AutherNumber').val(data.number);
+        				}
+        			},
+        			error : function(){
+        			}
+        		});
+
+        	}
+        });
+        
+      //**************************************4***********************************************//
+      //输入框的失去焦点事件=>改变值
+      $('body').on('blur', '#no4AutherName', function () {
+      	var no4AutherName = $('#no4AutherName').val();//获取输入的名字
+
+      	if(no4AutherName != ''){//是英文,且输入不为空
+
+      		$.ajax({
+      			type : 'get',
+      			url : '${ctx}/user/sereachUser',
+      			data : {inputName:no4AutherName},
+      			dataType : 'json',
+      			success : function(data) {
+      				if (data != null) {
+      					$('#no4AutherNumber').val(data.number);
+      				}
+      			},
+      			error : function(){
+      			}
+      		});
+
+      	}
+      });
+      
+    //**************************************5***********************************************//
+    //输入框的失去焦点事件=>改变值
+    $('body').on('blur', '#no5AutherName', function () {
+    	var no5AutherName = $('#no5AutherName').val();//获取输入的名字
+
+    	if(no5AutherName != ''){//是英文,且输入不为空
+
+    		$.ajax({
+    			type : 'get',
+    			url : '${ctx}/user/sereachUser',
+    			data : {inputName:no5AutherName},
+    			dataType : 'json',
+    			success : function(data) {
+    				if (data != null) {
+    					$('#no5AutherNumber').val(data.number);
+    				}
+    			},
+    			error : function(){
+    			}
+    		});
+
+    	}
+    });
+    
+  //**************************************6***********************************************//
+  //输入框的失去焦点事件=>改变值
+  $('body').on('blur', '#no6AutherName', function () {
+  	var no6AutherName = $('#no6AutherName').val();//获取输入的名字
+
+  	if(no6AutherName != ''){//是英文,且输入不为空
+
+  		$.ajax({
+  			type : 'get',
+  			url : '${ctx}/user/sereachUser',
+  			data : {inputName:no6AutherName},
+  			dataType : 'json',
+  			success : function(data) {
+  				if (data != null) {
+  					$('#no6AutherNumber').val(data.number);
+  				}
+  			},
+  			error : function(){
+  			}
+  		});
+
+  	}
+  });
+  
+//*************************************7***********************************************//
+//输入框的失去焦点事件=>改变值
+$('body').on('blur', '#no7AutherName', function () {
+	var no7AutherName = $('#no7AutherName').val();//获取输入的名字
+
+	if(no7AutherName != ''){//是英文,且输入不为空
+
+		$.ajax({
+			type : 'get',
+			url : '${ctx}/user/sereachUser',
+			data : {inputName:no7AutherName},
+			dataType : 'json',
+			success : function(data) {
+				if (data != null) {
+					$('#no7AutherNumber').val(data.number);
+				}
+			},
+			error : function(){
+			}
+		});
+
+	}
+});
+
+//**************************************8**********************************************//
+//输入框的失去焦点事件=>改变值
+$('body').on('blur', '#no8AutherName', function () {
+	var no8AutherName = $('#no8AutherName').val();//获取输入的名字
+
+	if(no8AutherName != ''){//是英文,且输入不为空
+
+		$.ajax({
+			type : 'get',
+			url : '${ctx}/user/sereachUser',
+			data : {inputName:no8AutherName},
+			dataType : 'json',
+			success : function(data) {
+				if (data != null) {
+					$('#no8AutherNumber').val(data.number);
+				}
+			},
+			error : function(){
+			}
+		});
+
+	}
+});
+
+//**************************************9**********************************************//
+//输入框的失去焦点事件=>改变值
+$('body').on('blur', '#no9AutherName', function () {
+	var no9AutherName = $('#no9AutherName').val();//获取输入的名字
+
+	if(no9AutherName != ''){//是英文,且输入不为空
+
+		$.ajax({
+			type : 'get',
+			url : '${ctx}/user/sereachUser',
+			data : {inputName:no9AutherName},
+			dataType : 'json',
+			success : function(data) {
+				if (data != null) {
+					$('#no9AutherNumber').val(data.number);
+				}
+			},
+			error : function(){
+			}
+		});
+
+	}
+});
+
+//**************************************9**********************************************//
+//输入框的失去焦点事件=>改变值
+$('body').on('blur', '#communicateAutherName', function () {
+	var communicateAutherName = $('#communicateAutherName').val();//获取输入的名字
+
+	if(communicateAutherName != ''){//是英文,且输入不为空
+
+		$.ajax({
+			type : 'get',
+			url : '${ctx}/user/sereachUser',
+			data : {inputName:communicateAutherName},
+			dataType : 'json',
+			success : function(data) {
+				if (data != null) {
+					$('#no10AutherNumber').val(data.number);
+				}
+			},
+			error : function(){
+			}
+		});
+
+	}
+});
 
 		});//ready
 	</script>
