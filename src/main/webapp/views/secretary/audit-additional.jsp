@@ -183,14 +183,13 @@ $(document).ready(function () {
                                 $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].no1AutherName).appendTo(tr);
 					 				$("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
+		                         $("<td class=\"options-contant\"/>").appendTo(tr);
 					 				if(auditSelectedText=='未审核'){
 										 $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"passBtn\">通过</button>").appendTo(tr);
-			                         $("<td class=\"options-contant\"/>").appendTo(tr);
 										 $("<td/>").html("<button type=\"button\" class=\"btn btn-danger\" id=\"notPassBtn\">不通过</button>").appendTo(tr);
 									 }
 						 					if(auditSelectedText=='未通过审核'){
 	                             $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"passBtn\">通过</button>").appendTo(tr);
-	                             $("<td class=\"options-contant\"/>").appendTo(tr);
 						 					}//未通过审核
 						 					if(auditSelectedText=='通过审核'){
 	                             $("<td/>").html("<button type=\"button\" class=\"btn btn-danger\" id=\"notPassBtn\">不通过</button>").appendTo(tr);
@@ -327,14 +326,13 @@ $('body').on('click', '.prePage', function () {
                                 $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].no1AutherName).appendTo(tr);
 					 				$("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
+		                         $("<td class=\"options-contant\"/>").appendTo(tr);
 					 				if(auditSelectedText=='未审核'){
 										 $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"passBtn\">通过</button>").appendTo(tr);
-			                         $("<td class=\"options-contant\"/>").appendTo(tr);
 										 $("<td/>").html("<button type=\"button\" class=\"btn btn-danger\" id=\"notPassBtn\">不通过</button>").appendTo(tr);
 									 }
 						 					if(auditSelectedText=='未通过审核'){
 	                             $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"passBtn\">通过</button>").appendTo(tr);
-	                             $("<td class=\"options-contant\"/>").appendTo(tr);
 						 					}//未通过审核
 						 					if(auditSelectedText=='通过审核'){
 	                             $("<td/>").html("<button type=\"button\" class=\"btn btn-danger\" id=\"notPassBtn\">不通过</button>").appendTo(tr);
@@ -406,14 +404,13 @@ $('body').on('click', '.nextPage', function () {
                                 $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].no1AutherName).appendTo(tr);
 								    $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
+		                         $("<td class=\"options-contant\"/>").appendTo(tr);
 								 if(auditSelectedText=='未审核'){
 									 $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"passBtn\">通过</button>").appendTo(tr);
-		                         $("<td class=\"options-contant\"/>").appendTo(tr);
 									 $("<td/>").html("<button type=\"button\" class=\"btn btn-danger\" id=\"notPassBtn\">不通过</button>").appendTo(tr);
 								 }
 					 					if(auditSelectedText=='未通过审核'){
                              $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"passBtn\">通过</button>").appendTo(tr);
-                             $("<td class=\"options-contant\"/>").appendTo(tr);
 					 					}//未通过审核
 					 					if(auditSelectedText=='通过审核'){
                              $("<td/>").html("<button type=\"button\" class=\"btn btn-danger\" id=\"notPassBtn\">不通过</button>").appendTo(tr);
@@ -450,91 +447,28 @@ $('body').on('click', '.nextPage', function () {
 
 
 
-          //******************************************详细detaile*********************************************//
 
+
+//*************************************详细***********************************************//
             $('body').on('click', '#detaile', function () {
-            	var id = $(this).parent().siblings()[0].innerHTML;
-            	
-            	currentAwardsType = "thesis";
-            	
-            		$.ajax({
-            			type : 'get',
-            			url : '${ctx}/secretary/detaile',
-            			data : {
-                                   id:id,
-                                   awardsType:currentAwardsType
-                        },
-            			dataType : 'json',
-            			success : function(data) {
-            				if (data != null) {
-
-            					var detaileStr = '';
-            					
-            					/*
-
-            					this.supportProject = "";
-            					*/
-            					
-            					if(data.name != ""){detaileStr += "标题:  " + data.name+ "\n";}
-            					if(data.type != ""){detaileStr += "类型:  " + data.type+ "\n";}
-            					if(data.publishDate != ""){detaileStr += "发表时间:  " + data.publishDate+ "\n";}
-          						if(data.publishMagazineThesisSet != ""){detaileStr += "发表刊物/论文集:  " + data.publishMagazineThesisSet+ "\n";}
-          						if(data.magazineType != ""){detaileStr += "刊物类型:  " + data.magazineType+ "\n";}
-            					
-          						if(data.subjectType != ""){detaileStr += "学科门类:  " + data.subjectType+ "\n";}
-          						if(data.stairSubject != ""){detaileStr += "一级学科:  " + data.stairSubject+ "\n";}
-          						if(data.thesisSetPublisher != ""){detaileStr += "论文集出版单位:  " + data.thesisSetPublisher+ "\n";}
-          						if(data.publishRange != ""){detaileStr += "发表范围: " + data.publishRange+ "\n";}
-            					if(data.keyWords != ""){detaileStr += "关键字:  " + data.keyWords+ "\n";}
-          						if(data.issn != ""){detaileStr += "ISSN号:  " + data.issn+ "\n";}
-          						if(data.cn != ""){detaileStr += "CN号:  " + data.cn+ "\n";}
-          						if(data.doi != ""){detaileStr += "DOI:  " + data.doi+ "\n";}
-          						if(data.theAbstract != ""){detaileStr += "摘要:  " + data.theAbstract+ "\n";}
-          						if(data.appearance != ""){detaileStr += "版面:  " + data.appearance+ "\n";}
-          						if(data.projectSources != ""){detaileStr += "项目来源:  " + data.projectSources+ "\n";}
-          						if(data.note != ""){detaileStr += "备注:  " + data.note+ "\n";}
-          						if(data.conferenceName != ""){detaileStr += "会议名称:  " + data.conferenceName+ "\n";}
-          						if(data.conferenceSite != ""){detaileStr += "会议地址:  " + data.conferenceSite+ "\n";}
-          						if(data.conferenceDate != ""){detaileStr += "会议日期:  " + data.conferenceDate+ "\n";}
-          						if(data.embodyNumber != ""){detaileStr += "论文收录号码:  " + data.embodyNumber+ "\n";}
-            					
-          						
-          						if(data.communicateAutherName != ""){detaileStr += "通讯作者姓名:  " + data.communicateAutherName+ "\n";}
-          						if(data.no10AutherName != ""){detaileStr += "通讯作者工号: " + data.no10AutherName + "\n";}
-          						
-          						//if(data.no1AutherType != ""){detaileStr += "第一作者类型:  " + data.no1AutherType+ "\n";}
-            					if(data.no1AutherName != ""){detaileStr += "第一作者姓名: " + data.no1AutherName + "\n";}
-            					if(data.no1AutherNumber != ""){detaileStr += "第一作者工号: " + data.no1AutherNumber + "\n";}
-            					if(data.no2AutherName != ""){detaileStr += "第二作者姓名: " + data.no2AutherName + "\n";}
-            					if(data.no2AutherNumber != ""){detaileStr += "第二作者工号: " + data.no2AutherNumber + "\n";}
-            					if(data.no3AutherName != ""){detaileStr += "第三作者姓名: " + data.no3AutherName + "\n";}
-            					if(data.no3AutherNumber != ""){detaileStr += "第三作者工号: " + data.no3AutherNumber + "\n";}
-            					if(data.no4AutherName != ""){detaileStr += "第四作者姓名: " + data.no4AutherName + "\n";}
-            					if(data.no4AutherNumber != ""){detaileStr += "第四作者工号: " + data.no4AutherNumber + "\n";}
-            					if(data.no5AutherName != ""){detaileStr += "第五作者姓名: " + data.no5AutherName + "\n";}
-            					if(data.no5AutherNumber != ""){detaileStr += "第五作者工号: " + data.no5AutherNumber + "\n";}
-            					if(data.no6AutherName != ""){detaileStr += "第六作者姓名: " + data.no6AutherName + "\n";}
-            					if(data.no6AutherNumber != ""){detaileStr += "第六作者工号: " + data.no6AutherNumber + "\n";}
-            					if(data.no7AutherName != ""){detaileStr += "第七作者姓名: " + data.no7AutherName + "\n";}
-            					if(data.no7AutherNumber != ""){detaileStr += "第七作者工号: " + data.no7AutherNumber + "\n";}
-            					if(data.no8AutherName != ""){detaileStr += "第八作者姓名: " + data.no8AutherName + "\n";}
-            					if(data.no8AutherNumber != ""){detaileStr += "第八作者工号: " + data.no8AutherNumber + "\n";}
-            					if(data.no9AutherName != ""){detaileStr += "第九作者姓名: " + data.no9AutherName + "\n";}
-            					if(data.no9AutherNumber != ""){detaileStr += "第九作者工号: " + data.no9AutherNumber + "\n";}
-            					
-            					
-            					detaileStr += "成果归属单位: " + data.workunit + "\n";
-            					detaileStr += "审核状态: " + data.status + "\n";
-            		
-            					alert(detaileStr);
-            				}
-            			},
-            		});
-
-            });
-
-
-
+                var id = $(this).parent().siblings()[0].innerHTML;
+                var contant = $(this).parent().next();
+                if (contant.html() == '') {
+                    $.ajax({
+                        url: '${ctx}/user/thesis-detail',
+                        type: 'POST',
+                        data: {id: id},
+                        success: function (data) {
+                            contant.html(data);
+				              $('body').find(".modal[id$="+id+"]").modal("show");
+                           }
+                    })//ajax
+                }//if
+                else{
+                	
+                  }
+                 });
+            
 
 
 });//ready
