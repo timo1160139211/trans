@@ -75,7 +75,7 @@ public class UserOpsController {
      * 参数: 用户姓名. 
      * 返回: 论文列表模型.
      *
-     * TODO
+     * 
      *
      * @param request
      * @return
@@ -100,7 +100,7 @@ public class UserOpsController {
     
     /** 
      * .
-     * TODO 返回 成果 详细.  
+     *  返回 成果 详细.  
      * @param request
      * @return
      */
@@ -119,7 +119,7 @@ public class UserOpsController {
         
     /** 
      * .
-     * TODO 返回 成果 列表.  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+     *  返回 成果 列表.  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
      * @param request
      * @return
      */
@@ -167,7 +167,7 @@ public class UserOpsController {
      * 返回:
      *
      *
-     * TODO
+     * 
      *
      * @param request
      * @return
@@ -179,14 +179,12 @@ public class UserOpsController {
         
     /**
      * .
-     * TODO 认领      ("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+     *  认领      ("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
      * @param request
      * @return
      * @throws IOException 
      * @throws UnsupportedEncodingException
      */
-    //@RequestMapping(value = "/claim", method = RequestMethod.POST,produces = "application/json; charset=utf-8")
-   // @ResponseBody
     @RequestMapping(value = "/claim", method = RequestMethod.POST)
     public void claim( ModelAndView mv,
     		HttpServletRequest request,
@@ -223,14 +221,12 @@ public class UserOpsController {
             default : break;
          }
         
-//        response.setContentType("application/json;charset=UTF-8");//防止数据传递乱码
         response.sendRedirect("awards-list");
-        	//return "{'msg':'" + msg + "'}";
     }
     
     /**
      * .
-     * TODO 返回查找的用户数据
+     *  返回查找的用户数据
      * @param request
      * @return
      * @throws IOException 
@@ -402,7 +398,7 @@ public class UserOpsController {
 	
     /**
      * .
-     * 填写修改个人信息表单. TODO
+     * 填写修改个人信息表单. 
      *
      * @param request
      * @return
@@ -424,7 +420,7 @@ public class UserOpsController {
     
     /**
      * .
-     * 提交表单,更新数据库,更改session用户. TODO
+     * 提交表单,更新数据库,更改session用户. 
      *
      * @param userForm
      * @param request
