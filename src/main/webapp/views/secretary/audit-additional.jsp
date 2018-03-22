@@ -339,7 +339,7 @@ $('body').on('click', '.prePage', function () {
 						 					}//通过审核
                                 $('#tbody').append(tr);
                                   }
-
+                            currentPageNum = page.pageNum;//重新定位页数
 					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
                     
                         			var ul = $("<ul class=\"pagination pagination-lg\"/>");
@@ -418,7 +418,7 @@ $('body').on('click', '.nextPage', function () {
 					 			
                                 $('#tbody').append(tr);
                                   }
-
+                            currentPageNum = page.pageNum;//重新定位页数
 					  var pageNumAndTotal = "<a class=\"disabled\">第" + page.pageNum + " /" + page.pages + "页(共" + page.total + "条)</a>" 
                     
                         			var ul = $("<ul class=\"pagination pagination-lg\"/>");
@@ -447,8 +447,6 @@ $('body').on('click', '.nextPage', function () {
 
 
 
-
-
 //*************************************详细***********************************************//
             $('body').on('click', '#detaile', function () {
                 var id = $(this).parent().siblings()[0].innerHTML;
@@ -465,7 +463,7 @@ $('body').on('click', '.nextPage', function () {
                     })//ajax
                 }//if
                 else{
-                	
+                	$('body').find(".modal[id$="+id+"]").modal("show");
                   }
                  });
             

@@ -23,6 +23,8 @@
 					<!-- 用户: 补录数据 操作 -->
 					<li><a href="${ctx}/user/awards-create" class=""><i
 							class="lnr lnr-pencil"></i> <span>补录数据</span></a></li>
+					<li><a href="${ctx}/user/thesis-additional-list" class=""><i
+							class="lnr lnr-pencil"></i> <span>查看补录数据</span></a></li>
 					
 				</ul>
 			</c:if>

@@ -29,6 +29,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -476,5 +477,28 @@ public class UserOpsController {
  		mav.setViewName("user/thesis-detail");
  		return mav;
  	}
-	
+    
+    /**
+     * 
+     * .
+     * @return
+     */
+    @GetMapping(value = "thesis-additional-list")
+    public String toThesisAdditionalList() {
+    	return "user/thesis-additional-list";
+    }
+    
+    /**
+     * TODO 返回查询列表
+     * .
+     * 
+     * @param request
+     * @return
+     */
+    @PostMapping(value = "thesis-additional-list")
+    @ResponseBody
+    public Object thesisAdditionalList(HttpServletRequest request) {
+    	return "";
+    }
+    
 }

@@ -44,9 +44,13 @@ public class UserOpsTest extends BaseTest {
     
     @Test
     public void insertTest() {
-//    	Thesis thesis = new Thesis();
-//    	System.out.println("影响条数:"+ts.createSelective(thesis));
-    	
+//    	int i=62;
+//    	while(--i > 0) {
+//    		Thesis thesis = new Thesis();
+//    		thesis.setName("测试第"+i+"条");
+//    		thesis.setWorkunit("机械工程学院");
+//    		System.out.println("影响条数:"+ts.createSelective(thesis));
+//    	}
     }
     
     @Test
