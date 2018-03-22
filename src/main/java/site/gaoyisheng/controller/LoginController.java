@@ -49,7 +49,7 @@ public class LoginController {
         
 	/**
 	 * .
-	 * TODO 登陆
+	 *  登陆
 	 * @param request
 	 * @param number
 	 * @param password
@@ -95,7 +95,7 @@ public class LoginController {
 
 	/**
 	 * .
-	 * TODO 判断是否已登陆
+	 *  判断是否已登陆
 	 * @param session
 	 * @return
 	 */
@@ -107,7 +107,7 @@ public class LoginController {
 	
     /**
      * .
-     * TODO 登出
+     *  登出
      *
      * @param request
      * @return
