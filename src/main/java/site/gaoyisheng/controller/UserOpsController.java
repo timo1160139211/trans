@@ -498,7 +498,18 @@ public class UserOpsController {
     @PostMapping(value = "thesis-additional-list")
     @ResponseBody
     public Object thesisAdditionalList(HttpServletRequest request) {
-    	return "";
+		Map<String,String> map = new HashMap<String,String>();
+		
+		map.put("name", request.getParameter("name"));
+		map.put("workunit", request.getParameter("workunit"));
+		map.put("status", request.getParameter("status"));
+		
+		//分页参数
+		int pageNum = Integer.valueOf(request.getParameter("pageNum"));
+		int pageSize = 30;
+		
+		PageHelper.startPage(pageNum,pageSize);
+		return new PageInfo<Thesis>(thesisService.selectByMultiConditions(map));
     }
     
 }
