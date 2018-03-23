@@ -504,6 +504,8 @@ public class UserOpsController {
 		map.put("workunit", request.getParameter("workunit"));
 		map.put("status", request.getParameter("status"));
 		
+		map.put("searchName", request.getParameter("searchName"));
+		
 		//分页参数
 		int pageNum = Integer.valueOf(request.getParameter("pageNum"));
 		int pageSize = 30;

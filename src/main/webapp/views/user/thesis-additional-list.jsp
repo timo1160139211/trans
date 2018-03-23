@@ -32,7 +32,7 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">查询已补录</h3>
+					<h3 class="page-title">已补录:模糊查询</h3>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="panel">
@@ -57,9 +57,15 @@
 														class="form-control">
 												</div>
 												<div class="form-group">
+													<label>(任意)作者名:</label> <input type="text" name="searchName"
+														class="form-control">
+												</div>
+												
+												
+												<div class="form-group">
 													<label>归属学院:</label> <select name="workunit"
 														class="form-control">
-														<option value=""></option>
+														<option value="">查询所有学院</option>
 														<option value="机械工程学院">机械工程学院</option>
 														<option value="交通与车辆工程学院">交通与车辆工程学院</option>
 														<option value="农业工程与食品科学学院">农业工程与食品科学学院</option>
@@ -91,6 +97,7 @@
 														<option value="校医院">校医院</option>
 													</select>
 												</div>
+												
 												<div class="form-group">
 													<label>审核状态:</label> <select id="chAuditStatus"
 														name="status" class="form-control">

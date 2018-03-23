@@ -140,6 +140,15 @@
 			<if test="status != '' and status != null">
 				AND status = #{status}
 			</if>
+			<if test="searchName != '' and searchName != null">
+				AND ( no1_auther_name like
+					      concat('%','${searchName}','%')
+				      or other_auther_name like
+				    	  concat('%','${searchName}','%')
+				      or communicate_auther_name like 
+				         concat('%','${searchName}','%')
+				)
+			</if>
 		</where>
 	</select>
 	
