@@ -84,7 +84,8 @@
 																	<select name="type" class=" form-control">
 																		<option value="">--请选择--</option>
 																		<option value="SCI">SCI</option>
-																		<option value="EI">EI</option>
+																		<option value="EI(JA)">EI(JA)</option>
+																		<option value="EI(CA)">EI(CA)</option>
 																		<option value="SSCI">SSCI</option>
 																		<option value="ISTP">ISTP</option>
 																		<option value="CSSCI">CSSCI</option>
@@ -95,10 +96,8 @@
 																<td width="40%"><label class="form-control ">刊物类型:</label>
 																	<select name="magazineType" class="form-control ">
 																		<option value="">--请选择--</option>
-																		<option value="A">A</option>
-																		<option value="B">B</option>
-																		<option value="C">C</option>
-																		<option value="D">D</option>
+																		<option value="普通刊">普通刊</option>
+																		<option value="核心刊">核心刊</option>
 																		<option value="其他">其他</option>
 																		<option value="国际学术会议论文集">国际学术会议论文集</option>
 																		<option value="国内学术会议论文集">国内学术会议论文集</option>
@@ -106,38 +105,9 @@
 															</tr>
 
 															<tr>
-																<td width="60%"><label class="form-control ">归属单位:</label>
-																	<select name="workunit" class="form-control ">
-																		<option value="">--请选择--</option>
-																		<option value="机械工程学院">机械工程学院</option>
-																		<option value="交通与车辆工程学院">交通与车辆工程学院</option>
-																		<option value="农业工程与食品科学学院">农业工程与食品科学学院</option>
-																		<option value="电气与电子工程学院">电气与电子工程学院</option>
-																		<option value="计算机科学与技术学院">计算机科学与技术学院</option>
-																		<option value="化学化工学院">化学化工学院</option>
-																		<option value="建筑工程学院">建筑工程学院</option>
-																		<option value="资源与环境工程学院">资源与环境工程学院</option>
-																		<option value="材料科学与工程学院">材料科学与工程学院</option>
-																		<option value="生命科学学院">生命科学学院</option>
-																		<option value="数学与统计学院">数学与统计学院</option>
-																		<option value="物理与光电工程学院">物理与光电工程学院</option>
-																		<option value="经济学院">经济学院</option>
-																		<option value="管理学院">管理学院</option>
-																		<option value="文学与新闻传播学院">文学与新闻传播学院</option>
-																		<option value="外国语学院">外国语学院</option>
-																		<option value="法学院">法学院</option>
-																		<option value="马克思主义学院">马克思主义学院</option>
-																		<option value="美术学院">美术学院</option>
-																		<option value="音乐学院">音乐学院</option>
-																		<option value="体育学院">体育学院</option>
-																		<option value="鲁泰纺织服装学院">鲁泰纺织服装学院</option>
-																		<option value="齐文化研究院">齐文化研究院</option>
-																		<option value="图书馆">图书馆</option>
-																		<option value="后勤管理处">后勤管理处</option>
-																		<option value="学生工作处">学生工作处</option>
-																		<option value="实验管理中心">实验管理中心</option>
-																		<option value="校医院">校医院</option>
-																</select> <font style="color: #FF0000;"> *</font></td>
+																<td width="60%"><label class="form-control ">论文收录号码:</label>
+																	<input type="text" class="form-control "
+																	name="embodyNumber" value=""><font style="color: #FF0000;"> *</font></td>
 																<td width="40%"></td>
 															</tr>
 
@@ -240,16 +210,59 @@
 
 
 															<tr>
+																<td width="60%"><label class="form-control ">归属单位:</label>
+																	<select name="workunit" class="form-control ">
+																		<option value="">--请选择--</option>
+																		<option value="机械工程学院">机械工程学院</option>
+																		<option value="交通与车辆工程学院">交通与车辆工程学院</option>
+																		<option value="农业工程与食品科学学院">农业工程与食品科学学院</option>
+																		<option value="电气与电子工程学院">电气与电子工程学院</option>
+																		<option value="计算机科学与技术学院">计算机科学与技术学院</option>
+																		<option value="化学化工学院">化学化工学院</option>
+																		<option value="建筑工程学院">建筑工程学院</option>
+																		<option value="资源与环境工程学院">资源与环境工程学院</option>
+																		<option value="材料科学与工程学院">材料科学与工程学院</option>
+																		<option value="生命科学学院">生命科学学院</option>
+																		<option value="数学与统计学院">数学与统计学院</option>
+																		<option value="物理与光电工程学院">物理与光电工程学院</option>
+																		<option value="经济学院">经济学院</option>
+																		<option value="管理学院">管理学院</option>
+																		<option value="文学与新闻传播学院">文学与新闻传播学院</option>
+																		<option value="外国语学院">外国语学院</option>
+																		<option value="法学院">法学院</option>
+																		<option value="马克思主义学院">马克思主义学院</option>
+																		<option value="美术学院">美术学院</option>
+																		<option value="音乐学院">音乐学院</option>
+																		<option value="体育学院">体育学院</option>
+																		<option value="鲁泰纺织服装学院">鲁泰纺织服装学院</option>
+																		<option value="齐文化研究院">齐文化研究院</option>
+																		<option value="图书馆">图书馆</option>
+																		<option value="后勤管理处">后勤管理处</option>
+																		<option value="学生工作处">学生工作处</option>
+																		<option value="实验管理中心">实验管理中心</option>
+																		<option value="校医院">校医院</option>
+																</select> <font style="color: #FF0000;"> *</font></td>
+																<td width="40%"><label class="form-control ">ISSN号:</label>
+																	<input type="text" class="form-control " name="issn"
+																	value=""><font style="color: #FF0000;"> *</font></td>
+															</tr>
+
+
+															<tr>
+																<td width="60%"><label class="form-control ">学校署名:</label>
+																	<select name="schoolSign" class="form-control ">
+																		<option value="">--请选择--</option>
+																		<option value="第一单位">第一单位</option>
+																		<option value="非第一单位">非第一单位</option>
+																</select> <font style="color: #FF0000;"> *</font></td>
+																<td width="40%"></td>
+															</tr>
+															
+															
+															<tr>
 																<td width="60%"><label class="form-control ">关键词:</label>
 																	<input type="text" class="form-control "
 																	name="keyWords" value=""></td>
-																<td width="40%"></td>
-															</tr>
-
-															<tr>
-																<td width="60%"><label class="form-control ">ISSN号:</label>
-																	<input type="text" class="form-control " name="issn"
-																	value=""></td>
 																<td width="40%"><label class="form-control ">CN号:</label>
 																	<input type="text" class="form-control " name="cn"
 																	value=""></td>
@@ -336,9 +349,7 @@
 
 
 															<tr>
-																<td width="60%"><label class="form-control ">论文收录号码:</label>
-																	<input type="text" class="form-control "
-																	name="embodyNumber" value=""></td>
+																<td width="60%"></td>
 																<td width="40%"><label class="form-control ">会议名称:</label>
 																	<input type="text" class="form-control "
 																	name="conferenceName" value=""></td>
@@ -362,6 +373,17 @@
 														<br>
 														
 														<div class="form-group ">
+															<label>第一作者:</label> <input type="text"   id="no1AutherName" 
+																name="no1AutherName" value="${awards.no1AutherName}"
+																class="form-control"> <label>工号:</label> <input
+																type="text" 
+ id="no1AutherNumber"
+                                                                                                    name="no1AutherNumber"
+																value="${awards.no1AutherNumber}" class="form-control">
+														</div>
+														
+														
+														<div class="form-group ">
 															<label>通讯作者:</label>
 																	<input type="text" class="form-control "  id="communicateAutherName" 
 																	name="communicateAutherName" value="">
@@ -372,15 +394,6 @@
 														
 														
 																	
-														<div class="form-group ">
-															<label>第一作者:</label> <input type="text"   id="no1AutherName" 
-																name="no1AutherName" value="${awards.no1AutherName}"
-																class="form-control"> <label>工号:</label> <input
-																type="text" 
- id="no1AutherNumber"
-                                                                                                    name="no1AutherNumber"
-																value="${awards.no1AutherNumber}" class="form-control">
-														</div>
 														<div class="form-group ">
 															<label>第二作者:</label> <input type="text"
   id="no2AutherName" 
@@ -579,7 +592,14 @@
 					},
 					no1AutherNumber : {
 						required : true
+					},
+					issn:{
+						required : true
+					},
+					schoolSign:{
+						required : true
 					}
+					
 
 				}
 			//rules.
