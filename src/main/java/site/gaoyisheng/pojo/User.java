@@ -1,9 +1,12 @@
 package site.gaoyisheng.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class User {
     private Integer id;
     private String name;
     private String number;
+    @JsonIgnore
     private String password;
     private String college;// 学院
     private String status;//状态:{在职,离退休,调出,去世}
