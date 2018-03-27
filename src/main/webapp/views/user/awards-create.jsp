@@ -371,7 +371,9 @@
 
 
 														<br>
-														
+														<div class="form-group ">
+															<a href="javascript:alert('hahs')" class=""><span>如何填写?</span></a>
+														</div>
 														<div class="form-group ">
 															<label>第一作者:</label> <input type="text"   id="no1AutherName" 
 																name="no1AutherName" value="${awards.no1AutherName}"
@@ -842,6 +844,12 @@ $('body').on('blur', '#communicateAutherName', function () {
 
 	}
 });
+
+
+function help(){
+	alert("hhaha");
+}
+
 
 		});//ready
 	</script>
