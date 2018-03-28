@@ -372,8 +372,9 @@
 
 														<br>
 														<div class="form-group ">
-															<a href="javascript:alert('hahs')" class=""><span>如何填写?</span></a>
+															<a href="javascript:alert('并列第一作者用分号\';\'分开,\n')" class=""><span>如何填写?</span></a>
 														</div>
+														<br>
 														<div class="form-group ">
 															<label>第一作者:</label> <input type="text"   id="no1AutherName" 
 																name="no1AutherName" value="${awards.no1AutherName}"
@@ -383,7 +384,7 @@
                                                                                                     name="no1AutherNumber"
 																value="${awards.no1AutherNumber}" class="form-control">
 														</div>
-														
+														<br/>
 														
 														<div class="form-group ">
 															<label>通讯作者:</label>
@@ -393,7 +394,7 @@
 																type="text" id="no10AutherNumber"   name="no10AutherNumber"
 																value="${awards.no10AutherNumber}" class="form-control">
 														</div>
-														
+														<br/>
 														
 																	
 														<div class="form-group ">
@@ -405,6 +406,7 @@
  id="no2AutherNumber"
 																value="${awards.no2AutherNumber}" class="form-control">
 														</div>
+														<br/>
 														<div class="form-group ">
 															<label>第三作者:</label> <input type="text"
   id="no3AutherName" 
@@ -414,6 +416,7 @@
  id="no3AutherNumber" 
 																value="${awards.no3AutherNumber}" class="form-control">
 														</div>
+														<br/>
 														<div class="form-group ">
 															<label>第四作者:</label> <input type="text"
   id="no4AutherName" 
@@ -423,6 +426,7 @@
  id="no4AutherNumber" 
 																value="${awards.no4AutherNumber}" class="form-control">
 														</div>
+														<br/>
 														<div class="form-group ">
 															<label>第五作者:</label> <input type="text"
   id="no5AutherName" 
@@ -432,6 +436,7 @@
  id="no5AutherNumber" 
 																value="${awards.no5AutherNumber}" class="form-control">
 														</div>
+														<br/>
 														<div class="form-group ">
 															<label>第六作者:</label> <input type="text"
   id="no6AutherName" 
@@ -441,6 +446,7 @@
  id="no6AutherNumber" 
 																value="${awards.no6AutherNumber}" class="form-control">
 														</div>
+														<br/>
 														<div class="form-group ">
 															<label>第七作者:</label> <input type="text"
   id="no7AutherName" 
@@ -450,6 +456,7 @@
  id="no7AutherNumber" 
 																value="${awards.no7AutherNumber}" class="form-control">
 														</div>
+														<br/>
 														<div class="form-group ">
 															<label>第八作者:</label> <input type="text"
 																name="no8AutherName"
@@ -459,6 +466,7 @@
  id="no8AutherNumber" 
 																value="${awards.no8AutherNumber}" class="form-control">
 														</div>
+														<br/>
 														<div class="form-group ">
 															<label>第九作者:</label> <input type="text"
   id="no9AutherName" 
@@ -845,10 +853,6 @@ $('body').on('blur', '#communicateAutherName', function () {
 	}
 });
 
-
-function help(){
-	alert("hhaha");
-}
 
 
 		});//ready
