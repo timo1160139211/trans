@@ -89,11 +89,13 @@ public class UserOpsController {
 		return thesisService.selectAllThesisLikeUserNameAndNumber(currentUser);
 	}
     
+	/* 关闭服务
     @RequestMapping(value = "/awards-list" ,method = RequestMethod.GET)
     public String toAwardsList(){
         return "/user/awards-list";
     }
-    
+    */
+	
     @RequestMapping(value = "/search" ,method = RequestMethod.GET)
     public String searchUser(){
         return "/user/like-search";

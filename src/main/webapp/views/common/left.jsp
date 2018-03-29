@@ -17,9 +17,10 @@
 					<!-- 用户: 修改个人 操作 -->
 					<li><a href="${ctx}/user/user-update" class=""><i
 							class="glyphicon glyphicon-cog"></i> <span>修改密码</span></a></li>
-					<!-- 用户: 认领 操作 -->
+					<!-- 用户: 认领 操作 
 					<li><a href="${ctx}/user/awards-list" class=""><i
 							class="lnr lnr-file-empty"></i> <span>认领</span></a></li>
+					-->
 					<!-- 用户: 补录数据 操作 -->
 					<li><a href="${ctx}/user/awards-create" class=""><i
 							class="lnr lnr-pencil"></i> <span>补录数据</span></a></li>
