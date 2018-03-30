@@ -76,8 +76,6 @@ public class UserOpsController {
      * 参数: 用户姓名. 
      * 返回: 论文列表模型.
      *
-     * 
-     *
      * @param request
      * @return
      */

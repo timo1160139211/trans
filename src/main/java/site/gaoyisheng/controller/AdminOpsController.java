@@ -146,7 +146,6 @@ public class AdminOpsController {
 	public void exportExcel(HttpServletRequest request, HttpServletResponse response,@PathVariable("awardsType") String awardsType) throws Exception {
 
 		try {
-//			String type = request.getParameter("awardsType");
 			FileUtil fileUtil = new FileUtil();
 			byte[] bytes = null;
 			Path file = null;
