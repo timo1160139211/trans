@@ -128,8 +128,6 @@ public class AdminOpsController {
            default:strAlertMsg = "数据追加失败: 请联系开发人员";
         }
        
-       //request.getSession().setAttribute("msg", strAlertMsg);
-       //return "{'msg':'"+strAlertMsg+"'}";
        mav.addObject("msg", strAlertMsg);
        mav.setViewName("/admin/upload");
        return mav;
@@ -378,7 +376,6 @@ public class AdminOpsController {
     	
     	PageHelper.startPage(pageNum,30);
 		return new PageInfo<College>(collegeService.searchByName(name));
-    	//return new PageInfo<College>(collegeService.selectAll());
     }
 
     /**
