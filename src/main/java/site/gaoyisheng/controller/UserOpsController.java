@@ -237,8 +237,6 @@ public class UserOpsController {
     	request.setCharacterEncoding("utf-8");
     	String srcChar = "ISO8859-1";  
     	String dstChar = "UTF-8";  
-    	//title = new String(title.getBytes(srcChar),dstChar);  
-		//List<User> userList = userService.searchUserFuzzyName(request.getParameter("inputName"));//乱码
     	List<User> userList = userService.searchUserFuzzyName(new String(request.getParameter("inputName").getBytes(srcChar),dstChar));
 		
 		if (userList.isEmpty()) {// 如果档案库没有，则是说明是校外/学生
@@ -351,7 +349,6 @@ public class UserOpsController {
 
 			for (String chStr : chNameGrp) {
 				if(chClassi<8) {//只处理前7个
-				// chStr=chStr.substring(0, s.indexOf('['));// 张三[1,2]
 				chStr = chStr.replaceAll("\\[(.+?)\\]", "");// 张三
 				chStr = chStr.replaceAll(" ", "");// 张三
 				
@@ -479,7 +476,6 @@ public class UserOpsController {
  	}
     
     /**
-     * 
      * .
      * @return
      */
@@ -489,9 +485,7 @@ public class UserOpsController {
     }
     
     /**
-     * TODO 返回查询列表
      * .
-     * 
      * @param request
      * @return
      */
