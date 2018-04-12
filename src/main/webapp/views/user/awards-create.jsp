@@ -52,7 +52,7 @@
 
 												<form:form commandName="thesis" id="thesis-form"
 													class="form-inline" action="${ctx}/user/awards-create"
-													method="post">
+													method="post" enctype="multipart/form-data">
 
 
 
@@ -370,9 +370,9 @@
 													<div class="modal-body">
 
 
-														<br>
+														
 														<div class="form-group ">
-															<a href="javascript:alert('并列第一作者用分号\';\'分开,\n')" class=""><span>如何填写?</span></a>
+															<a href="javascript:alert('并列第一作者用分号\';\'分开,\n学生和校外人员工号分别填入:学生、校外人员\n如:\n04192;学生;校外人员\n\n通讯作者及工号 同理')" class=""><span>如何填写?</span></a>
 														</div>
 														<br>
 														<div class="form-group ">
@@ -476,7 +476,28 @@
  id="no9AutherNumber" 
 																value="${awards.no9AutherNumber}" class="form-control">
 														</div>
+														<hr/>
+
+
+<div class="form-group ">
+															<a href="javascript:alert('可拍摄，可截图,\n\n第一个图片文件:包含论文首页及通讯作者\n\n第二个图片文件:包含以下任一类即可:\n 1.团队负责人\n 2.项目组负责人\n 3.师生关系')" class=""><span>如何提供证明材料图片文件?</span></a>
+														</div>
+                                                                                       <br/>
+														<div class="form-group ">
+															<label>选择文件一:</label> <input type="file"
+  id="no9AutherName" 
+																name="picture01" accept="image/jpeg,image/jpg,image/png"
+																class="form-control"> <br/>
+                                                                                              <label>选择文件二:</label> <input type="file"
+  id="no9AutherName" 
+																name="picture02" accept="image/jpeg,image/jpg,image/png"
+																class="form-control"> <br/>
+														</div>
+
+
 													</div>
+
+
 
 
 													<div align="center">
