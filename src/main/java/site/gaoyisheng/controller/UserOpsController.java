@@ -16,9 +16,11 @@
  */ 
 package site.gaoyisheng.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
+import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +41,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
@@ -458,15 +461,42 @@ public class UserOpsController {
     	return "user/awards-create";		
     }
     
-    @RequestMapping(value = "/awards-create", method = RequestMethod.POST)
+    /**
+     * 
+     * .
+     *  API约定:
+     *   ~/tomcat/webapps_data/
+     *  thesisid + "_" + "1" + type = 图片文件1 的名字
+     *  
+     * @param request
+     * @param thesis
+     * @param mav
+     * @param pictureFile1
+     * @param pictureFile2
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(consumes = "multipart/form-data",value = "/awards-create", method = RequestMethod.POST)
     public ModelAndView awardsCreate(HttpServletRequest request,Thesis thesis,ModelAndView mav,
-    		@RequestPart("picture01") Part picture01,
-    		@RequestPart("picture02") Part picture02) throws IOException {		
+    		@RequestParam("pictureFile1") MultipartFile pictureFile1, 
+    		@RequestParam("pictureFile2") MultipartFile pictureFile2) throws IOException {		
     	
-    	picture01.write("/home/gaoyisheng/xxx.png"); 	
+    	System.out.println("h====================================" + System.getProperty("catalina.home"));
+    	
+    	String rootPath = System.getProperty("catalina.home") + "/webapps_data";
+    	
+    	if(!(new File(rootPath).exists())) {
+    		//   ~/tomcat/webapps_data/    如果目录不存在，则创建之
+    		new File(rootPath).mkdir();
+    	}
+    	
+    	System.out.println("|||||||=====================" + thesisService.createSelective(thesis));
+    	
+		pictureFile1.transferTo(new File(rootPath + "/" + "_1.png"));
+    	pictureFile2.transferTo(new File(rootPath + "/2.png"));
     	
     	mav.setViewName("/user/awards-create");
-		if (thesisService.createSelective(thesis) == 1) {
+		if (thesisService.createSelective(thesis) >= 1) {
 			return mav.addObject("msg", "成功追加论文:"+thesis.getName());
 		} else {
 			return mav.addObject("msg", "追加失败论文:"+thesis.getName());

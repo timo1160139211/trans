@@ -289,8 +289,6 @@
 															</tr>
 
 
-
-
 															<tr>
 																<td width="60%"><label class="form-control ">项目来源:</label>
 																	<select name="projectSources" class="form-control "><option
@@ -332,11 +330,6 @@
 															</tr>
 
 
-
-
-
-
-
 															<tr>
 																<td width="60%"><label class="form-control ">会议地址:</label>
 																	<input type="text" class="form-control "
@@ -362,9 +355,6 @@
 
 
 													<hr>
-
-
-
 
 
 													<div class="modal-body">
@@ -480,18 +470,18 @@
 
 
 <div class="form-group ">
-															<a href="javascript:alert('可拍摄，可截图,\n\n第一个图片文件:包含论文首页及通讯作者\n\n第二个图片文件:包含以下任一类即可:\n 1.团队负责人\n 2.项目组负责人\n 3.师生关系')" class=""><span>如何提供证明材料图片文件?</span></a>
+															<a href="javascript:alert('可拍摄，可截图,\n\n第一个图片文件:包含论文首页及通讯作者\n\n第二个图片文件:包含以下任一类即可:\n 1.团队负责人\n 2.项目组负责人\n 3.师生关系\n\n图片支持格式:\njpg,jpeg,bmp,png,webp')" class=""><span>如何提供证明材料图片文件?</span></a>
 														</div>
                                                                                        <br/>
 														<div class="form-group ">
 															<label>选择文件一:</label> <input type="file"
-  id="no9AutherName" 
-																name="picture01" accept="image/jpeg,image/jpg,image/png"
-																class="form-control"> <br/>
+  id="pictureFile1" 
+																name="pictureFile1" accept="image/*"
+																class="required"> <br/>
                                                                                               <label>选择文件二:</label> <input type="file"
-  id="no9AutherName" 
-																name="picture02" accept="image/jpeg,image/jpg,image/png"
-																class="form-control"> <br/>
+  id="pictureFile2" 
+																name="pictureFile2" accept="image/*"
+																class="required"> <br/>
 														</div>
 
 
@@ -629,7 +619,13 @@
 					},
 					schoolSign:{
 						required : true
-					}
+					},
+					pictureFile1:{
+						  required:true,
+				    },
+					pictureFile2:{
+						  required:true,
+					}//		extension:'jpg|jpeg|bmp|png|webp'
 					
 
 				}

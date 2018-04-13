@@ -232,6 +232,9 @@
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Thesis">
+		<selectKey resultType="int"  order="BEFORE" keyProperty="id" >
+            SELECT currval('thesis_id_seq') AS id  
+        </selectKey>
 		insert into public.thesis
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="type != null">
