@@ -465,9 +465,13 @@ public class UserOpsController {
      * 
      * .
      *  API约定:
-     *   ~/tomcat/webapps_data/
-     *  thesisid + "_" + "1" + type = 图片文件1 的名字
+     *   ~/tomcat/webapps_data/    => rootPath
+     *   
+     *  rootPath + "/" + thesis.getId() + "_1" + file1Type;  = 图片文件1 的名字
      *  
+     *      thesis.setWordsNumbers(file1Type);
+     *      thesis.setNote(file2Type);
+     *      
      * @param request
      * @param thesis
      * @param mav
@@ -481,8 +485,6 @@ public class UserOpsController {
     		@RequestParam("pictureFile1") MultipartFile pictureFile1, 
     		@RequestParam("pictureFile2") MultipartFile pictureFile2) throws IOException {		
     	
-    	System.out.println("h====================================" + System.getProperty("catalina.home"));
-    	
     	String rootPath = System.getProperty("catalina.home") + "/webapps_data";
     	
     	if(!(new File(rootPath).exists())) {
@@ -490,19 +492,32 @@ public class UserOpsController {
     		new File(rootPath).mkdir();
     	}
     	
-    	System.out.println("|||||||=====================" + thesisService.createSelective(thesis));
+    	String file1Type = pictureFile1.getOriginalFilename().substring(
+    			pictureFile1.getOriginalFilename().lastIndexOf("."));
     	
-		pictureFile1.transferTo(new File(rootPath + "/" + "_1.png"));
-    	pictureFile2.transferTo(new File(rootPath + "/2.png"));
+    	String file2Type = pictureFile2.getOriginalFilename().substring(
+    			pictureFile2.getOriginalFilename().lastIndexOf("."));
+    	
+    	thesis.setWordsNumbers(file1Type);
+    	thesis.setNote(file2Type);
+    	int numFlag = thesisService.createSelective(thesis);//----------------------
+    	
+    	String file1Path = rootPath + "/" + thesis.getId() + "_1" + file1Type;
+    	String file2Path = rootPath + "/" + thesis.getId() + "_2" + file2Type;
+    	
+		pictureFile1.transferTo(new File(file1Path));
+    	pictureFile2.transferTo(new File(file2Path));
     	
     	mav.setViewName("/user/awards-create");
-		if (thesisService.createSelective(thesis) >= 1) {
-			return mav.addObject("msg", "成功追加论文:"+thesis.getName());
+    	
+    	//自行处理事务: 如果文件上传成功了
+		if (numFlag == 1 && new File(file1Path).exists() && new File(file2Path).exists()) {
+			return mav.addObject("msg", "成功追加论文:" + thesis.getName());
 		} else {
-			return mav.addObject("msg", "追加失败论文:"+thesis.getName());
+			thesisService.deleteByPrimaryKey(thesis.getId());
+			return mav.addObject("msg", "追加失败论文:" + thesis.getName());
 		}
     }
-    
     
     @PostMapping(value = "/thesis-detail")
  	public ModelAndView thesisDetail(HttpServletRequest request,ModelAndView mav){

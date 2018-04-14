@@ -92,6 +92,7 @@
 												<th>#</th>
 												<th>标题</th>
 												<th>作者</th>
+												<th>图片资料</th>
 												<th>详细</th>
 												<th>操作</th>
 												<th>操作2</th>
@@ -140,7 +141,7 @@ $(document).ready(function () {
 		$('#patent-tag').click(function(){initical('patent');});
 
 
-            $('#ch-btn,#en-btn,#patent-btn').bind('click', function(){
+$('#ch-btn,#en-btn,#patent-btn').bind('click', function(){
 				currentPageNum=1;    ////维护一个 当前页参数,换页时+ - ,在每次切换标签/查询时初始化.
                         $('#tbody').empty();//清空-------------------------------------------------
                         $('.page-div').empty();//清空-------------------------------------------------
@@ -182,6 +183,7 @@ $(document).ready(function () {
                                 $("<td/>").html(i + 1).appendTo(tr);
                                 $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].no1AutherName).appendTo(tr);
+                                $("<td/>").html("<a href=\"${ctx}/secretary/pictureFile/" + page.list[i].id +"\" target=\"_blank\" id=\"pictureFile1\">图片</a>").appendTo(tr);
 					 				$("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
 		                         $("<td class=\"options-contant\"/>").appendTo(tr);
 					 				if(auditSelectedText=='未审核'){
@@ -325,6 +327,7 @@ $('body').on('click', '.prePage', function () {
                                 $("<td/>").html(i + 1).appendTo(tr);
                                 $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].no1AutherName).appendTo(tr);
+                                $("<td/>").html("<a href=\"${ctx}/secretary/pictureFile/" + page.list[i].id +"\" target=\"_blank\" id=\"pictureFile1\">图片</a>").appendTo(tr);
 					 				$("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
 		                         $("<td class=\"options-contant\"/>").appendTo(tr);
 					 				if(auditSelectedText=='未审核'){
@@ -403,6 +406,7 @@ $('body').on('click', '.nextPage', function () {
                                 $("<td/>").html(i + 1).appendTo(tr);
                                 $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].no1AutherName).appendTo(tr);
+                                $("<td/>").html("<a href=\"${ctx}/secretary/pictureFile/" + page.list[i].id +"\" target=\"_blank\" id=\"pictureFile1\">图片</a>").appendTo(tr);
 								    $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
 		                         $("<td class=\"options-contant\"/>").appendTo(tr);
 								 if(auditSelectedText=='未审核'){

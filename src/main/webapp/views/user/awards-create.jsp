@@ -324,9 +324,7 @@
 																		<option value="自选课题">自选课题</option>
 																		<option value="其他课题">其他课题</option>
 																		<option value="科技部重大专项">科技部重大专项</option></select></td>
-																<td width="40%"><label class="form-control ">备注:</label>
-																	<input type="text" class="form-control " name="note"
-																	value=""></td>
+																<td width="40%"></td>
 															</tr>
 
 

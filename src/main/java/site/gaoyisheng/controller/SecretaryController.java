@@ -16,18 +16,27 @@
  */
 package site.gaoyisheng.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -255,6 +264,88 @@ public class SecretaryController {
 		return flag;
     }
     
+    /**
+     * .
+     * @param mav
+     * @param request
+     * @param num
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/pictureFile/{id}", method = RequestMethod.GET)
+    public ModelAndView pictureFile(ModelAndView mav,HttpServletRequest request,
+    		@PathVariable("id")int id) {
+    	
+    	mav.setViewName("/secretary/showPicture");
+    	mav.addObject("pictureFile1", "/trans/secretary/picture/1/" + id);//new File(file1Path));
+    	mav.addObject("pictureFile2", "/trans/secretary/picture/2/" + id);
+    	
+    	return mav;
+    }
+    
+    /**
+     * .
+     * @param mav
+     * @param request
+     * @param response
+     * @param num
+     * @param id
+     */
+    @RequestMapping(value = "/picture/{num}/{id}", method = RequestMethod.GET)
+    public void getPictureFile(ModelAndView mav,
+    		HttpServletRequest request,
+    		HttpServletResponse response,
+    		@PathVariable("num")int num,
+    		@PathVariable("id")int id) {
+    	
+    	String rootPath = System.getProperty("catalina.home") + "/webapps_data";
+    	Thesis thesis = thesisService.selectByPrimaryKey(id);
+    	
+    	String filePath = "";
+    	String fileType = "";
+    	if(num ==1) {
+    		fileType = thesis.getWordsNumbers();
+    		filePath = rootPath + "/" + thesis.getId() + "_1" + fileType;
+    	}
+    	if(num ==2) {
+    		fileType = thesis.getNote();
+    		filePath = rootPath + "/" + thesis.getId() + "_2" + fileType;
+    	}
+    	
+    	if("".equals(filePath)) {
+    		return ;
+    	}
+    	
+       BufferedInputStream in = null;  
+       BufferedOutputStream out = null;  
+    	
+    	try {
+    		File file = new File(filePath);
+    		in = new BufferedInputStream(new FileInputStream(file));
+    		out = new BufferedOutputStream(response.getOutputStream());
+            response.setContentType(new MimetypesFileTypeMap().getContentType(file));// 设置response内容的类型  
+            response.setHeader("Content-disposition", "attachment;filename=" + thesis.getId() + "_" + num + fileType);// 设置头部信息  
+            byte[] buffer = new byte[10240];  
+            int length = 0;  
+            while ((length = in.read(buffer)) > 0) {  
+                out.write(buffer, 0, length);  
+            }  
+            out.flush(); 
+    	}catch(IOException e) {
+    		
+    	} finally {  
+            try {  
+                if (in != null) {  
+                    in.close();  
+                }  
+                if (out != null) {  
+                    out.close();  
+                }  
+            } catch (IOException e) {  
+                e.printStackTrace();  
+            }  
+        }  
+    }
 }
 
 

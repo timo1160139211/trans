@@ -127,13 +127,6 @@
 							value="${thesis.projectSources}">
 					</div>
 				</c:if>
-				<c:if test="${thesis.note != ''}">
-					<div class="form-group ">
-						<label>备注:</label> <input type="text" readonly="true"
-							class="form-control " name="note" value="${thesis.note}">
-					</div>
-				</c:if>
-
 
 				<c:if test="${thesis.conferenceSite != ''}">
 					<div class="form-group ">
