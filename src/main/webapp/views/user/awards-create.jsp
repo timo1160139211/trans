@@ -588,9 +588,6 @@
 					workunit : {
 						required : true
 					},
-					communicateAutherName : {
-						required : true
-					},
 					subjectType : {
 						required : true
 					},
