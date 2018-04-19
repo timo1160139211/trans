@@ -17,9 +17,13 @@
 </head>
 
 <body>
-<img src="${pictureFile1}">图1</img>
+<img src="${pictureFile1}">
+<br/>
+<a href="${pictureFile1}">点击下载 ${pictureFile1Name}</a>
 <hr/>
-<img src="${pictureFile2}">图2</img>
+<a href="${pictureFile2}">点击下载 ${pictureFile2Name}</a>
+<br/>
+<img src="${pictureFile2}">
 </body>
 
 </html>

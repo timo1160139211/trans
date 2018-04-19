@@ -276,10 +276,14 @@ public class SecretaryController {
     public ModelAndView pictureFile(ModelAndView mav,HttpServletRequest request,
     		@PathVariable("id")int id) {
     	
+    	Thesis thesis = thesisService.selectByPrimaryKey(id);
+    	
     	mav.setViewName("/secretary/showPicture");
     	mav.addObject("pictureFile1", "/trans/secretary/picture/1/" + id);//new File(file1Path));
     	mav.addObject("pictureFile2", "/trans/secretary/picture/2/" + id);
     	
+    	mav.addObject("pictureFile1Name", "" + id + thesis.getWordsNumbers());
+    	mav.addObject("pictureFile2Name", "" + id + thesis.getNote());
     	return mav;
     }
     
@@ -346,6 +350,45 @@ public class SecretaryController {
             }  
         }  
     }
+    
+    /**
+     * .
+     * 
+     * @param request
+     * @param response
+     * @throws IOException 
+     */
+//    @RequestMapping(value = "/downloadPictureFile/{num}/{id}", method = RequestMethod.GET)
+//    public void downloadPictureFile(HttpServletRequest request,HttpServletResponse response,
+//    		@PathVariable("num")int num,
+//    		@PathVariable("id")int id) throws IOException {
+//    	String rootPath = System.getProperty("catalina.home") + "/webapps_data";
+//    	Thesis thesis = thesisService.selectByPrimaryKey(id);
+//    	
+//    	String filePath = "";
+//    	String fileType = "";
+//    	if(num ==1) {
+//    		fileType = thesis.getWordsNumbers();
+//    	
+//    	}
+//    	if(num ==2) {
+//    		fileType = thesis.getNote();
+//    	}
+//    	
+//    	filePath = rootPath + "/" + thesis.getId() + "_" + num + fileType;
+//    	
+//    	if("".equals(filePath)) {
+//    		return ;
+//    	}
+//    	
+//    	File file = new File(filePath);
+//    	
+//
+//		response.setContentType(new MimetypesFileTypeMap().getContentType(file));
+//		response.setHeader("Content-Disposition", "attachment;filename=" + thesis.getId() + "_" + fileType);
+//    	
+//    	response.getOutputStream().write(new byte());
+//    }
 }
 
 
