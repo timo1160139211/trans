@@ -51,6 +51,7 @@ import site.gaoyisheng.service.EnPeriodicalThesisService;
 import site.gaoyisheng.service.PatentService;
 import site.gaoyisheng.service.ThesisService;
 import site.gaoyisheng.service.UserService;
+import site.gaoyisheng.service.AchievementAwardService;
 import site.gaoyisheng.utils.FileUtil;
 
 @Controller
@@ -62,6 +63,9 @@ public class AdminOpsController {
 	
 	@Autowired
 	private PatentService patentService;
+	
+	@Autowired
+	private AchievementAwardService achievementAwardService;
 	
 	@Autowired
 	private ThesisService thesisService;
@@ -125,6 +129,7 @@ public class AdminOpsController {
            case "patent":strAlertMsg = "成功追加新专利:" + patentService.readStreamAndInsertList(in) + "条！";break;
            case "enPeriodicalThesis":strAlertMsg = "成功追加新英文论文:" + enPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
            case "chPeriodicalThesis":strAlertMsg = "成功追加新中文论文:" + chPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
+           case "achievementAward":strAlertMsg = "成功追加新成果奖励:" + achievementAwardService.readStreamAndInsertList(in) + "条！";break;
            default:strAlertMsg = "数据追加失败: 请联系开发人员";
         }
        

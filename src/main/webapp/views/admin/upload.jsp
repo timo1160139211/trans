@@ -97,6 +97,32 @@
 											<button type="submit" class="btn btn-default">上传</button>
 										</form:form>
 									</div>
+									<div class="tab-pane" id="achievementAward">
+										<form:form class="form-inline" id="upload-achievementAward"
+											action="${ctx}/admin/upload/achievementAward"
+											enctype="multipart/form-data" method="post">
+											<div class="form-group">
+												<label for="upload">选择 成果奖励.xls 文件</label> <input
+													type="file" id="upload-file-achievementAward"
+													name="filename">
+												<p class="help-block"></p>
+											</div>
+											<button type="submit" class="btn btn-default">上传</button>
+										</form:form>
+									</div>
+									<div class="tab-pane" id="English12">
+										<form:form class="form-inline" id="upload-enPeriodicalThesis"
+											action="${ctx}/admin/upload/enPeriodicalThesis"
+											enctype="multipart/form-data" method="post">
+											<div class="form-group">
+												<label for="upload">选择 著作奖励.xls 文件</label> <input
+													type="file" id="upload-file-enPeriodicalThesis"
+													name="filename">
+												<p class="help-block"></p>
+											</div>
+											<button type="submit" class="btn btn-default">上传</button>
+										</form:form>
+									</div>
 									<iframe id="id_iframe" name="nm_iframe" style="display: none;"></iframe>
 								</div>
 								<c:if test="${msg != ''}">

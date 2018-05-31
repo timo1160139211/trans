@@ -87,6 +87,62 @@ public class AchievementAward {
 
     private Integer sdutAutherNumber;
 
+	public AchievementAward() {
+		super();
+		this.awardName = "";
+		this.no1AutherType = "";
+		this.no1AutherName = "";
+		this.achievementName = "";
+		this.workunit = "";
+		this.autherNumber = "";
+		this.otherAutherName = "";
+		this.licenseIssuingAgencies = "";
+		this.awardDate = "";
+		this.awardRange = "";
+		this.awardGrade = "";
+		this.finishedWorkunit = "";
+		this.workunitNumber = "";
+		this.workunitRank = "";
+		this.awardGrantNo = "";
+		this.subjectCategory = "";
+		this.projectSources = "";
+		this.awardForm = "";
+		this.note = "";
+		this.awardType = "";
+		
+		this.no1AutherName = "";
+		this.no1AutherNumber = "";
+		this.no2AutherName = "";
+		this.no2AutherNumber = "";
+		this.no3AutherName = "";
+		this.no3AutherNumber = "";
+		this.no4AutherName = "";
+		this.no4AutherNumber = "";
+		this.no5AutherName = "";
+		this.no5AutherNumber = "";
+		this.no6AutherName = "";
+		this.no6AutherNumber = "";
+		this.no7AutherName = "";
+		this.no7AutherNumber = "";
+		this.no8AutherName = "";
+		this.no8AutherNumber = "";
+		this.no9AutherName = "";
+		this.no9AutherNumber = "";
+		this.no10AutherName = "";
+		this.no10AutherNumber = "未审核";
+		this.claimStatus = "未认领";
+	}
+	
+	/**
+	 * 审核用,
+	 * @param id
+	 * @param status
+	 */
+	public AchievementAward(int id,String status) {
+		this.id = id;
+		this.no10AutherNumber = status;
+	}
+	
     public Integer getId() {
         return id;
     }

@@ -31,6 +31,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.expression.ParseException;
 
+import site.gaoyisheng.pojo.AchievementAward;
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
@@ -350,6 +351,47 @@ public class FileUtil {
         return patentList;  
     }	
 	
+	public List<AchievementAward> importFileOfAchievementAward(InputStream is) throws IOException {
+        @SuppressWarnings("resource")
+		 HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);  
+        List<AchievementAward> achievementAwardList = new ArrayList<AchievementAward>();  
+        AchievementAward achievementAward; 
+        
+         // 循环工作表Sheet  
+        for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {  
+            HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);  
+            if (hssfSheet == null) {  
+                continue;  
+              }  
+              // 循环行Row  ,从第1 行开始.  0 1 2 
+            for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {  
+            	achievementAward = new AchievementAward();  //有默认值 全为 ""
+                HSSFRow hssfRow = hssfSheet.getRow(rowNum);  
+                  //循环赋值
+                for (int i = 0; i < hssfRow.getLastCellNum(); i++) {  
+                    HSSFCell thesisIdHSSFCell = hssfRow.getCell(i); 
+                    String value = getStringCellValue(thesisIdHSSFCell);
+                    if (value==null) {value="";}
+                    switch(i+1) {
+//                        case 1:achievementAward.setKeyId(value);break;
+//                        case 2:achievementAward.setName(value);break;
+//                        case 3:achievementAward.setType(value);break;
+//                        case 4:achievementAward.setAuthorizationNumber(value);break;
+//                        case 5:achievementAward.setAuthorizationDate(value);break;
+//                        case 6:achievementAward.setPctPatentOrNot(value);break;
+//                        case 7:achievementAward.setPctPatentName(value);break;
+//                        case 8:achievementAward.setPctPatentApplicationNumber(value);break;
+//                        case 9:achievementAward.setPctPatentApplicationDate(value);break;
+//                        case 10:achievementAward.setPctPatentPriorityDate(value);break;
+//                        case 11:achievementAward.setInCountry(value);break;
+//                        case 12:achievementAward.setAllAutherName(value);break;
+                       }
+                   }  
+                achievementAwardList.add(achievementAward);  
+               }  
+        }  
+        return achievementAwardList;  
+	}
 	
 	/**
 	 * .
@@ -810,5 +852,7 @@ public class FileUtil {
         }
         return null;
     }
+
+
     
 }
