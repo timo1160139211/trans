@@ -21,16 +21,35 @@
 				</div>
 
 				<input type="hidden" name="id" value="${awards.id}">
-				<input type="hidden" name="name" value="${awards.name}">
+				<c:if test="${awardsType == 'achievementAward'}">
+						<input type="hidden" name="achievementName" value="${awards.achievementName}">
+				</c:if>
+				<c:if test="${awardsType != 'achievementAward'}">
+						<input type="hidden" name="name" value="${awards.name}">
+				</c:if>
+				
 				<input type="hidden" name="awardsType" value="${awardsType}">
 
 				<div class="modal-body">
-					<h3>名称:</h3>
-					<p>${awards.name}</p>
-					<br>
-					<h4>所有作者:</h4>
-					<p>${awards.allAutherName}</p>
-					<br>
+				
+					<c:if test="${awardsType == 'achievementAward'}">
+						<h3>名称:</h3>
+					    <p>${awards.achievementName}</p>
+					    <br>
+					    <h4>所有作者:</h4>
+						<p>${awards.otherAutherName}</p>
+						<br>
+					</c:if>
+					<c:if test="${awardsType != 'achievementAward'}">
+						<h3>名称:</h3>
+						<p>${awards.name}</p>
+						<br>
+						<h4>所有作者:</h4>
+						<p>${awards.allAutherName}</p>
+						<br>
+					</c:if>
+
+					
 					<c:if test="${awardsType == 'chPeriodicalThesis'}">
 						<h4>作者单位:</h4>
 						<p>${awards.mechanism == '' ? '':awards.mechanism}</p>
@@ -54,7 +73,7 @@
 								value="${awards.no1AutherNumber}" class="form-control">
 						</div>
 						</c:if>
-						<c:if test="${awardsType == 'enPeriodicalThesis'}">
+						<c:if test="${awardsType == 'enPeriodicalThesis' || awardsType == 'achievementAward' || awardsType == 'opusAward'}">
 						<div class="form-group ">
 							<label>第一作者：</label> <input id="no1AutherName" type="text"
 								name="no1AutherName" value="${awards.no1AutherName}"

@@ -41,6 +41,8 @@
 									<li><a href="#English" data-toggle="tab">英文期刊论文</a></li>
 									<li><a href="#Chinese" data-toggle="tab">中文期刊论文</a></li>
 									<li><a href="#User" data-toggle="tab">用户工号</a></li>
+									<li><a href="#achievementAward" data-toggle="tab">成果奖励</a></li>
+									<li><a href="#opusAward" data-toggle="tab">著作奖励</a></li>
 								</ul>
 								<div class="tab-content">
 									<div class="tab-pane active" id="patent">
@@ -110,13 +112,13 @@
 											<button type="submit" class="btn btn-default">上传</button>
 										</form:form>
 									</div>
-									<div class="tab-pane" id="English12">
-										<form:form class="form-inline" id="upload-enPeriodicalThesis"
-											action="${ctx}/admin/upload/enPeriodicalThesis"
+									<div class="tab-pane" id="opusAward">
+										<form:form class="form-inline" id="upload-opusAward"
+											action="${ctx}/admin/upload/opusAward"
 											enctype="multipart/form-data" method="post">
 											<div class="form-group">
 												<label for="upload">选择 著作奖励.xls 文件</label> <input
-													type="file" id="upload-file-enPeriodicalThesis"
+													type="file" id="upload-file-opusAward"
 													name="filename">
 												<p class="help-block"></p>
 											</div>

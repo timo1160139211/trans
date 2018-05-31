@@ -373,6 +373,15 @@ public class FileUtil {
                     String value = getStringCellValue(thesisIdHSSFCell);
                     if (value==null) {value="";}
                     switch(i+1) {
+                    		case 4:achievementAward.setAchievementName(value);break;//成果名称
+                    		case 7:achievementAward.setOtherAutherName(value);break;//主要完成人(all)  
+                    		case 9:achievementAward.setAwardDate(value);break;//年份 
+                    		case 11:achievementAward.setAwardGrade(value);break;//奖励等级
+                    		case 12:achievementAward.setFinishedWorkunit(value);break;//完成单位
+                    		case 15:achievementAward.setAwardGrantNo(value);break;//获奖证书编号
+                    		case 18:achievementAward.setProjectSources(value);break;//KeyID
+                    		case 21:achievementAward.setAwardType(value);//获奖类别
+                    		
 //                        case 1:achievementAward.setKeyId(value);break;
 //                        case 2:achievementAward.setName(value);break;
 //                        case 3:achievementAward.setType(value);break;

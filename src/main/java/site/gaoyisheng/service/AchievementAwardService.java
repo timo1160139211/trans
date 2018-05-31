@@ -112,6 +112,25 @@ public class AchievementAwardService {
 	public List<AchievementAward> selectByMultiConditions(Map<String, String> map) {
 		return achievementDao.selectByMultiConditions(map);
 	}
+	/*
+	 * 		this.no10AutherNumber = "未审核";
+		this.claimStatus = "未认领";
+		
+		
+	 * 			<if test="achievementName != '' and achievementName != null">
+				achievement_name like concat('%','${achievementName}','%')
+			</if>
+			<if test="autherName != '' and autherName != null">
+				AND other_auther_name like concat('%','${autherName}','%')
+			</if>
+			<if test="claimStatus != '' and claimStatus != null">
+				AND claim_status = #{claimStatus}
+			</if>
+			<if test="no10AutherNumber != '' and no10AutherNumber != null">
+				AND no10_auther_number = #{no10AutherNumber}
+			</if>
+	 * 
+	 */
 	
 	/**
 	 * .

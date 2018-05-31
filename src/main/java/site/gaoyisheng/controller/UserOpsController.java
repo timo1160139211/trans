@@ -43,11 +43,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import site.gaoyisheng.pojo.AchievementAward;
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.pojo.Thesis;
 import site.gaoyisheng.pojo.User;
+import site.gaoyisheng.service.AchievementAwardService;
 import site.gaoyisheng.service.ChPeriodicalThesisService;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
 import site.gaoyisheng.service.PatentService;
@@ -71,6 +73,10 @@ public class UserOpsController {
 	
 	@Autowired
 	private EnPeriodicalThesisService enPeriodicalThesisService;
+	
+	@Autowired
+	private AchievementAwardService achievementAwardService;
+	
 	
     /**
      * 返回论文列表. 
@@ -113,6 +119,8 @@ public class UserOpsController {
            case "patent": return patentService.selectByPrimaryKey(id);
            case "chPeriodicalThesis": return chPeriodicalThesisService.selectByPrimaryKey(id);
            case "enPeriodicalThesis": return enPeriodicalThesisService.selectByPrimaryKey(id);
+           case "achievementAward": return achievementAwardService.selectByPrimaryKey(id);
+//           case "enPeriodicalThesis": return enPeriodicalThesisService.selectByPrimaryKey(id);
            default : return "{\"msg\":\"数据错误,再试一次\"}";
         }
     }
@@ -129,6 +137,7 @@ public class UserOpsController {
         Map<String,String> map = new HashMap<String,String>();
         map.put("keyId", request.getParameter("keyId"));
     	 map.put("name", request.getParameter("name"));
+    	 map.put("achievementName", request.getParameter("achievementName"));
     	 map.put("provenance", request.getParameter("provenance"));
     	 map.put("period", request.getParameter("period"));
     	 map.put("year", request.getParameter("year"));
@@ -157,6 +166,8 @@ public class UserOpsController {
             case "patent": PageHelper.startPage(pageNum,pageSize);return new PageInfo<Patent>(patentService.selectByMultiConditions(map));
             case "chPeriodicalThesis": PageHelper.startPage(pageNum,pageSize);return new PageInfo<ChPeriodicalThesis>(chPeriodicalThesisService.selectByMultiConditions(map));
             case "enPeriodicalThesis": PageHelper.startPage(pageNum,pageSize);return new PageInfo<EnPeriodicalThesis>(enPeriodicalThesisService.selectByMultiConditions(map));
+            case "achievementAward": PageHelper.startPage(pageNum,pageSize);return new PageInfo<AchievementAward>(achievementAwardService.selectByMultiConditions(map));
+            
             default : return null;
          }
     }
@@ -189,6 +200,7 @@ public class UserOpsController {
     		@ModelAttribute Patent patent,
     		@ModelAttribute EnPeriodicalThesis enPeriodicalThesis,
     		@ModelAttribute ChPeriodicalThesis chPeriodicalThesis,
+    		@ModelAttribute AchievementAward achievementAward,
     		@RequestParam String awardsType) throws IOException  {
         
     	StringBuilder msg=new StringBuilder();
@@ -214,6 +226,13 @@ public class UserOpsController {
             		msg.append("成功:认领[").append(chPeriodicalThesis.getName()).append("]");
             	}else {
             		msg.append("失败:认领[").append(chPeriodicalThesis.getName()).append("]失败");
+            	}
+            case "achievementAward":  
+            	achievementAward.setClaimStatus("已认领");achievementAward.setNo10AutherNumber("未审核");
+            	if(achievementAwardService.updateByPrimaryKeySelective(achievementAward)==1) {
+            		msg.append("成功:认领[").append(achievementAward.getAchievementName()).append("]");
+            	}else {
+            		msg.append("失败:认领[").append(achievementAward.getAchievementName()).append("]失败");
             	}
             default : break;
          }
@@ -381,6 +400,17 @@ public class UserOpsController {
 			mv.addObject("awardsType", "chPeriodicalThesis");
 			mv.addObject("autherNum", autherNum);
 			
+			break;
+			
+		case "achievementAward":
+			AchievementAward aa = achievementAwardService
+					.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
+			
+			autherNum = 8;
+			
+			mv.addObject("awards",aa);
+			mv.addObject("awardsType", "achievementAward");
+			mv.addObject("autherNum", autherNum);
 			break;
 		default:
 			break;

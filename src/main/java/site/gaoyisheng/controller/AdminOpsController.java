@@ -130,6 +130,7 @@ public class AdminOpsController {
            case "enPeriodicalThesis":strAlertMsg = "成功追加新英文论文:" + enPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
            case "chPeriodicalThesis":strAlertMsg = "成功追加新中文论文:" + chPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
            case "achievementAward":strAlertMsg = "成功追加新成果奖励:" + achievementAwardService.readStreamAndInsertList(in) + "条！";break;
+//           case "opusAward":strAlertMsg = "成功追加新著作奖励:" + opusAwardService.readStreamAndInsertList(in) + "条！";break;
            default:strAlertMsg = "数据追加失败: 请联系开发人员";
         }
        

@@ -62,6 +62,61 @@
     from achievement_award
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+  	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from achievement_award
+	</select>
+
+	<!-- 根据 认领状态 查询 -->
+	<select id="selectByStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from achievement_award e
+		where e.claim_status = #{status}
+	</select>
+	
+	<!-- 统计数目: 未认领/已认领 -->	
+	<select id="selectCountByStatus" resultType="Integer">
+		select count(*) as claimed
+		from achievement_award e
+		where e.claim_status = #{status}
+	</select>
+	
+	<!-- 统计数目:  所有 -->	
+	<select id="selectCount" resultType="Integer">
+		select count(*) as total
+		from achievement_award e
+	</select>
+  
+  
+	<select id="selectByMultiConditions" parameterType="map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from achievement_award
+		<where>
+			<if test="achievementName != '' and achievementName != null">
+				achievement_name like concat('%','${achievementName}','%')
+			</if>
+			<if test="autherName != '' and autherName != null">
+				AND other_auther_name like concat('%','${autherName}','%')
+			</if>
+			<if test="year != '' and year != null">
+				AND award_date like concat('%','${year}','%')
+			</if>
+			<if test="claimStatus != '' and claimStatus != null">
+				AND claim_status = #{claimStatus}
+			</if>
+			<if test="no10AutherNumber != '' and no10AutherNumber != null">
+				AND no10_auther_number = #{no10AutherNumber}
+			</if>
+		</where> 
+	</select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from achievement_award
     where id = #{id,jdbcType=INTEGER}
@@ -363,6 +418,51 @@
       </if>
     </trim>
   </insert>
+  
+  
+	<!-- 批量插入 -->
+	<insert id="insertList" parameterType="java.util.List">
+      
+		insert into achievement_award 
+		(
+		award_name, no1_auther_type, 
+      no1_auther_name, achievement_name, workunit, 
+      auther_number, other_auther_name, license_issuing_agencies, 
+      award_date, award_range, award_grade, 
+      finished_workunit, workunit_number, workunit_rank, 
+      award_grant_no, subject_category, project_sources, 
+      award_form, note, award_type, 
+      no1_auther_number, no2_auther_name, no2_auther_number, 
+      no3_auther_name, no3_auther_number, no4_auther_name, 
+      no4_auther_number, no5_auther_name, no5_auther_number, 
+      no6_auther_name, no6_auther_number, no7_auther_name, 
+      no7_auther_number, no8_auther_name, no8_auther_number, 
+      no9_auther_name, no9_auther_number, no10_auther_name, 
+      no10_auther_number, claim_number, claim_status, 
+      sdut_auther_number
+		)
+		values
+		<foreach collection="list" item="t" index="index" separator=",">
+			(
+			 #{t.awardName}, #{t.no1AutherType}, 
+      #{t.no1AutherName}, #{t.achievementName}, #{t.workunit}, 
+      #{t.autherNumber}, #{t.otherAutherName}, #{t.licenseIssuingAgencies}, 
+      #{t.awardDate}, #{t.awardRange}, #{t.awardGrade}, 
+      #{t.finishedWorkunit}, #{t.workunitNumber}, #{t.workunitRank}, 
+      #{t.awardGrantNo}, #{t.subjectCategory}, #{t.projectSources}, 
+      #{t.awardForm}, #{t.note}, #{t.awardType}, 
+      #{t.no1AutherNumber}, #{t.no2AutherName}, #{t.no2AutherNumber}, 
+      #{t.no3AutherName}, #{t.no3AutherNumber}, #{t.no4AutherName}, 
+      #{t.no4AutherNumber}, #{t.no5AutherName}, #{t.no5AutherNumber}, 
+      #{t.no6AutherName}, #{t.no6AutherNumber}, #{t.no7AutherName}, 
+      #{t.no7AutherNumber}, #{t.no8AutherName}, #{t.no8AutherNumber}, 
+      #{t.no9AutherName}, #{t.no9AutherNumber}, #{t.no10AutherName}, 
+      #{t.no10AutherNumber}, #{t.claimNumber}, #{t.claimStatus}, 
+      #{t.sdutAutherNumber}
+			)
+		</foreach>
+	</insert>
+	
   <update id="updateByPrimaryKeySelective" parameterType="site.gaoyisheng.pojo.AchievementAward">
     update achievement_award
     <set>
