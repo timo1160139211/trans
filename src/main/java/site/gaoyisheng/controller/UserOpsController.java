@@ -77,6 +77,8 @@ public class UserOpsController {
 	@Autowired
 	private AchievementAwardService achievementAwardService;
 	
+//	@Autowired
+//	private OpusAwardService opusAwardService;
 	
     /**
      * 返回论文列表. 
@@ -120,14 +122,14 @@ public class UserOpsController {
            case "chPeriodicalThesis": return chPeriodicalThesisService.selectByPrimaryKey(id);
            case "enPeriodicalThesis": return enPeriodicalThesisService.selectByPrimaryKey(id);
            case "achievementAward": return achievementAwardService.selectByPrimaryKey(id);
-//           case "enPeriodicalThesis": return enPeriodicalThesisService.selectByPrimaryKey(id);
+//           case "opusAward": return opusAwardService.selectByPrimaryKey(id);
            default : return "{\"msg\":\"数据错误,再试一次\"}";
         }
     }
         
     /** 
      * .
-     *  返回 成果 列表.  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+     *  返回 成果 列表.  request.getParameter("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis,opusAward,achievementAward}
      * @param request
      * @return
      */
@@ -167,7 +169,7 @@ public class UserOpsController {
             case "chPeriodicalThesis": PageHelper.startPage(pageNum,pageSize);return new PageInfo<ChPeriodicalThesis>(chPeriodicalThesisService.selectByMultiConditions(map));
             case "enPeriodicalThesis": PageHelper.startPage(pageNum,pageSize);return new PageInfo<EnPeriodicalThesis>(enPeriodicalThesisService.selectByMultiConditions(map));
             case "achievementAward": PageHelper.startPage(pageNum,pageSize);return new PageInfo<AchievementAward>(achievementAwardService.selectByMultiConditions(map));
-            
+//          case "opusAward": PageHelper.startPage(pageNum,pageSize);return new PageInfo<OpusAward>(opusAwardService.selectByMultiConditions(map));
             default : return null;
          }
     }
@@ -187,7 +189,7 @@ public class UserOpsController {
         
     /**
      * .
-     *  认领      ("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis}
+     *  认领      ("awardsType")参数 {patent,enPeriodicalThesis,chPeriodicalThesis,achievementAward}
      * @param request
      * @return
      * @throws IOException 
@@ -201,6 +203,7 @@ public class UserOpsController {
     		@ModelAttribute EnPeriodicalThesis enPeriodicalThesis,
     		@ModelAttribute ChPeriodicalThesis chPeriodicalThesis,
     		@ModelAttribute AchievementAward achievementAward,
+//    		@ModelAttribute OpusAward opusAward,
     		@RequestParam String awardsType) throws IOException  {
         
     	StringBuilder msg=new StringBuilder();
@@ -234,6 +237,13 @@ public class UserOpsController {
             	}else {
             		msg.append("失败:认领[").append(achievementAward.getAchievementName()).append("]失败");
             	}
+//            case "opusAward":  
+//            	opusAward.setClaimStatus("已认领");opusAward.setNo10AutherNumber("未审核");
+//            	if(opusAwardService.updateByPrimaryKeySelective(opusAward)==1) {
+//            		msg.append("成功:认领[").append(opusAward.getAchievementName()).append("]");
+//            	}else {
+//            		msg.append("失败:认领[").append(opusAward.getAchievementName()).append("]失败");
+//            	}
             default : break;
          }
         
@@ -412,6 +422,16 @@ public class UserOpsController {
 			mv.addObject("awardsType", "achievementAward");
 			mv.addObject("autherNum", autherNum);
 			break;
+//		case "opusAward":
+//			OpusAward opusAward = opusAwardService
+//					.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
+//			
+//			autherNum = 8;
+//			
+//			mv.addObject("awards",opusAward);
+//			mv.addObject("awardsType", "opusAward");
+//			mv.addObject("autherNum", autherNum);
+//			break;
 		default:
 			break;
 		}

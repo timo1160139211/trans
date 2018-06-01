@@ -907,11 +907,19 @@ $('body').on('click', '#detaile', function () {
 
 					var detaileStr = '';
 					
-					detaileStr += "唯一标识符: " + data.keyId + "\n";
-					detaileStr += "标题: " + data.name + "\n";
-					detaileStr += "所有作者: " + data.allAutherName + "\n";
+					if(currentAwardsType=='achievementAward'){
+						detaileStr += "唯一标识符: " + data.projectSources + "\n";
+						detaileStr += "标题: " + data.achievementName + "\n";
+						detaileStr += "所有作者: " + data.otherAutherName + "\n";
+						detaileStr += "年: " + data.awardDate+ "\n";
+						detaileStr += "奖: " + data.awardType + " " + data.awardGrade + "\n";
+					}
 					
 					if(currentAwardsType=='chPeriodicalThesis'){
+						
+						detaileStr += "唯一标识符: " + data.keyId + "\n";
+						detaileStr += "标题: " + data.name + "\n";
+						detaileStr += "所有作者: " + data.allAutherName + "\n";
 						detaileStr += "期刊: " + data.provenance+ "\n";
 						detaileStr += "年: " + data.year+ "\n";
 						detaileStr += "卷: " + data.ministry+ "\n";
@@ -920,6 +928,10 @@ $('body').on('click', '#detaile', function () {
 						detaileStr += "机构: " + data.mechanism+ "\n";
 					}
 					if(currentAwardsType=='enPeriodicalThesis'){
+						
+						detaileStr += "唯一标识符: " + data.keyId + "\n";
+						detaileStr += "标题: " + data.name + "\n";
+						detaileStr += "所有作者: " + data.allAutherName + "\n";
 						detaileStr += "期刊:  " + data.provenance+ "\n";
 						detaileStr += "学科: " + data.subject+ "\n";
 						detaileStr += "年: " + data.year+ "\n";
@@ -928,6 +940,10 @@ $('body').on('click', '#detaile', function () {
 						detaileStr += "页: " + data.page+ "\n";
 					}
 					if(currentAwardsType=='patent'){
+						
+						detaileStr += "唯一标识符: " + data.keyId + "\n";
+						detaileStr += "标题: " + data.name + "\n";
+						detaileStr += "所有作者: " + data.allAutherName + "\n";
 						detaileStr += "类型: " + data.type + "\n";
 					}
 					

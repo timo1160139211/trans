@@ -40,6 +40,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import site.gaoyisheng.enums.CollegeOperationType;
+import site.gaoyisheng.pojo.AchievementAward;
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.College;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
@@ -66,6 +67,9 @@ public class AdminOpsController {
 	
 	@Autowired
 	private AchievementAwardService achievementAwardService;
+	
+//	@Autowired
+//	private OpusAwardService opusAwardService;
 	
 	@Autowired
 	private ThesisService thesisService;
@@ -173,6 +177,14 @@ public class AdminOpsController {
 			    		bytes = fileUtil.exportFileOfChPeriodicalThesis(chPeriodicalThesisService.selectAll());
 			    		fileNameBefore = "中文期刊论文.xls";
 			    		break;
+			    case "achievementAward":
+		    			bytes = fileUtil.exportFileOfAchievementAward(achievementAwardService.selectAll());
+		    			fileNameBefore = "成果奖励.xls";
+		    			break;	
+//			    case "opusAward":
+//		    			bytes = fileUtil.exportFileOfOpusAward(opusAwardService.selectAll());
+//		    			fileNameBefore = "著作奖励.xls";
+//		    			break;	
 			    case "patent-model":
 			    		fileNameBefore = "专利-模板.xls";
 		    			file = Paths.get(request.getServletContext().getRealPath("/views/data"), fileNameBefore);
@@ -242,7 +254,9 @@ public class AdminOpsController {
 		    case "patent":statisticalMap=patentService.selectStatistic() ;break;
 		    case "enPeriodicalThesis":statisticalMap=enPeriodicalThesisService.selectStatistic();break;
 		    case "chPeriodicalThesis": statisticalMap=chPeriodicalThesisService.selectStatistic();break;
-		}
+		    case "achievementAward":statisticalMap=achievementAwardService.selectStatistic() ;break;
+//		    case "opusAward":statisticalMap=opusAwardService.selectStatistic() ;break;
+		}		
 		
 		//退出,并返回"无该类型文档"
 		statisticalMap.isEmpty();
@@ -282,6 +296,8 @@ public class AdminOpsController {
 		    case "patent": return new PageInfo<Patent>(patentService.selectByStatus("未认领"));
 		    case "enPeriodicalThesis": return new PageInfo<EnPeriodicalThesis>(enPeriodicalThesisService.selectByStatus("未认领"));
 		    case "chPeriodicalThesis": return new PageInfo<ChPeriodicalThesis>(chPeriodicalThesisService.selectByStatus("未认领"));
+		    case "achievementAward":return new PageInfo<AchievementAward>(achievementAwardService.selectByStatus("未认领"));
+//		    case "opusAward":return new PageInfo<OpusAward>(opusAwardService.selectByStatus("未认领"));
 		    default : return "";
 		}
 	}

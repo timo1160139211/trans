@@ -43,6 +43,10 @@
 										data-toggle="tab">英文期刊论文</a></li>
 									<li><a id="chPeriodicalThesis-tab" href="#Chinese"
 										data-toggle="tab">中文期刊论文</a></li>
+									<li><a id="achievementAward-tab" href="#achievementAward"
+										data-toggle="tab">成果奖励</a></li>
+									<!-- <li><a id="opusAward-tab" href="#opusAward"
+										data-toggle="tab">著作奖励</a></li> -->
 								</ul>
 								<div class="tab-content">
 									<div class="tab-pane active" id="Patent">
@@ -89,6 +93,38 @@
 												<p class="help-block">
 													<label>中文期刊论文总数:</label><input type="text"
 														class="form-control" id="chPeriodicalThesis-total"
+														value="" readonly="true" />
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="achievementAward">
+										<div class="panel-body">
+											<div class="form-group">
+												<p class="help-block">
+													<label>已认领成果奖励:</label><input type="text"
+														class="form-control" id="achievementAward-claimed"
+														value="" readonly="true" />
+												</p>
+												<p class="help-block">
+													<label>成果奖励总数:</label><input type="text"
+														class="form-control" id="achievementAward-total"
+														value="" readonly="true" />
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane" id="opusAward">
+										<div class="panel-body">
+											<div class="form-group">
+												<p class="help-block">
+													<label>已认领著作奖励:</label><input type="text"
+														class="form-control" id="opusAward-claimed"
+														value="" readonly="true" />
+												</p>
+												<p class="help-block">
+													<label>著作奖励总数:</label><input type="text"
+														class="form-control" id="opusAward-total"
 														value="" readonly="true" />
 												</p>
 											</div>
@@ -147,6 +183,32 @@
 				success : function(data) {
 					$("#chPeriodicalThesis-claimed").val(data.claimed);
 					$("#chPeriodicalThesis-total").val(data.total);
+				}
+			});
+		})
+				$('#achievementAward-tab').on('click', function() {
+			$.ajax({
+				type : 'post',
+				url : '${ctx}/admin/claim-statistic',
+				data : {
+					awardsType : 'achievementAward'
+				},
+				success : function(data) {
+					$("#achievementAward-claimed").val(data.claimed);
+					$("#achievementAward-total").val(data.total);
+				}
+			});
+		})
+				$('#opusAward-tab').on('click', function() {
+			$.ajax({
+				type : 'post',
+				url : '${ctx}/admin/claim-statistic',
+				data : {
+					awardsType : 'opusAward'
+				},
+				success : function(data) {
+					$("#opusAward-claimed").val(data.claimed);
+					$("#opusAward-total").val(data.total);
 				}
 			});
 		})
