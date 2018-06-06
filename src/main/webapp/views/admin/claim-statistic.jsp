@@ -45,8 +45,8 @@
 										data-toggle="tab">中文期刊论文</a></li>
 									<li><a id="achievementAward-tab" href="#achievementAward"
 										data-toggle="tab">成果奖励</a></li>
-									<!-- <li><a id="opusAward-tab" href="#opusAward"
-										data-toggle="tab">著作奖励</a></li> -->
+									<li><a id="opusAward-tab" href="#opusAward"
+										data-toggle="tab">著作奖励</a></li>
 								</ul>
 								<div class="tab-content">
 									<div class="tab-pane active" id="Patent">

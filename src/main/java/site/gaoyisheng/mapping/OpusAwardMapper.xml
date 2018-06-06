@@ -62,6 +62,95 @@
     from opus_award
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+	<!-- additional-->
+    	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from opus_award
+	</select>
+
+	<!-- 根据 认领状态 查询 -->
+	<select id="selectByStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from opus_award e
+		where e.status = #{status}
+	</select>
+	
+	<!-- 统计数目: 未认领/已认领 -->	
+	<select id="selectCountByStatus" resultType="Integer">
+		select count(*) as claimed
+		from opus_award e
+		where e.status = #{status}
+	</select>
+	
+	<!-- 统计数目:  所有 -->	
+	<select id="selectCount" resultType="Integer">
+		select count(*) as total
+		from opus_award e
+	</select>
+  
+  
+	<select id="selectByMultiConditions" parameterType="map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from opus_award
+		<where>
+			<if test="name != '' and name != null">
+				name like concat('%','${name}','%')
+			</if>
+			<if test="autherName != '' and autherName != null">
+				AND words_numbers like concat('%','${autherName}','%')
+			</if>
+			<if test="claimStatus != '' and claimStatus != null">
+				AND status = #{claimStatus}
+			</if>
+			<if test="no10AutherNumber != '' and no10AutherNumber != null">
+				AND no10_auther_number = #{no10AutherNumber}
+			</if>
+		</where> 
+	</select>
+  
+  
+	<!-- 批量插入 -->
+	<insert id="insertList" parameterType="java.util.List">
+      
+		insert into opus_award 
+		(
+		 name, no1_auther_type, no1_auther_name, workunit, publish_workunit, publish_date, 
+    publish_location, opus_category, teaching_material_category, subject_type, stair_subject, 
+    project_sources, words_numbers, translated_foreign_or_not, school_sign, language, 
+    isbn, cip, introduce, publishing_level, no1_auther_number, no2_auther_name, no2_auther_number, 
+    no3_auther_name, no3_auther_number, no4_auther_name, no4_auther_number, no5_auther_name, 
+    no5_auther_number, no6_auther_name, no6_auther_number, no7_auther_name, no7_auther_number, 
+    no8_auther_name, no8_auther_number, no9_auther_name, no9_auther_number, no10_auther_name, 
+    no10_auther_number, auther_number, sdut_auther_number, status
+		)
+		values
+		<foreach collection="list" item="t" index="index" separator=",">
+			(#{t.name}, #{t.no1AutherType}, 
+      #{t.no1AutherName}, #{t.workunit}, #{t.publishWorkunit}, 
+      #{t.publishDate}, #{t.publishLocation}, #{t.opusCategory}, 
+      #{t.teachingMaterialCategory}, #{t.subjectType}, 
+      #{t.stairSubject}, #{t.projectSources}, #{t.wordsNumbers}, 
+      #{t.translatedForeignOrNot}, #{t.schoolSign}, #{t.language}, 
+      #{t.isbn}, #{t.cip}, #{t.introduce}, 
+      #{t.publishingLevel}, #{t.no1AutherNumber}, #{t.no2AutherName}, 
+      #{t.no2AutherNumber}, #{t.no3AutherName}, #{t.no3AutherNumber}, 
+      #{t.no4AutherName}, #{t.no4AutherNumber}, #{t.no5AutherName}, 
+      #{t.no5AutherNumber}, #{t.no6AutherName}, #{t.no6AutherNumber}, 
+      #{t.no7AutherName}, #{t.no7AutherNumber}, #{t.no8AutherName}, 
+      #{t.no8AutherNumber}, #{t.no9AutherName}, #{t.no9AutherNumber}, 
+      #{t.no10AutherName}, #{t.no10AutherNumber}, #{t.autherNumber}, 
+      #{t.sdutAutherNumber}, #{t.status}
+			)
+		</foreach>
+	</insert>
+	
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from opus_award
     where id = #{id,jdbcType=INTEGER}

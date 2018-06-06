@@ -44,6 +44,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import site.gaoyisheng.pojo.AchievementAward;
+import site.gaoyisheng.pojo.OpusAward;
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.Patent;
@@ -52,6 +53,7 @@ import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.AchievementAwardService;
 import site.gaoyisheng.service.ChPeriodicalThesisService;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
+import site.gaoyisheng.service.OpusAwardService;
 import site.gaoyisheng.service.PatentService;
 import site.gaoyisheng.service.ThesisService;
 import site.gaoyisheng.service.UserService;
@@ -77,8 +79,8 @@ public class UserOpsController {
 	@Autowired
 	private AchievementAwardService achievementAwardService;
 	
-//	@Autowired
-//	private OpusAwardService opusAwardService;
+	@Autowired
+	private OpusAwardService opusAwardService;
 	
     /**
      * 返回论文列表. 
@@ -122,7 +124,7 @@ public class UserOpsController {
            case "chPeriodicalThesis": return chPeriodicalThesisService.selectByPrimaryKey(id);
            case "enPeriodicalThesis": return enPeriodicalThesisService.selectByPrimaryKey(id);
            case "achievementAward": return achievementAwardService.selectByPrimaryKey(id);
-//           case "opusAward": return opusAwardService.selectByPrimaryKey(id);
+           case "opusAward": return opusAwardService.selectByPrimaryKey(id);
            default : return "{\"msg\":\"数据错误,再试一次\"}";
         }
     }
@@ -157,6 +159,7 @@ public class UserOpsController {
     	 map.put("inCountry", request.getParameter("inCountry"));
     	 map.put("autherName", request.getParameter("autherName"));
     	 map.put("claimStatus", request.getParameter("claimStatus"));
+    	 map.put("status", request.getParameter("status"));
     	 map.put("no10AutherNumber", request.getParameter("no10AutherNumber"));
     	 map.put("no10AutherName", request.getParameter("no10AutherName"));
         
@@ -169,7 +172,7 @@ public class UserOpsController {
             case "chPeriodicalThesis": PageHelper.startPage(pageNum,pageSize);return new PageInfo<ChPeriodicalThesis>(chPeriodicalThesisService.selectByMultiConditions(map));
             case "enPeriodicalThesis": PageHelper.startPage(pageNum,pageSize);return new PageInfo<EnPeriodicalThesis>(enPeriodicalThesisService.selectByMultiConditions(map));
             case "achievementAward": PageHelper.startPage(pageNum,pageSize);return new PageInfo<AchievementAward>(achievementAwardService.selectByMultiConditions(map));
-//          case "opusAward": PageHelper.startPage(pageNum,pageSize);return new PageInfo<OpusAward>(opusAwardService.selectByMultiConditions(map));
+            case "opusAward": PageHelper.startPage(pageNum,pageSize);return new PageInfo<OpusAward>(opusAwardService.selectByMultiConditions(map));
             default : return null;
          }
     }
@@ -203,7 +206,7 @@ public class UserOpsController {
     		@ModelAttribute EnPeriodicalThesis enPeriodicalThesis,
     		@ModelAttribute ChPeriodicalThesis chPeriodicalThesis,
     		@ModelAttribute AchievementAward achievementAward,
-//    		@ModelAttribute OpusAward opusAward,
+    		@ModelAttribute OpusAward opusAward,
     		@RequestParam String awardsType) throws IOException  {
         
     	StringBuilder msg=new StringBuilder();
@@ -237,13 +240,13 @@ public class UserOpsController {
             	}else {
             		msg.append("失败:认领[").append(achievementAward.getAchievementName()).append("]失败");
             	}
-//            case "opusAward":  
-//            	opusAward.setClaimStatus("已认领");opusAward.setNo10AutherNumber("未审核");
-//            	if(opusAwardService.updateByPrimaryKeySelective(opusAward)==1) {
-//            		msg.append("成功:认领[").append(opusAward.getAchievementName()).append("]");
-//            	}else {
-//            		msg.append("失败:认领[").append(opusAward.getAchievementName()).append("]失败");
-//            	}
+            case "opusAward":  
+            	opusAward.setStatus("已认领");opusAward.setNo10AutherNumber("未审核");
+            	if(opusAwardService.updateByPrimaryKeySelective(opusAward)==1) {
+            		msg.append("成功:认领[").append(opusAward.getName()).append("]");
+            	}else {
+            		msg.append("失败:认领[").append(opusAward.getName()).append("]失败");
+            	}
             default : break;
          }
         
@@ -422,16 +425,16 @@ public class UserOpsController {
 			mv.addObject("awardsType", "achievementAward");
 			mv.addObject("autherNum", autherNum);
 			break;
-//		case "opusAward":
-//			OpusAward opusAward = opusAwardService
-//					.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
-//			
-//			autherNum = 8;
-//			
-//			mv.addObject("awards",opusAward);
-//			mv.addObject("awardsType", "opusAward");
-//			mv.addObject("autherNum", autherNum);
-//			break;
+		case "opusAward":
+			OpusAward opusAward = opusAwardService
+					.selectByPrimaryKey(Integer.valueOf(request.getParameter("id")));
+			
+			autherNum = 8;
+			
+			mv.addObject("awards",opusAward);
+			mv.addObject("awardsType", "opusAward");
+			mv.addObject("autherNum", autherNum);
+			break;
 		default:
 			break;
 		}

@@ -41,7 +41,7 @@
 									<li id="en-tag"><a href="#English" data-toggle="tab">英文期刊论文</a></li>
 									<li id="patent-tag"><a href="#Patent" data-toggle="tab">专利</a></li>
 									<li id="achievementAward-tag"><a href="#achievementAward" data-toggle="tab">成果奖励</a></li>
-									<!-- <li id="opusAward-tag"><a href="#opusAward" data-toggle="tab">著作奖励/版权</a></li> -->
+									<li id="opusAward-tag"><a href="#opusAward" data-toggle="tab">著作奖励/版权</a></li>
 								</ul>
 								<div class="tab-content">
 									<div class="tab-pane" id="Patent">
@@ -173,9 +173,11 @@
 													class="form-control">
 											</div>
 											<div class="form-group">
-												<label>归属学院:</label> <input type="text" name="no10AutherName"
-													class="form-control" placeholder="未认领,无学院">
-											    </div>
+												<label>归属学院:</label> <select name="no10AutherName"
+													class="form-control">
+													<option value="${sessionScope.currentUser.college}">${sessionScope.currentUser.college}</option>
+												</select>
+											</div>
 											<div class="form-group">
 												<label>年:</label> <input type="text" name="year"
 													class="form-control">
@@ -208,7 +210,7 @@
 													value="opusAward" class="type-control">
 											</div>
 											<div class="form-group">
-												<label>成果名称:</label> <input type="text" name="opusName"
+												<label>成果名称:</label> <input type="text" name="name"
 													class="form-control">
 											</div>
 											<div class="form-group">
@@ -216,11 +218,13 @@
 													class="form-control">
 											</div>
 											<div class="form-group">
-												<label>年:</label> <input type="text" name="year"
+												<label>归属学院:</label> <select name="no10AutherName"
 													class="form-control">
+													<option value="${sessionScope.currentUser.college}">${sessionScope.currentUser.college}</option>
+												</select>
 											</div>
 											<div class="form-group">
-												<label>认领状态:</label> <select id="achievementAwardClaimStatus" name="claimStatus"
+												<label>认领状态:</label> <select id="opusAwardClaimStatus" name="status"
 													class="form-control">
 													<option value="未认领">未认领</option>
 													<option value="已认领">已认领</option>
@@ -313,7 +317,7 @@ $(document).ready(function () {
 
 
 
-            $('#ch-btn,#en-btn,#patent-btn').bind('click', function(){
+            $('#ch-btn,#en-btn,#patent-btn,#achievementAward-btn,#opusAward-btn').bind('click', function(){
 				currentPageNum=1;    ////维护一个 当前页参数,换页时+ - ,在每次切换标签/查询时初始化.
                         $('#tbody').empty();//清空-------------------------------------------------
                         $('.page-div').empty();//清空-------------------------------------------------
@@ -385,16 +389,19 @@ $(document).ready(function () {
                                 var tr = $("<tr/>");
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                 $("<td/>").html(i + 1).appendTo(tr);
+                                if(currentAwardsType=='opusAward'){
+                               	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
+                                   $("<td/>").html(page.list[i].name).appendTo(tr);
+                                   $("<td/>").html(page.list[i].wordsNumbers).appendTo(tr);
+                               		}else
                                 if(currentAwardsType=='achievementAward'){
                                	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
                                    $("<td/>").html(page.list[i].achievementName).appendTo(tr);
                                    $("<td/>").html(page.list[i].otherAutherName).appendTo(tr);
-                                   $("<td/>").html(page.list[i].awardType).appendTo(tr); 	
                                 }else{
                                 	 $("<td/>").html(page.list[i].keyId).appendTo(tr);
                                     $("<td/>").html(page.list[i].name).appendTo(tr);
                                     $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
-                                    $("<td/>").html(page.list[i].provenance).appendTo(tr);
                                      }
                                 /* $("<td/>").html(page.list[i].keyId).appendTo(tr);
                                 $("<td/>").html(page.list[i].name).appendTo(tr);
@@ -528,6 +535,15 @@ $('body').on('click', '.prePage', function () {
 		if(currentAwardsType=='patent'){
 		    auditSelectedText = $("#paAuditStatus").find("option:selected").text();
 		}
+		if(currentAwardsType=='achievementAward'){
+		    selectedText = $("#achievementAwardClaimStatus option:selected").text();
+		    auditSelectedText = $("#achievementAwardAuditStatus").find("option:selected").text();
+		}
+		if(currentAwardsType=='opusAward'){
+		    selectedText = $("#opusAwardClaimStatus option:selected").text();
+		    auditSelectedText = $("#opusAwardAuditStatus").find("option:selected").text();
+		}
+		
        
 		$.ajax({
 			type : 'post',
@@ -565,9 +581,20 @@ $('body').on('click', '.prePage', function () {
                                 var tr = $("<tr/>");
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                 $("<td/>").html(i + 1).appendTo(tr);
-                                $("<td/>").html(page.list[i].keyId).appendTo(tr);
-                                $("<td/>").html(page.list[i].name).appendTo(tr);
-                                $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
+                                if(currentAwardsType=='opusAward'){
+                               	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
+                                   $("<td/>").html(page.list[i].name).appendTo(tr);
+                                   $("<td/>").html(page.list[i].wordsNumbers).appendTo(tr);
+                               		}else
+                                if(currentAwardsType=='achievementAward'){
+                               	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
+                                   $("<td/>").html(page.list[i].achievementName).appendTo(tr);
+                                   $("<td/>").html(page.list[i].otherAutherName).appendTo(tr);
+                                }else{
+                                	 $("<td/>").html(page.list[i].keyId).appendTo(tr);
+                                    $("<td/>").html(page.list[i].name).appendTo(tr);
+                                    $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
+                                     }
                                 $("<td/>").html(all7Auther).appendTo(tr);
 					 				$("<td/>").html(comuAuther).appendTo(tr);
 					 				$("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
@@ -630,7 +657,15 @@ $('body').on('click', '.nextPage', function () {
 		if(currentAwardsType=='patent'){
 		    auditSelectedText = $("#paAuditStatus").find("option:selected").text();
 		}
-       
+		if(currentAwardsType=='achievementAward'){
+		    selectedText = $("#achievementAwardClaimStatus option:selected").text();
+		    auditSelectedText = $("#achievementAwardAuditStatus").find("option:selected").text();
+		}
+		if(currentAwardsType=='opusAward'){
+		    selectedText = $("#opusAwardClaimStatus option:selected").text();
+		    auditSelectedText = $("#opusAwardAuditStatus").find("option:selected").text();
+		}
+		
        
 		$.ajax({
 			type : 'post',
@@ -668,9 +703,20 @@ $('body').on('click', '.nextPage', function () {
                                 var tr = $("<tr/>");
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                 $("<td/>").html(i + 1).appendTo(tr);
-                                $("<td/>").html(page.list[i].keyId).appendTo(tr);
-                                $("<td/>").html(page.list[i].name).appendTo(tr);
-                                $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
+                                if(currentAwardsType=='opusAward'){
+                               	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
+                                   $("<td/>").html(page.list[i].name).appendTo(tr);
+                                   $("<td/>").html(page.list[i].wordsNumbers).appendTo(tr);
+                               		}else
+                                if(currentAwardsType=='achievementAward'){
+                               	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
+                                   $("<td/>").html(page.list[i].achievementName).appendTo(tr);
+                                   $("<td/>").html(page.list[i].otherAutherName).appendTo(tr);
+                                }else{
+                                	 $("<td/>").html(page.list[i].keyId).appendTo(tr);
+                                    $("<td/>").html(page.list[i].name).appendTo(tr);
+                                    $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
+                                     }
                                 $("<td/>").html(all7Auther).appendTo(tr);
 					 			    $("<td/>").html(comuAuther).appendTo(tr);
 								    $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
@@ -736,11 +782,26 @@ $('body').on('click', '.nextPage', function () {
 
             					var detaileStr = '';
             					
-            					detaileStr += "唯一标识符: " + data.keyId + "\n";
-            					detaileStr += "标题: " + data.name + "\n";
-            					detaileStr += "所有作者: " + data.allAutherName + "\n";
+            					if(currentAwardsType=='opusAward'){
+            						detaileStr += "唯一标识符: " + data.projectSources + "\n";
+            						detaileStr += "名称: " + data.name + "\n";
+            						detaileStr += "所有作者: " + data.wordsNumbers + "\n";
+            						detaileStr += "年: " + data.publishDate+ "\n";
+            						detaileStr += "ISBN: " + data.isbn+ "\n";
+                               	}
+            					if(currentAwardsType=='achievementAward'){
+            						detaileStr += "唯一标识符: " + data.projectSources + "\n";
+            						detaileStr += "标题: " + data.achievementName + "\n";
+            						detaileStr += "所有作者: " + data.otherAutherName + "\n";
+            						detaileStr += "年: " + data.awardDate+ "\n";
+            						detaileStr += "奖: " + data.awardType + " " + data.awardGrade + "\n";
+            					}
             					
             					if(currentAwardsType=='chPeriodicalThesis'){
+            						
+            						detaileStr += "唯一标识符: " + data.keyId + "\n";
+            						detaileStr += "标题: " + data.name + "\n";
+            						detaileStr += "所有作者: " + data.allAutherName + "\n";
             						detaileStr += "期刊: " + data.provenance+ "\n";
             						detaileStr += "年: " + data.year+ "\n";
             						detaileStr += "卷: " + data.ministry+ "\n";
@@ -749,6 +810,10 @@ $('body').on('click', '.nextPage', function () {
             						detaileStr += "机构: " + data.mechanism+ "\n";
             					}
             					if(currentAwardsType=='enPeriodicalThesis'){
+            						
+            						detaileStr += "唯一标识符: " + data.keyId + "\n";
+            						detaileStr += "标题: " + data.name + "\n";
+            						detaileStr += "所有作者: " + data.allAutherName + "\n";
             						detaileStr += "期刊:  " + data.provenance+ "\n";
             						detaileStr += "学科: " + data.subject+ "\n";
             						detaileStr += "年: " + data.year+ "\n";
@@ -757,6 +822,10 @@ $('body').on('click', '.nextPage', function () {
             						detaileStr += "页: " + data.page+ "\n";
             					}
             					if(currentAwardsType=='patent'){
+            						
+            						detaileStr += "唯一标识符: " + data.keyId + "\n";
+            						detaileStr += "标题: " + data.name + "\n";
+            						detaileStr += "所有作者: " + data.allAutherName + "\n";
             						detaileStr += "类型: " + data.type + "\n";
             					}
             					
@@ -781,8 +850,11 @@ $('body').on('click', '.nextPage', function () {
             					detaileStr += "*成果归属单位: " + data.no10AutherName + "\n";
             					
             					detaileStr += "审核状态: " + data.no10AutherNumber + "\n";
-            					detaileStr += "认领状态: " + data.claimStatus + "\n";
-            		
+            					if(currentAwardsType=='opusAward'){
+            						detaileStr += "认领状态: " + data.status + "\n";
+                             }else{
+            						detaileStr += "认领状态: " + data.claimStatus + "\n";
+                               	}
             					alert(detaileStr);
 
             				}

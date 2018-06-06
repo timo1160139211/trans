@@ -90,7 +90,7 @@
 								<li><a href="${ctx}/admin/download/enPeriodicalThesis"
 									class="">英文期刊论文</a></li>
 								<li><a href="${ctx}/admin/download/achievementAward" class="">成果奖励</a></li>
-								<%-- <li><a href="${ctx}/admin/download/opusAward" class="">著作奖励</a></li> --%>
+								<li><a href="${ctx}/admin/download/opusAward" class="">著作奖励</a></li>
 							</ul>
 						</div>
 					</li>

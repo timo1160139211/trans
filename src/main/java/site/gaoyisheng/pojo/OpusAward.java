@@ -86,6 +86,63 @@ public class OpusAward {
     private Integer sdutAutherNumber;
 
     private String status;
+    
+
+	public OpusAward() {
+		super();
+		this.name = "";
+		this.publishLocation = "";
+		this.opusCategory = "";
+		this.teachingMaterialCategory = "";
+		this.subjectType = "";
+		this.publishDate = "";
+		this.stairSubject = "";
+		this.translatedForeignOrNot = "";
+		this.schoolSign = "";
+		this.cip = "";
+		this.language = "";
+		this.isbn = "";
+		this.publishWorkunit = "";
+		this.workunit = "";
+		this.no1AutherType = "";
+		this.sdutAutherNumber = 0;
+		this.publishingLevel = "";
+		this.autherNumber = 0;
+		this.introduce = "";
+		this.projectSources = "";
+		this.wordsNumbers = "";
+		this.no1AutherName = "";
+		this.no1AutherNumber = "";
+		this.no2AutherName = "";
+		this.no2AutherNumber = "";
+		this.no3AutherName = "";
+		this.no3AutherNumber = "";
+		this.no4AutherName = "";
+		this.no4AutherNumber = "";
+		this.no5AutherName = "";
+		this.no5AutherNumber = "";
+		this.no6AutherName = "";
+		this.no6AutherNumber = "";
+		this.no7AutherName = "";
+		this.no7AutherNumber = "";
+		this.no8AutherName = "";
+		this.no8AutherNumber = "";
+		this.no9AutherName = "";
+		this.no9AutherNumber = "";
+		this.no10AutherName = "";
+		this.no10AutherNumber = "未审核";
+		this.status = "未认领";
+	}
+	
+	/**
+	 * 审核用,
+	 * @param id
+	 * @param status
+	 */
+	public OpusAward(int id,String status) {
+		this.id = id;
+		this.no10AutherNumber = status;
+	}
 
     public Integer getId() {
         return id;

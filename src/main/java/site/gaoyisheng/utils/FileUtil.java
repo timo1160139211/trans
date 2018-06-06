@@ -34,6 +34,7 @@ import org.springframework.expression.ParseException;
 import site.gaoyisheng.pojo.AchievementAward;
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
+import site.gaoyisheng.pojo.OpusAward;
 import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.pojo.Thesis;
 import site.gaoyisheng.pojo.User;
@@ -351,6 +352,13 @@ public class FileUtil {
         return patentList;  
     }	
 	
+	/**
+	 * .
+	 *  文件导入: 把数据解析成list.   --AchievementAward
+	 * @param InputStream
+	 * @return
+	 * @throws IOException
+	 */
 	public List<AchievementAward> importFileOfAchievementAward(InputStream is) throws IOException {
         @SuppressWarnings("resource")
 		 HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);  
@@ -401,6 +409,59 @@ public class FileUtil {
         }  
         return achievementAwardList;  
 	}
+	
+	/**
+	 * .
+	 *  文件导入: 把数据解析成list.   --OpusAward
+	 * @param InputStream
+	 * @return
+	 * @throws IOException
+	 */
+	public List<OpusAward> importFileOfOpusAward(InputStream is) throws IOException{  
+        @SuppressWarnings("resource")
+		 HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);  
+        List<OpusAward> opusAwardList = new ArrayList<OpusAward>();  
+        OpusAward opusAward; 
+        
+         // 循环工作表Sheet  
+        for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {  
+            HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(numSheet);  
+            if (hssfSheet == null) {  
+                continue;  
+              }  
+              // 循环行Row  ,从第1 行开始.  0 1 2 
+            for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {  
+            	opusAward = new OpusAward();  //有默认值 全为 ""
+                HSSFRow hssfRow = hssfSheet.getRow(rowNum);  
+                  //循环赋值
+                String allAuthorName = "";
+                for (int i = 0; i < hssfRow.getLastCellNum(); i++) {  
+                    HSSFCell thesisIdHSSFCell = hssfRow.getCell(i); 
+                    String value = getStringCellValue(thesisIdHSSFCell);
+                    if (value==null) {value="";}
+                    switch(i+1) {
+                        case 1:opusAward.setName(value);break;
+                        case 3:opusAward.setNo1AutherName(value);break;
+//                        case 5:opusAward.setWordsNumbers(value);break;//所有用户名
+                        case 6:opusAward.setPublishWorkunit(value);break;
+                        case 7:opusAward.setPublishDate(value);break;
+                        case 9:opusAward.setOpusCategory(value);break;
+                        case 11:opusAward.setSubjectType(value);break;
+                        case 13:opusAward.setProjectSources(value);break;
+                        case 18:opusAward.setIsbn(value);break;
+                        case 22:opusAward.setNo2AutherName(value);allAuthorName+=value;break;
+                        case 23:opusAward.setNo3AutherName(value);allAuthorName+=value;break;
+                        case 24:opusAward.setNo4AutherName(value);allAuthorName+=value;break;
+                        case 25:opusAward.setNo5AutherName(value);allAuthorName+=value;break;
+                        case 26:opusAward.setNo6AutherName(value);allAuthorName+=value;break;
+                        case 27:opusAward.setNo7AutherName(value);allAuthorName+=value;opusAward.setWordsNumbers(allAuthorName);break;
+                       }
+                   }  
+                opusAwardList.add(opusAward);  
+               }  
+        }  
+        return opusAwardList;  
+    }
 	
 	/**
 	 * .
@@ -545,7 +606,7 @@ public class FileUtil {
 		// 第一步，创建一个web book，对应一个Excel文件
 		HSSFWorkbook wb = new HSSFWorkbook();
 		// 第二步，在web book中添加一个sheet,对应Excel文件中的sheet
-		HSSFSheet sheet = wb.createSheet("中文期刊论文表");
+		HSSFSheet sheet = wb.createSheet("专利表");
 		// 第三步，在sheet中添加表头第0行,注意老版本p o i对Excel的行数列数有限制short
 		HSSFRow row = sheet.createRow((int) 0);
 		// 第四步，创建单元格，并设置值表头 设置表头居中
@@ -592,6 +653,72 @@ public class FileUtil {
 			insertCell(row, j++, patent.getNo10AutherName());
 			insertCell(row, j++, patent.getNo10AutherNumber());
 			insertCell(row, j++, patent.getClaimStatus());
+		}
+		wb.write(out);wb.close();
+		return out.toByteArray();
+	}
+	
+	
+	/**
+	 * .
+	 *  导出文件: 把数据解析成byte[]  ----OpusAward
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
+	public byte[] exportFileOfOpusAward(List<OpusAward> list) throws Exception{
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		// 第一步，创建一个web book，对应一个Excel文件
+		HSSFWorkbook wb = new HSSFWorkbook();
+		// 第二步，在web book中添加一个sheet,对应Excel文件中的sheet
+		HSSFSheet sheet = wb.createSheet("著作奖励表");
+		// 第三步，在sheet中添加表头第0行,注意老版本p o i对Excel的行数列数有限制short
+		HSSFRow row = sheet.createRow((int) 0);
+		// 第四步，创建单元格，并设置值表头 设置表头居中
+		HSSFCellStyle style = wb.createCellStyle();
+
+		// 设置表头
+		List<String> excelHead = combileExcelHead();
+
+		HSSFCell cell = null;
+		// excel头
+		for (int i = 0; i < excelHead.size(); i++) {
+			cell = row.createCell(i);
+			cell.setCellValue(excelHead.get(i));
+			cell.setCellStyle(style);
+		}
+
+		// 第五步，写入实体数据 实际应用中这些数据从数据库得到
+		OpusAward opusAward = null; // 拼装excel内容
+		for (int i = 0; i < list.size(); i++) {
+			row = sheet.createRow((int) i + 1);
+			opusAward = list.get(i);
+			// 创建单元格，并设置值
+
+			int j = 0;
+			insertCell(row, j++, opusAward.getProjectSources());
+			insertCell(row, j++, opusAward.getNo1AutherName());
+			insertCell(row, j++, opusAward.getNo1AutherNumber());
+			insertCell(row, j++, opusAward.getNo2AutherName());
+			insertCell(row, j++, opusAward.getNo2AutherNumber());
+			insertCell(row, j++, opusAward.getNo3AutherName());
+			insertCell(row, j++, opusAward.getNo3AutherNumber());
+			insertCell(row, j++, opusAward.getNo4AutherName());
+			insertCell(row, j++, opusAward.getNo4AutherNumber());
+			insertCell(row, j++, opusAward.getNo5AutherName());
+			insertCell(row, j++, opusAward.getNo5AutherNumber());
+			insertCell(row, j++, opusAward.getNo6AutherName());
+			insertCell(row, j++, opusAward.getNo6AutherNumber());
+			insertCell(row, j++, opusAward.getNo7AutherName());
+			insertCell(row, j++, opusAward.getNo7AutherNumber());
+			insertCell(row, j++, opusAward.getNo8AutherName());
+			insertCell(row, j++, opusAward.getNo8AutherNumber());
+			insertCell(row, j++, opusAward.getNo9AutherName());
+			insertCell(row, j++, opusAward.getNo9AutherNumber());
+			insertCell(row, j++, opusAward.getNo10AutherName());
+			insertCell(row, j++, opusAward.getNo10AutherNumber());
+			insertCell(row, j++, opusAward.getStatus());
 		}
 		wb.write(out);wb.close();
 		return out.toByteArray();

@@ -230,7 +230,7 @@
 													value="opusAward" class="type-control">
 											</div>
 											<div class="form-group">
-												<label>成果名称:</label> <input type="text" name="opusName"
+												<label>成果名称:</label> <input type="text" name="name"
 													class="form-control">
 											</div>
 											<div class="form-group">
@@ -238,11 +238,7 @@
 													class="form-control">
 											</div>
 											<div class="form-group">
-												<label>年:</label> <input type="text" name="year"
-													class="form-control">
-											</div>
-											<div class="form-group">
-												<label>认领状态:</label> <select id="achievementAwardClaimStatus" name="claimStatus"
+												<label>认领状态:</label> <select id="opusAwardClaimStatus" name="status"
 													class="form-control">
 													<option value="未认领">未认领</option>
 													<option value="已认领">已认领</option>
@@ -393,7 +389,12 @@ if(currentAwardsType=='opusAward'){
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                 $("<td/>").html(i + 1).appendTo(tr);
                                 
-                                if(currentAwardsType=='achievementAward'){
+                                if(currentAwardsType=='opusAward'){
+                               	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
+                                   $("<td/>").html(page.list[i].name).appendTo(tr);
+                                   $("<td/>").html(page.list[i].wordsNumbers).appendTo(tr);
+                                   $("<td/>").html(page.list[i].opusCategory).appendTo(tr); 	
+                               		}else if(currentAwardsType=='achievementAward'){
                                	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
                                    $("<td/>").html(page.list[i].achievementName).appendTo(tr);
                                    $("<td/>").html(page.list[i].otherAutherName).appendTo(tr);
@@ -469,6 +470,12 @@ if(currentAwardsType=='opusAward'){
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                 $("<td/>").html(i + 1).appendTo(tr);
                                 
+                                if(currentAwardsType=='opusAward'){
+                               	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
+                                   $("<td/>").html(page.list[i].name).appendTo(tr);
+                                   $("<td/>").html(page.list[i].wordsNumbers).appendTo(tr);
+                                   $("<td/>").html(page.list[i].opusCategory).appendTo(tr); 	
+                               		}else 
                                 if(currentAwardsType=='achievementAward'){
                                	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
                                    $("<td/>").html(page.list[i].achievementName).appendTo(tr);
@@ -589,6 +596,12 @@ if(currentAwardsType=='opusAward'){
                                     $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                     $("<td/>").html(i + 1).appendTo(tr);
                                     
+                                    if(currentAwardsType=='opusAward'){
+                                   	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
+                                       $("<td/>").html(page.list[i].name).appendTo(tr);
+                                       $("<td/>").html(page.list[i].wordsNumbers).appendTo(tr);
+                                       $("<td/>").html(page.list[i].opusCategory).appendTo(tr); 	
+                                   		}else 
                                     if(currentAwardsType=='achievementAward'){
                                    	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
                                        $("<td/>").html(page.list[i].achievementName).appendTo(tr);
@@ -665,6 +678,12 @@ if(currentAwardsType=='opusAward'){
                             $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                             $("<td/>").html(i + 1).appendTo(tr);
                             
+                            if(currentAwardsType=='opusAward'){
+                           	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
+                               $("<td/>").html(page.list[i].name).appendTo(tr);
+                               $("<td/>").html(page.list[i].wordsNumbers).appendTo(tr);
+                               $("<td/>").html(page.list[i].opusCategory).appendTo(tr); 	
+                           		}else 
                             if(currentAwardsType=='achievementAward'){
                            	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
                                $("<td/>").html(page.list[i].achievementName).appendTo(tr);
@@ -762,6 +781,13 @@ if(currentAwardsType=='opusAward'){
                                     var tr = $("<tr/>");
                                     $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                                     $("<td/>").html(i + 1).appendTo(tr);
+                                    
+                                    if(currentAwardsType=='opusAward'){
+                                   	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
+                                       $("<td/>").html(page.list[i].name).appendTo(tr);
+                                       $("<td/>").html(page.list[i].wordsNumbers).appendTo(tr);
+                                       $("<td/>").html(page.list[i].opusCategory).appendTo(tr); 	
+                                   		}else
                                     if(currentAwardsType=='achievementAward'){
                                    	 $("<td/>").html(page.list[i].projectSources).appendTo(tr);
                                        $("<td/>").html(page.list[i].achievementName).appendTo(tr);
@@ -837,6 +863,13 @@ if(currentAwardsType=='opusAward'){
                             var tr = $("<tr/>");
                             $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
                             $("<td/>").html(i + 1).appendTo(tr);
+                            
+                            if(currentAwardsType=='opusAward'){
+                           	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
+                               $("<td/>").html(page.list[i].name).appendTo(tr);
+                               $("<td/>").html(page.list[i].wordsNumbers).appendTo(tr);
+                               $("<td/>").html(page.list[i].opusCategory).appendTo(tr); 	
+                           		}else 
                             if(currentAwardsType=='achievementAward'){
                            	    $("<td/>").html(page.list[i].projectSources).appendTo(tr);
                                $("<td/>").html(page.list[i].achievementName).appendTo(tr);
@@ -907,6 +940,14 @@ $('body').on('click', '#detaile', function () {
 
 					var detaileStr = '';
 					
+					if(currentAwardsType=='opusAward'){
+						detaileStr += "唯一标识符: " + data.projectSources + "\n";
+						detaileStr += "名称: " + data.name + "\n";
+						detaileStr += "所有作者: " + data.wordsNumbers + "\n";
+						detaileStr += "年: " + data.publishDate+ "\n";
+						detaileStr += "ISBN: " + data.isbn+ "\n";
+                   	}
+					
 					if(currentAwardsType=='achievementAward'){
 						detaileStr += "唯一标识符: " + data.projectSources + "\n";
 						detaileStr += "标题: " + data.achievementName + "\n";
@@ -968,8 +1009,11 @@ $('body').on('click', '#detaile', function () {
 					detaileStr += "*成果归属单位: " + data.no10AutherName + "\n";
 					
 					detaileStr += "审核状态: " + data.no10AutherNumber + "\n";
-					detaileStr += "认领状态: " + data.claimStatus + "\n";
-		
+					if(currentAwardsType=='opusAward'){
+						detaileStr += "认领状态: " + data.status + "\n";
+                 }else{
+						detaileStr += "认领状态: " + data.claimStatus + "\n";
+                   	}
 					alert(detaileStr);
 
 				}

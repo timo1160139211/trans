@@ -41,6 +41,7 @@ import com.github.pagehelper.PageInfo;
 
 import site.gaoyisheng.enums.CollegeOperationType;
 import site.gaoyisheng.pojo.AchievementAward;
+import site.gaoyisheng.pojo.OpusAward;
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.College;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
@@ -49,6 +50,7 @@ import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.ChPeriodicalThesisService;
 import site.gaoyisheng.service.CollegeService;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
+import site.gaoyisheng.service.OpusAwardService;
 import site.gaoyisheng.service.PatentService;
 import site.gaoyisheng.service.ThesisService;
 import site.gaoyisheng.service.UserService;
@@ -68,8 +70,8 @@ public class AdminOpsController {
 	@Autowired
 	private AchievementAwardService achievementAwardService;
 	
-//	@Autowired
-//	private OpusAwardService opusAwardService;
+	@Autowired
+	private OpusAwardService opusAwardService;
 	
 	@Autowired
 	private ThesisService thesisService;
@@ -134,7 +136,7 @@ public class AdminOpsController {
            case "enPeriodicalThesis":strAlertMsg = "成功追加新英文论文:" + enPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
            case "chPeriodicalThesis":strAlertMsg = "成功追加新中文论文:" + chPeriodicalThesisService.readStreamAndInsertList(in) + "条！";break;
            case "achievementAward":strAlertMsg = "成功追加新成果奖励:" + achievementAwardService.readStreamAndInsertList(in) + "条！";break;
-//           case "opusAward":strAlertMsg = "成功追加新著作奖励:" + opusAwardService.readStreamAndInsertList(in) + "条！";break;
+           case "opusAward":strAlertMsg = "成功追加新著作奖励:" + opusAwardService.readStreamAndInsertList(in) + "条！";break;
            default:strAlertMsg = "数据追加失败: 请联系开发人员";
         }
        
@@ -181,10 +183,10 @@ public class AdminOpsController {
 		    			bytes = fileUtil.exportFileOfAchievementAward(achievementAwardService.selectAll());
 		    			fileNameBefore = "成果奖励.xls";
 		    			break;	
-//			    case "opusAward":
-//		    			bytes = fileUtil.exportFileOfOpusAward(opusAwardService.selectAll());
-//		    			fileNameBefore = "著作奖励.xls";
-//		    			break;	
+			    case "opusAward":
+		    			bytes = fileUtil.exportFileOfOpusAward(opusAwardService.selectAll());
+		    			fileNameBefore = "著作奖励.xls";
+		    			break;	
 			    case "patent-model":
 			    		fileNameBefore = "专利-模板.xls";
 		    			file = Paths.get(request.getServletContext().getRealPath("/views/data"), fileNameBefore);
@@ -255,7 +257,7 @@ public class AdminOpsController {
 		    case "enPeriodicalThesis":statisticalMap=enPeriodicalThesisService.selectStatistic();break;
 		    case "chPeriodicalThesis": statisticalMap=chPeriodicalThesisService.selectStatistic();break;
 		    case "achievementAward":statisticalMap=achievementAwardService.selectStatistic() ;break;
-//		    case "opusAward":statisticalMap=opusAwardService.selectStatistic() ;break;
+		    case "opusAward":statisticalMap=opusAwardService.selectStatistic() ;break;
 		}		
 		
 		//退出,并返回"无该类型文档"
@@ -297,7 +299,7 @@ public class AdminOpsController {
 		    case "enPeriodicalThesis": return new PageInfo<EnPeriodicalThesis>(enPeriodicalThesisService.selectByStatus("未认领"));
 		    case "chPeriodicalThesis": return new PageInfo<ChPeriodicalThesis>(chPeriodicalThesisService.selectByStatus("未认领"));
 		    case "achievementAward":return new PageInfo<AchievementAward>(achievementAwardService.selectByStatus("未认领"));
-//		    case "opusAward":return new PageInfo<OpusAward>(opusAwardService.selectByStatus("未认领"));
+		    case "opusAward":return new PageInfo<OpusAward>(opusAwardService.selectByStatus("未认领"));
 		    default : return "";
 		}
 	}

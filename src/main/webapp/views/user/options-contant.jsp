@@ -40,7 +40,15 @@
 						<p>${awards.otherAutherName}</p>
 						<br>
 					</c:if>
-					<c:if test="${awardsType != 'achievementAward'}">
+					<c:if test="${awardsType == 'opusAward'}">
+						<h3>名称:</h3>
+					    <p>${awards.name}</p>
+					    <br>
+					    <h4>所有作者:</h4>
+						<p>${awards.wordsNumbers}</p>
+						<br>
+					</c:if>
+					<c:if test="${awardsType != 'achievementAward' && awardsType != 'opusAward'}">
 						<h3>名称:</h3>
 						<p>${awards.name}</p>
 						<br>
@@ -64,7 +72,7 @@
 						<br>
 					</c:if>
 					<c:if test="${autherNum >= 1}">
-						<c:if test="${awardsType != 'enPeriodicalThesis'}">
+						<c:if test="${awardsType != 'enPeriodicalThesis' && awardsType != 'achievementAward' && awardsType != 'opusAward'}">
 						<div class="form-group ">
 							<label>第一作者：</label> <input id="no1AutherName" type="text"
 								name="no1AutherName" value="${awards.no1AutherName}" readonly="true"

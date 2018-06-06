@@ -44,12 +44,14 @@ import com.github.pagehelper.PageInfo;
 import site.gaoyisheng.pojo.ChPeriodicalThesis;
 import site.gaoyisheng.pojo.EnPeriodicalThesis;
 import site.gaoyisheng.pojo.AchievementAward;
+import site.gaoyisheng.pojo.OpusAward;
 import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.pojo.Thesis;
 import site.gaoyisheng.pojo.User;
 import site.gaoyisheng.service.AchievementAwardService;
 import site.gaoyisheng.service.ChPeriodicalThesisService;
 import site.gaoyisheng.service.EnPeriodicalThesisService;
+import site.gaoyisheng.service.OpusAwardService;
 import site.gaoyisheng.service.PatentService;
 import site.gaoyisheng.service.ThesisService;
 import site.gaoyisheng.service.UserService;
@@ -70,8 +72,8 @@ public class SecretaryController {
 	@Autowired
 	private AchievementAwardService achievementAwardService;
 	
-//	@Autowired
-//	private OpusAwardService opusAwardService;
+	@Autowired
+	private OpusAwardService opusAwardService;
 	
 
 	@Autowired
@@ -107,7 +109,7 @@ public class SecretaryController {
            case "enPeriodicalThesis": return enPeriodicalThesisService.selectByPrimaryKey(id);
            case "thesis": return thesisService.selectByPrimaryKey(id);
            case "achievementAward": return achievementAwardService.selectByPrimaryKey(id);
-//           case "opusAward": return opusAwardService.selectByPrimaryKey(id);
+           case "opusAward": return opusAwardService.selectByPrimaryKey(id);
            default : return "{\"msg\":\"数据错误,再试一次\"}";
         }
     }
@@ -153,8 +155,7 @@ public class SecretaryController {
             case "chPeriodicalThesis": PageHelper.startPage(pageNum,pageSize);return new PageInfo<ChPeriodicalThesis>(chPeriodicalThesisService.selectByMultiConditions(map));
             case "enPeriodicalThesis": PageHelper.startPage(pageNum,pageSize);return new PageInfo<EnPeriodicalThesis>(enPeriodicalThesisService.selectByMultiConditions(map));
             case "achievementAward":  PageHelper.startPage(pageNum,pageSize);return new PageInfo<AchievementAward>(achievementAwardService.selectByMultiConditions(map));
-
-//            case "opusAward":  PageHelper.startPage(pageNum,pageSize);return new PageInfo<OpusAward>(opusAwardService.selectByMultiConditions(map));
+            case "opusAward":  PageHelper.startPage(pageNum,pageSize);return new PageInfo<OpusAward>(opusAwardService.selectByMultiConditions(map));
             default : return null;
          }
     }
@@ -181,7 +182,7 @@ public class SecretaryController {
         case "chPeriodicalThesis":status = chPeriodicalThesisService.updateByPrimaryKeySelective(new ChPeriodicalThesis(id,update));break;
         case "enPeriodicalThesis":status = enPeriodicalThesisService.updateByPrimaryKeySelective(new EnPeriodicalThesis(id,update));break;
         case "achievementAward":status = achievementAwardService.updateByPrimaryKeySelective(new AchievementAward(id,update));break;
-//        case "opusAward":status = opusAwardService.updateByPrimaryKeySelective(new opusAward(id,update));break;
+        case "opusAward":status = opusAwardService.updateByPrimaryKeySelective(new OpusAward(id,update));break;
 		}	
 		
 		if(status == 1) {
