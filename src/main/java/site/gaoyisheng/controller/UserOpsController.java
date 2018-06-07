@@ -503,9 +503,9 @@ public class UserOpsController {
     	return new PageInfo<User>(userService.searchUserFuzzyQuery(u));
     } 
     
-    @RequestMapping(value = "/awards-create", method = RequestMethod.GET)		
-    public String toAwardsCreate() {	
-    	return "user/awards-create";		
+    @RequestMapping(value = "/awards-create/{awardsType}", method = RequestMethod.GET)		
+    public String toAwardsCreate(@PathVariable("awardsType") String awardsType) {	
+    	return "user/awards-create-" + awardsType;		
     }
     
     /**
@@ -527,10 +527,12 @@ public class UserOpsController {
      * @return
      * @throws IOException
      */
-    @RequestMapping(consumes = "multipart/form-data",value = "/awards-create", method = RequestMethod.POST)
+    @RequestMapping(consumes = "multipart/form-data",value = "/awards-create/{awardsType}", method = RequestMethod.POST)
     public ModelAndView awardsCreate(HttpServletRequest request,Thesis thesis,ModelAndView mav,
     		@RequestParam("pictureFile1") MultipartFile pictureFile1, 
-    		@RequestParam("pictureFile2") MultipartFile pictureFile2) throws IOException {		
+    		@RequestParam("pictureFile2") MultipartFile pictureFile2,
+    		@PathVariable("awardsType") String awardsType
+    		) throws IOException {		
     	
     	String rootPath = System.getProperty("catalina.home") + "/webapps_data";
     	
@@ -555,7 +557,7 @@ public class UserOpsController {
 		pictureFile1.transferTo(new File(file1Path));
     	pictureFile2.transferTo(new File(file2Path));
     	
-    	mav.setViewName("/user/awards-create");
+    	mav.setViewName("/user/awards-create-" + awardsType);
     	
     	//自行处理事务: 如果文件上传成功了
 		if (numFlag == 1 && new File(file1Path).exists() && new File(file2Path).exists()) {

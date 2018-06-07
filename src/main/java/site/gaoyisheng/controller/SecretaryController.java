@@ -143,6 +143,7 @@ public class SecretaryController {
     	 map.put("inCountry", request.getParameter("inCountry"));
     	 map.put("autherName", request.getParameter("autherName"));
     	 map.put("claimStatus", request.getParameter("claimStatus"));
+    	 map.put("status", request.getParameter("status"));
     	 map.put("no10AutherNumber", request.getParameter("no10AutherNumber"));//审核状态
     	 map.put("no10AutherName", request.getParameter("no10AutherName"));//学院
         

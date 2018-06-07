@@ -182,13 +182,7 @@
 												<label>年:</label> <input type="text" name="year"
 													class="form-control">
 											</div>
-											<div class="form-group">
-												<label>认领状态:</label> <select id="achievementAwardClaimStatus" name="claimStatus"
-													class="form-control">
-													<option value="未认领">未认领</option>
-													<option value="已认领">已认领</option>
-												</select>
-											</div>
+											
 											<div class="form-group">
 												<label>审核状态:</label> <select id="achievementAwardAuditStatus" name="no10AutherNumber"
 													class="form-control">
@@ -221,13 +215,6 @@
 												<label>归属学院:</label> <select name="no10AutherName"
 													class="form-control">
 													<option value="${sessionScope.currentUser.college}">${sessionScope.currentUser.college}</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label>认领状态:</label> <select id="opusAwardClaimStatus" name="status"
-													class="form-control">
-													<option value="未认领">未认领</option>
-													<option value="已认领">已认领</option>
 												</select>
 											</div>
 											<div class="form-group">
@@ -264,8 +251,8 @@
 												<th>唯一编号</th>
 												<th>标题</th>
 												<th>作者</th>
-												<th>作者信息</th>
-												<th>通讯作者</th>
+												<!-- <th>作者信息</th> -->
+												<!-- <th>通讯作者</th> -->
 												<th>详细</th>
 												<th>操作</th>
 												<th>操作2</th>
@@ -364,7 +351,7 @@ $(document).ready(function () {
                         if (page != null) {
                             for (var i = 0; i < page.list.length; i++) {
 
-					var comuAuther = '';
+					/* var comuAuther = '';
 					if (page.list[i].no8AutherName != null && page.list[i].no8AutherName != '') 
 						{comuAuther = comuAuther + page.list[i].no8AutherName + ':' + page.list[i].no8AutherNumber + ';'}
 
@@ -384,7 +371,7 @@ $(document).ready(function () {
 						{all7Auther = all7Auther + page.list[i].no6AutherNumber + ';'}
 					if (page.list[i].no7AutherName != null && page.list[i].no7AutherName != '') 
 						{all7Auther = all7Auther + page.list[i].no7AutherNumber + ';'}
-
+ */
 
                                 var tr = $("<tr/>");
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
@@ -406,8 +393,8 @@ $(document).ready(function () {
                                 /* $("<td/>").html(page.list[i].keyId).appendTo(tr);
                                 $("<td/>").html(page.list[i].name).appendTo(tr);
                                 $("<td/>").html(page.list[i].allAutherName).appendTo(tr); */
-                                $("<td/>").html(all7Auther).appendTo(tr);
-					 				$("<td/>").html(comuAuther).appendTo(tr);
+                                /* $("<td/>").html(all7Auther).appendTo(tr);
+					 				$("<td/>").html(comuAuther).appendTo(tr); */
 					 				$("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
 					 				if(auditSelectedText=='未审核'){
 										 $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"passBtn\">通过</button>").appendTo(tr);
@@ -556,7 +543,7 @@ $('body').on('click', '.prePage', function () {
                         if (page != null) {
                             for (var i = 0; i < page.list.length; i++) {
 
-					var comuAuther = '';
+					/* var comuAuther = '';
 					if (page.list[i].no8AutherName != null && page.list[i].no8AutherName != '') 
 						{comuAuther = comuAuther + page.list[i].no8AutherName + ':' + page.list[i].no8AutherNumber + ';'}
 
@@ -576,7 +563,7 @@ $('body').on('click', '.prePage', function () {
 						{all7Auther = all7Auther + page.list[i].no6AutherNumber + ';'}
 					if (page.list[i].no7AutherName != null && page.list[i].no7AutherName != '') 
 						{all7Auther = all7Auther + page.list[i].no7AutherNumber + ';'}
-
+ */
 
                                 var tr = $("<tr/>");
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
@@ -595,8 +582,8 @@ $('body').on('click', '.prePage', function () {
                                     $("<td/>").html(page.list[i].name).appendTo(tr);
                                     $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                                      }
-                                $("<td/>").html(all7Auther).appendTo(tr);
-					 				$("<td/>").html(comuAuther).appendTo(tr);
+                                /* $("<td/>").html(all7Auther).appendTo(tr);
+					 				$("<td/>").html(comuAuther).appendTo(tr); */
 					 				$("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
 					 				if(auditSelectedText=='未审核'){
 										 $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"passBtn\">通过</button>").appendTo(tr);
@@ -678,7 +665,7 @@ $('body').on('click', '.nextPage', function () {
                         if (page != null) {
                             for (var i = 0; i < page.list.length; i++) {
 
-					var comuAuther = '';
+					/* var comuAuther = '';
 					if (page.list[i].no8AutherName != null && page.list[i].no8AutherName != '') 
 						{comuAuther = comuAuther + page.list[i].no8AutherName + ':' + page.list[i].no8AutherNumber + ';'}
 
@@ -698,7 +685,7 @@ $('body').on('click', '.nextPage', function () {
 						{all7Auther = all7Auther + page.list[i].no6AutherNumber + ';'}
 					if (page.list[i].no7AutherName != null && page.list[i].no7AutherName != '') 
 						{all7Auther = all7Auther + page.list[i].no7AutherNumber + ';'}
-
+ */
 
                                 var tr = $("<tr/>");
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
@@ -717,8 +704,8 @@ $('body').on('click', '.nextPage', function () {
                                     $("<td/>").html(page.list[i].name).appendTo(tr);
                                     $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                                      }
-                                $("<td/>").html(all7Auther).appendTo(tr);
-					 			    $("<td/>").html(comuAuther).appendTo(tr);
+                                /* $("<td/>").html(all7Auther).appendTo(tr);
+					 			    $("<td/>").html(comuAuther).appendTo(tr); */
 								    $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
 								 if(auditSelectedText=='未审核'){
 									 $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"passBtn\">通过</button>").appendTo(tr);

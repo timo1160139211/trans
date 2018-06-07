@@ -441,7 +441,7 @@ public class FileUtil {
                     if (value==null) {value="";}
                     switch(i+1) {
                         case 1:opusAward.setName(value);break;
-                        case 3:opusAward.setNo1AutherName(value);break;
+                        case 3:opusAward.setNo1AutherName(value);allAuthorName+=value;break;
 //                        case 5:opusAward.setWordsNumbers(value);break;//所有用户名
                         case 6:opusAward.setPublishWorkunit(value);break;
                         case 7:opusAward.setPublishDate(value);break;

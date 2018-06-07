@@ -65,7 +65,7 @@
 												</div>
 												<div class="form-group">
 												<label>归属学院:</label> <input type="text" name="no10AutherName"
-													class="form-control" placeholder="未认领,无学院">
+													class="form-control" placeholder="未认领,无学院(模糊查询)">
 											    </div>
 											<div class="form-group">
 												<label>认领状态:</label> <select id="paClaimStatus" name="claimStatus"
@@ -107,7 +107,7 @@
 											</div>
 												<div class="form-group">
 												<label>归属学院:</label> <input type="text" name="no10AutherName"
-													class="form-control" placeholder="未认领,无学院">
+													class="form-control" placeholder="未认领,无学院(模糊查询)">
 											    </div>
 											<div class="form-group">
 												<label>年:</label> <input type="text" name="year"
@@ -153,7 +153,7 @@
 											</div>
 											<div class="form-group">
 												<label>归属学院:</label> <input type="text" name="no10AutherName"
-													class="form-control" placeholder="未认领,无学院">
+													class="form-control" placeholder="未认领,无学院(模糊查询)">
 											    </div>
 											<div class="form-group">
 												<label>年:</label> <input type="text" name="year"
@@ -196,7 +196,7 @@
 											</div>
 											<div class="form-group">
 												<label>归属学院:</label> <input type="text" name="no10AutherName"
-													class="form-control" placeholder="未认领,无学院">
+													class="form-control" placeholder="未认领,无学院(模糊查询)">
 											    </div>
 											<div class="form-group">
 												<label>年:</label> <input type="text" name="year"
@@ -238,7 +238,7 @@
 													class="form-control">
 											</div>
 											<div class="form-group">
-												<label>认领状态:</label> <select id="opusAwardClaimStatus" name="status"
+												<label>认领状态:</label> <select id="opusAwardClaimStatus" name="claimStatus"
 													class="form-control">
 													<option value="未认领">未认领</option>
 													<option value="已认领">已认领</option>

@@ -9,7 +9,7 @@
 <html lang="en">
 
 <head>
-<title>追加论文</title>
+<title>追加专利</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -33,20 +33,20 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">论文追加:</h3>
+					<h3 class="page-title">专利追加:</h3>
 					    <h3 style="color: red;">${msg}</h3>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="panel">
 								<ul class="nav nav-tabs" id="myTab">
-									<li role="presentation" class="active"><a id="to-thesis-tab"
-										href="#thesis-tab" data-toggle="tab">论文</a></li>
-									<!-- <li  role="presentation"><a id="to-patent-tab" href="#patent-tab"
-										data-toggle="tab">专利</a></li> -->
+									<!-- <li role="presentation" class="active"><a id="to-thesis-tab"
+										href="#thesis-tab" data-toggle="tab">论文</a></li> -->
+									<li  role="presentation"><a id="to-patent-tab" href="#patent-tab"
+										data-toggle="tab">专利</a></li>
 								</ul>
 								<div class="tab-content">
 
-									<div class="tab-pane active" id="thesis-tab">
+									<div class="tab-pane active" id="patent-tab">
 										<div class="panel-body">
 											<div class="form-group">
 

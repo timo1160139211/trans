@@ -21,8 +21,23 @@
 					<li><a href="${ctx}/user/awards-list" class=""><i
 							class="lnr lnr-file-empty"></i> <span>认领</span></a></li>
 					<!-- 用户: 补录数据 操作 -->
-					<li><a href="${ctx}/user/awards-create" class=""><i
-							class="lnr lnr-pencil"></i> <span>补录数据</span></a></li>
+					<%-- <li><a href="${ctx}/user/awards-create" class=""><i
+							class="lnr lnr-pencil"></i> <span>补录数据</span></a></li> --%>
+							
+					<!-- 用户: 补录数据 操作 -->	
+					<li><a href="#addtionalxx" data-toggle="collapse"
+						class="collapsed"><i class="lnr lnr-pencil"></i> <span>补录数据</span>
+							<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						<div id="addtionalxx" class="collapse ">
+							<ul class="nav">
+								<li><a href="${ctx}/user/awards-create/thesis"
+									class="">论文</a></li>
+								<li><a href="${ctx}/user/awards-create/patent" class="">专利</a></li>
+								<li><a href="${ctx}/user/awards-create/achievementAward" class="">成果奖励</a></li>
+								<li><a href="${ctx}/user/awards-create/opusAward" class="">著作奖励</a></li>
+							</ul>
+						</div>
+					</li>
 					<!-- 用户: 查看补录数据 操作 -->		
 					<li><a href="${ctx}/user/thesis-additional-list" class=""><i
 							class="fa fa-search"></i> <span>查看补录数据</span></a></li>
