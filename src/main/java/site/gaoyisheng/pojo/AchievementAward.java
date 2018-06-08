@@ -39,7 +39,7 @@ public class AchievementAward {
 
     private String awardForm;
 
-    private String note;
+    private String note;//补录时＝  一级学科
 
     private String awardType;
 

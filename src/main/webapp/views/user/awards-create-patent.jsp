@@ -50,8 +50,8 @@
 										<div class="panel-body">
 											<div class="form-group">
 
-												<form:form commandName="thesis" id="thesis-form"
-													class="form-inline" action="${ctx}/user/awards-create"
+												<form:form commandName="patent" id="patent-form"
+													class="form-inline" action="${ctx}/user/awards-create/patent"
 													method="post" enctype="multipart/form-data">
 
 
@@ -60,158 +60,15 @@
 														<tbody>
 															<tr>
 																<td width="60%"><label for="name"
-																	class="form-control ">论文题目:</label> <input type="text"
+																	class="form-control ">专利名称:</label> <input type="text"
 																	class="form-control " name="name" id="name" size="40"
 																	value="" maxlength="512"><font
 																	style="color: #FF0000;"> *</font></td>
 															</tr>
-
-
+															
 															<tr>
-																<td width="60%"><label class="form-control ">发表时间:</label>
-																	<input type="text" id="publishDate"    class="form-control " onclick="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'whyGreen',maxDate:'%y-%M-%d'})"
-																	name="publishDate" value=""> <font
-																	style="color: #FF0000;"> *</font></td>
-																<td width="40%"><label class="form-control ">发表刊物/论文集:</label>
-																	<input type="text" class="form-control "
-																	name="publishMagazineThesisSet" value=""> <font
-																	style="color: #FF0000;"> *</font></td>
-															</tr>
-
-
-															<tr>
-																<td width="60%"><label class="form-control ">论文类型:</label>
-																	<select name="type" class=" form-control">
-																		<option value="">--请选择--</option>
-																		<option value="SCI">SCI</option>
-																		<option value="EI(JA)">EI(JA)</option>
-																		<option value="EI(CA)">EI(CA)</option>
-																		<option value="SSCI">SSCI</option>
-																		<option value="ISTP">ISTP</option>
-																		<option value="CSSCI">CSSCI</option>
-																		<option value="普通刊">普通刊</option>
-																		<option value="CSCD">CSCD</option>
-																		<option value="其他">其他</option>
-																</select> <font style="color: #FF0000;"> *</font></td>
-																<td width="40%"><label class="form-control ">刊物类型:</label>
-																	<select name="magazineType" class="form-control ">
-																		<option value="">--请选择--</option>
-																		<option value="普通刊">普通刊</option>
-																		<option value="核心刊">核心刊</option>
-																		<option value="其他">其他</option>
-																		<option value="国际学术会议论文集">国际学术会议论文集</option>
-																		<option value="国内学术会议论文集">国内学术会议论文集</option>
-																</select> <font style="color: #FF0000;"> *</font></td>
-															</tr>
-
-															<tr>
-																<td width="60%"><label class="form-control ">论文收录号码:</label>
-																	<input type="text" class="form-control "
-																	name="embodyNumber" value=""><font style="color: #FF0000;"> *</font></td>
-																<td width="40%"></td>
-															</tr>
-
-
-
-
-															<tr>
-																<td width="60%"><label class="form-control ">学科门类:</label>
-
-																	<select class="form-control " name="subjectType"><option
-																			value="">--请选择--</option>
-																		<option value="科技类">科技类</option>
-																		<option value="社科类">社科类</option>
-																</select> <font style="color: #FF0000;"> *</font></td>
-
-																<td width="40%"><label class="form-control ">一级学科:</label>
-																	<select class="form-control " name="stairSubject"><option
-																			value="">--请选择--</option>
-																		<option value="数学">数学</option>
-																		<option value="信息科学与系统科学">信息科学与系统科学</option>
-																		<option value="力学">力学</option>
-																		<option value="物理学">物理学</option>
-																		<option value="化学">化学</option>
-																		<option value="天文学">天文学</option>
-																		<option value="地球科学">地球科学</option>
-																		<option value="生物学">生物学</option>
-																		<option value="心理学">心理学</option>
-																		<option value="农学">农学</option>
-																		<option value="林学">林学</option>
-																		<option value="畜牧、兽医科学">畜牧、兽医科学</option>
-																		<option value="水产学">水产学</option>
-																		<option value="基础医学">基础医学</option>
-																		<option value="临床医学">临床医学</option>
-																		<option value="预防医学与公共卫生学">预防医学与公共卫生学</option>
-																		<option value="军事医学与特种医学">军事医学与特种医学</option>
-																		<option value="药学">药学</option>
-																		<option value="中医学与中药学">中医学与中药学</option>
-																		<option value="工程与技术科学基础学科">工程与技术科学基础学科</option>
-																		<option value="信息与系统科学相关工程与技术">信息与系统科学相关工程与技术</option>
-																		<option value="自然科学相关工程与技术">自然科学相关工程与技术</option>
-																		<option value="测绘科学技术">测绘科学技术</option>
-																		<option value="材料科学">材料科学</option>
-																		<option value="矿山工程技术">矿山工程技术</option>
-																		<option value="冶金工程技术">冶金工程技术</option>
-																		<option value="机械工程">机械工程</option>
-																		<option value="动力与电气工程">动力与电气工程</option>
-																		<option value="能源科学技术">能源科学技术</option>
-																		<option value="核科学技术">核科学技术</option>
-																		<option value="电子与通信技术">电子与通信技术</option>
-																		<option value="计算机科学技术">计算机科学技术</option>
-																		<option value="化学工程">化学工程</option>
-																		<option value="产品应用相关工程与技术">产品应用相关工程与技术</option>
-																		<option value="纺织科学技术">纺织科学技术</option>
-																		<option value="食品科学技术">食品科学技术</option>
-																		<option value="土木建筑工程">土木建筑工程</option>
-																		<option value="水利工程">水利工程</option>
-																		<option value="交通运输工程">交通运输工程</option>
-																		<option value="航空、航天科学技术">航空、航天科学技术</option>
-																		<option value="环境科学技术及资源科学技术">环境科学技术及资源科学技术</option>
-																		<option value="安全科学技术">安全科学技术</option>
-																		<option value="管理学">管理学</option>
-																		<option value="马克思主义">马克思主义</option>
-																		<option value="哲学">哲学</option>
-																		<option value="宗教学">宗教学</option>
-																		<option value="语言学">语言学</option>
-																		<option value="文学">文学</option>
-																		<option value="艺术学">艺术学</option>
-																		<option value="历史学">历史学</option>
-																		<option value="考古学">考古学</option>
-																		<option value="经济学">经济学</option>
-																		<option value="政治学">政治学</option>
-																		<option value="法学">法学</option>
-																		<option value="军事学">军事学</option>
-																		<option value="社会学">社会学</option>
-																		<option value="民族学与文化学">民族学与文化学</option>
-																		<option value="新闻学与传播学">新闻学与传播学</option>
-																		<option value="图书馆、情报与文献学">图书馆、情报与文献学</option>
-																		<option value="教育学">教育学</option>
-																		<option value="体育科学">体育科学</option>
-																		<option value="统计学">统计学</option>
-																</select> <font style="color: #FF0000;"> *</font></td>
-															</tr>
-
-
-															<tr>
-																<td width="60%"><label class="form-control ">论文集出版单位:</label>
-																	<input type="text" class="form-control "
-																	name="thesisSetPublisher" value=""> <font
-																	style="color: #FF0000;"> *</font></td>
-																<td width="40%"><label class="form-control ">发表范围:</label>
-																	<select name="publishRange" class="form-control ">
-																		<option value="">--请选择--</option>
-																		<option value="国外学术期刊">国外学术期刊</option>
-																		<option value="国内外公开发行">国内外公开发行</option>
-																		<option value="国内公开发行">国内公开发行</option>
-																		<option value="港澳台刊物">港澳台刊物</option>
-																</select> <font style="color: #FF0000;"> *</font></td>
-															</tr>
-
-
-
-															<tr>
-																<td width="60%"><label class="form-control ">归属单位:</label>
-																	<select name="workunit" class="form-control ">
+															<td width="60%"><label class="form-control ">归属单位:</label>
+																	<select name="no10AutherName" class="form-control ">
 																		<option value="">--请选择--</option>
 																		<option value="机械工程学院">机械工程学院</option>
 																		<option value="交通与车辆工程学院">交通与车辆工程学院</option>
@@ -242,109 +99,52 @@
 																		<option value="实验管理中心">实验管理中心</option>
 																		<option value="校医院">校医院</option>
 																</select> <font style="color: #FF0000;"> *</font></td>
-																<td width="40%"><label class="form-control ">ISSN号:</label>
-																	<input type="text" class="form-control " name="issn"
-																	value=""><font style="color: #FF0000;"> *</font></td>
 															</tr>
 
-
 															<tr>
-																<td width="60%"><label class="form-control ">学校署名:</label>
-																	<select name="schoolSign" class="form-control ">
+																<td width="60%"><label class="form-control ">专利类型:</label>
+																	<select name="type" class=" form-control">
 																		<option value="">--请选择--</option>
-																		<option value="第一单位">第一单位</option>
-																		<option value="非第一单位">非第一单位</option>
+																		<option value="发明专利">发明专利</option>
+																		<option value="实用新型">实用新型</option>
+																		<option value="外观设计">外观设计</option>
 																</select> <font style="color: #FF0000;"> *</font></td>
-																<td width="40%"></td>
-															</tr>
-															
-															
-															<tr>
-																<td width="60%"><label class="form-control ">关键词:</label>
-																	<input type="text" class="form-control "
-																	name="keyWords" value=""></td>
-																<td width="40%"><label class="form-control ">CN号:</label>
-																	<input type="text" class="form-control " name="cn"
-																	value=""></td>
-															</tr>
-															<tr>
-																<td width="60%"><label class="form-control ">DOI:</label>
-																	<input type="text" class="form-control " name="doi"
-																	value=""></td>
-																<td width="40%"></td>
-															</tr>
-
-															<tr>
-																<td width="60%"><label class="form-control ">摘要:</label>
-																	<input type="text" class="form-control "
-																	name="theAbstract" value=""></td>
-																<td width="40%"><label class="form-control ">版面:</label>
-																	<select name="appearance" class="form-control">
+																<td width="40%"><label class="form-control ">专利范围:</label>
+																	<select name="inCountry" class="form-control ">
 																		<option value="">--请选择--</option>
-																		<option value="正刊">正刊</option>
-																		<option value="增刊">增刊</option>
-																		<option value="年刊">年刊</option>
-																		<option value="专刊">专刊</option>
-																</select></td>
+																		<option value="国内">国内</option>
+																		<option value="国外">国外</option>
+																</select> <font style="color: #FF0000;"> *</font></td>
 															</tr>
 
 
 															<tr>
-																<td width="60%"><label class="form-control ">项目来源:</label>
-																	<select name="projectSources" class="form-control "><option
-																			value="">--请选择--</option>
-																		<option value="国家社科基金单列学科项目">国家社科基金单列学科项目</option>
-																		<option value="国家社科基金项目">国家社科基金项目</option>
-																		<option value="教育部人文社科研究项目">教育部人文社科研究项目</option>
-																		<option value="全国教育科学规划">全国教育科学规划（教育部）项目</option>
-																		<option value="国家自然科学基金项目">国家自然科学基金项目</option>
-																		<option value="中央其他部门社科专门项目">中央其他部门社科专门项目</option>
-																		<option value="高校古籍整理研究项目">高校古籍整理研究项目</option>
-																		<option value="省、市、自治区社科基金项目">省、市、自治区社科基金项目</option>
-																		<option value="省教育厅社科项目">省教育厅社科项目</option>
-																		<option value="地、市、厅、局等政府部门项目">地、市、厅、局等政府部门项目</option>
-																		<option value="国际合作研究项目">国际合作研究项目</option>
-																		<option value="与港、澳、台合作研究项目">与港、澳、台合作研究项目</option>
-																		<option value="企事业单位委托项目">企事业单位委托项目</option>
-																		<option value="外资项目">外资项目</option>
-																		<option value="学校社科项目">学校社科项目</option>
-																		<option value="其他研究项目">其他研究项目</option>
-																		<option value="无依托项目研究成果">无依托项目研究成果</option>
-																		<option value="“９７３”计划">“９７３”计划</option>
-																		<option value="国家科技支撑计划">国家科技支撑计划</option>
-																		<option value="“８６３”计划">“８６３”计划</option>
-																		<option value="国家自然科学基金项目">国家自然科学基金项目</option>
-																		<option value="主管部门科技项目">主管部门科技项目</option>
-																		<option value="国家科技部">国家科技部</option>
-																		<option value="国家发改委">国家发改委</option>
-																		<option value="国务院其他部门">国务院其他部门</option>
-																		<option value="省、市、自治区科技项目">省、市、自治区科技项目</option>
-																		<option value="企事业单位委托科技项目">企事业单位委托科技项目</option>
-																		<option value="国际合作项目">国际合作项目</option>
-																		<option value="自选课题">自选课题</option>
-																		<option value="其他课题">其他课题</option>
-																		<option value="科技部重大专项">科技部重大专项</option></select></td>
-																<td width="40%"></td>
+																<td width="60%"><label class="form-control ">申请号:</label>
+																	<input type="text" class="form-control "
+																	name="pctPatentApplicationNumber" value=""><font style="color: #FF0000;"> *</font></td>
+																<td width="40%"><label class="form-control ">申请时间:</label>
+																	<input type="text" id="pctPatentApplicationDate"    class="form-control " onclick="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'whyGreen',maxDate:'%y-%M-%d'})"
+																	name="pctPatentApplicationDate" value=""> <font
+																	style="color: #FF0000;"> *</font></td>
 															</tr>
 
 
 															<tr>
-																<td width="60%"><label class="form-control ">会议地址:</label>
+																<td width="60%"><label class="form-control ">授权号:</label>
 																	<input type="text" class="form-control "
-																	name="conferenceSite" value=""></td>
-																<td width="40%"><label class="form-control ">会议日期:</label>
-																	<input type="text" class="form-control "
-												 onclick="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'whyGreen',maxDate:'%y-%M-%d'})"	 				name="conferenceDate" value=""></td>
+																	name="authorizationNumber" value=""></td>
+																<td width="40%"><label class="form-control ">授权时间:</label>
+																	<input type="text" id="pctPatentApplicationDate"    class="form-control " onclick="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'whyGreen',maxDate:'%y-%M-%d'})"
+																	name="authorizationDate" value=""></td>
 															</tr>
-
-
-
+															
+															
 															<tr>
 																<td width="60%"></td>
-																<td width="40%"><label class="form-control ">会议名称:</label>
-																	<input type="text" class="form-control "
-																	name="conferenceName" value=""></td>
+																<td width="40%"><input type="hidden" class="form-control "
+																	name="claimStatus" value="补录"></td>
 															</tr>
+
 
 
 														</tbody>
@@ -575,30 +375,17 @@
 						required : true,
 						minlength : 1
 					},
-					publishDate : {
+					type : {
 						required : true,
-						dateISO : true
 					},
-					publishMagazineThesisSet : {
-						required : true
+					inCountry : {
+						required : true,
 					},
-					magazineType : {
-						required : true
+					pctPatentApplicationNumber : {
+						required : true,
 					},
-					workunit : {
-						required : true
-					},
-					subjectType : {
-						required : true
-					},
-					stairSubject : {
-						required : true
-					},
-					thesisSetPublisher : {
-						required : true
-					},
-					publishRange : {
-						required : true
+					pctPatentApplicationDate : {
+						required : true,
 					},
 					no1AutherName : {
 						required : true
@@ -607,12 +394,6 @@
 						required : true
 					},
 					no1AutherNumber : {
-						required : true
-					},
-					issn:{
-						required : true
-					},
-					schoolSign:{
 						required : true
 					},
 					pictureFile1:{

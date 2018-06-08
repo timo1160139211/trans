@@ -9,7 +9,7 @@
 <html lang="en">
 
 <head>
-<title>追加专利</title>
+<title>追加成果</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -33,98 +33,133 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">专利追加:</h3>
+					<h3 class="page-title">成果追加:</h3>
 					    <h3 style="color: red;">${msg}</h3>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="panel">
 								<ul class="nav nav-tabs" id="myTab">
-									<!-- <li role="presentation" class="active"><a id="to-thesis-tab"
-										href="#thesis-tab" data-toggle="tab">论文</a></li> -->
-									<li  role="presentation"><a id="to-patent-tab" href="#patent-tab"
-										data-toggle="tab">专利</a></li>
+									<li  role="presentation"><a id="to-achievementAward-tab" href="#achievementAward-tab"
+										data-toggle="tab">成果</a></li>
 								</ul>
 								<div class="tab-content">
 
-									<div class="tab-pane active" id="patent-tab">
+									<div class="tab-achievementAward active" id="achievementAward-tab">
 										<div class="panel-body">
 											<div class="form-group">
 
-												<form:form commandName="thesis" id="thesis-form"
-													class="form-inline" action="${ctx}/user/awards-create"
+												<form:form commandName="achievementAward" id="achievementAward-form"
+													class="form-inline" action="${ctx}/user/awards-create/achievementAward"
 													method="post" enctype="multipart/form-data">
 
 
 
 													<table>
 														<tbody>
+														<tr>
+																<td width="60%"><label for="awardName"
+																	class="form-control ">奖励名称:</label> <input type="text"
+																	class="form-control " name="awardName" id="awardName" size="40"
+																	value="" maxlength="512"><font
+																	style="color: #FF0000;"> *</font></td>
+															</tr>
 															<tr>
-																<td width="60%"><label for="name"
-																	class="form-control ">论文题目:</label> <input type="text"
-																	class="form-control " name="name" id="name" size="40"
+																<td width="60%"><label for="achievementName"
+																	class="form-control ">成果名称:</label> <input type="text"
+																	class="form-control " name="achievementName" id="achievementName" size="40"
 																	value="" maxlength="512"><font
 																	style="color: #FF0000;"> *</font></td>
 															</tr>
 
-
 															<tr>
-																<td width="60%"><label class="form-control ">发表时间:</label>
-																	<input type="text" id="publishDate"    class="form-control " onclick="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'whyGreen',maxDate:'%y-%M-%d'})"
-																	name="publishDate" value=""> <font
-																	style="color: #FF0000;"> *</font></td>
-																<td width="40%"><label class="form-control ">发表刊物/论文集:</label>
-																	<input type="text" class="form-control "
-																	name="publishMagazineThesisSet" value=""> <font
-																	style="color: #FF0000;"> *</font></td>
+																<td width="60%"><label class="form-control ">归属单位:</label>
+																	<select name="no10AutherName" class="form-control ">
+																		<option value="">--请选择--</option>
+																		<option value="机械工程学院">机械工程学院</option>
+																		<option value="交通与车辆工程学院">交通与车辆工程学院</option>
+																		<option value="农业工程与食品科学学院">农业工程与食品科学学院</option>
+																		<option value="电气与电子工程学院">电气与电子工程学院</option>
+																		<option value="计算机科学与技术学院">计算机科学与技术学院</option>
+																		<option value="化学化工学院">化学化工学院</option>
+																		<option value="建筑工程学院">建筑工程学院</option>
+																		<option value="资源与环境工程学院">资源与环境工程学院</option>
+																		<option value="材料科学与工程学院">材料科学与工程学院</option>
+																		<option value="生命科学学院">生命科学学院</option>
+																		<option value="数学与统计学院">数学与统计学院</option>
+																		<option value="物理与光电工程学院">物理与光电工程学院</option>
+																		<option value="经济学院">经济学院</option>
+																		<option value="管理学院">管理学院</option>
+																		<option value="文学与新闻传播学院">文学与新闻传播学院</option>
+																		<option value="外国语学院">外国语学院</option>
+																		<option value="法学院">法学院</option>
+																		<option value="马克思主义学院">马克思主义学院</option>
+																		<option value="美术学院">美术学院</option>
+																		<option value="音乐学院">音乐学院</option>
+																		<option value="体育学院">体育学院</option>
+																		<option value="鲁泰纺织服装学院">鲁泰纺织服装学院</option>
+																		<option value="齐文化研究院">齐文化研究院</option>
+																		<option value="图书馆">图书馆</option>
+																		<option value="后勤管理处">后勤管理处</option>
+																		<option value="学生工作处">学生工作处</option>
+																		<option value="实验管理中心">实验管理中心</option>
+																		<option value="校医院">校医院</option>
+																</select> <font style="color: #FF0000;"> *</font></td>
+																<td width="40%"><label class="form-control ">发证机关:</label>
+																	<input type="text" class="form-control " name="licenseIssuingAgencies"
+																	value=""><font style="color: #FF0000;"> *</font></td>
 															</tr>
 
 
 															<tr>
-																<td width="60%"><label class="form-control ">论文类型:</label>
-																	<select name="type" class=" form-control">
+																<td width="60%"><label class="form-control ">获奖日期:</label>
+																	<input type="text" id="awardDate"    class="form-control " onclick="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'whyGreen',maxDate:'%y-%M-%d'})"
+																	name="awardDate" value=""> <font
+																	style="color: #FF0000;"> *</font></td>
+																<td width="40%"><label class="form-control ">完成单位:</label>
+																	<input type="text" class="form-control "
+																	name="finishedWorkunit" value=""></td>
+															</tr>
+															
+															<tr>
+																<td width="60%"><label class="form-control ">获奖范围级别:</label>
+																	<select name="awardRange" class=" form-control">
 																		<option value="">--请选择--</option>
-																		<option value="SCI">SCI</option>
-																		<option value="EI(JA)">EI(JA)</option>
-																		<option value="EI(CA)">EI(CA)</option>
-																		<option value="SSCI">SSCI</option>
-																		<option value="ISTP">ISTP</option>
-																		<option value="CSSCI">CSSCI</option>
-																		<option value="普通刊">普通刊</option>
-																		<option value="CSCD">CSCD</option>
-																		<option value="其他">其他</option>
+																		<option value="国家级">国家级</option>
+																		<option value="国家级协会">国家级协会（学会）</option>
+																		<option value="省部级">省部级</option>
+																		<option value="省部级协会">省部级协会（学会）</option>
+																		<option value="市厅级">市厅级</option>
+																		<option value="其它">其它</option>
 																</select> <font style="color: #FF0000;"> *</font></td>
-																<td width="40%"><label class="form-control ">刊物类型:</label>
-																	<select name="magazineType" class="form-control ">
+																<td width="40%"><label class="form-control ">获奖等级:</label>
+																	<select name="awardGrade" class="form-control ">
 																		<option value="">--请选择--</option>
-																		<option value="普通刊">普通刊</option>
-																		<option value="核心刊">核心刊</option>
-																		<option value="其他">其他</option>
-																		<option value="国际学术会议论文集">国际学术会议论文集</option>
-																		<option value="国内学术会议论文集">国内学术会议论文集</option>
+																		<option value="特等奖">特等奖</option>
+																		<option value="一等奖">一等奖</option>
+																		<option value="二等奖">二等奖</option>
+																		<option value="三等奖">三等奖</option>
+																		<option value="四等奖">四等奖</option>
+																		<option value="其他奖">其他奖</option>
 																</select> <font style="color: #FF0000;"> *</font></td>
 															</tr>
 
 															<tr>
-																<td width="60%"><label class="form-control ">论文收录号码:</label>
+																<td width="60%"><label class="form-control ">奖励批准号:</label>
 																	<input type="text" class="form-control "
-																	name="embodyNumber" value=""><font style="color: #FF0000;"> *</font></td>
+																	name="awardGrantNo" value=""></td>
 																<td width="40%"></td>
 															</tr>
-
-
-
 
 															<tr>
 																<td width="60%"><label class="form-control ">学科门类:</label>
 
-																	<select class="form-control " name="subjectType"><option
+																	<select class="form-control " name="subjectCategory"><option
 																			value="">--请选择--</option>
 																		<option value="科技类">科技类</option>
 																		<option value="社科类">社科类</option>
 																</select> <font style="color: #FF0000;"> *</font></td>
-
 																<td width="40%"><label class="form-control ">一级学科:</label>
-																	<select class="form-control " name="stairSubject"><option
+																	<select class="form-control " name="note"><option
 																			value="">--请选择--</option>
 																		<option value="数学">数学</option>
 																		<option value="信息科学与系统科学">信息科学与系统科学</option>
@@ -193,99 +228,41 @@
 
 
 															<tr>
-																<td width="60%"><label class="form-control ">论文集出版单位:</label>
+																<td width="60%"><label class="form-control ">总参加单位数:</label>
 																	<input type="text" class="form-control "
-																	name="thesisSetPublisher" value=""> <font
-																	style="color: #FF0000;"> *</font></td>
-																<td width="40%"><label class="form-control ">发表范围:</label>
-																	<select name="publishRange" class="form-control ">
+																	name="workunitNumber" value=""> </td>
+																<td width="40%"><label class="form-control ">单位排名:</label>
+																	<select name="workunitRank" class="form-control ">
 																		<option value="">--请选择--</option>
-																		<option value="国外学术期刊">国外学术期刊</option>
-																		<option value="国内外公开发行">国内外公开发行</option>
-																		<option value="国内公开发行">国内公开发行</option>
-																		<option value="港澳台刊物">港澳台刊物</option>
-																</select> <font style="color: #FF0000;"> *</font></td>
-															</tr>
-
-
-
-															<tr>
-																<td width="60%"><label class="form-control ">归属单位:</label>
-																	<select name="workunit" class="form-control ">
-																		<option value="">--请选择--</option>
-																		<option value="机械工程学院">机械工程学院</option>
-																		<option value="交通与车辆工程学院">交通与车辆工程学院</option>
-																		<option value="农业工程与食品科学学院">农业工程与食品科学学院</option>
-																		<option value="电气与电子工程学院">电气与电子工程学院</option>
-																		<option value="计算机科学与技术学院">计算机科学与技术学院</option>
-																		<option value="化学化工学院">化学化工学院</option>
-																		<option value="建筑工程学院">建筑工程学院</option>
-																		<option value="资源与环境工程学院">资源与环境工程学院</option>
-																		<option value="材料科学与工程学院">材料科学与工程学院</option>
-																		<option value="生命科学学院">生命科学学院</option>
-																		<option value="数学与统计学院">数学与统计学院</option>
-																		<option value="物理与光电工程学院">物理与光电工程学院</option>
-																		<option value="经济学院">经济学院</option>
-																		<option value="管理学院">管理学院</option>
-																		<option value="文学与新闻传播学院">文学与新闻传播学院</option>
-																		<option value="外国语学院">外国语学院</option>
-																		<option value="法学院">法学院</option>
-																		<option value="马克思主义学院">马克思主义学院</option>
-																		<option value="美术学院">美术学院</option>
-																		<option value="音乐学院">音乐学院</option>
-																		<option value="体育学院">体育学院</option>
-																		<option value="鲁泰纺织服装学院">鲁泰纺织服装学院</option>
-																		<option value="齐文化研究院">齐文化研究院</option>
-																		<option value="图书馆">图书馆</option>
-																		<option value="后勤管理处">后勤管理处</option>
-																		<option value="学生工作处">学生工作处</option>
-																		<option value="实验管理中心">实验管理中心</option>
-																		<option value="校医院">校医院</option>
-																</select> <font style="color: #FF0000;"> *</font></td>
-																<td width="40%"><label class="form-control ">ISSN号:</label>
-																	<input type="text" class="form-control " name="issn"
-																	value=""><font style="color: #FF0000;"> *</font></td>
-															</tr>
-
-
-															<tr>
-																<td width="60%"><label class="form-control ">学校署名:</label>
-																	<select name="schoolSign" class="form-control ">
-																		<option value="">--请选择--</option>
-																		<option value="第一单位">第一单位</option>
-																		<option value="非第一单位">非第一单位</option>
-																</select> <font style="color: #FF0000;"> *</font></td>
-																<td width="40%"></td>
-															</tr>
-															
-															
-															<tr>
-																<td width="60%"><label class="form-control ">关键词:</label>
-																	<input type="text" class="form-control "
-																	name="keyWords" value=""></td>
-																<td width="40%"><label class="form-control ">CN号:</label>
-																	<input type="text" class="form-control " name="cn"
-																	value=""></td>
-															</tr>
-															<tr>
-																<td width="60%"><label class="form-control ">DOI:</label>
-																	<input type="text" class="form-control " name="doi"
-																	value=""></td>
-																<td width="40%"></td>
-															</tr>
-
-															<tr>
-																<td width="60%"><label class="form-control ">摘要:</label>
-																	<input type="text" class="form-control "
-																	name="theAbstract" value=""></td>
-																<td width="40%"><label class="form-control ">版面:</label>
-																	<select name="appearance" class="form-control">
-																		<option value="">--请选择--</option>
-																		<option value="正刊">正刊</option>
-																		<option value="增刊">增刊</option>
-																		<option value="年刊">年刊</option>
-																		<option value="专刊">专刊</option>
+																		<option value="第1单位">第1单位</option>
+																		<option value="第2单位">第2单位</option>
+																		<option value="第3单位">第3单位</option>
+																		<option value="第4单位">第4单位</option>
+																		<option value="第5单位">第5单位</option>
+																		<option value="第6单位">第6单位</option>
+																		<option value="第7单位">第7单位</option>
+																		<option value="第8单位">第8单位</option>
+																		<option value="第9单位">第9单位</option>
+																		<option value="第10单位">第10单位</option>
 																</select></td>
+															</tr>
+
+
+															<tr>
+																<td width="60%"><label class="form-control ">奖励类型(选填):</label>
+																	<select name="awardType" class="form-control">
+																		<option value="">--请选择--</option>
+																		<option value="国家最高科学技术奖">国家最高科学技术奖</option>
+																		<option value="国家自然科学奖">国家自然科学奖</option>
+																		<option value="国家发明奖">国家发明奖</option>
+																		<option value="国家科技进步奖">国家科技进步奖</option>
+																		<option value="国务院各部门科技进步奖">国务院各部门科技进步奖</option>
+																		<option value="省、自治区、直辖市科技进步奖">省、自治区、直辖市科技进步奖</option>
+																		<option value="其他奖项">其他奖项</option>
+																</select></td>
+																<td width="40%"><label class="form-control ">成果形式:</label>
+																	<input type="text" class="form-control "
+																	name="awardForm" value=""></td>
 															</tr>
 
 
@@ -324,27 +301,10 @@
 																		<option value="自选课题">自选课题</option>
 																		<option value="其他课题">其他课题</option>
 																		<option value="科技部重大专项">科技部重大专项</option></select></td>
-																<td width="40%"></td>
+																<td width="40%"><input type="hidden" class="form-control "
+																	name="claimStatus" value="补录"></td>
 															</tr>
 
-
-															<tr>
-																<td width="60%"><label class="form-control ">会议地址:</label>
-																	<input type="text" class="form-control "
-																	name="conferenceSite" value=""></td>
-																<td width="40%"><label class="form-control ">会议日期:</label>
-																	<input type="text" class="form-control "
-												 onclick="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'whyGreen',maxDate:'%y-%M-%d'})"	 				name="conferenceDate" value=""></td>
-															</tr>
-
-
-
-															<tr>
-																<td width="60%"></td>
-																<td width="40%"><label class="form-control ">会议名称:</label>
-																	<input type="text" class="form-control "
-																	name="conferenceName" value=""></td>
-															</tr>
 
 
 														</tbody>
@@ -571,33 +531,34 @@
 			$("form").validate({
 				event : 'keyup',
 				rules : {
-					name : {
+					awardName : {
 						required : true,
-						minlength : 1
 					},
-					publishDate : {
+					achievementName : {
 						required : true,
-						dateISO : true
 					},
-					publishMagazineThesisSet : {
+					no10AutherName : {
 						required : true
 					},
-					magazineType : {
+					licenseIssuingAgencies : {
 						required : true
 					},
-					workunit : {
+					awardDate : {
 						required : true
 					},
-					subjectType : {
+					finishedWorkunit : {
 						required : true
 					},
-					stairSubject : {
+					awardRange : {
 						required : true
 					},
-					thesisSetPublisher : {
+					awardGrade : {
 						required : true
 					},
-					publishRange : {
+					subjectCategory : {
+						required : true
+					},
+					note : {
 						required : true
 					},
 					no1AutherName : {
@@ -607,12 +568,6 @@
 						required : true
 					},
 					no1AutherNumber : {
-						required : true
-					},
-					issn:{
-						required : true
-					},
-					schoolSign:{
 						required : true
 					},
 					pictureFile1:{
