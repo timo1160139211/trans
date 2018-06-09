@@ -163,10 +163,24 @@ public class AdminOpsController {
 			String fileNameBefore = "";
 			
 			switch (awardsType) {
+			//追加
 			    case "thesis":
 			    		bytes = fileUtil.exportFile(thesisService.selectAll());
 			    		fileNameBefore = "补录-论文.xls";
                      break;
+			    case "patent-add": 
+		    			bytes = fileUtil.exportFileOfPatentAdditional(patentService.selectByStatus("补录"));
+		    			fileNameBefore = "专利补录.xls";
+		    			break;
+			    case "achievementAward-add":
+	    				bytes = fileUtil.exportFileOfAchievementAwardAdditional(achievementAwardService.selectByStatus("补录"));
+	    				fileNameBefore = "成果奖励补录.xls";
+	    				break;	
+			    case "opusAward-add":
+	    				bytes = fileUtil.exportFileOfOpusAwardAdditional(opusAwardService.selectByStatus("补录"));
+	    				fileNameBefore = "著作奖励补录.xls";
+	    				break;	
+	    	//认领
 			    case "patent": 
 			    		bytes = fileUtil.exportFileOfPatent(patentService.selectAll());
 			    		fileNameBefore = "专利.xls";
@@ -187,6 +201,7 @@ public class AdminOpsController {
 		    			bytes = fileUtil.exportFileOfOpusAward(opusAwardService.selectAll());
 		    			fileNameBefore = "著作奖励.xls";
 		    			break;	
+		    	//模板
 			    case "patent-model":
 			    		fileNameBefore = "专利-模板.xls";
 		    			file = Paths.get(request.getServletContext().getRealPath("/views/data"), fileNameBefore);
@@ -208,6 +223,20 @@ public class AdminOpsController {
 		    				bytes = fileUtil.getBytesFromFile(file.toFile());
 		    			}
 		    			break;
+			    case "achievementAward-model":
+	    				fileNameBefore = "成果奖励-模板.xls";
+	    				file = Paths.get(request.getServletContext().getRealPath("/views/data"), fileNameBefore);
+	    				if(Files.exists(file)) {
+	    					bytes = fileUtil.getBytesFromFile(file.toFile());
+	    				}
+	    				break;
+			    case "opusAward-model":
+	    				fileNameBefore = "著作奖励-模板.xls";
+	    				file = Paths.get(request.getServletContext().getRealPath("/views/data"), fileNameBefore);
+	    				if(Files.exists(file)) {
+	    					bytes = fileUtil.getBytesFromFile(file.toFile());
+	    				}
+	    				break;
 			    case "user-model":
 	    				fileNameBefore = "人事工号-模板.xls";
 	    				file = Paths.get(request.getServletContext().getRealPath("/views/data"), fileNameBefore);

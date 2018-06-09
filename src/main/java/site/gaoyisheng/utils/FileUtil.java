@@ -789,6 +789,9 @@ public class FileUtil {
 		return out.toByteArray();
 	}
 	
+	
+
+	
 	/**
 	 * .
 	 *  导出文件: 把数据解析成byte[]   -----Thesis
@@ -882,11 +885,8 @@ public class FileUtil {
 			insertCell(row, j++, thesis.getNo10AutherNumber());
 			insertCell(row, j++, thesis.getAutherNumber());
 			insertCell(row, j++, thesis.getSdutAutherNumber());
-			//if(thesis.getStatus().equals("false")) {
-			    insertCell(row, j++, thesis.getStatus());
-			//}else {
-			//	 insertCell(row, j++, "未认领");
-			//}
+			insertCell(row, j++, thesis.getStatus());
+			
 			
 		}
 		wb.write(out);wb.close();
@@ -896,7 +896,245 @@ public class FileUtil {
 	
 	/**
 	 * .
-	 *  获取excel表头.
+	 *  导出文件: 把数据解析成byte[]   -----patent Additional
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
+	public byte[] exportFileOfPatentAdditional(List<Patent> list) throws Exception{
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		// 第一步，创建一个web book，对应一个Excel文件
+		HSSFWorkbook wb = new HSSFWorkbook();
+		// 第二步，在web book中添加一个sheet,对应Excel文件中的sheet
+		HSSFSheet sheet = wb.createSheet("专利追加表");
+		// 第三步，在sheet中添加表头第0行,注意老版本p o i对Excel的行数列数有限制short
+		HSSFRow row = sheet.createRow((int) 0);
+		// 第四步，创建单元格，并设置值表头 设置表头居中
+		HSSFCellStyle style = wb.createCellStyle();
+
+		// 设置表头
+		List<String> excelHead = getExcelHeadOfPatentAdditional();
+
+		HSSFCell cell = null;
+		// excel头
+		for (int i = 0; i < excelHead.size(); i++) {
+			cell = row.createCell(i);
+			cell.setCellValue(excelHead.get(i));
+			cell.setCellStyle(style);
+		}
+
+		// 第五步，写入实体数据 实际应用中这些数据从数据库得到
+
+		Patent patent = null; // 拼装excel内容
+		for (int i = 0; i < list.size(); i++) {
+			row = sheet.createRow((int) i + 1);
+			patent = list.get(i);
+			// 创建单元格，并设置值
+
+			int j = 0;
+			
+			insertCell(row, j++, patent.getName());
+			insertCell(row, j++, patent.getType());
+			insertCell(row, j++, patent.getAuthorizationNumber());
+			insertCell(row, j++, patent.getAuthorizationDate());
+			insertCell(row, j++, patent.getInCountry());
+			insertCell(row, j++, patent.getPctPatentApplicationNumber());
+			insertCell(row, j++, patent.getPctPatentApplicationDate());
+			insertCell(row, j++, patent.getNo1AutherName());
+			insertCell(row, j++, patent.getNo1AutherNumber());
+			insertCell(row, j++, patent.getNo2AutherName());
+			insertCell(row, j++, patent.getNo2AutherNumber());
+			insertCell(row, j++, patent.getNo3AutherName());
+			insertCell(row, j++, patent.getNo3AutherNumber());
+			insertCell(row, j++, patent.getNo4AutherName());
+			insertCell(row, j++, patent.getNo4AutherNumber());
+			insertCell(row, j++, patent.getNo5AutherName());
+			insertCell(row, j++, patent.getNo5AutherNumber());
+			insertCell(row, j++, patent.getNo6AutherName());
+			insertCell(row, j++, patent.getNo6AutherNumber());
+			insertCell(row, j++, patent.getNo7AutherName());
+			insertCell(row, j++, patent.getNo7AutherNumber());
+			insertCell(row, j++, patent.getNo8AutherName());
+			insertCell(row, j++, patent.getNo8AutherNumber());
+			insertCell(row, j++, patent.getNo9AutherName());//通讯作者
+			insertCell(row, j++, patent.getNo9AutherNumber());
+			insertCell(row, j++, patent.getNo10AutherName());//归属单位
+			insertCell(row, j++, patent.getNo10AutherNumber());//审核状态
+			
+			
+		}
+		wb.write(out);wb.close();
+		return out.toByteArray();
+	}
+	
+	
+	
+	/**
+	 * .
+	 *  导出文件: 把数据解析成byte[]   -----achievementAward Additional
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
+	public byte[] exportFileOfAchievementAwardAdditional(List<AchievementAward> list) throws Exception{
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		// 第一步，创建一个web book，对应一个Excel文件
+		HSSFWorkbook wb = new HSSFWorkbook();
+		// 第二步，在web book中添加一个sheet,对应Excel文件中的sheet
+		HSSFSheet sheet = wb.createSheet("成果奖励追加表");
+		// 第三步，在sheet中添加表头第0行,注意老版本p o i对Excel的行数列数有限制short
+		HSSFRow row = sheet.createRow((int) 0);
+		// 第四步，创建单元格，并设置值表头 设置表头居中
+		HSSFCellStyle style = wb.createCellStyle();
+
+		// 设置表头
+		List<String> excelHead = getExcelHeadOfAchievementAwardAdditional();
+
+		HSSFCell cell = null;
+		// excel头
+		for (int i = 0; i < excelHead.size(); i++) {
+			cell = row.createCell(i);
+			cell.setCellValue(excelHead.get(i));
+			cell.setCellStyle(style);
+		}
+
+		// 第五步，写入实体数据 实际应用中这些数据从数据库得到
+
+		AchievementAward achievementAward = null; // 拼装excel内容
+		for (int i = 0; i < list.size(); i++) {
+			row = sheet.createRow((int) i + 1);
+			achievementAward = list.get(i);
+			// 创建单元格，并设置值
+
+			int j = 0;
+			
+			insertCell(row, j++, achievementAward.getAwardName());
+			insertCell(row, j++, achievementAward.getAchievementName());
+			insertCell(row, j++, achievementAward.getLicenseIssuingAgencies());
+			insertCell(row, j++, achievementAward.getAwardDate());
+			insertCell(row, j++, achievementAward.getFinishedWorkunit());
+			insertCell(row, j++, achievementAward.getAwardRange());
+			insertCell(row, j++, achievementAward.getAwardGrade());
+			insertCell(row, j++, achievementAward.getAwardGrantNo());
+			insertCell(row, j++, achievementAward.getSubjectCategory());
+			insertCell(row, j++, achievementAward.getNote());
+			insertCell(row, j++, achievementAward.getWorkunitNumber());
+			insertCell(row, j++, achievementAward.getWorkunitRank());
+			insertCell(row, j++, achievementAward.getAwardType());
+			insertCell(row, j++, achievementAward.getAwardForm());
+			insertCell(row, j++, achievementAward.getProjectSources());
+			insertCell(row, j++, achievementAward.getNo1AutherName());
+			insertCell(row, j++, achievementAward.getNo1AutherNumber());
+			insertCell(row, j++, achievementAward.getNo2AutherName());
+			insertCell(row, j++, achievementAward.getNo2AutherNumber());
+			insertCell(row, j++, achievementAward.getNo3AutherName());
+			insertCell(row, j++, achievementAward.getNo3AutherNumber());
+			insertCell(row, j++, achievementAward.getNo4AutherName());
+			insertCell(row, j++, achievementAward.getNo4AutherNumber());
+			insertCell(row, j++, achievementAward.getNo5AutherName());
+			insertCell(row, j++, achievementAward.getNo5AutherNumber());
+			insertCell(row, j++, achievementAward.getNo6AutherName());
+			insertCell(row, j++, achievementAward.getNo6AutherNumber());
+			insertCell(row, j++, achievementAward.getNo7AutherName());
+			insertCell(row, j++, achievementAward.getNo7AutherNumber());
+			insertCell(row, j++, achievementAward.getNo8AutherName());
+			insertCell(row, j++, achievementAward.getNo8AutherNumber());
+			insertCell(row, j++, achievementAward.getNo9AutherName());
+			insertCell(row, j++, achievementAward.getNo9AutherNumber());
+			insertCell(row, j++, achievementAward.getNo10AutherName());
+			insertCell(row, j++, achievementAward.getNo10AutherNumber());
+			
+		}
+		wb.write(out);wb.close();
+		return out.toByteArray();
+	}
+	
+	
+	/**
+	 * .
+	 *  导出文件: 把数据解析成byte[]   -----opusAward Additional
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
+	public byte[] exportFileOfOpusAwardAdditional(List<OpusAward> list) throws Exception{
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		// 第一步，创建一个web book，对应一个Excel文件
+		HSSFWorkbook wb = new HSSFWorkbook();
+		// 第二步，在web book中添加一个sheet,对应Excel文件中的sheet
+		HSSFSheet sheet = wb.createSheet("著作成果追加表");
+		// 第三步，在sheet中添加表头第0行,注意老版本p o i对Excel的行数列数有限制short
+		HSSFRow row = sheet.createRow((int) 0);
+		// 第四步，创建单元格，并设置值表头 设置表头居中
+		HSSFCellStyle style = wb.createCellStyle();
+
+		// 设置表头
+		List<String> excelHead = getExcelHeadOfOpusAwardAdditional();
+
+		HSSFCell cell = null;
+		// excel头
+		for (int i = 0; i < excelHead.size(); i++) {
+			cell = row.createCell(i);
+			cell.setCellValue(excelHead.get(i));
+			cell.setCellStyle(style);
+		}
+
+		// 第五步，写入实体数据 实际应用中这些数据从数据库得到
+
+		OpusAward opusAward = null; // 拼装excel内容
+		for (int i = 0; i < list.size(); i++) {
+			row = sheet.createRow((int) i + 1);
+			opusAward = list.get(i);
+			// 创建单元格，并设置值
+
+			int j = 0;
+			
+			insertCell(row, j++, opusAward.getName());
+			insertCell(row, j++, opusAward.getPublishDate());
+			insertCell(row, j++, opusAward.getPublishLocation());
+			insertCell(row, j++, opusAward.getOpusCategory());
+			insertCell(row, j++, opusAward.getSubjectType());
+			insertCell(row, j++, opusAward.getStairSubject());
+			insertCell(row, j++, opusAward.getSchoolSign());
+			insertCell(row, j++, opusAward.getTranslatedForeignOrNot());
+			insertCell(row, j++, opusAward.getIsbn());
+			insertCell(row, j++, opusAward.getWordsNumbers());
+			insertCell(row, j++, opusAward.getProjectSources());
+			insertCell(row, j++, opusAward.getNo1AutherName());
+			insertCell(row, j++, opusAward.getNo1AutherNumber());
+			insertCell(row, j++, opusAward.getNo2AutherName());
+			insertCell(row, j++, opusAward.getNo2AutherNumber());
+			insertCell(row, j++, opusAward.getNo3AutherName());
+			insertCell(row, j++, opusAward.getNo3AutherNumber());
+			insertCell(row, j++, opusAward.getNo4AutherName());
+			insertCell(row, j++, opusAward.getNo4AutherNumber());
+			insertCell(row, j++, opusAward.getNo5AutherName());
+			insertCell(row, j++, opusAward.getNo5AutherNumber());
+			insertCell(row, j++, opusAward.getNo6AutherName());
+			insertCell(row, j++, opusAward.getNo6AutherNumber());
+			insertCell(row, j++, opusAward.getNo7AutherName());
+			insertCell(row, j++, opusAward.getNo7AutherNumber());
+			insertCell(row, j++, opusAward.getNo8AutherName());
+			insertCell(row, j++, opusAward.getNo8AutherNumber());
+			insertCell(row, j++, opusAward.getNo9AutherName());
+			insertCell(row, j++, opusAward.getNo9AutherNumber());
+			insertCell(row, j++, opusAward.getNo10AutherName());
+			insertCell(row, j++, opusAward.getNo10AutherNumber());
+			
+			
+		}
+		wb.write(out);wb.close();
+		return out.toByteArray();
+	}
+	
+	
+	
+	/**
+	 * .
+	 *  获取excel表头.    论文
 	 * @return
 	 */
 	private List<String> getExcelHead() {
@@ -958,7 +1196,133 @@ public class FileUtil {
 		result.add("状态(已认领，未认领)");
 		return result;
 	}
+	
+	
+	
+	/**
+	 * .
+	 *  获取excel表头.   PatentAdditional
+	 * @return
+	 */
+	private List<String> getExcelHeadOfPatentAdditional() {
+		List<String> result = new ArrayList<String>();
+		result.add("专利名称");
+		result.add("专利类型");
+		result.add("授权号");
+		result.add("授权日期");
+		result.add("专利范围");
+		result.add("申请号");
+		result.add("申请时间");
+		result.add("第一作者");
+		result.add("第一作者工号");
+		result.add("第二作者");
+		result.add("第二作者工号");
+		result.add("第三作者");
+		result.add("第三作者工号");
+		result.add("第四作者");
+		result.add("第四作者工号");
+		result.add("第五作者");
+		result.add("第五作者工号");
+		result.add("第六作者");
+		result.add("第六作者工号");
+		result.add("第七作者");
+		result.add("第七作者工号");
+		result.add("第八作者");
+		result.add("第八作者工号");
+		result.add("通讯作者");
+		result.add("通讯作者工号");
+		result.add("归属单位");
+		result.add("审核状态");
+		return result;
+	}
 
+	/**
+	 * .
+	 *  获取excel表头.   AchievementAwardAdditional
+	 * @return
+	 */
+	private List<String> getExcelHeadOfAchievementAwardAdditional() {
+		List<String> result = new ArrayList<String>();
+		result.add("奖励名称");
+		result.add("成果名称");
+		result.add("发证机关");
+		result.add("获奖日期");
+		result.add("完成单位");
+		result.add("获奖范围级别");
+		result.add("获奖等级");
+		result.add("奖励批准号");
+		result.add("学科门类");
+		result.add("一级学科");
+		result.add("总参加单位数");
+		result.add("单位排名");
+		result.add("奖励类型(选填)");
+		result.add("成果形式");
+		result.add("项目来源");
+		result.add("第一作者");
+		result.add("第一作者工号");
+		result.add("第二作者");
+		result.add("第二作者工号");
+		result.add("第三作者");
+		result.add("第三作者工号");
+		result.add("第四作者");
+		result.add("第四作者工号");
+		result.add("第五作者");
+		result.add("第五作者工号");
+		result.add("第六作者");
+		result.add("第六作者工号");
+		result.add("第七作者");
+		result.add("第七作者工号");
+		result.add("第八作者");
+		result.add("第八作者工号");
+		result.add("通讯作者");//No9AutherName
+		result.add("通讯作者工号");
+		result.add("归属单位");//getNo10AutherName
+		result.add("审核状态");//getNo10AutherNumber
+		return result;
+	}
+	
+	
+	/**
+	 * .
+	 *  获取excel表头.        OpusAwardAdditional 
+	 * @return
+	 */
+	private List<String> getExcelHeadOfOpusAwardAdditional() {
+		List<String> result = new ArrayList<String>();
+		result.add("著作名称");
+		result.add("出版时间");
+		result.add("出版地");
+		result.add("著作类别");
+		result.add("学科门类");
+		result.add("一级学科");
+		result.add("学校署名");
+		result.add("是否翻译成外文");
+		result.add("ISBN");
+		result.add("总字数(万字)");
+		result.add("项目来源");
+		result.add("第一作者");
+		result.add("第一作者工号");
+		result.add("第二作者");
+		result.add("第二作者工号");
+		result.add("第三作者");
+		result.add("第三作者工号");
+		result.add("第四作者");
+		result.add("第四作者工号");
+		result.add("第五作者");
+		result.add("第五作者工号");
+		result.add("第六作者");
+		result.add("第六作者工号");
+		result.add("第七作者");
+		result.add("第七作者工号");
+		result.add("第八作者");
+		result.add("第八作者工号");
+		result.add("通讯作者");
+		result.add("通讯作者工号");
+		result.add("归属单位");
+		result.add("审核状态");
+		return result;
+	}
+	
 	/**
 	 * .
 	 *  通用: 获取excel表头.

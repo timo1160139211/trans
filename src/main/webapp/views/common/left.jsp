@@ -117,6 +117,9 @@
 						<div id="subPagesDownloadTwo" class="collapse ">
 							<ul class="nav">
 								<li><a href="${ctx}/admin/download/thesis" class="">补录-论文</a></li>
+								<li><a href="${ctx}/admin/download/patent-add" class="">补录-专利</a></li>
+								<li><a href="${ctx}/admin/download/achievementAward-add" class="">补录-成果奖励</a></li>
+								<li><a href="${ctx}/admin/download/opusAward-add" class="">补录-著作奖励</a></li>
 							</ul>
 						</div>
 					</li>
@@ -132,6 +135,10 @@
 									href="${ctx}/admin/download/chPeriodicalThesis-model" class="">中文论文－模版</a></li>
 								<li><a
 									href="${ctx}/admin/download/enPeriodicalThesis-model" class="">英文论文－模版</a></li>
+								<li><a href="${ctx}/admin/download/achievementAward-model"
+									class="">成果奖励－模板</a></li>
+								<li><a href="${ctx}/admin/download/opusAward-model"
+									class="">著作奖励－模板</a></li>
 								<li><a href="${ctx}/admin/download/user-model"
 									class="">用户信息－模板</a></li>
 							</ul>

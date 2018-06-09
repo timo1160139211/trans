@@ -134,7 +134,7 @@
 																	<input type="text" class="form-control "
 																	name="authorizationNumber" value=""></td>
 																<td width="40%"><label class="form-control ">授权时间:</label>
-																	<input type="text" id="pctPatentApplicationDate"    class="form-control " onclick="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'whyGreen',maxDate:'%y-%M-%d'})"
+																	<input type="text"   class="form-control " onclick="WdatePicker({dateFmt:'yyyy-MM-dd',skin:'whyGreen',maxDate:'%y-%M-%d'})"
 																	name="authorizationDate" value=""></td>
 															</tr>
 															
