@@ -319,18 +319,46 @@ public class SecretaryController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/pictureFile/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/pictureFile/{awardsType}/{id}", method = RequestMethod.GET)
     public ModelAndView pictureFile(ModelAndView mav,HttpServletRequest request,
+    		@PathVariable("awardsType")String awardsType,
     		@PathVariable("id")int id) {
     	
-    	Thesis thesis = thesisService.selectByPrimaryKey(id);
+    	String pictureFile1Name = "";
+    	String pictureFile2Name = "";
+
+		switch(awardsType) {
+   	 		case "patent": 
+   	 				Patent patent = patentService.selectByPrimaryKey(id);
+   	 				pictureFile1Name = "" + id + patent.getPctPatentName();
+   	 				pictureFile2Name = "" + id + patent.getPctPatentOrNot();
+   	 			break;
+   	 		case "thesis": 
+   	 				Thesis thesis = thesisService.selectByPrimaryKey(id);
+   	 				pictureFile1Name = "" + id + thesis.getWordsNumbers();
+   	 				pictureFile2Name = "" + id + thesis.getNote();
+   	 				break;
+   	 		case "achievementAward": 
+   	 				AchievementAward achievementAward = achievementAwardService.selectByPrimaryKey(id);
+   	 				pictureFile1Name = "" + id + achievementAward.getNo1AutherType();
+   	 				pictureFile2Name = "" + id + achievementAward.getNote();
+   	 				break;
+   	 		case "opusAward": 
+   	 				OpusAward opusAward = opusAwardService.selectByPrimaryKey(id);
+   	 				pictureFile1Name = "" + opusAward.getNo1AutherType();
+   	 				pictureFile2Name = "" + opusAward.getWorkunit();
+   	 				break;
+   	 	}
+    	
     	
     	mav.setViewName("/secretary/showPicture");
-    	mav.addObject("pictureFile1", "/trans/secretary/picture/1/" + id);//new File(file1Path));
-    	mav.addObject("pictureFile2", "/trans/secretary/picture/2/" + id);
+    	String name1 = id + "_1" + pictureFile1Name;
+    	String name2 = id + "_2" + pictureFile2Name;
+    	mav.addObject("pictureFile1", "/trans/secretary/picture/"+awardsType+"?name="+name1);//new File(file1Path));
+    	mav.addObject("pictureFile2", "/trans/secretary/picture/"+awardsType+"?name="+name2);
     	
-    	mav.addObject("pictureFile1Name", "" + id + thesis.getWordsNumbers());
-    	mav.addObject("pictureFile2Name", "" + id + thesis.getNote());
+    	mav.addObject("pictureFile1Name", pictureFile1Name);
+    	mav.addObject("pictureFile2Name", pictureFile2Name);
     	return mav;
     }
     
@@ -342,26 +370,18 @@ public class SecretaryController {
      * @param num
      * @param id
      */
-    @RequestMapping(value = "/picture/{num}/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/picture/{awardsType}", method = RequestMethod.GET)
     public void getPictureFile(ModelAndView mav,
     		HttpServletRequest request,
     		HttpServletResponse response,
-    		@PathVariable("num")int num,
-    		@PathVariable("id")int id) {
+    		@PathVariable("awardsType")String awardsType
+    		) {
     	
-    	String rootPath = System.getProperty("catalina.home") + "/webapps_data";
-    	Thesis thesis = thesisService.selectByPrimaryKey(id);
     	
-    	String filePath = "";
-    	String fileType = "";
-    	if(num ==1) {
-    		fileType = thesis.getWordsNumbers();
-    		filePath = rootPath + "/" + thesis.getId() + "_1" + fileType;
-    	}
-    	if(num ==2) {
-    		fileType = thesis.getNote();
-    		filePath = rootPath + "/" + thesis.getId() + "_2" + fileType;
-    	}
+    	String name = request.getParameter("name");
+    	
+    	String rootPath = System.getProperty("catalina.home") + "/webapps_data/" + awardsType;
+    	String filePath = rootPath + "/" + name;
     	
     	if("".equals(filePath)) {
     		return ;
@@ -375,7 +395,7 @@ public class SecretaryController {
     		in = new BufferedInputStream(new FileInputStream(file));
     		out = new BufferedOutputStream(response.getOutputStream());
             response.setContentType(new MimetypesFileTypeMap().getContentType(file));// 设置response内容的类型  
-            response.setHeader("Content-disposition", "attachment;filename=" + thesis.getId() + "_" + num + fileType);// 设置头部信息  
+            response.setHeader("Content-disposition", "attachment;filename=" + name);// 设置头部信息  
             byte[] buffer = new byte[10240];  
             int length = 0;  
             while ((length = in.read(buffer)) > 0) {  

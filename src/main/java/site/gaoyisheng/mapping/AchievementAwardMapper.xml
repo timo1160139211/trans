@@ -156,7 +156,8 @@
       #{no10AutherNumber,jdbcType=VARCHAR}, #{claimNumber,jdbcType=INTEGER}, #{claimStatus,jdbcType=VARCHAR}, 
       #{sdutAutherNumber,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.AchievementAward">
+  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.AchievementAward"
+   useGeneratedKeys="true" keyProperty="id">
     insert into achievement_award
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

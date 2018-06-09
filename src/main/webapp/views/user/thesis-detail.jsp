@@ -492,7 +492,7 @@
 				</c:if>
 				<c:if test="${thesis.no8AutherName != ''}">
 					<div class="form-group ">
-						<label>通讯作者：<font style="color: #FF0000;"> *</font></label> <input id="no8AutherName" type="text"
+						<label>第八作者：<font style="color: #FF0000;"> *</font></label> <input id="no8AutherName" type="text"
 							name="no8AutherName" value="${thesis.no8AutherName}"
 							readonly="true" class="form-control"> <label>工号：<font style="color: #FF0000;"> *</font></label>
 						<input id="no8AutherNumber" type="text" name="no8AutherNumber"

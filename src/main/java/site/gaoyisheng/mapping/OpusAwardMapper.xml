@@ -190,7 +190,7 @@
       #{no10AutherName,jdbcType=VARCHAR}, #{no10AutherNumber,jdbcType=VARCHAR}, #{autherNumber,jdbcType=INTEGER}, 
       #{sdutAutherNumber,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.OpusAward">
+  <insert id="insertSelective" parameterType="site.gaoyisheng.pojo.OpusAward"  useGeneratedKeys="true" keyProperty="id">
     insert into opus_award
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

@@ -552,6 +552,7 @@ public class UserOpsController {
     			pictureFile2.getOriginalFilename().lastIndexOf("."));
     	
     	int numFlag = 0;
+    	int id = 0;
     	String awardsTypeName = "";
     			
     	switch(awardsType) {
@@ -561,6 +562,7 @@ public class UserOpsController {
         		thesis.setNote(file2Type);
         		awardsTypeName = "论文:"+thesis.getName();
         		numFlag = thesisService.createSelective(thesis);
+        		id = thesis.getId();
         		break;
     		case "achievementAward":
     			achievementAward.setNo10AutherNumber("未审核");
@@ -568,6 +570,7 @@ public class UserOpsController {
     			achievementAward.setNote(file2Type);
     			awardsTypeName = "成果奖励:"+achievementAward.getAchievementName();
     			numFlag = achievementAwardService.insertSelective(achievementAward);
+    			id = achievementAward.getId();
     			break;
     		case "opusAward":
     			opusAward.setNo10AutherNumber("未审核");
@@ -576,6 +579,7 @@ public class UserOpsController {
     			opusAward.setWorkunit(file2Type);
     			awardsTypeName = "著作奖励:"+opusAward.getName();
     			numFlag = opusAwardService.insertSelective(opusAward);
+    			id = opusAward.getId();
     			break;
     		case "patent":
     			patent.setNo10AutherNumber("未审核");
@@ -583,12 +587,13 @@ public class UserOpsController {
     			patent.setPctPatentOrNot(file2Type);
     			awardsTypeName = "专利:"+patent.getName();
     			numFlag = patentService.insertSelective(patent);
+    			id = patent.getId();
     			break;
     	}
     	//----------------------
     	
-    	String file1Path = rootPath + "/" + thesis.getId() + "_1" + file1Type;
-    	String file2Path = rootPath + "/" + thesis.getId() + "_2" + file2Type;
+    	String file1Path = rootPath + "/" + id + "_1" + file1Type;
+    	String file2Path = rootPath + "/" + id + "_2" + file2Type;
     	
 		pictureFile1.transferTo(new File(file1Path));
     	pictureFile2.transferTo(new File(file2Path));
@@ -600,10 +605,10 @@ public class UserOpsController {
 			mav.addObject("msg", "成功追加" + awardsTypeName );
 		} else {
 	    	switch(awardsType) {
-    			case "thesis" :thesisService.deleteByPrimaryKey(thesis.getId());
-    			case "achievementAward":achievementAwardService.deleteByPrimaryKey(thesis.getId());
-    			case "opusAward":opusAwardService.deleteByPrimaryKey(thesis.getId());
-    			case "patent":patentService.deleteByPrimaryKey(thesis.getId());
+    			case "thesis" :thesisService.deleteByPrimaryKey(id);
+    			case "achievementAward":achievementAwardService.deleteByPrimaryKey(id);
+    			case "opusAward":opusAwardService.deleteByPrimaryKey(id);
+    			case "patent":patentService.deleteByPrimaryKey(id);
 	    	}
 			
 			mav.addObject("msg", "追加失败" + awardsTypeName );

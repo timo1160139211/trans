@@ -283,7 +283,7 @@
 			)
 		</foreach>
 	</insert>
-	<insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Patent">
+	<insert id="insertSelective" parameterType="site.gaoyisheng.pojo.Patent"  useGeneratedKeys="true" keyProperty="id">
 		insert into patent
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">

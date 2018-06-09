@@ -304,11 +304,11 @@
 														
 														<div class="form-group ">
 															<label>通讯作者:</label>
-																	<input type="text" class="form-control "  id="communicateAutherName" 
-																	name="communicateAutherName" value="">
+																	<input type="text" class="form-control "  id="no9AutherName" 
+																	name="no9AutherName" value="">
 															 <label>工号:</label> <input
-																type="text" id="no10AutherNumber"   name="no10AutherNumber"
-																value="${awards.no10AutherNumber}" class="form-control">
+																type="text" id="no9AutherNumber"   name="no9AutherNumber"
+																value="${awards.no9AutherNumber}" class="form-control">
 														</div>
 														<br/>
 														
@@ -375,22 +375,12 @@
 														<br/>
 														<div class="form-group ">
 															<label>第八作者:</label> <input type="text"
-																name="no8AutherName"
-  id="no8AutherName"                                                                                value="${awards.no8AutherName}"
+  id="no7AutherName" 
+																name="no8AutherName" value="${awards.no8AutherName}"
 																class="form-control"> <label>工号:</label> <input
 																type="text" name="no8AutherNumber"
- id="no8AutherNumber" 
+ id="no7AutherNumber" 
 																value="${awards.no8AutherNumber}" class="form-control">
-														</div>
-														<br/>
-														<div class="form-group ">
-															<label>第九作者:</label> <input type="text"
-  id="no9AutherName" 
-																name="no9AutherName" value="${awards.no9AutherName}"
-																class="form-control"> <label>工号:</label> <input
-																type="text" name="no9AutherNumber"
- id="no9AutherNumber" 
-																value="${awards.no9AutherNumber}" class="form-control">
 														</div>
 														<hr/>
 

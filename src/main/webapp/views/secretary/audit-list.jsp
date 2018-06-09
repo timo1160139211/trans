@@ -351,27 +351,6 @@ $(document).ready(function () {
                         if (page != null) {
                             for (var i = 0; i < page.list.length; i++) {
 
-					/* var comuAuther = '';
-					if (page.list[i].no8AutherName != null && page.list[i].no8AutherName != '') 
-						{comuAuther = comuAuther + page.list[i].no8AutherName + ':' + page.list[i].no8AutherNumber + ';'}
-
-					if (page.list[i].no9AutherName != null && page.list[i].no9AutherName != '') 
-						{comuAuther = comuAuther + page.list[i].no9AutherName + ':' + page.list[i].no9AutherNumber + ';'}
-
-					var all7Auther = page.list[i].no1AutherNumber + ';';
-					if (page.list[i].no2AutherName != null && page.list[i].no2AutherName != '') 
-						{all7Auther = all7Auther + page.list[i].no2AutherNumber + ';'}
-					if (page.list[i].no3AutherName != null && page.list[i].no3AutherName != '') 
-						{all7Auther = all7Auther + page.list[i].no3AutherNumber + ';'}
-					if (page.list[i].no4AutherName != null && page.list[i].no4AutherName != '') 
-						{all7Auther = all7Auther + page.list[i].no4AutherNumber + ';'}
-					if (page.list[i].no5AutherName != null && page.list[i].no5AutherName != '') 
-						{all7Auther = all7Auther + page.list[i].no5AutherNumber + ';'}
-					if (page.list[i].no6AutherName != null && page.list[i].no6AutherName != '') 
-						{all7Auther = all7Auther + page.list[i].no6AutherNumber + ';'}
-					if (page.list[i].no7AutherName != null && page.list[i].no7AutherName != '') 
-						{all7Auther = all7Auther + page.list[i].no7AutherNumber + ';'}
- */
 
                                 var tr = $("<tr/>");
                                 $("<td class=\"id\"/ display=\"none;\">").html(page.list[i].id).appendTo(tr);
@@ -390,11 +369,6 @@ $(document).ready(function () {
                                     $("<td/>").html(page.list[i].name).appendTo(tr);
                                     $("<td/>").html(page.list[i].allAutherName).appendTo(tr);
                                      }
-                                /* $("<td/>").html(page.list[i].keyId).appendTo(tr);
-                                $("<td/>").html(page.list[i].name).appendTo(tr);
-                                $("<td/>").html(page.list[i].allAutherName).appendTo(tr); */
-                                /* $("<td/>").html(all7Auther).appendTo(tr);
-					 				$("<td/>").html(comuAuther).appendTo(tr); */
 					 				$("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
 					 				if(auditSelectedText=='未审核'){
 										 $("<td/>").html("<button type=\"button\" class=\"btn btn-primary\" id=\"passBtn\">通过</button>").appendTo(tr);

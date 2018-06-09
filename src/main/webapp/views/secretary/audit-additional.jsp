@@ -332,7 +332,7 @@ $(document).ready(function () {
 													.appendTo(
 														tr);
 	                                  }
-                                $("<td/>").html("<a href=\"${ctx}/secretary/pictureFile/" + page.list[i].id +"\" target=\"_blank\" id=\"pictureFile1\">图片</a>").appendTo(tr);
+                                $("<td/>").html("<a href=\"${ctx}/secretary/pictureFile/" + currentAwardsType +"/" + page.list[i].id +"\" target=\"_blank\" id=\"pictureFile1\">图片</a>").appendTo(tr);
 					 				$("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
 		                         $("<td class=\"options-contant\"/>").appendTo(tr);
 					 				if(auditSelectedText=='未审核'){
@@ -507,7 +507,7 @@ $('body').on('click', '.prePage', function () {
 													.appendTo(
 														tr);
 	                                  }
-                                $("<td/>").html("<a href=\"${ctx}/secretary/pictureFile/" + page.list[i].id +"\" target=\"_blank\" id=\"pictureFile1\">图片</a>").appendTo(tr);
+                                $("<td/>").html("<a href=\"${ctx}/secretary/pictureFile/" + currentAwardsType +"/" + page.list[i].id +"\" target=\"_blank\" id=\"pictureFile1\">图片</a>").appendTo(tr);
 					 				$("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
 		                         $("<td class=\"options-contant\"/>").appendTo(tr);
 					 				if(auditSelectedText=='未审核'){
@@ -617,7 +617,7 @@ $('body').on('click', '.nextPage', function () {
 													.appendTo(
 														tr);
 	                                  }
-                                $("<td/>").html("<a href=\"${ctx}/secretary/pictureFile/" + page.list[i].id +"\" target=\"_blank\" id=\"pictureFile1\">图片</a>").appendTo(tr);
+                                $("<td/>").html("<a href=\"${ctx}/secretary/pictureFile/" + currentAwardsType +"/" + page.list[i].id +"\" target=\"_blank\" id=\"pictureFile1\">图片</a>").appendTo(tr);
 								    $("<td/>").html("<button type=\"button\" class=\"btn btn-success\" id=\"detaile\">详情</button>").appendTo(tr);
 		                         $("<td class=\"options-contant\"/>").appendTo(tr);
 								 if(auditSelectedText=='未审核'){
