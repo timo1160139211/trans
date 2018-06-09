@@ -300,16 +300,6 @@
 											</div>
 										</div>
 									</div>
-									<div class="tab-pane" id="patent-tab">
-										<div class="panel-body">
-											<div class="form-group">
-												<form:form class="form-inline"
-													action="${ctx}/user/awards-de" method="post">
-
-												</form:form>
-											</div>
-										</div>
-									</div>
 								</div>
 								<iframe id="id_iframe" name="nm_iframe" style="display: none;"></iframe>
 							</div>

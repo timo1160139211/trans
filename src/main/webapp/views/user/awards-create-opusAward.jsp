@@ -54,8 +54,6 @@
 													class="form-inline" action="${ctx}/user/awards-create/opusAward"
 													method="post" enctype="multipart/form-data">
 
-
-
 													<table>
 														<tbody>
 															<tr>
@@ -231,7 +229,7 @@
 																</select> <font style="color: #FF0000;"> *</font></td>
 															</tr>
 																<tr>
-																<td width="60%"><label class="form-control ">isbn:</label>
+																<td width="60%"><label class="form-control ">ISBN:</label>
 																	<input type="text" name="isbn" class="form-control " value="">
 																<font style="color: #FF0000;"> *</font></td>
 																<td width="40%"><label class="form-control ">总字数(万字):</label><input type="text" name="wordsNumbers" class="form-control " value="">
@@ -273,8 +271,7 @@
 																		<option value="自选课题">自选课题</option>
 																		<option value="其他课题">其他课题</option>
 																		<option value="科技部重大专项">科技部重大专项</option></select></td>
-																<td width="40%"><input type="hidden" class="form-control "
-																	name="status" value="补录"></td>
+																<td width="40%"></td>
 															</tr>
 
 
@@ -431,16 +428,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="tab-pane" id="patent-tab">
-										<div class="panel-body">
-											<div class="form-group">
-												<form:form class="form-inline"
-													action="${ctx}/user/awards-de" method="post">
-
-												</form:form>
-											</div>
-										</div>
-									</div>
+									
 								</div>
 								<iframe id="id_iframe" name="nm_iframe" style="display: none;"></iframe>
 							</div>

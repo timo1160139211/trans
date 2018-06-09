@@ -38,10 +38,12 @@
 							<div class="panel">
 								<ul class="nav nav-tabs" id="myTab">
 									<!-- <li class="active" id="ch-tag"><a href="#Chinese" data-toggle="tab">中文期刊论文</a></li>
-									<li id="en-tag"><a href="#English" data-toggle="tab">英文期刊论文</a></li>
-									<li id="patent-tag"><a href="#Patent" data-toggle="tab">专利</a></li> -->
+									<li id="en-tag"><a href="#English" data-toggle="tab">英文期刊论文</a></li>-->
+									<li id="patent-tag"><a href="#Patent" data-toggle="tab">专利</a></li> 
 									<li class="active" id="ch-tag"><a href="#Chinese"
 										data-toggle="tab">论文</a></li>
+									<li id="achievementAward-tag"><a href="#achievementAward" data-toggle="tab">成果奖励</a></li>
+									<li id="opusAward-tag"><a href="#opusAward" data-toggle="tab">著作奖励/版权</a></li>
 								</ul>
 								<div class="tab-content">
 
@@ -50,7 +52,7 @@
 											<form class="form-inline" id="ChineseForm">
 												<div class="form-group" style="display: none;">
 													<input type="text" name="awardsType"
-														value="chPeriodicalThesis" class="type-control">
+														value="thesis" class="type-control">
 												</div>
 												<div class="form-group">
 													<label>标题:</label> <input type="text" name="name"
@@ -110,6 +112,204 @@
 											</form>
 										</div>
 									</div>
+									
+									<div class="tab-pane" id="Patent">
+										<div class="panel-body">
+											<form class="form-inline" id="PatentForm">
+												<div class="form-group" style="display: none;">
+													<input type="text" name="awardsType" value="enPeriodicalThesis"
+														class="type-control">
+												</div>
+												<div class="form-group">
+													<label>名称:</label> <input type="text" name="name"
+														class="form-control">
+												</div>
+												<div class="form-group">
+													<label>发明(设计)人:</label> <input type="text"
+														name="autherName" class="form-control">
+												</div>
+												<div class="form-group">
+													<label>授权号:</label> <input type="text"
+														name="authorizationNumber" class="form-control">
+												</div>
+												<div class="form-group">
+												<label>归属学院:</label> <select name="no10AutherName"
+														class="form-control">
+														<option value="">查询所有学院</option>
+														<option value="机械工程学院">机械工程学院</option>
+														<option value="交通与车辆工程学院">交通与车辆工程学院</option>
+														<option value="农业工程与食品科学学院">农业工程与食品科学学院</option>
+														<option value="电气与电子工程学院">电气与电子工程学院</option>
+														<option value="计算机科学与技术学院">计算机科学与技术学院</option>
+														<option value="化学化工学院">化学化工学院</option>
+														<option value="建筑工程学院">建筑工程学院</option>
+														<option value="资源与环境工程学院">资源与环境工程学院</option>
+														<option value="材料科学与工程学院">材料科学与工程学院</option>
+														<option value="生命科学学院">生命科学学院</option>
+														<option value="数学与统计学院">数学与统计学院</option>
+														<option value="物理与光电工程学院">物理与光电工程学院</option>
+														<option value="经济学院">经济学院</option>
+														<option value="管理学院">管理学院</option>
+														<option value="文学与新闻传播学院">文学与新闻传播学院</option>
+														<option value="外国语学院">外国语学院</option>
+														<option value="法学院">法学院</option>
+														<option value="马克思主义学院">马克思主义学院</option>
+														<option value="美术学院">美术学院</option>
+														<option value="音乐学院">音乐学院</option>
+														<option value="体育学院">体育学院</option>
+														<option value="鲁泰纺织服装学院">鲁泰纺织服装学院</option>
+														<option value="齐文化研究院">齐文化研究院</option>
+
+														<option value="图书馆">图书馆</option>
+														<option value="后勤管理处">后勤管理处</option>
+														<option value="学生工作处">学生工作处</option>
+														<option value="实验管理中心">实验管理中心</option>
+														<option value="校医院">校医院</option>
+													</select>
+											    </div>
+											<div class="form-group">
+												<label>审核状态:</label> <select id="paAuditStatus" name="no10AutherNumber"
+													class="form-control">
+													<option value="未审核">未审核</option>
+													<option value="通过审核">通过审核</option>
+													<option value="未通过审核">未通过审核</option>
+												</select>
+											</div>
+												<button id='patent-btn' type="submit" class="btn btn-primary">查询</button>
+											</form>
+										</div>
+									</div>
+									
+									<div class="tab-pane" id="achievementAward">
+										<div class="panel-body">
+										<form class="form-inline" id="achievementAwardForm">
+											<div class="form-group" style="display: none;">
+												<input type="text" name="awardsType"
+													value="achievementAward" class="type-control">
+											</div>
+											<div class="form-group">
+												<label>成果名称:</label> <input type="text" name="achievementName"
+													class="form-control">
+											</div>
+											<div class="form-group">
+												<label>作者:</label> <input type="text" name="autherName"
+													class="form-control">
+											</div>
+											<div class="form-group">
+												<label>归属学院:</label> <select name="no10AutherName"
+														class="form-control">
+														<option value="">查询所有学院</option>
+														<option value="机械工程学院">机械工程学院</option>
+														<option value="交通与车辆工程学院">交通与车辆工程学院</option>
+														<option value="农业工程与食品科学学院">农业工程与食品科学学院</option>
+														<option value="电气与电子工程学院">电气与电子工程学院</option>
+														<option value="计算机科学与技术学院">计算机科学与技术学院</option>
+														<option value="化学化工学院">化学化工学院</option>
+														<option value="建筑工程学院">建筑工程学院</option>
+														<option value="资源与环境工程学院">资源与环境工程学院</option>
+														<option value="材料科学与工程学院">材料科学与工程学院</option>
+														<option value="生命科学学院">生命科学学院</option>
+														<option value="数学与统计学院">数学与统计学院</option>
+														<option value="物理与光电工程学院">物理与光电工程学院</option>
+														<option value="经济学院">经济学院</option>
+														<option value="管理学院">管理学院</option>
+														<option value="文学与新闻传播学院">文学与新闻传播学院</option>
+														<option value="外国语学院">外国语学院</option>
+														<option value="法学院">法学院</option>
+														<option value="马克思主义学院">马克思主义学院</option>
+														<option value="美术学院">美术学院</option>
+														<option value="音乐学院">音乐学院</option>
+														<option value="体育学院">体育学院</option>
+														<option value="鲁泰纺织服装学院">鲁泰纺织服装学院</option>
+														<option value="齐文化研究院">齐文化研究院</option>
+
+														<option value="图书馆">图书馆</option>
+														<option value="后勤管理处">后勤管理处</option>
+														<option value="学生工作处">学生工作处</option>
+														<option value="实验管理中心">实验管理中心</option>
+														<option value="校医院">校医院</option>
+													</select>
+											    </div>
+											<div class="form-group">
+												<label>年:</label> <input type="text" name="year"
+													class="form-control">
+											</div>
+											<div class="form-group">
+												<label>审核状态:</label> <select id="achievementAwardAuditStatus" name="no10AutherNumber"
+													class="form-control">
+													<option value="未审核">未审核</option>
+													<option value="通过审核">通过审核</option>
+													<option value="未通过审核">未通过审核</option>
+												</select>
+											</div>
+											<button id='achievementAward-btn' type="submit" class="btn btn-primary">查询</button>
+										</form>
+										</div>
+									</div>
+									
+									<div class="tab-pane" id="opusAward">
+										<div class="panel-body">
+										<form class="form-inline" id="opusAwardForm">
+											<div class="form-group" style="display: none;">
+												<input type="text" name="awardsType"
+													value="opusAward" class="type-control">
+											</div>
+											<div class="form-group">
+												<label>成果名称:</label> <input type="text" name="name"
+													class="form-control">
+											</div>
+											<div class="form-group">
+												<label>作者:</label> <input type="text" name="autherName"
+													class="form-control">
+											</div>
+											<div class="form-group">
+												<label>归属学院:</label> <select name="no10AutherName"
+														class="form-control">
+														<option value="">查询所有学院</option>
+														<option value="机械工程学院">机械工程学院</option>
+														<option value="交通与车辆工程学院">交通与车辆工程学院</option>
+														<option value="农业工程与食品科学学院">农业工程与食品科学学院</option>
+														<option value="电气与电子工程学院">电气与电子工程学院</option>
+														<option value="计算机科学与技术学院">计算机科学与技术学院</option>
+														<option value="化学化工学院">化学化工学院</option>
+														<option value="建筑工程学院">建筑工程学院</option>
+														<option value="资源与环境工程学院">资源与环境工程学院</option>
+														<option value="材料科学与工程学院">材料科学与工程学院</option>
+														<option value="生命科学学院">生命科学学院</option>
+														<option value="数学与统计学院">数学与统计学院</option>
+														<option value="物理与光电工程学院">物理与光电工程学院</option>
+														<option value="经济学院">经济学院</option>
+														<option value="管理学院">管理学院</option>
+														<option value="文学与新闻传播学院">文学与新闻传播学院</option>
+														<option value="外国语学院">外国语学院</option>
+														<option value="法学院">法学院</option>
+														<option value="马克思主义学院">马克思主义学院</option>
+														<option value="美术学院">美术学院</option>
+														<option value="音乐学院">音乐学院</option>
+														<option value="体育学院">体育学院</option>
+														<option value="鲁泰纺织服装学院">鲁泰纺织服装学院</option>
+														<option value="齐文化研究院">齐文化研究院</option>
+
+														<option value="图书馆">图书馆</option>
+														<option value="后勤管理处">后勤管理处</option>
+														<option value="学生工作处">学生工作处</option>
+														<option value="实验管理中心">实验管理中心</option>
+														<option value="校医院">校医院</option>
+													</select>
+											    </div>
+											<div class="form-group">
+												<label>审核状态:</label> <select id="opusAwardAuditStatus" name="no10AutherNumber"
+													class="form-control">
+													<option value="未审核">未审核</option>
+													<option value="通过审核">通过审核</option>
+													<option value="未通过审核">未通过审核</option>
+												</select>
+											</div>
+											<button id='opusAward-btn' type="submit" class="btn btn-primary">查询</button>
+										</form>
+										</div>
+									</div>
+									
 									<iframe id="id_iframe" name="nm_iframe" style="display: none;"></iframe>
 								</div>
 							</div>
@@ -159,7 +359,7 @@
 				.ready(
 						function() {
 
-							var currentAwardsType = 'chPeriodicalThesis';//维护一个 类型参数字符串,仅在每次切换标签时变化.
+							var currentAwardsType = 'thesis';//维护一个 类型参数字符串,仅在每次切换标签时变化.
 							var currentPageNum = 1;//维护一个 当前页参数,换页时+ - ,在每次切换标签/查询时初始化.
 							var currentPageSize = 30;
 							var paramMap = '';//维护一个 请求参数字符串,仅在每次查询时变化.
@@ -176,16 +376,15 @@
 							});
 
 							$('#ch-tag').click(function() {
-								initical('chPeriodicalThesis');
-							});
-							$('#en-tag').click(function() {
-								initical('enPeriodicalThesis');
+								initical('thesis');
 							});
 							$('#patent-tag').click(function() {
 								initical('patent');
 							});
+							$('#achievementAward-tag').click(function(){initical('achievementAward');});
+							$('#opusAward-tag').click(function(){initical('opusAward');});
 
-							$('#ch-btn,#en-btn,#patent-btn')
+							$('#ch-btn,#achievementAward-btn,#opusAward-btn,#patent-btn')
 									.bind(
 											'click',
 											function() {
@@ -210,16 +409,9 @@
 														.serialize();
 
 												var auditSelectedText = '';
-												if (currentAwardsType == 'chPeriodicalThesis') {
+												if (currentAwardsType == 'thesis') {
 													auditSelectedText = $(
 															"#chAuditStatus")
-															.find(
-																	"option:selected")
-															.text();
-												}
-												if (currentAwardsType == 'enPeriodicalThesis') {
-													auditSelectedText = $(
-															"#enAuditStatus")
 															.find(
 																	"option:selected")
 															.text();
@@ -231,6 +423,16 @@
 																	"option:selected")
 															.text();
 												}
+												if(currentAwardsType=='achievementAward'){
+												    selectedText = $("#achievementAwardClaimStatus option:selected").text();
+												    auditSelectedText = $("#achievementAwardAuditStatus").find("option:selected").text();
+												}
+												if(currentAwardsType=='opusAward'){
+												    selectedText = $("#opusAwardClaimStatus option:selected").text();
+												    auditSelectedText = $("#opusAwardAuditStatus").find("option:selected").text();
+												}
+												
+												
 
 												$(this).parent().attr('target',
 														'nm_iframe');
@@ -261,18 +463,26 @@
 																								i + 1)
 																						.appendTo(
 																								tr);
+																				
+																				if(currentAwardsType=='opusAward'){
+												                                   $("<td/>").html(page.list[i].name).appendTo(tr);
+												                            }else if(currentAwardsType=='achievementAward'){
+												                                   $("<td/>").html(page.list[i].achievementName).appendTo(tr);
+												                            }else{
+												                                  		  $(
+																								"<td/>")
+																								.html(
+																									page.list[i].name)
+																								.appendTo(
+																									tr);
+																						 
+												                                  }
 																				$(
-																						"<td/>")
-																						.html(
-																								page.list[i].name)
-																						.appendTo(
-																								tr);
-																				$(
-																						"<td/>")
-																						.html(
-																								page.list[i].no1AutherName)
-																						.appendTo(
-																								tr);
+																				"<td/>")
+																					.html(
+																					page.list[i].no1AutherName)
+																				.appendTo(
+																					tr);
 																				$(
 																						"<td/>")
 																						.html(
@@ -349,16 +559,9 @@
 												currentPageNum = currentPageNum - 1;
 
 												var auditSelectedText = '';
-												if (currentAwardsType == 'chPeriodicalThesis') {
+												if (currentAwardsType == 'thesis') {
 													auditSelectedText = $(
 															"#chAuditStatus")
-															.find(
-																	"option:selected")
-															.text();
-												}
-												if (currentAwardsType == 'enPeriodicalThesis') {
-													auditSelectedText = $(
-															"#enAuditStatus")
 															.find(
 																	"option:selected")
 															.text();
@@ -369,6 +572,14 @@
 															.find(
 																	"option:selected")
 															.text();
+												}
+												if(currentAwardsType=='achievementAward'){
+												    selectedText = $("#achievementAwardClaimStatus option:selected").text();
+												    auditSelectedText = $("#achievementAwardAuditStatus").find("option:selected").text();
+												}
+												if(currentAwardsType=='opusAward'){
+												    selectedText = $("#opusAwardClaimStatus option:selected").text();
+												    auditSelectedText = $("#opusAwardAuditStatus").find("option:selected").text();
 												}
 
 												$
@@ -402,18 +613,25 @@
 																						i + 1)
 																				.appendTo(
 																						tr);
+																		if(currentAwardsType=='opusAward'){
+											                                   $("<td/>").html(page.list[i].name).appendTo(tr);
+											                            }else if(currentAwardsType=='achievementAward'){
+											                                   $("<td/>").html(page.list[i].achievementName).appendTo(tr);
+											                            }else{
+											                                  		  $(
+																							"<td/>")
+																							.html(
+																								page.list[i].name)
+																							.appendTo(
+																								tr);
+											                                  }
 																		$(
-																				"<td/>")
-																				.html(
-																						page.list[i].name)
-																				.appendTo(
-																						tr);
-																		$(
-																				"<td/>")
-																				.html(
-																						page.list[i].no1AutherName)
-																				.appendTo(
-																						tr);
+																		"<td/>")
+																			.html(
+																			page.list[i].no1AutherName)
+																		.appendTo(
+																			tr);
+
 																		$(
 																				"<td/>")
 																				.html(
@@ -487,16 +705,9 @@
 												currentPageNum = currentPageNum + 1;
 
 												var auditSelectedText = '';
-												if (currentAwardsType == 'chPeriodicalThesis') {
+												if (currentAwardsType == 'thesis') {
 													auditSelectedText = $(
 															"#chAuditStatus")
-															.find(
-																	"option:selected")
-															.text();
-												}
-												if (currentAwardsType == 'enPeriodicalThesis') {
-													auditSelectedText = $(
-															"#enAuditStatus")
 															.find(
 																	"option:selected")
 															.text();
@@ -507,6 +718,14 @@
 															.find(
 																	"option:selected")
 															.text();
+												}
+												if(currentAwardsType=='achievementAward'){
+												    selectedText = $("#achievementAwardClaimStatus option:selected").text();
+												    auditSelectedText = $("#achievementAwardAuditStatus").find("option:selected").text();
+												}
+												if(currentAwardsType=='opusAward'){
+												    selectedText = $("#opusAwardClaimStatus option:selected").text();
+												    auditSelectedText = $("#opusAwardAuditStatus").find("option:selected").text();
 												}
 
 												$
@@ -540,18 +759,25 @@
 																						i + 1)
 																				.appendTo(
 																						tr);
+																		if(currentAwardsType=='opusAward'){
+											                                   $("<td/>").html(page.list[i].name).appendTo(tr);
+											                            }else if(currentAwardsType=='achievementAward'){
+											                                   $("<td/>").html(page.list[i].achievementName).appendTo(tr);
+											                            }else{
+											                                  		  $(
+																							"<td/>")
+																							.html(
+																								page.list[i].name)
+																							.appendTo(
+																								tr);
+											                                  }
 																		$(
-																				"<td/>")
-																				.html(
-																						page.list[i].name)
-																				.appendTo(
-																						tr);
-																		$(
-																				"<td/>")
-																				.html(
-																						page.list[i].no1AutherName)
-																				.appendTo(
-																						tr);
+																		"<td/>")
+																			.html(
+																			page.list[i].no1AutherName)
+																		.appendTo(
+																			tr);
+
 																		$(
 																				"<td/>")
 																				.html(
@@ -628,7 +854,7 @@
 												if (contant.html() == '') {
 													$
 															.ajax({
-																url : '${ctx}/user/thesis-detail',
+																url : '${ctx}/user/thesis-detail/'+currentAwardsType,
 																type : 'POST',
 																data : {
 																	id : id

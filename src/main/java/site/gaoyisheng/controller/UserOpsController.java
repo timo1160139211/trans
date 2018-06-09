@@ -507,7 +507,7 @@ public class UserOpsController {
     public String toAwardsCreate(@PathVariable("awardsType") String awardsType) {	
     	return "user/awards-create-" + awardsType;		
     }
-    
+
     /**
      * 
      * .
@@ -528,13 +528,17 @@ public class UserOpsController {
      * @throws IOException
      */
     @RequestMapping(consumes = "multipart/form-data",value = "/awards-create/{awardsType}", method = RequestMethod.POST)
-    public ModelAndView awardsCreate(HttpServletRequest request,Thesis thesis,ModelAndView mav,
+    public ModelAndView awardsCreate(HttpServletRequest request,ModelAndView mav,
+    	    @ModelAttribute Patent patent,
+    		@ModelAttribute Thesis thesis,
+    		@ModelAttribute AchievementAward achievementAward,
+    		@ModelAttribute OpusAward opusAward,
     		@RequestParam("pictureFile1") MultipartFile pictureFile1, 
     		@RequestParam("pictureFile2") MultipartFile pictureFile2,
     		@PathVariable("awardsType") String awardsType
     		) throws IOException {		
     	
-    	String rootPath = System.getProperty("catalina.home") + "/webapps_data";
+    	String rootPath = System.getProperty("catalina.home") + "/webapps_data/" + awardsType;
     	
     	if(!(new File(rootPath).exists())) {
     		//   ~/tomcat/webapps_data/    如果目录不存在，则创建之
@@ -547,9 +551,41 @@ public class UserOpsController {
     	String file2Type = pictureFile2.getOriginalFilename().substring(
     			pictureFile2.getOriginalFilename().lastIndexOf("."));
     	
-    	thesis.setWordsNumbers(file1Type);
-    	thesis.setNote(file2Type);
-    	int numFlag = thesisService.createSelective(thesis);//----------------------
+    	int numFlag = 0;
+    	String awardsTypeName = "";
+    			
+    	switch(awardsType) {
+    		case "thesis" :
+    			thesis.setNo10AutherNumber("未审核");
+    			thesis.setWordsNumbers(file1Type);
+        		thesis.setNote(file2Type);
+        		awardsTypeName = "论文:"+thesis.getName();
+        		numFlag = thesisService.createSelective(thesis);
+        		break;
+    		case "achievementAward":
+    			achievementAward.setNo10AutherNumber("未审核");
+    			achievementAward.setNo1AutherType(file1Type);
+    			achievementAward.setNote(file2Type);
+    			awardsTypeName = "成果奖励:"+achievementAward.getAchievementName();
+    			numFlag = achievementAwardService.insertSelective(achievementAward);
+    			break;
+    		case "opusAward":
+    			opusAward.setNo10AutherNumber("未审核");
+    			opusAward.setNo1AutherType(file1Type);
+    			opusAward.setStatus("补录");
+    			opusAward.setWorkunit(file2Type);
+    			awardsTypeName = "著作奖励:"+opusAward.getName();
+    			numFlag = opusAwardService.insertSelective(opusAward);
+    			break;
+    		case "patent":
+    			patent.setNo10AutherNumber("未审核");
+    			patent.setPctPatentName(file1Type);
+    			patent.setPctPatentOrNot(file2Type);
+    			awardsTypeName = "专利:"+patent.getName();
+    			numFlag = patentService.insertSelective(patent);
+    			break;
+    	}
+    	//----------------------
     	
     	String file1Path = rootPath + "/" + thesis.getId() + "_1" + file1Type;
     	String file2Path = rootPath + "/" + thesis.getId() + "_2" + file2Type;
@@ -561,18 +597,36 @@ public class UserOpsController {
     	
     	//自行处理事务: 如果文件上传成功了
 		if (numFlag == 1 && new File(file1Path).exists() && new File(file2Path).exists()) {
-			return mav.addObject("msg", "成功追加论文:" + thesis.getName());
+			mav.addObject("msg", "成功追加" + awardsTypeName );
 		} else {
-			thesisService.deleteByPrimaryKey(thesis.getId());
-			return mav.addObject("msg", "追加失败论文:" + thesis.getName());
+	    	switch(awardsType) {
+    			case "thesis" :thesisService.deleteByPrimaryKey(thesis.getId());
+    			case "achievementAward":achievementAwardService.deleteByPrimaryKey(thesis.getId());
+    			case "opusAward":opusAwardService.deleteByPrimaryKey(thesis.getId());
+    			case "patent":patentService.deleteByPrimaryKey(thesis.getId());
+	    	}
+			
+			mav.addObject("msg", "追加失败" + awardsTypeName );
 		}
+		
+		return mav;
     }
     
-    @PostMapping(value = "/thesis-detail")
- 	public ModelAndView thesisDetail(HttpServletRequest request,ModelAndView mav){
- 		mav.addObject("thesis", thesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));
- 		mav.setViewName("user/thesis-detail");
- 		return mav;
+    
+    @PostMapping(value = "/thesis-detail/{awardsType}")
+ 	public ModelAndView thesisDetail(HttpServletRequest request,ModelAndView mav,
+ 			@PathVariable("awardsType")String awardsType){
+    	
+    	mav.setViewName("user/thesis-detail");
+    	mav.addObject("awardsType",awardsType);
+    	switch(awardsType) {
+         case "patent": mav.addObject("thesis", patentService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));break;
+         case "thesis": mav.addObject("thesis", thesisService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));break;
+         case "achievementAward": mav.addObject("thesis", achievementAwardService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));break;
+         case "opusAward": mav.addObject("thesis", opusAwardService.selectByPrimaryKey(Integer.valueOf(request.getParameter("id"))));break;
+        }
+    	
+    	return mav;
  	}
     
     /**
@@ -592,20 +646,49 @@ public class UserOpsController {
     @PostMapping(value = "thesis-additional-list")
     @ResponseBody
     public Object thesisAdditionalList(HttpServletRequest request) {
-		Map<String,String> map = new HashMap<String,String>();
-		
-		map.put("name", request.getParameter("name"));
-		map.put("workunit", request.getParameter("workunit"));
-		map.put("status", request.getParameter("status"));
-		
-		map.put("searchName", request.getParameter("searchName"));
-		
-		//分页参数
-		int pageNum = Integer.valueOf(request.getParameter("pageNum"));
-		int pageSize = 30;
-		
-		PageHelper.startPage(pageNum,pageSize);
-		return new PageInfo<Thesis>(thesisService.selectByMultiConditions(map));
+    	
+    	 Map<String,String> map = new HashMap<String,String>();
+        map.put("keyId", request.getParameter("keyId"));
+     	 map.put("name", request.getParameter("name"));
+     	 map.put("achievementName", request.getParameter("achievementName"));
+     	 map.put("provenance", request.getParameter("provenance"));
+     	 map.put("period", request.getParameter("period"));
+     	 map.put("year", request.getParameter("year"));
+     	 map.put("subject", request.getParameter("subject"));
+     	 map.put("volume", request.getParameter("volume"));
+     	 map.put("page", request.getParameter("page"));
+     	 map.put("type", request.getParameter("type"));
+     	 map.put("authorizationNumber", request.getParameter("authorizationNumber"));
+     	 map.put("authorizationDate", request.getParameter("authorizationDate"));
+     	 map.put("pctPatentOrNot", request.getParameter("pctPatentOrNot"));
+     	 map.put("pctPatentName", request.getParameter("pctPatentName"));
+     	 map.put("pctPatentApplicationNumber", request.getParameter("pctPatentApplicationNumber"));
+     	 map.put("pctPatentApplicationDate", request.getParameter("pctPatentApplicationDate"));
+     	 map.put("pctPatentPriorityDate", request.getParameter("pctPatentPriorityDate"));
+     	 map.put("inCountry", request.getParameter("inCountry"));
+     	 map.put("autherName", request.getParameter("autherName"));
+     	 
+     	 map.put("no10AutherNumber", request.getParameter("no10AutherNumber"));//审核状态
+     	 map.put("no10AutherName", request.getParameter("no10AutherName"));
+         
+     	 if(!request.getParameter("awardsType").equals("thesis")) {
+     		 map.put("claimStatus", "补录");
+     		 map.put("status", "补录");
+     	 }else {
+     		map.put("status", request.getParameter("status"));
+     	 }
+     	 //分页参数
+     	 int pageNum = Integer.valueOf(request.getParameter("pageNum"));
+     	 int pageSize = 30;
+     	 
+     	 switch(request.getParameter("awardsType")) {
+             case "patent": PageHelper.startPage(pageNum,pageSize);return new PageInfo<Patent>(patentService.selectByMultiConditions(map));
+             case "thesis": PageHelper.startPage(pageNum,pageSize);return new PageInfo<Thesis>(thesisService.selectByMultiConditions(map));
+             case "achievementAward": PageHelper.startPage(pageNum,pageSize);return new PageInfo<AchievementAward>(achievementAwardService.selectByMultiConditions(map));
+             case "opusAward": PageHelper.startPage(pageNum,pageSize);return new PageInfo<OpusAward>(opusAwardService.selectByMultiConditions(map));
+             default : return null;
+          }
+     	 
     }
     
 }

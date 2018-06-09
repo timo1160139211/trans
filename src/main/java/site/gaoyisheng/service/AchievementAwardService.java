@@ -178,6 +178,8 @@ public class AchievementAwardService {
 		return achievementDao.insertList(achievementAwardList);
 	}
 	
+	
+	
 	/**
 	 * .
 	 * TODO 递归:分割长List为 subNum/段。
@@ -207,4 +209,14 @@ public class AchievementAwardService {
 		    return insertList(thesisList);
 		}
 	}
+
+	
+	public int deleteByPrimaryKey(int id) {
+		return achievementDao.deleteByPrimaryKey(id);
+	}
+	
+	public int insertSelective(AchievementAward achievementAward) {
+		return achievementDao.insertSelective(achievementAward);
+	}
+
 }

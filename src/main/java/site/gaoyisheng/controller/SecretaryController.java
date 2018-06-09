@@ -241,17 +241,46 @@ public class SecretaryController {
 	@ResponseBody
 	public Object awardsAdditionalList(HttpServletRequest request) {
 		Map<String,String> map = new HashMap<String,String>();
-		
-		map.put("name", request.getParameter("name"));
-		map.put("workunit", request.getParameter("workunit"));
-		map.put("status", request.getParameter("status"));
-		
-		//分页参数
-		int pageNum = Integer.valueOf(request.getParameter("pageNum"));
-		int pageSize = 30;
-		
-		PageHelper.startPage(pageNum,pageSize);
-		return new PageInfo<Thesis>(thesisService.selectByMultiConditions(map));
+		 map.put("keyId", request.getParameter("keyId"));
+    	 map.put("name", request.getParameter("name"));
+    	 map.put("achievementName", request.getParameter("achievementName"));
+    	 map.put("provenance", request.getParameter("provenance"));
+    	 map.put("period", request.getParameter("period"));
+    	 map.put("year", request.getParameter("year"));
+    	 map.put("subject", request.getParameter("subject"));
+    	 map.put("volume", request.getParameter("volume"));
+    	 map.put("page", request.getParameter("page"));
+    	 map.put("type", request.getParameter("type"));
+    	 map.put("authorizationNumber", request.getParameter("authorizationNumber"));
+    	 map.put("authorizationDate", request.getParameter("authorizationDate"));
+    	 map.put("pctPatentOrNot", request.getParameter("pctPatentOrNot"));
+    	 map.put("pctPatentName", request.getParameter("pctPatentName"));
+    	 map.put("pctPatentApplicationNumber", request.getParameter("pctPatentApplicationNumber"));
+    	 map.put("pctPatentApplicationDate", request.getParameter("pctPatentApplicationDate"));
+    	 map.put("pctPatentPriorityDate", request.getParameter("pctPatentPriorityDate"));
+    	 map.put("inCountry", request.getParameter("inCountry"));
+    	 map.put("autherName", request.getParameter("autherName"));
+    	 
+    	 map.put("no10AutherNumber", request.getParameter("no10AutherNumber"));//审核状态
+    	 map.put("no10AutherName", request.getParameter("no10AutherName"));
+        
+    	 if(!request.getParameter("awardsType").equals("thesis")) {
+    		 map.put("claimStatus", "补录");
+    		 map.put("status", "补录");
+    	 }else {
+    		map.put("status", request.getParameter("status"));
+    	 }
+    	 //分页参数
+    	 int pageNum = Integer.valueOf(request.getParameter("pageNum"));
+    	 int pageSize = 30;
+    	 
+    	 switch(request.getParameter("awardsType")) {
+            case "patent": PageHelper.startPage(pageNum,pageSize);return new PageInfo<Patent>(patentService.selectByMultiConditions(map));
+            case "thesis": PageHelper.startPage(pageNum,pageSize);return new PageInfo<Thesis>(thesisService.selectByMultiConditions(map));
+            case "achievementAward": PageHelper.startPage(pageNum,pageSize);return new PageInfo<AchievementAward>(achievementAwardService.selectByMultiConditions(map));
+            case "opusAward": PageHelper.startPage(pageNum,pageSize);return new PageInfo<OpusAward>(opusAwardService.selectByMultiConditions(map));
+            default : return null;
+         }
 	}
 	
 	

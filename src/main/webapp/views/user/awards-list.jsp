@@ -48,7 +48,7 @@
 										<div class="panel-body">
 											<form class="form-inline" id="PatentForm">
 												<div class="form-group" style="display: none;">
-													<input type="text" name="awardsType" value="enPeriodicalThesis"
+													<input type="text" name="awardsType" value="patent"
 														class="type-control">
 												</div>
 												<div class="form-group">

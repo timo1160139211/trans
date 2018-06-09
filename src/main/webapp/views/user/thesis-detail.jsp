@@ -16,12 +16,257 @@
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">论文详细</h4>
+				<h4 class="modal-title" id="myModalLabel">详细</h4>
 			</div>
 
 			<input type="hidden" name="id" value="${thesis.id}">
-
 			<div class="modal-body">
+			
+			
+			<c:if test="${awardsType == 'opusAward'}">
+			
+																<c:if test="${thesis.name != ''}">
+																<div class="form-group "><label for="name"
+																	class="form-control ">著作名称:<font
+																	style="color: #FF0000;"> *</font></label><input type="text"
+																	class="form-control " name="name" value="${thesis.name}"  readonly="true"> 
+																	</div>
+																</c:if>
+															
+																<c:if test="${thesis.no10AutherName != ''}">
+																<div class="form-group "><label class="form-control ">归属单位: <font style="color: #FF0000;"> *</font></label>
+																	<input type="text"
+																	class="form-control " name="no10AutherName" value="${thesis.no10AutherName}"  readonly="true">
+																</div></c:if>
+
+															
+																<c:if test="${thesis.publishDate != ''}">
+																<div class="form-group "><label class="form-control ">出版时间:<font
+																	style="color: #FF0000;"> *</font></label>
+																	<input type="text"
+																	class="form-control " name="publishDate" value="${thesis.publishDate}"  readonly="true">
+																</div></c:if>
+																<c:if test="${thesis.publishWorkunit != ''}">
+																<div class="form-group "><label class="form-control ">出版单位:<font
+																	style="color: #FF0000;"> *</font></label>
+																	<input type="text"
+																	class="form-control " name="publishWorkunit" value="${thesis.publishWorkunit}"  readonly="true">
+																</div></c:if>
+														
+
+
+															
+																<c:if test="${thesis.publishLocation != ''}">
+																<div class="form-group "><label class="form-control ">出版地:<font style="color: #FF0000;"> *</font></label>
+																	<input type="text"
+																	class="form-control " name="publishLocation" value="${thesis.publishLocation}"  readonly="true">
+																</div></c:if>
+																<c:if test="${thesis.opusCategory != ''}">
+																<div class="form-group "><label class="form-control ">著作类别:</label><input type="text"
+																	class="form-control " name="opusCategory" value="${thesis.opusCategory}"  readonly="true">
+																</div></c:if>
+														
+																<c:if test="${thesis.subjectType != ''}">
+																<div class="form-group "><label class="form-control ">学科门类: <font style="color: #FF0000;"> *</font></label><input type="text"
+																	class="form-control " name="subjectType" value="${thesis.subjectType}"  readonly="true">
+																</div></c:if>
+
+																<c:if test="${thesis.stairSubject != ''}">
+																<div class="form-group "><label class="form-control ">一级学科:<font style="color: #FF0000;"> *</font></label><input type="text"
+																	class="form-control " name="stairSubject" value="${thesis.stairSubject}"  readonly="true">
+																</div></c:if>
+														
+
+
+															
+																<c:if test="${thesis.schoolSign != ''}">
+																<div class="form-group "><label class="form-control ">学校署名:<font style="color: #FF0000;"> *</font></label><input type="text"
+																	class="form-control " name="schoolSign" value="${thesis.schoolSign}"  readonly="true">
+															   </div></c:if>
+																<c:if test="${thesis.translatedForeignOrNot != ''}">
+																<div class="form-group "><label class="form-control ">是否翻译成外文:<font style="color: #FF0000;"> *</font></label><input type="text"
+																	class="form-control " name="translatedForeignOrNot" value="${thesis.translatedForeignOrNot}"  readonly="true">
+																	</div></c:if>
+														
+																
+																<c:if test="${thesis.isbn != ''}">
+																<div class="form-group "><label class="form-control ">ISBN:<font style="color: #FF0000;"> *</font></label>
+																	<input type="text"
+																	class="form-control " name="isbn" value="${thesis.isbn}"  readonly="true">
+																</div></c:if>
+																
+																<c:if test="${thesis.wordsNumbers != ''}">
+																<div class="form-group "><label class="form-control ">总字数(万字):
+																<font style="color: #FF0000;"> *</font></label><input type="text"
+																	class="form-control " name="wordsNumbers" value="${thesis.wordsNumbers}"  readonly="true">
+																</div></c:if>
+
+															
+																<c:if test="${thesis.projectSources != ''}">
+																<div class="form-group "><label class="form-control ">项目来源:</label><input type="text"
+																	class="form-control " name="projectSources" value="${thesis.projectSources}"  readonly="true">
+																</div></c:if>
+			
+			
+			
+			
+			</c:if><!-- awardsType == 'opusAward' -->
+			
+			
+			<c:if test="${awardsType == 'patent'}">
+			
+				
+																<c:if test="${thesis.name != ''}">
+																<div class="form-group "><label for="name"
+																	class="form-control ">专利名称: <font
+																	style="color: #FF0000;"> *</font></label>
+																	<input type="text"
+																	class="form-control " name="name" value="${thesis.name}"  readonly="true"></div></c:if>
+															
+															
+															
+															<c:if test="${thesis.no10AutherName != ''}">
+																<div class="form-group "><label class="form-control ">归属单位:</label>
+																  <font style="color: #FF0000;"> *</font><input type="text"
+																	class="form-control " name="no10AutherName" value="${thesis.no10AutherName}"  readonly="true"></div></c:if>
+															
+
+															
+																<c:if test="${thesis.type != ''}">
+																<div class="form-group "><label class="form-control ">专利类型:
+																		 <font style="color: #FF0000;"> *</font></label><input type="text"
+																	class="form-control " name="type" value="${thesis.type}" readonly="true"></div></c:if>
+																<c:if test="${thesis.inCountry != ''}">
+																<div class="form-group "><label class="form-control ">专利范围:
+																	<font style="color: #FF0000;"> *</font></label><input type="text"
+																	class="form-control " name="inCountry" value="${thesis.inCountry}"  readonly="true"></div></c:if>
+															
+
+
+															
+																<c:if test="${thesis.pctPatentApplicationNumber != ''}">
+																<div class="form-group "><label class="form-control ">申请号:<font style="color: #FF0000;"> *</font></label>
+																	<input type="text"
+																	class="form-control " name=pctPatentApplicationNumber value="${thesis.pctPatentApplicationNumber}" id="awardName" readonly="true"></div></c:if>
+																<c:if test="${thesis.pctPatentApplicationDate != ''}">
+																<div class="form-group "><label class="form-control ">申请时间:<font	style="color: #FF0000;"> *</font></label>
+																	<input type="text"
+																	class="form-control " name="pctPatentApplicationDate" value="${thesis.pctPatentApplicationDate}"  readonly="true"></div></c:if>
+															
+
+
+															
+																<c:if test="${thesis.authorizationNumber != ''}">
+																<div class="form-group "><label class="form-control ">授权号:</label>
+																	<input type="text"
+																	class="form-control " name="authorizationNumber" value="${thesis.authorizationNumber}"  readonly="true"></div></c:if>
+																<c:if test="${thesis.authorizationDate != ''}">
+																<div class="form-group "><label class="form-control ">授权时间:</label>
+																	<input type="text"
+																	class="form-control " name="authorizationDate" value="${thesis.authorizationDate}"  readonly="true"></div></c:if>
+															
+															
+			
+			
+			
+			
+			
+			</c:if><!-- awardsType == 'patent' -->
+			
+			
+				<c:if test="${awardsType == 'achievementAward'}">
+																<c:if test="${thesis.awardName != ''}">
+																<div class="form-group "><label for="awardName"
+																	class="form-control ">奖励名称:<font style="color: #FF0000;"> *</font></label> <input type="text"
+																	class="form-control " name="awardName" value="${thesis.awardName}" id="awardName" readonly="true"></div></c:if>
+																	
+																<c:if test="${thesis.achievementName != ''}">
+																<div class="form-group "><label for="achievementName"
+																	class="form-control ">成果名称:<font style="color: #FF0000;"> *</font></label> <input type="text"
+																	class="form-control " name="achievementName" value="${thesis.achievementName}" id="achievementName" readonly="true"></div></c:if>
+
+																<c:if test="${thesis.no10AutherName != ''}">
+																<div class="form-group "><label class="form-control ">归属单位:<font style="color: #FF0000;"> *</font></label>
+																	<input type="text"
+																	class="form-control " name="no10AutherName" value="${thesis.no10AutherName}" readonly="true">
+																	</div></c:if>
+																<c:if test="${thesis.licenseIssuingAgencies != ''}">
+																<div class="form-group "><label class="form-control ">发证机关:</label>
+																	<input type="text" class="form-control " name="licenseIssuingAgencies"
+																	value="${thesis.licenseIssuingAgencies}" readonly="true"></div></c:if>
+
+																<c:if test="${thesis.awardDate != ''}">
+																<div class="form-group "><label class="form-control ">获奖日期:<font style="color: #FF0000;"> *</font></label>
+																	<input type="text" id="awardDate"  readonly="true"  class="form-control "
+																	name="awardDate" value="${thesis.awardDate}"></div></c:if>
+																<c:if test="${thesis.finishedWorkunit != ''}">
+																<div class="form-group "><label class="form-control ">完成单位:</label>
+																	<input type="text" class="form-control " readonly="true" 
+																	name="finishedWorkunit" value="${thesis.finishedWorkunit}"></div></c:if>
+															
+																<c:if test="${thesis.awardRange != ''}">
+																<div class="form-group "><label class="form-control ">获奖范围级别:<font style="color: #FF0000;"> *</font></label>
+																<input type="text" class="form-control " readonly="true" 
+																	name="awardRange" value="${thesis.awardRange}">
+																		</div></c:if>
+																<c:if test="${thesis.awardGrade != ''}">
+																<div class="form-group "><label class="form-control ">获奖等级:</label>
+																<input type="text" class="form-control " readonly="true" 
+																	name="awardGrade" value="${thesis.awardGrade}">
+																</div></c:if>
+
+																<c:if test="${thesis.awardGrantNo != ''}">
+																<div class="form-group "><label class="form-control ">奖励批准号:</label>
+																<input type="text" class="form-control " readonly="true" 
+																	name="awardGrantNo" value="${thesis.awardGrantNo}">
+																	</div></c:if>
+
+																<c:if test="${thesis.subjectCategory != ''}">
+																<div class="form-group "><label class="form-control ">学科门类:</label>
+																<input type="text" class="form-control " readonly="true" 
+																	name="subjectCategory" value="${thesis.subjectCategory}">
+																</div></c:if>
+																<c:if test="${thesis.note != ''}">
+																<div class="form-group "><label class="form-control ">一级学科:</label>
+																<input type="text" class="form-control " readonly="true" 
+																	name="note" value="${thesis.note}">
+																		</div></c:if>
+
+
+																<c:if test="${thesis.workunitNumber != ''}">
+																<div class="form-group "><label class="form-control ">总参加单位数:</label>
+																<input type="text" class="form-control " readonly="true" 
+																	name="workunitNumber" value="${thesis.workunitNumber}">
+																	 </div></c:if>
+																<c:if test="${thesis.workunitRank != ''}">
+																<div class="form-group "><label class="form-control ">单位排名:</label>
+																<input type="text" class="form-control " readonly="true" 
+																	name="workunitRank" value="${thesis.workunitRank}">
+																</div></c:if>
+
+
+																<c:if test="${thesis.awardType != ''}">
+																<div class="form-group "><label class="form-control ">奖励类型(选填):</label>
+																<input type="text" class="form-control " readonly="true" 
+																	name="awardType" value="${thesis.awardType}">
+																		</div></c:if>
+																<c:if test="${thesis.awardForm != ''}">
+																<div class="form-group "><label class="form-control ">成果形式:</label>
+																<input type="text" class="form-control " readonly="true" 
+																	name="awardForm" value="${thesis.awardForm}">
+																	</div></c:if>
+	
+
+																<c:if test="${thesis.projectSources != ''}">
+																<div class="form-group "><label class="form-control ">项目来源:</label>
+																<input type="text" class="form-control " readonly="true" 
+																	name="projectSources" value="${thesis.projectSources}">
+																</div></c:if>
+						
+						
+				</c:if><!-- awardsType == achievementAward -->
+				<c:if test="${awardsType == 'thesis'}">
+				
 				<div class="form-group ">
 					<label>论文题目:<font style="color: #FF0000;"> *</font></label> <input
 						type="text" class="form-control " name="name" readonly="true"
@@ -168,6 +413,15 @@
 						value="${thesis.no10AutherNumber}" readonly="true"
 						class="form-control">
 				</div>
+
+				
+				
+				</c:if><!-- awardsType == thesis -->
+				
+				
+				
+				
+				
 				<div class="form-group ">
 					<label>第一作者：<font style="color: #FF0000;"> *</font></label> <input id="no1AutherName" type="text"
 						name="no1AutherName" value="${thesis.no1AutherName}"
@@ -238,7 +492,7 @@
 				</c:if>
 				<c:if test="${thesis.no8AutherName != ''}">
 					<div class="form-group ">
-						<label>第八作者：<font style="color: #FF0000;"> *</font></label> <input id="no8AutherName" type="text"
+						<label>通讯作者：<font style="color: #FF0000;"> *</font></label> <input id="no8AutherName" type="text"
 							name="no8AutherName" value="${thesis.no8AutherName}"
 							readonly="true" class="form-control"> <label>工号：<font style="color: #FF0000;"> *</font></label>
 						<input id="no8AutherNumber" type="text" name="no8AutherNumber"
@@ -248,7 +502,7 @@
 				</c:if>
 				<c:if test="${thesis.no9AutherName != ''}">
 					<div class="form-group ">
-						<label>第九作者：<font style="color: #FF0000;"> *</font></label> <input id="no9AutherName" type="text"
+						<label>通讯作者2：<font style="color: #FF0000;"> *</font></label> <input id="no9AutherName" type="text"
 							name="no9AutherName" value="${thesis.no9AutherName}"
 							readonly="true" class="form-control"> <label>工号：<font style="color: #FF0000;"> *</font></label>
 						<input id="no9AutherNumber" type="text" name="no9AutherNumber"

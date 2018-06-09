@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import site.gaoyisheng.dao.PatentMapper;
+import site.gaoyisheng.pojo.AchievementAward;
 import site.gaoyisheng.pojo.Patent;
 import site.gaoyisheng.utils.FileUtil;
 
@@ -157,6 +158,16 @@ public class PatentService {
 	 */
 	public int insertList(List<Patent> patentList) throws Exception {
 		return patentDao.insertList(patentList);
+	}
+	
+	
+	
+	public int deleteByPrimaryKey(int id) {
+		return patentDao.deleteByPrimaryKey(id);
+	}
+	
+	public int insertSelective(Patent patent) {
+		return patentDao.insertSelective(patent);
 	}
 	
 	/**

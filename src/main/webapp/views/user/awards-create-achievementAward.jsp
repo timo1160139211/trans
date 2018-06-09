@@ -223,7 +223,7 @@
 																		<option value="教育学">教育学</option>
 																		<option value="体育科学">体育科学</option>
 																		<option value="统计学">统计学</option>
-																</select> <font style="color: #FF0000;"> *</font></td>
+																</select></td>
 															</tr>
 
 
@@ -460,16 +460,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="tab-pane" id="patent-tab">
-										<div class="panel-body">
-											<div class="form-group">
-												<form:form class="form-inline"
-													action="${ctx}/user/awards-de" method="post">
-
-												</form:form>
-											</div>
-										</div>
-									</div>
+									
 								</div>
 								<iframe id="id_iframe" name="nm_iframe" style="display: none;"></iframe>
 							</div>

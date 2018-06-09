@@ -178,6 +178,14 @@ public class OpusAwardService {
 		return opusDao.insertList(opusAwardList);
 	}
 	
+	
+	public int deleteByPrimaryKey(int id) {
+		return opusDao.deleteByPrimaryKey(id);
+	}
+	
+	public int insertSelective(OpusAward opusAward) {
+		return opusDao.insertSelective(opusAward);
+	}
 	/**
 	 * .
 	 * TODO 递归:分割长List为 subNum/段。
